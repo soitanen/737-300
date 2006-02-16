@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!--
+737 instrument panel.
+David Culp, davidculp2@comcast.net, March 2003
+License:  GPL
+_______________________________________________________________________
+-->
+
+<PropertyList>
+ <name>737 Panel</name>
+ <background>Aircraft/B737/Panels/737-invis-1024x1024.rgb</background>
+ <w>1024</w>
+ <h>1024</h>
+ <y-offset>0</y-offset>
+ <view-height>768</view-height>
+
+ <instruments>
+  <instrument include="../Instruments/EADI.xml">
+   <name>EADI/EHSI</name>
+   <x>300</x>
+   <y>195</y>
+   <w>188</w>
+   <h>379</h>
+  </instrument>
+
+  <instrument include="../Instruments/fuel-quantity.xml">
+   <name>Fuel Quantity</name>
+   <x>673</x>
+   <y>100</y>
+   <w>100</w>
+   <h>77</h>
+  </instrument>
+
+  <instrument include="../Instruments/737-engines.xml">
+   <name>737 Digital Engine Display</name>
+   <x>842</x>
+   <y>170</y>
+   <w>128</w>
+   <h>256</h>
+  </instrument>
+
+  <instrument include="../Instruments/737-flaps.xml">
+   <name>737 Flaps Indicator/Control</name>
+   <x>987</x>
+   <y>170</y>
+   <w>68</w>
+   <h>200</h>
+  </instrument>
+
+  <instrument include="../Instruments/737-gear.xml">
+   <name>737 Gear Indicator Lights</name>
+   <x>987</x>
+   <y>287</y>
+   <w>72</w>
+   <h>33</h>
+  </instrument>
+
+
+ </instruments>
+
+</PropertyList>

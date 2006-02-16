@@ -1,0 +1,63 @@
+Functions using attached 737-autopilotV5.xml 737-Set.xml & 737.xml :
+ 
+                    Click  Keyboard   
+                    able   binding  Notes
+
+Autopilot On        Yes   None   Move panel left to reveal switch 
+Autopilot Off       Yes   None   Disengage bar is below "On Switch"
+Altitude Hold       Yes   Ctl-A  May have to use Ctl-S before it is clickable  
+Heading Select      No    Ctl-H  Can employ even from 180 deg out
+VOR Loc             Yes   Ctl-N  Can employ even from 180 deg out
+VOR Loc with ILS    Yes   Ctl-N  Captures VOR signal 2-5 dots out  
+APPR (Glideslope )  Yes   Ctl-G  Captures Glideslope 1-2 dots out 
+                                
+A/T Autothrottle    Yes   None   Click "on-off-on" prior to other A/T clickables
+                                 Initially locks throttle position.
+                                 Free with rapid Ctl-S Ctl-S sequence
+Speed Control On    Yes   Ctl-S  Holds speed pre-set with F11 dialog when
+                                 when A/T not engaged or locks on current
+                                 speed when A/T is engaged. Throttle keys
+                                 lower or raise setting. 
+Speed Control Off   Yes   Ctl-S  If Ctl-S is used for on and off then
+                                 throttle is not locked. If speed control is
+                                 CLICKED on and then turned off by either
+                                 click of Ctl-S, throttle is locked.
+                                 A rapid sequence of Ctl-S Ctl-S frees it
+                                 Sometimes after speed control is turned
+                                 off, it may not be clickable again until
+                                 A/T is toggled of and back on first.
+Level Change On     Yes   None   Locks throttle.
+Level Change off    Yes   Yes    Click off then Ctl-S Ctl-S sequence to free throttle.
+                                 Anytime throttle is locked free with Ctl-S Ctl-S
+ 
+Altitude set        Yes   F11    F11 Autopilot dialog
+Vertical Speed Set  No    None
+Pitch hold          No    Ctl-P  Keeps craft on current down or up slope
+
+Takeoff w autopilot Yes   Ctl-N  Set ILS frequency and turn VOR Loc on - helps to
+                                 keep takeoff roll centered.  Particularly helpful
+                                 in wind Turn off after liftoff.
+
+Landing w autopilot Yes   Ctl-N  It is simpler to use the keyboard bindings
+                                 during landing. Turn on VOR Loc (Ctl-N),
+                                 APP (Glideslope "GS") Control (Ctl-G) and
+                                 Speed control (Ctl-S). Set to approach/touchdown
+                                 speed desired using throttles or F11 setting.
+
+                                 Use spoilers (Ctl-B) and flaps to assist autopilot
+                                 to come to pre-set speed.  Between the middle
+                                 marker (1/2 mile out) and the inner marker
+                                 (just over the threshold) disengage Glideslope
+                                 control with Ctl-G.
+                                        
+                                 Before touchdown disengage speed control by
+                                 Ctl-S and manually flare out to touchdown, 
+                                 cut the throttle, and roll out.  VOR Loc will
+                                 help hold center line in wind conditions.
+                                 Disengage VOR Loc.
+
+
+
+               
+
+                 

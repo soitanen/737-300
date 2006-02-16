@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<PropertyList>
+ <sim>
+
+  <description>Boeing 737-300</description>
+  <author>David Culp (FDM), Innis Cunningham (3D and Panel)</author>
+  <status>early-production</status>
+
+  <flight-model>jsb</flight-model>
+  <aero>737</aero>
+
+  <systems>
+   <autopilot>
+   <path>Aircraft/737-300/Systems/737-autopilotV4.xml</path>
+   </autopilot>
+   <electrical>
+    <path>Aircraft/Generic/generic-electrical.xml</path>
+   </electrical>
+  </systems> 
+  
+  <sound>
+   <path>Aircraft/737-300/Sounds/737-sound.xml</path>
+  </sound>
+
+  <virtual-cockpit archive="y">true</virtual-cockpit>
+  <allow-toggle-cockpit archive="y">false</allow-toggle-cockpit>
+
+  <panel>
+   <path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
+   <visibility>true</visibility>
+  </panel>
+  
+  <model>
+   <path>Aircraft/737-300/Models/737-300.xml</path>
+  </model>
+   
+  <view>
+   <internal archive="y">true</internal>
+   <config>
+     <!-- x/y/z == right/up/back -->
+     <x-offset-m archive="y">-0.4</x-offset-m>
+     <y-offset-m archive="y">2.55</y-offset-m>
+     <z-offset-m archive="y">-6.2</z-offset-m>
+     <pitch-offset-deg archive="y">-8.0</pitch-offset-deg>
+   </config>
+  </view>
+  <view n="1">
+   <config>
+     <!-- big plane, so extend chase view offset a bit -->
+     <z-offset-m type="double" archive="y">-80.0</z-offset-m>
+   </config>
+  </view>
+
+  <chase-distance-m>-30</chase-distance-m>
+
+  <flaps>
+   <setting>0.000</setting>  <!-- flaps up -->
+   <setting>0.125</setting>  <!-- flaps 1  -->
+   <setting>0.250</setting>  <!-- flaps 2  -->
+   <setting>0.375</setting>  <!-- flaps 5  -->
+   <setting>0.500</setting>  <!-- flaps 10 -->
+   <setting>0.625</setting>  <!-- flaps 15 --> 
+   <setting>0.750</setting>  <!-- flaps 25 -->
+   <setting>0.875</setting>  <!-- flaps 30 -->
+   <setting>1.000</setting>  <!-- flaps 40 -->
+  </flaps>
+
+  <submodels>
+   <serviceable>true</serviceable>
+   <path>Aircraft/737/submodels.xml</path>
+  </submodels>
+
+ </sim>
+   
+  <consumables>
+  <fuel>
+   <tank n="0">
+     <level-gal_us archive="y">1540</level-gal_us>
+   </tank>
+   <tank n="1">
+    <level-gal_us archive="y">1540</level-gal_us>
+   </tank>
+   <tank n="2">
+    <level-gal_us archive="y">0</level-gal_us>
+   </tank>
+  </fuel>
+ </consumables>
+ 
+ <engines>
+  <engine n="0">
+    <running>true</running>
+  </engine>
+  <engine n="1">
+    <running>true</running>
+  </engine>
+ </engines>
+
+<controls>
+  <gear>
+    <autobrakes type="int">5</autobrakes>
+    <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
+  </gear>
+  <flight>
+    <autospeedbrakes-armed type="string">false</autospeedbrakes-armed>
+  </flight>
+ </controls>
+
+ <nasal>
+   <airground>
+     <file>Aircraft/737-300/Systems/air-ground.nas</file>
+   </airground>
+ </nasal>
+
+ <instrumentation>
+  <dme>
+    <switch-position>1</switch-position>
+  </dme>
+ </instrumentation>
+
+ <systems>
+   <autoflight>
+    <serviceable type="bool">true</serviceable>
+   </autoflight>
+ </systems>
+
+ <!-- presets for the FlightGear autoflight system MCP panel -->
+ <autopilot>
+  <settings>
+    <target-altitude-ft type="double">4000.0</target-altitude-ft>
+    <heading-bug-deg type="double">283.0</heading-bug-deg>
+    <target-speed-kt type="double">200.0</target-speed-kt>
+  </settings>
+ </autopilot>
+
+ <!-- presets for the JSBSim autoflight system MCP panel -->
+ <fdm>
+  <jsbsim>
+   <ap>
+    <heading_setpoint type="double">283.0</heading_setpoint>
+   </ap>
+  </jsbsim>
+ </fdm>
+
+ <environment>
+  <params>
+   <contrail-altitude>50000</contrail-altitude>
+  </params>
+ </environment> 
+
+</PropertyList>
+
+
+
+
