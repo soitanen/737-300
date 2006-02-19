@@ -230,7 +230,7 @@ override those by providing <w>..</w> and <h>..</h> properties with the
   
  </instruments>
 
- <background>Aircraft/737/Panels/737300.rgb</background> 
+ <background>Aircraft/737-300/Panels/737300.rgb</background> 
  <w>1750</w>
  <h>850</h>
  <y-offset>50</y-offset>

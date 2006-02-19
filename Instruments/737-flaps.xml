@@ -44,7 +44,7 @@ properties' values.
   <layer>
    <name>handle</name>
    <texture>
-    <path>Aircraft/737/Instruments/Textures/737-flaps.rgb</path>
+    <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
     <x1>0.0</x1>
     <x2>0.140625</x2>
     <y1>0.0</y1>

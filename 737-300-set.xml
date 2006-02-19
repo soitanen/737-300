@@ -67,7 +67,7 @@
 
   <submodels>
    <serviceable>true</serviceable>
-   <path>Aircraft/737/submodels.xml</path>
+   <path>Aircraft/737-300/submodels.xml</path>
   </submodels>
 
  </sim>
