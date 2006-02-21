@@ -39,6 +39,49 @@
     </transformations>
   </layer>
 
+  <layer>
+	  <name>big needle</name>
+	  <w>4</w>
+	  <h>15</h>
+	  <texture>
+		  <path>Aircraft/Instruments/Textures/misc-1.rgb</path>
+		  <x1>0.8</x1>
+		  <y1>0.78125</y1>
+		  <x2>0.8375</x2>
+		  <y2>1.0</y2>
+	  </texture>
+	  <transformations>
+		  <transformation>
+			  <type>x-shift</type>
+			  <offset>43</offset>
+		  </transformation>
+		  <transformation>
+			  <type>y-shift</type>
+			  <offset>72</offset>
+		  </transformation>
+		  <transformation>
+			  <type>rotation</type>
+			  <property>/engines/engine[0]/oil-pressure-psi</property>
+			  <min>0.0</min>
+			  <max>100.0</max>
+			  <scale>1.34</scale>
+			  <interpolation>
+				  <entry><ind>  0</ind><dep>    90</dep></entry>
+				  <entry><ind>  20</ind><dep>  120</dep></entry>
+				  <entry><ind>  40</ind><dep> 175</dep></entry>
+				  <entry><ind>  60</ind><dep> 220</dep></entry>
+				  <entry><ind> 80</ind><dep>  260</dep></entry>
+				  <entry><ind> 100</ind><dep>  300</dep></entry>        
+			  </interpolation>
+		  </transformation>
+		  <transformation>
+			  <type>y-shift</type>
+			  <offset>10.0</offset>
+		  </transformation>
+	  </transformations>
+  </layer> 
+ 
+
    <layer>
    <name>oil pressure engNo2</name>
    <w>35</w>
@@ -63,6 +106,48 @@
   </layer>
 
   <layer>
+	  <name>big needle</name>
+	  <w>4</w>
+	  <h>15</h>
+	  <texture>
+		  <path>Aircraft/Instruments/Textures/misc-1.rgb</path>
+		  <x1>0.8</x1>
+		  <y1>0.78125</y1>
+		  <x2>0.8375</x2>
+		  <y2>1.0</y2>
+	  </texture>
+	  <transformations>
+		  <transformation>
+			  <type>x-shift</type>
+			  <offset>99</offset>
+		  </transformation>
+		  <transformation>
+			  <type>y-shift</type>
+			  <offset>72</offset>
+		  </transformation>
+		  <transformation>
+			  <type>rotation</type>
+			  <property>/engines/engine[1]/oil-pressure-psi</property>
+			  <min>0.0</min>
+			  <max>100.0</max>
+			  <scale>1.34</scale>
+			  <interpolation>
+				  <entry><ind>  0</ind><dep>    90</dep></entry>
+				  <entry><ind>  20</ind><dep>  120</dep></entry>
+				  <entry><ind>  40</ind><dep> 175</dep></entry>
+				  <entry><ind>  60</ind><dep> 220</dep></entry>
+				  <entry><ind> 80</ind><dep>  260</dep></entry>
+				  <entry><ind> 100</ind><dep>  300</dep></entry>        
+			  </interpolation>
+		  </transformation>
+		  <transformation>
+			  <type>y-shift</type>
+			  <offset>10.0</offset>
+		  </transformation>
+	  </transformations>
+  </layer> 
+   
+  <layer>
    <name>oil temp engNo1</name>
    <w>35</w>
    <h>35</h>
@@ -85,6 +170,9 @@
     </transformations>
   </layer>
 
+
+   
+   
   <layer>
    <name>oil pressure engNo2</name>
    <w>35</w>
@@ -309,6 +397,7 @@
       <type>number-value</type>
       <property>/engines/engine[0]/n1</property>
       <format>%6.1f</format>
+      
      </chunk>
     </chunks>
     <transformations>
@@ -403,6 +492,7 @@
       <type>number-value</type>
       <property>/engines/engine[1]/n1</property>
       <format>%6.1f</format>
+
      </chunk>
     </chunks>
     <transformations>
@@ -584,7 +674,8 @@
       <property>/engines/engine[1]/egt_degf</property>
       <format>%6.0f</format>
       <offset>-17.77777777</offset>
-      <scale>*0.55555556</scale>
+      <!-- add * back if wrong -->
+      <scale>0.55555556</scale>
      </chunk>
     </chunks>
     <transformations>
@@ -782,7 +873,7 @@
    <w>42</w>
    <h>42</h>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/fuel-guage.rgb</path>
+    <path>Aircraft/737-300/Instruments/Textures/fuel-guage-1.rgb</path>
     <x1>0.0</x1>
     <y1>0.0</y1>
     <x2>1.0</x2>
@@ -820,7 +911,7 @@
    <w>40</w>
    <h>40</h>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/fuel-guage.rgb</path>
+    <path>Aircraft/737-300/Instruments/Textures/fuel-guage-2.rgb</path>
     <x1>0</x1>
     <y1>0</y1>
     <x2>1</x2>
@@ -872,7 +963,7 @@
    <w>40</w>
    <h>40</h>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/fuel-guage.rgb</path>
+    <path>Aircraft/737-300/Instruments/Textures/fuel-guage-ctr.rgb</path>
     <x1>0</x1>
     <y1>0</y1>
     <x2>1</x2>
@@ -910,7 +1001,7 @@
     <transformations>
      <transformation>
       <type>x-shift</type>
-      <offset>-58</offset>
+      <offset>-61</offset>
      </transformation>
      <transformation>
       <type>y-shift</type>
@@ -924,7 +1015,7 @@
    <w>40</w>
    <h>40</h>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/fuel-guage.rgb</path>
+    <path>Aircraft/737-300/Instruments/Textures/fuel-guage-1.rgb</path>
     <x1>0</x1>
     <y1>0</y1>
     <x2>1</x2>
