@@ -61,7 +61,7 @@
 		  </transformation>
 		  <transformation>
 			  <type>rotation</type>
-			  <property>/engines/engine[0]/oilp-norm</property>
+			  <property>/engines/engine[0]/oil-pressure-psi</property>
 			  <min>0.0</min>
 			  <max>100.0</max>
 			  <scale>1.34</scale>
@@ -127,7 +127,7 @@
 		  </transformation>
 		  <transformation>
 			  <type>rotation</type>
-			  <property>/engines/engine[1]/oilp-norm</property>
+			  <property>/engines/engine[1]/oil-pressure-psi</property>
 			  <min>0.0</min>
 			  <max>100.0</max>
 			  <scale>1.34</scale>
@@ -552,7 +552,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine[0]/egt-degf</property>
+     <property>/engines/engine[0]/egt_degf</property>
      <scale>0.19444444</scale>
      <offset>-7.77777777</offset> 
     </transformation>
@@ -580,7 +580,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[0]/egt-degf</property>
+      <property>/engines/engine[0]/egt_degf</property>
       <format>%6.0f</format>
       <offset>-17.77777777</offset>
       <scale>0.55555556</scale>
@@ -643,7 +643,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine[1]/egt-degf</property>
+     <property>/engines/engine[1]/egt_degf</property>
      <scale>0.19444444</scale>
      <offset>-7.77777777</offset> 
     </transformation>
@@ -671,7 +671,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[1]/egt-degf</property>
+      <property>/engines/engine[1]/egt_degf</property>
       <format>%6.0f</format>
       <offset>-17.77777777</offset>
       <!-- add * back if wrong -->
@@ -735,7 +735,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine/fuel-flow-gph</property>
+     <property>/engines/engine/fuel-flow_pph</property>
      <scale>0.022</scale>
      <offset>70</offset> 
     </transformation>
@@ -763,7 +763,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine/fuel-flow-gph</property>
+      <property>/engines/engine/fuel-flow_pph</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -824,7 +824,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine[1]/fuel-flow-gph</property>
+     <property>/engines/engine[1]/fuel-flow_pph</property>
      <scale>0.022</scale>
      <offset>70</offset> 
     </transformation>
@@ -852,7 +852,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[1]/fuel-flow-gph</property>
+      <property>/engines/engine[1]/fuel-flow_pph</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -890,7 +890,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/consumables/fuel/tank[1]/level-lbs</property>
+     <property>/consumables/fuel/tank[1]/level-lb</property>
      <scale>0.015</scale>
      <offset>-110</offset> 
     </transformation>
@@ -942,7 +942,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank[1]/level-lbs</property>
+      <property>/consumables/fuel/tank[1]/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -994,7 +994,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank[2]/level-lbs</property>
+      <property>/consumables/fuel/tank[2]/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -1046,7 +1046,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank/level-lbs</property>
+      <property>/consumables/fuel/tank/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
