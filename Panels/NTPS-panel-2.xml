@@ -1,0 +1,24 @@
+<!--
+Fullscreen test panel
+Syd Adams , August 2006
+-->
+
+<PropertyList>
+ <name>Test Panel</name>
+ <background>Aircraft/NTPS/Panels/panel-bg2.rgb</background>
+ <w>1024</w>
+ <h>768</h>
+ 
+ <instruments>
+
+  <instrument include="../Instruments/P1000-PFD.xml">
+   <name>Primus 1000 PFD</name>
+   <x>262</x>
+   <y>445</y>
+   <w>436</w>
+   <h>570</h>
+  </instrument>
+
+ </instruments>
+
+</PropertyList>

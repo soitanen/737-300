@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<!--
+NTPS "Head Down" full screen panel
+Derived from the 737-300 2d panel with help from the T38 panel.
+_______________________________________________________________________
+
+This is a panel configuration file for the open-source flight
+simulator FlightGear (www.flightgear.org).  The file is an XML-encoded
+FlightGear property list defining the panel's background texture and
+the location (and optionally, size) of the instruments that will
+appear on the panel.
+
+Each instrument is, itself, defined in an XML-encoded property list
+in a separate file.
+
+Co-ordinates are relative to the *bottom* left corner of the screen
+(as in OpenGL).  The total FlightGear window is always considered to
+be 1024x768, whatever its actual display size on the screen.  All
+paths are relative to $FG_ROOT.
+
+Note that the name of the element defining each instrument must be
+different, or else instrument definitions will be overwritten:
+that's not particularly XML-ish, but that's how property lists
+work in FlightGear right now.
+
+Each instrument has its own preferred width and height, but you can
+override those by providing <w>..</w> and <h>..</h> properties with the
+<x>...</x> and <y>...</y> properties.
+-->
+
+ 
+
+<PropertyList>
+
+ <name>NTPS Full Screen Panel</name>
+
+ <background>Aircraft/NTPS/Panels/panel-bg1.rgb</background> 
+ <w>1024</w>
+ <h>768</h>
+ <y-offset>50</y-offset>
+ <view-height>500</view-height> 
+  
+ <instruments>
+  <instrument include="../Instruments/radiopanel.xml">
+   <name>radiopanel</name>
+   <x>200</x>
+   <y>190</y>
+   <w>350</w>
+   <h>350</h>
+  </instrument>
+
+  <instrument include="../Instruments/pfd2.xml">
+   <name>pfd2-lh</name>
+   <x>512</x>
+   <y>576</y>
+   <w>384</w>
+   <h>384</h>
+  </instrument> 
+
+  <instrument include="../Instruments/pfd1.xml">
+   <name>pfd1-lh</name>
+   <x>512</x>
+   <y>192</y>
+   <w>384</w>
+   <h>384</h>
+  </instrument>
+
+  <instrument include="../Instruments/eicas.xml">
+   <name>eicas</name>
+   <x>864</x>
+   <y>192</y>
+   <w>320</w>
+   <h>320</h>
+  </instrument>  
+
+  <instrument include="../Instruments/flap-guage.xml">
+   <name>flap-guage</name>
+   <x>880</x>
+   <y>392</y>
+   <w>100</w>
+   <h>100</h>
+  </instrument>
+
+  <instrument include="../Instruments/le-flap-lights.xml">
+   <name>flap-guage</name>
+   <x>950</x>
+   <y>392</y>
+   <w>34</w>
+   <h>34</h>
+  </instrument>
+
+  <instrument include="../Instruments/le-flap-lights1.xml">
+   <name>flap-guage</name>
+   <x>950</x>
+   <y>392</y>
+   <w>34</w>
+   <h>34</h>
+  </instrument>
+  
+  <instrument include="../Instruments/gear-lights.xml">
+   <name>gear-lights</name>
+   <x>775</x>
+   <y>392</y>
+   <w>78</w>
+   <h>58</h>
+  </instrument> 
+
+  <instrument include="../Instruments/asi-NTPS.xml">
+   <name>standby-combo</name>
+   <x>200</x>
+   <y>556</y>
+   <w>192</w>
+   <h>192</h>
+  </instrument>
+
+  <instrument include="../Instruments/T38-altimeter.xml">
+   <name>standby-ah</name>
+   <x>860</x>
+   <y>556</y>
+   <w>192</w>
+   <h>192</h>
+  </instrument>
+
+ </instruments>
+
+</PropertyList>
+
+
+
