@@ -876,6 +876,7 @@
         </axis>
     </aerodynamics>
 
+<!--
     <output name="B737_datalog.csv" rate="20" type="CSV">
         <property> aero/qbar-psf </property>
         <property> attitude/phi-rad </property>
@@ -893,6 +894,6 @@
         <fcs> OFF </fcs>
         <ground_reactions> ON </ground_reactions>
     </output>
-
+-->
 </fdm_config>
 
