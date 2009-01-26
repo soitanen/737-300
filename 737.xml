@@ -9,7 +9,21 @@
         <author> Aeromatic </author>
         <filecreationdate> 2006-01-04 </filecreationdate>
         <version>$Revison: 1.0 $</version>
-        <description> Models a 737. </description>
+        <description> Models a Boeing 737. </description>
+        <license>
+          <licenseName>GPL (General Public License)</licenseName>
+          <licenseURL>http://www.gnu.org/licenses/gpl.html</licenseURL>
+        </license>
+        <note>
+          This model was created using publicly available data, publicly available
+          technical reports, textbooks, and guesses. It contains no proprietary or
+          restricted data. It has been validated only to the extent that it seems
+          to "fly right", and possibly to comply to published, publicly known, 
+          performance data (maximum speed, endurance, etc.). Thus, this model
+          is meant for educational and entertainment purposes only.
+          
+          This simulation model is not endorsed by the manufacturer.
+        </note>
     </fileheader>
 
     <metrics>
@@ -895,5 +909,6 @@
         <ground_reactions> ON </ground_reactions>
     </output>
 -->
+
 </fdm_config>
 
