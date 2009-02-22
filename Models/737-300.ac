@@ -8258,7 +8258,7 @@ refs 6
 kids 0
 OBJECT poly
 name "tyrern"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -9010,7 +9010,7 @@ kids 0
 OBJECT poly
 name "rhngdoor"
 loc -5.29588 -1.11181 -0.221558
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 12
 1.08023 -0.137547 0.122593
 -0.205313 -0.0549998 0.122654
@@ -9071,7 +9071,7 @@ kids 0
 OBJECT poly
 name "lhngdoor"
 loc -5.29588 -1.1197 0.219449
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 12
 1.07999 -0.0568637 0.231554
 -0.205569 0.0295397 0.233506
@@ -9895,7 +9895,7 @@ refs 6
 kids 0
 OBJECT poly
 name "mglhtyrelh"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -10145,7 +10145,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mglhtyrerh"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -11493,7 +11493,7 @@ kids 0
 OBJECT poly
 name "geardoor"
 loc 7.20143 -1.55001 2.87153
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 9
 -0.24434 0.124138 -0.09744
 0.165639 0.137871 -0.14496
@@ -16756,7 +16756,7 @@ kids 0
 OBJECT poly
 name "fan"
 loc 3.31055 -1.28753 4.7713
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 21
 0 0 0.87027
 0 0.259149 0.827676
@@ -16904,7 +16904,7 @@ kids 0
 OBJECT poly
 name "lhbodyfairing"
 loc 5.87719 -0.648466 1.03404
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 98
 -2.57722 -0.243604 0.75071
 -3.08835 0.20474 0.750645
@@ -23443,7 +23443,7 @@ refs 6
 kids 0
 OBJECT poly
 name "mgrhtyrerh"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -23693,7 +23693,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mgrhtyrelh"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -25041,7 +25041,7 @@ kids 0
 OBJECT poly
 name "rhgeardoor"
 loc 7.20164 -1.5503 -11.804
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 9
 -0.24434 0.124138 9.0379
 0.165639 0.137871 9.08542
@@ -28689,7 +28689,7 @@ kids 0
 OBJECT poly
 name "rhfan"
 loc 3.31076 -1.28782 -9.90424
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 21
 0 0 4.27065
 0 0.259149 4.31325
@@ -28837,7 +28837,7 @@ kids 0
 OBJECT poly
 name "rhbodyfairing"
 loc 5.8774 -0.648755 -13.6415
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 97
 -2.57722 -0.243604 11.8647
 -3.08835 0.20474 11.8648
@@ -30196,7 +30196,7 @@ kids 0
 OBJECT poly
 name "rudder"
 loc 24.3549 5.90084 0.00193664
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 33
 1.23817 3.75925 0.0482428
 1.69644 3.75958 -0.00303815
@@ -30454,7 +30454,7 @@ kids 0
 OBJECT poly
 name "vstab "
 loc 20.0002 5.99565 -0.00612861
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 75
 4.10252 3.70109 -0.0799236
 4.48983 3.70015 -0.079726
@@ -30963,7 +30963,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tyreln"
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 texrep 1 1
 crease 30
 numvert 32
@@ -31562,7 +31562,7 @@ kids 0
 OBJECT poly
 name "lengfanouterob"
 loc 3.11343 -1.28356 5.24833
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.348529 0.890796 -0.50131
 0.348529 0.841059 -0.192944
@@ -31904,7 +31904,7 @@ kids 0
 OBJECT poly
 name "lengfanouterib"
 loc 3.11343 -1.28808 4.23922
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.348529 -0.880146 0.50443
 0.348529 -0.879848 0.259625
@@ -32246,7 +32246,7 @@ kids 0
 OBJECT poly
 name "lreverserob"
 loc 4.51791 -1.28397 5.24827
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 -0.534945 0.90914 -0.501138
 -0.534945 0.85932 -0.18845
@@ -32658,7 +32658,7 @@ kids 0
 OBJECT poly
 name "lreverserib"
 loc 4.51791 -1.28838 4.24173
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 -0.534945 -0.904729 0.501223
 -0.534945 -0.91355 0.246679
@@ -33070,7 +33070,7 @@ kids 0
 OBJECT poly
 name "rengfanouterob"
 loc 3.11364 -1.28385 -5.24035
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.856023 0.909448 0.501114
 0.856023 0.859148 0.188075
@@ -33412,7 +33412,7 @@ kids 0
 OBJECT poly
 name "rengfanouterib"
 loc 3.11364 -1.28837 -4.23124
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.856023 -0.90493 -0.50393
 0.856023 -0.913966 -0.24896
@@ -33754,7 +33754,7 @@ kids 0
 OBJECT poly
 name "rreverserob"
 loc 4.51812 -1.28426 -5.24028
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.115245 0.82285 0.499365
 0.115245 0.777748 0.214625
@@ -34166,7 +34166,7 @@ kids 0
 OBJECT poly
 name "rreverserib"
 loc 4.51812 -1.28867 -4.23375
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 55
 0.115245 -0.897087 -0.50717
 0.115245 -0.90888 -0.24632
@@ -34578,7 +34578,7 @@ kids 0
 OBJECT poly
 name "antlo"
 loc 0.468656 -1.71296 -0.00329489
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 8
 -0.325964 0.330381 -0.00259729
 -0.213608 0.33019 0.0406713
@@ -34628,7 +34628,7 @@ kids 0
 OBJECT poly
 name "lhfuselage"
 loc 8.2611 0.583141 0.00119102
-texture "733UAii.rgb"
+texture "733AWE_USA.rgb"
 numvert 963
 4.44386 0.0834095 1.85814
 -8.2611 0.415189 1.81892

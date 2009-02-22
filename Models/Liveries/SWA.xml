@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">Southwest Airlines</name>
+    <texture>733SWA.rgb</texture>
+   </livery>
+  </model>
+ </sim>
+</PropertyList>

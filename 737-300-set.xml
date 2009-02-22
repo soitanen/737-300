@@ -33,6 +33,9 @@
 
 		<model>
 			<path>Aircraft/737-300/Models/737-300.xml</path>
+      		<livery>
+       			<file type="string"/>
+     			 </livery>	
 		</model>
 
 		<view>
@@ -87,6 +90,22 @@
 			<path>Aircraft/737-300/submodels.xml</path>
 		</submodels>
 
+		<menubar>
+ 			<default>
+  				<menu n="10">
+   					<label>Boeing 737-300</label>
+   					<enabled type="bool">true</enabled>
+  					<item>
+    						<label>Select Livery</label>
+    						<binding>
+     							<command>nasal</command>
+     							<script>aircraft.livery.dialog.toggle()</script>
+    						</binding>
+   					</item>
+  				</menu>
+ 			</default>
+		</menubar>
+
 	</sim>
 
 	<consumables>
@@ -125,6 +144,7 @@
 	<nasal>
 		<airground>
 			<file>Aircraft/737-300/Systems/air-ground.nas</file>
+           		<file>Aircraft/737-300/Nasal/liveries.nas</file>
 		</airground>
 	</nasal>
 

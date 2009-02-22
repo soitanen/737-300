@@ -4,22 +4,55 @@
 
  <path>737-300.ac</path>
  <offsets>
-   <z-m>1.45</z-m>
+   <z-m>0.45</z-m>
    <pitch-deg>0.2</pitch-deg>
  </offsets>
- <!--
-  <model>
-  <path>Aircraft/gages/Models/test.xml</path>
-  <offsets>
-   <x-m>-6.816</x-m>
-   <y-m>-0.51</y-m>
-   <z-m> 1.68</z-m>
-   <pitch-deg>0.0</pitch-deg>
-  </offsets>
- </model>
- -->
+ 
+     <nasal>
+        <load>
+            var livery_update = aircraft.livery_update.new("Aircraft/737-300/Models/Liveries", 10);
+        </load>
 
- <animation>
+        <unload>
+            livery_update.stop();
+        </unload>
+    </nasal>
+    
+<animation>
+ <type>material</type>
+  <object-name>tyrern</object-name>
+  <object-name>rhngdoor</object-name>
+  <object-name>lhfuselage</object-name>
+  <object-name>lhngdoor</object-name>
+  <object-name>mglhtyrelh</object-name>
+  <object-name>mglhtyrerh</object-name>
+  <object-name>geardoor</object-name>
+  <object-name>fan</object-name>
+  <object-name>lhbodyfairing</object-name>
+  <object-name>mgrhtyrerh</object-name>
+  <object-name>mgrhtyrelh</object-name>
+  <object-name>rhgeardoor</object-name>
+  <object-name>rhfan</object-name>
+  <object-name>rhbodyfairing</object-name>
+  <object-name>rudder</object-name>
+  <object-name>vstab </object-name>
+  <object-name>tyreln</object-name>
+  <object-name>lengfanouterob</object-name>
+  <object-name>lengfanouterib</object-name>
+  <object-name>lreverserob</object-name>
+  <object-name>lreverserib</object-name>
+  <object-name>rengfanouterob</object-name>
+  <object-name>rengfanouterib</object-name>
+  <object-name>rreverserob</object-name>
+  <object-name>rreverserib</object-name>
+  <object-name>antlo</object-name>
+  <object-name>lhfuselage</object-name>
+  <property-base>sim/model/livery</property-base>
+  <texture-prop>texture</texture-prop>
+  <texture>733AWE_USA.rgb</texture>
+ </animation>	
+
+<animation>
   <type>rotate</type>
   <object-name>nouterstrut</object-name>
   <object-name>rhsteercyl</object-name>

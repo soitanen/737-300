@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">USAir</name>
+    <texture>733AWE_USA.rgb</texture>
+   </livery>
+  </model>
+ </sim>
+</PropertyList>
