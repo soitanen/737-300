@@ -1,62 +1,89 @@
-<?xml version="1.0"?>
 <PropertyList>
-
-	<sim>
-
+<sim>
 		<description>Boeing 737-300</description>
-		<author>David Culp (FDM), Innis Cunningham (3D and Panel)</author>
+		<author>David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d)</author>
 		<status>early-production</status>
 
 		<flight-model>jsb</flight-model>
-		<aero>737</aero>
+		<aero>737-300</aero>
 
-		<systems>
-			<autopilot>
-				<path>Aircraft/737-300/Systems/737-autopilotV4.xml</path>
-			</autopilot>
-			<electrical>
-				<path>Aircraft/Generic/generic-electrical.xml</path>
-			</electrical>
-		</systems>
 
-		<sound>
-			<path>Aircraft/737-300/Sounds/737-sound.xml</path>
-		</sound>
 
-		<virtual-cockpit archive="y">true</virtual-cockpit>
-		<allow-toggle-cockpit archive="y">false</allow-toggle-cockpit>
 
-		<panel>
-			<path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
-			<visibility>true</visibility>
-		</panel>
-
+<panel>
+		<path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
+		<visibility>true</visibility>
+</panel>
+    
 		<model>
 			<path>Aircraft/737-300/Models/737-300.xml</path>
-      		<livery>
-       			<file type="string"/>
-     			 </livery>	
-		</model>
-
+			<pushback>
+  <kp type="double">100</kp>
+  <ki type="double">25</ki>
+  <kd type="double">0</kd>
+  <position-norm type="double">0</position-norm>
+ </pushback>
+  <livery>  
+    <file type="string">733UA</file>
+   </livery> 
+</model>
+		
+    
 		<view>
 			<internal archive="y">true</internal>
 			<config>
 				<!-- x/y/z == right/up/back -->
-				<x-offset-m archive="y">-0.4</x-offset-m>
-				<y-offset-m archive="y">2.55</y-offset-m>
-				<z-offset-m archive="y">-6.2</z-offset-m>
-				<pitch-offset-deg archive="y">-8.0</pitch-offset-deg>
+				<x-offset-m archive="y">-0.475</x-offset-m>
+				<y-offset-m archive="y">1.85</y-offset-m>
+				<z-offset-m archive="y">2.830</z-offset-m>
+<!--				<z-offset-m archive="y">-6.300</z-offset-m>-->
+				<pitch-offset-deg archive="y">-11.0</pitch-offset-deg>
+        <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+        <dynamic>
+        <enabled type="bool" userarchive="y">false</enabled>
+        </dynamic>
 			</config>
 		</view>
+    
 		<view n="1">
 			<config>
-				<!-- big plane, so extend chase view offset a bit -->
-				<z-offset-m type="double"
-										archive="y">-80.0</z-offset-m>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+			</config>
+		</view>
+    
+		<view n="2">
+			<config>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
 			</config>
 		</view>
 
-		<chase-distance-m>-30</chase-distance-m>
+		<view n="3">
+			<config>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="4">
+			<config>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="5">
+			<config>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="6">
+			<config>
+				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+			</config>
+		</view>
+    
+		 		
+    
+		<chase-distance-m>-50</chase-distance-m>
 
 		<flaps>
 			<setting>0.000</setting>
@@ -78,36 +105,106 @@
 			<setting>1.000</setting>
 			<!-- flaps 40 -->
 		</flaps>
-
-		<ai>
+    
+ 		<!--<ai>
 			<submodels>
-				<contrails type="bool">false</contrails>
+				<contrails type="bool">true</contrails>
 			</submodels>
-		</ai>
+		</ai>-->
+  
+    <systems>
+      <electrical>
+        <path></path>
+      </electrical>
+      <autopilot>
+	      <path>Aircraft/737-300/737-autopilotV5.xml</path>
+      </autopilot>
+    </systems>
+    <sound>
+     <path>Aircraft/737-300/Sounds/737-sound.xml</path>
+	 <switch type = "bool"></switch>
+    </sound>
+    <hud>
+      <enable3d>false</enable3d>
+    </hud>
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+    <allow-toggle-cockpit>true</allow-toggle-cockpit>
+  
+<help>
+ <title>Boeing 737-300</title>
+ <line>the take off precedure for a 737 is to have flaps set at 5, 
+ and power upto 40% N1,
+ till moving, the slowly build up to 94% N1 V1 
+ rotate usally at around 155 knots 
+  </line>
+  <line>Maximum Flap Operating Speeds</line>
+  <line>1 = 230 kn</line>
+  <line>2 = 230 kn</line>
+  <line>5 = 225 kn</line>
+  <line>10 =210 kn</line>
+  <line>15 =195 kn</line>
+  <line>25 = 190 kn</line>
+  <line>30 = 185 kn</line>
+  <line>40 = 158 kn</line>
+ 
+   <key>
+    <name>Ctrl-b</name>
+    <desc>Toggle speedbrakes</desc>
+   </key>
+     <key>
+    <name>Tab-key</name>
+    <desc>selects Autobrake-setting</desc>
+   </key>
+   <key>
+    <name>Delete</name>
+    <desc>Thrust Reverser</desc>
+   </key>
+ </help> 
+ 
+ <menubar>
+   <default>
+    <menu n="5">
 
-		<submodels>
-			<serviceable>true</serviceable>
-			<path>Aircraft/737-300/submodels.xml</path>
-		</submodels>
+     <item n="10">
+      <label>Pushback</label>
+      <name>pushback</name>
+      <binding>
+       <command>dialog-show</command>
+       <dialog-name>pushback</dialog-name>
+      </binding>
+     </item>
 
-		<menubar>
- 			<default>
-  				<menu n="10">
-   					<label>Boeing 737-300</label>
-   					<enabled type="bool">true</enabled>
-  					<item>
-    						<label>Select Livery</label>
-    						<binding>
-     							<command>nasal</command>
-     							<script>aircraft.livery.dialog.toggle()</script>
-    						</binding>
-   					</item>
-  				</menu>
- 			</default>
-		</menubar>
+    </menu>
 
-	</sim>
+    <menu n="10">
+     <label>Boeing 737-300</label>
+     <enabled type="bool">true</enabled>
 
+     
+     <item>
+      <label>Select Livery</label>
+      <binding>
+       <command>nasal</command>
+       <script>aircraft.livery.dialog.open()</script>
+      </binding>
+     </item>
+     <item>
+	<label>Pushback</label>
+      <name>pushback</name>
+      <binding>
+       <command>dialog-show</command>
+       <dialog-name>pushback</dialog-name>
+      </binding>
+     </item>
+    </menu>
+   </default>
+  </menubar>
+ 
+  </sim>
+  
+ 
+ 
+  
 	<consumables>
 		<fuel>
 			<tank n="0">
@@ -117,7 +214,7 @@
 				<level-gal_us archive="y">1540</level-gal_us>
 			</tank>
 			<tank n="2">
-				<level-gal_us archive="y">0</level-gal_us>
+				<level-gal_us archive="y">2275</level-gal_us>
 			</tank>
 		</fuel>
 	</consumables>
@@ -131,61 +228,140 @@
 		</engine>
 	</engines>
 
+  <input>
+    <keyboard>
+      <key n="127">
+	<name>Delete</name>
+	<desc>Toggle Reversers</desc>
+	<binding> <command>nasal</command>
+	<script>reversethrust.togglereverser()</script>
+	</binding>
+</key> 
+   
+
+ 
+<key n="9">
+    <name>Tab</name>
+    <desc>switch autobrake</desc>
+    <binding>
+     <command>property-cycle</command>
+     <property>/controls/gear/autobrakes</property>
+     <value>0</value> 
+     <value>1</value> 
+     <value>2</value> 
+     <value>3</value> 
+     <value>4</value> 
+     <value>5</value> 
+    </binding>
+   </key>
+      
+    </keyboard>
+  </input>
+  
+
+
 	<controls>
 		<gear>
 			<autobrakes type="int">5</autobrakes>
 			<!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
 		</gear>
 		<flight>
-			<autospeedbrakes-armed type="string">false</autospeedbrakes-armed>
+			<autospeedbrakes-armed type="string">true</autospeedbrakes-armed>
 		</flight>
-	</controls>
+	
 
-	<nasal>
-		<airground>
-			<file>Aircraft/737-300/Systems/air-ground.nas</file>
-           		<file>Aircraft/737-300/Nasal/liveries.nas</file>
-		</airground>
-	</nasal>
+<switches>
+<landing-light-l type = "bool">true</landing-light-l> 
+<landing-light-r type = "bool">true</landing-light-r> 
+<taxi-light>0</taxi-light>
+<inboard-lights>0</inboard-lights>
+<outboard-lights>0</outboard-lights>
+<nav-lights>0</nav-lights>
+<beacon>1</beacon>
+<strobe>1</strobe>
+<logo-lights>1</logo-lights>
+<cabin-lights>0</cabin-lights>
+<map-lights>0</map-lights>
+<master-panel>0</master-panel>
+<instruments-lights>0</instruments-lights>
+<seatbelt-sign>0</seatbelt-sign>
+</switches>
+</controls>
 
-	<instrumentation>
-		<dme>
-			<switch-position>1</switch-position>
-		</dme>
-	</instrumentation>
+<gear>
+		<gear n="0">
+			<tyre-smoke type="int">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+			<caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
+		</gear>
+		<gear n="1">
+			<tyre-smoke type="int">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+		</gear>
+		<gear n="2">
+			<tyre-smoke type="int">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+		</gear>
+		<!--<tailhook>
+			<position-norm type="double">0</position-norm>
+		</tailhook>-->
+	</gear>
 
-	<systems>
-		<autoflight>
-			<serviceable type="bool">true</serviceable>
-		</autoflight>
-	</systems>
+<instrumentation>
+<mk-viii>
+            <serviceable>true</serviceable>
+            <configuration-module>
+            <category-1>1</category-1><!-- GA Fast, 150' Mode 4B -->
+            </configuration-module>
+            <inputs>
+                <arinc429>
+                <decision-height-ncd>false</decision-height-ncd>
+                <decision-height>200</decision-height>
+                </arinc429>
+            </inputs>
+        </mk-viii>
+ <wxradar>
+ <serviceable>true</serviceable>
+  <range type="int" archive="y">20</range>
+  <minimized type="bool" archive="y">false</minimized>
+  <switch archive="y">off</switch>
+  <mode archive="y">wx</mode>
+  <lightning type="bool" archive="y">false</lightning>
+  <display-mode archive="y">arc</display-mode>
+ </wxradar>
+ 	<radar>
+		<range type="int" archive="y">20</range>
+	</radar>
+<turn-indicator>
+<serviceable type="bool">true</serviceable>
+<spin type="double">1</spin>
+</turn-indicator>
+</instrumentation>
 
-	<!-- presets for the FlightGear autoflight system MCP panel -->
-	<autopilot>
-		<settings>
-			<target-altitude-ft type="double">4000.0</target-altitude-ft>
-			<heading-bug-deg type="double">283.0</heading-bug-deg>
-			<target-speed-kt type="double">200.0</target-speed-kt>
-		</settings>
-	</autopilot>
 
-	<!-- presets for the JSBSim autoflight system MCP panel -->
-	<fdm>
-		<jsbsim>
-			<ap>
-				<heading_setpoint type="double">283.0</heading_setpoint>
-			</ap>
-		</jsbsim>
-	</fdm>
 
-	<environment>
-		<params>
-			<contrail-altitude>50000</contrail-altitude>
-		</params>
-	</environment>
+<nasal>
+    <Boeing-737-300>
+             <file>Aircraft/737-300/Nasal/liveries.nas</file>      
+</Boeing-737-300>
 
+<reversethrust>
+   <file>Aircraft/747-400/Nasal/reverse-thrust.nas</file>
+  </reversethrust>
+
+<airground>
+<file>Aircraft/737-300/Systems/air-ground.nas</file>
+</airground>
+   
+
+		<tyresmoke>
+			<file>Aircraft/737-300/Nasal/tyresmoke.nas</file>
+		</tyresmoke>
+		
+	
+   
+  </nasal>
 </PropertyList>
-
-
-
-

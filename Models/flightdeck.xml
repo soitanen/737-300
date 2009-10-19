@@ -1,0 +1,1150 @@
+ <PropertyList>
+  <path>flightdeck.ac</path>
+ 
+  
+  <!--cockpit-->
+ <!--overhead panel-->
+ <model>
+    <name>ovhp</name>
+    <path>Aircraft/737-300/Overhead/oh.xml</path>
+    <offsets>
+      <x-m>-6.55</x-m>
+      <y-m>0.0</y-m>
+      <z-m>1.340</z-m>
+      <pitch-deg>-25</pitch-deg>
+    </offsets>
+  </model>
+
+  
+ <!--  Upper Panel Autopilot Controls-->
+ 
+  <animation>
+   <type>textranslate</type>
+   <object-name>APias.100</object-name>
+   <property>/autopilot/settings/target-speed-kt</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+  <animation>
+   <type>textranslate</type>
+   <object-name>APias.10</object-name>
+   <property>/autopilot/settings/target-speed-kt</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+   <animation>
+   <type>textranslate</type>
+   <object-name>APias.1</object-name>
+   <property>/autopilot/settings/target-speed-kt</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>APhdg.100</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+   <animation>
+   <type>textranslate</type>
+   <object-name>APhdg.10</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+   <animation>
+   <type>textranslate</type>
+   <object-name>APhdg.1</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+    <animation>
+   <type>textranslate</type>
+   <object-name>APalt.10000</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APalt.1000</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APalt.100</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APalt.10</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APalt.1</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+   <animation>
+   <type>select</type>
+   <object-name>APvs.minus2</object-name>
+   <condition>
+   <less-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>-990</value>
+   </less-than>
+   </condition>
+ </animation>
+
+
+   <animation>
+   <type>select</type>
+   <object-name>APvs.minus1</object-name>
+   <condition>
+<and>
+   <less-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>0</value>
+   </less-than>
+   <greater-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>-1000</value>
+   </greater-than>
+</and>
+   </condition>
+ </animation>
+
+   <animation>
+   <type>select</type>
+   <object-name>APvs.10000</object-name>
+   <condition>
+   <greater-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>9900</value>
+   </greater-than>
+   </condition>
+ </animation>
+ 
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>APvs.10000</object-name>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>select</type>
+   <object-name>APvs.1000</object-name>
+   <condition>
+   <greater-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>900</value>
+   </greater-than>
+   </condition>
+ </animation>
+
+<animation>
+   <type>textranslate</type>
+   <object-name>APvs.1000</object-name>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APvs.100</object-name>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APvs.10</object-name>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>textranslate</type>
+   <object-name>APvs.1</object-name>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+    <animation>
+   <type>rotate</type>
+   <object-name>FDtoggle</object-name>
+   <property>/instrumentation/flightdirector/fd-on</property>
+   <factor>-20.0</factor>
+  <center>
+   <x-m>-6.776</x-m>
+   <y-m>-0.200</y-m>
+   <z-m>1.018</z-m>
+  </center>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
+ 
+
+ <!--3d hotspots-->
+   <panel>
+    <path>Aircraft/737-300/Panels/737-ap-panel2.xml</path>
+    <bottom-left>
+      <x-m>-6.843</x-m>
+      <y-m>-0.261</y-m>
+      <z-m>0.951</z-m>
+    </bottom-left>
+    <bottom-right>
+      <x-m>-6.843</x-m>
+      <y-m>0.264</y-m>
+      <z-m>0.951</z-m>
+    </bottom-right>
+    <top-left>
+      <x-m>-6.843</x-m>
+      <y-m>-0.261</y-m>
+      <z-m>1.021</z-m>
+    </top-left>
+  </panel>
+  
+<!--main panel instruments-->
+<model>
+<name>autobrakepanel</name>
+    <path>Aircraft/737-300/Instrumentation/autobrakepanel.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>0.129</y-m>
+      <z-m>0.7065</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+
+
+<model>
+    <name>nd</name>
+    <path>Aircraft/737-300/Instrumentation/nd.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>-0.4775</y-m>
+      <z-m>0.663</z-m>
+      <pitch-deg>-3</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>nd2</name>
+    <path>Aircraft/737-300/Instrumentation/nd.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>0.4665</y-m>
+      <z-m>0.663</z-m>
+      <pitch-deg>-3</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>pfd</name>
+    <path>Aircraft/737-300/Instrumentation/boeing737-pfd-jw.xml</path>
+    <offsets>
+    <x-m>-7.124</x-m><!--+0.73-->
+    <y-m>-0.480</y-m><!---0.0035-->
+      <z-m>0.813</z-m><!---0.1235-->
+      <pitch-deg>-3</pitch-deg>
+      <!--<x-m>-6.951</x-m>
+      <y-m>-0.4835</y-m>
+      <z-m>0.9365</z-m>
+      <pitch-deg>-3</pitch-deg>-->
+    </offsets>
+  </model>
+  
+   <model>
+    <name>pfd2</name>
+    <path>Aircraft/737-300/Instrumentation/boeing737-pfd-jw.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>0.4615</y-m>
+      <z-m>0.813</z-m>
+      <pitch-deg>-3</pitch-deg>
+    </offsets>
+  </model>
+
+<model>
+    <name>asi</name>
+    <path>Aircraft/737-300/Instrumentation/asi.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.616</y-m>
+      <z-m>0.783</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>asi2</name>
+    <path>Aircraft/737-300/Instrumentation/asi.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.319</y-m>
+      <z-m>0.783</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>alt1</name>
+    <path>Aircraft/737-300/Instrumentation/alt.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.351</y-m>
+      <z-m>0.779</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<!--   <model>
+    <name>alt3</name>
+    <path>Aircraft/737-300/Instrumentation/alt2.xml</path>
+    <offsets>
+      <x-m>-6.977</x-m>
+      <y-m>-0.276</y-m>
+      <z-m>0.706</z-m>
+      <pitch-deg>-15</pitch-deg>
+    </offsets>
+  </model>-->
+  
+  <model>
+    <name>alt2</name>
+    <path>Aircraft/737-300/Instrumentation/alt.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.589</y-m>
+      <z-m>0.782</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+
+   <model>
+    <name>vsi2</name>
+    <path>Aircraft/737-300/Instrumentation/vsi.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.589</y-m>
+      <z-m>0.697</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>vsi</name>
+    <path>Aircraft/737-300/Instrumentation/vsi.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.355</y-m>
+      <z-m>0.697</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>chrono</name>
+    <path>Aircraft/737-300/Instrumentation/chronometer.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.267</y-m>
+      <z-m>0.785</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>chrono2</name>
+    <path>Aircraft/737-300/Instrumentation/chronometer.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.669</y-m>
+      <z-m>0.613</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>-->
+  
+<model>
+    <name>fuelgauge</name>
+    <path>Aircraft/737-300/Instrumentation/fuelgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.178</y-m>
+      <z-m>0.689</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>fuelgauge2</name>
+    <path>Aircraft/737-300/Instrumentation/fuelgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.205</y-m>
+      <z-m>0.6430</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>fuelgauge3</name>
+    <path>Aircraft/737-300/Instrumentation/fuelgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.152</y-m>
+      <z-m>0.6430</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>Backup-AI</name>
+    <path>Aircraft/737-300/Instrumentation/backupai.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>-0.168</y-m>
+      <z-m>0.756</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>flapgauge</name>
+    <path>Aircraft/737-300/Instrumentation/flapgauge.xml</path>
+    <offsets>
+      <x-m>-7.1225</x-m>
+      <y-m>0.129</y-m>
+      <z-m>0.838</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<!--engine instruments-->
+<model>
+    <name>rpmn1gauge left</name>
+    <path>Aircraft/737-300/Instrumentation/rpmn1gauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.088</y-m>
+      <z-m>0.801</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>rpmn1gauge right</name>
+    <path>Aircraft/737-300/Instrumentation/rpmn1gauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.030</y-m>
+      <z-m>0.801</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>egt left</name>
+    <path>Aircraft/737-300/Instrumentation/egtgauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>-0.0885</y-m>
+      <z-m>0.7495</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>egt right</name>
+    <path>Aircraft/737-300/Instrumentation/egtgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.0335</y-m>
+      <z-m>0.7495</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>rpm n2 right</name>
+    <path>Aircraft/737-300/Instrumentation/rpmn2gauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>-0.089</y-m>
+      <z-m>0.695</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>rpm n2 left</name>
+    <path>Aircraft/737-300/Instrumentation/rpmn2gauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.034</y-m>
+      <z-m>0.695</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>kph right</name>
+    <path>Aircraft/737-300/Instrumentation/kphgauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>-0.090</y-m>
+      <z-m>0.643</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <model>
+    <name>kph n2 left</name>
+    <path>Aircraft/737-300/Instrumentation/kphgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>-0.034</y-m>
+      <z-m>0.643</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+<!--hydraulic instruments-->
+
+<model>
+    <name>oilpress left</name>
+    <path>Aircraft/737-300/Instrumentation/oilpressgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.022</y-m>
+      <z-m>0.802</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+
+
+<model>
+    <name>oilpress right</name>
+    <path>Aircraft/737-300/Instrumentation/oilpressgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.072</y-m>
+      <z-m>0.802</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+
+
+<model>
+    <name>oiltemp left</name>
+    <path>Aircraft/737-300/Instrumentation/oiltempgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.020</y-m>
+      <z-m>0.749</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>oiltemp right</name>
+    <path>Aircraft/737-300/Instrumentation/oiltempgauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>0.073</y-m>
+      <z-m>0.749</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>oilquantity left</name>
+    <path>Aircraft/737-300/Instrumentation/oilquantitygauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.020</y-m>
+      <z-m>0.695</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>oilquantity right</name>
+    <path>Aircraft/737-300/Instrumentation/oilquantitygauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>0.073</y-m>
+      <z-m>0.695</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>vib left</name>
+    <path>Aircraft/737-300/Instrumentation/vibgauge.xml</path>
+    <offsets>
+     <x-m>-7.123</x-m>
+      <y-m>0.020</y-m>
+      <z-m>0.643</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>vib right</name>
+    <path>Aircraft/737-300/Instrumentation/vibgauge.xml</path>
+    <offsets>
+      <x-m>-7.123</x-m>
+      <y-m>0.073</y-m>
+      <z-m>0.643</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>backup left</name>
+    <path>Aircraft/737-300/Instrumentation/backup.xml</path>
+    <offsets>
+      <x-m>-7.1225</x-m>
+      <y-m>-0.170</y-m>
+      <z-m>0.845</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>vor left</name>
+    <path>Aircraft/737-300/Instrumentation/vor.xml</path>
+    <offsets>
+     <x-m>-7.124</x-m>
+      <y-m>-0.610</y-m>
+      <z-m>0.675</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>vor right</name>
+    <path>Aircraft/737-300/Instrumentation/vor.xml</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>0.331</y-m>
+      <z-m>0.666</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>yaw damper</name>
+    <path>Aircraft/737-300/Instrumentation/yawdamper.ac</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>0.023</y-m>
+      <z-m>0.895</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+<model>
+    <name>unknown display</name>
+    <path>Aircraft/737-300/Instrumentation/unknowndisplay.ac</path>
+    <offsets>
+      <x-m>-7.124</x-m>
+      <y-m>-0.058</y-m>
+      <z-m>0.8690</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+
+
+
+ 
+
+<!--animation-->
+
+
+
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Cylinder.002</object-name>
+        <object-name>yoke1</object-name>
+        <property>controls/flight/elevator</property>
+        <factor>-15.0</factor>
+        <offset-deg>-15</offset-deg>
+		<axis>
+			<x1-m>-6.538</x1-m>
+			<y1-m>-0.517</y1-m>
+			<z1-m>0.054</z1-m>
+			<x2-m>-6.538</x2-m>
+			<y2-m>-0.453</y2-m>
+			<z2-m>0.054</z2-m>
+		</axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>yoke1</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>22.0</factor>
+		<axis>
+			<x1-m>-6.496</x1-m>
+			<y1-m>-0.483</y1-m>
+			<z1-m>0.816</z1-m>
+			<x2-m>-6.538</x2-m>
+			<y2-m>-0.483</y2-m>
+			<z2-m>0.810</z2-m>
+		</axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Cylinder.003</object-name>
+        <object-name>yoke2</object-name>
+        <property>controls/flight/elevator</property>
+        <factor>-15.0</factor>
+        <offset-deg>-15</offset-deg>
+		<axis>
+			<x1-m>-6.537</x1-m>
+			<y1-m>0.434</y1-m>
+			<z1-m>0.054</z1-m>
+			<x2-m>-6.537</x2-m>
+			<y2-m>0.499</y2-m>
+			<z2-m>0.054</z2-m>
+		</axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>yoke2</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>22.0</factor>
+		<axis>
+			<x1-m>-6.496</x1-m>
+			<y1-m>0.466</y1-m>
+			<z1-m>0.816</z1-m>
+			<x2-m>-6.538</x2-m>
+			<y2-m>0.466</y2-m>
+			<z2-m>0.816</z2-m>
+		</axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>throttles</object-name>
+        <property>controls/engines/engine[0]/throttle</property>
+        <factor>-42.0</factor>
+        <offset-deg>30</offset-deg>
+		<axis>
+			<x1-m>-6.644</x1-m>
+			<y1-m>-0.015</y1-m>
+			<z1-m>0.525</z1-m>
+			<x2-m>-6.644</x2-m>
+			<y2-m>0.016</y2-m>
+			<z2-m>0.525</z2-m>
+		</axis>
+    </animation>
+    
+<!--<animation>
+        <type>rotate</type>
+        <object-name>stab</object-name>
+        <object-name>tab</object-name>
+        <property>controls/flight/elevator-trim</property>
+        <factor>640.0</factor>
+		<axis>
+			<x1-m>-6.631</x1-m>
+			<y1-m>-0.168</y1-m>
+			<z1-m>0.503</z1-m>
+			<x2-m>-6.631</x2-m>
+			<y2-m>0.143</y2-m>
+			<z2-m>0.503</z2-m>
+		</axis>
+    </animation>-->
+    
+  <animation>
+  <type>rotate</type>
+  <object-name>gearlever</object-name>
+  <property>controls/gear/gear-down</property>
+  <factor>30</factor>
+  <center>
+   <x-m>-7.04</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.711</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+ <!--pick animation-->
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>APengage</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-assign</command>
+    <property>/controls/autoflight/autopilot/engage</property>
+    <value type="bool">true</value> 
+    </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">off</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/vert-speed</property>
+    <value type="string">off</value>
+   </binding>          
+  </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>APdisengage</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autopilot/engage</property>
+    <value type="bool">false</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string"></value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/vert-speed</property>
+    <value type="string">off</value>
+   </binding>   
+  </action>    
+  </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>HDGselect</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <condition>
+    <and> 
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string"></value>
+     </equals>
+    </and>
+   </condition>    
+   <binding>
+   <command>property-cycle</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">dg-heading-hold</value>
+     <value type="string">off</value>
+   </binding>
+     </action>
+    
+ </animation>
+ 
+<!--<animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>HDGselect</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <condition>
+    <and> 
+    <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+    <equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string">dg-heading-hold</value>
+     </equals>
+    </and>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string"></value>
+   </binding>
+  </action>
+</animation>-->
+
+<animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALThold</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <condition>
+     <and>
+    <equals>
+     <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+    <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">off</value>
+  </equals>
+     </and>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">altitude-hold</value>
+   </binding>
+  </action>
+</animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALThold</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+    <condition>
+     <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">altitude-hold</value>
+     </equals>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding>
+  </action>
+ </animation>
+ 
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ATarm.001</object-name>
+  <action>
+   <name>arm autothrottle</name>
+   <button>0</button>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">false</value>
+     </equals>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">true</value>   
+   </binding>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string">off</value>   
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/display-mach</property>
+    <value type="bool">false</value>   
+   </binding>         
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ATarm</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">true</value>
+     </equals>
+   </condition>   
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">false</value>   
+   </binding>
+     <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string"></value>   
+   </binding>     
+  </action>
+  </animation>
+ 
+   <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>SPEEDhold</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <condition>
+     <and>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/speed</property>
+      <value type="string">off</value>
+     </equals>     
+     </and>      
+    </condition>         
+   <binding>
+    <command>property-cycle</command>
+    <property>/autopilot/locks/speed</property>   
+    <value type="string">speed-with-throttle</value>
+    <value type="string">off</value>
+   </binding>    
+   <binding>
+    <command>property-cycle</command>
+    <property>/controls/autoflight/autothrottle-engage</property>   
+    <value type="bool">true</value>
+    <value type="string"></value>
+   </binding>      
+  </action>
+ </animation>
+ 
+  
+ 
+</PropertyList>
