@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>backupai.ac</path>
+ 
+ <animation>
+   <type>select</type>
+  <object-name>bezel</object-name>
+  <object-name>knob</object-name>
+  <object-name>light</object-name>
+  <object-name>riminside</object-name>
+  <object-name>bigknob</object-name>
+  <object-name>wings</object-name>
+  <object-name>rollarrow</object-name>
+  <object-name>ball</object-name>
+  <object-name>rollindex</object-name>
+   <condition>
+   <equals>
+    <property>sim/current-view/view-number</property>
+    <value>0</value>
+   </equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>ball</object-name>
+  <property>/orientation/roll-deg</property>
+  <center>
+   <x-m>-0.042</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.004</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>ball</object-name>
+  <property>/orientation/pitch-deg</property>
+  <center>
+   <x-m>-0.042</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.004</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>rollarrow</object-name>
+  <property>/orientation/roll-deg</property>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+
+</PropertyList>

@@ -1,0 +1,358 @@
+ <PropertyList>
+  <path>mainpanel.ac</path>
+ 
+  
+  <!--cockpit-->
+ <!--overhead pane
+ <model>
+    <name>ovhp</name>
+    <path>Aircraft/737-300/Overhead/oh.xml</path>
+    <offsets>
+      <x-m>-6.55</x-m>
+      <y-m>0.0</y-m>
+      <z-m>1.340</z-m>
+      <pitch-deg>-25</pitch-deg>
+    </offsets>
+  </model>-->
+  
+   <!--glareshield-->
+ <model>
+    <name>glareshield</name>
+    <path>Aircraft/737-300/Models/Flightdeck/glareshield.ac</path>
+    <offsets>
+      <x-m>-6.882</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.914</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model> 
+  
+  <!--warnpanel-->
+ <model>
+    <name>glareshield</name>
+    <path>Aircraft/737-300/Models/Flightdeck/warnpanel.xml</path>
+    <offsets>
+      <x-m>-6.882</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.914</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model> 
+  
+  <!--MCP-->
+  
+<model>
+    <name>MCP</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/MCP/mcp.xml</path>
+    <offsets>
+      <x-m>-6.882</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.914</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--pfd-->
+<model>
+    <name>PFD</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/PFD/pfd.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.460</y-m>
+      <z-m>0.813</z-m>
+      <pitch-deg>-5</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>PFD</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/PFD/pfd.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>0.4465</y-m>
+      <z-m>0.813</z-m>
+      <pitch-deg>-5</pitch-deg>
+    </offsets>
+  </model>
+  <!--EHSI-->
+  <model>
+    <name>EHSI</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd.xml</path>
+    <offsets>
+      <x-m>-7.028</x-m>
+      <y-m>0.450</y-m>
+      <z-m>0.671</z-m>
+      <pitch-deg>-5</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>EHSI</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd.xml</path>
+    <offsets>
+      <x-m>-7.028</x-m>
+      <y-m>-0.459</y-m>
+      <z-m>0.671</z-m>
+      <pitch-deg>-5</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--ASI-->
+   <model>
+    <name>ASI</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ASI/asi.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.594</y-m>
+      <z-m>0.778</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>ASI</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ASI/asi.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>0.316</y-m>
+      <z-m>0.778</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--engine instruments-->
+  
+  <model>
+    <name>RPM N1</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/RPM1/rpmn1gauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.084</y-m>
+      <z-m>0.8015</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>RPM N1</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/RPM1/rpmn1gauge2.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.030</y-m>
+      <z-m>0.8015</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>EGT</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EGT/egtgauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.083</y-m>
+      <z-m>0.750</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>EGT</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EGT/egtgauge2.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.030</y-m>
+      <z-m>0.750</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>RPM N2</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/RPM2/rpmn2gauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.083</y-m>
+      <z-m>0.701</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>RPM N2</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/RPM2/rpmn2gauge2.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.030</y-m>
+      <z-m>0.701</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>KPH</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/KPHgauge/kphgauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.083</y-m>
+      <z-m>0.652</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  
+  <model>
+    <name>KPH</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/KPHgauge/kphgauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.030</y-m>
+      <z-m>0.652</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--ALT-->
+   <model>
+    <name>ALT</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ALT/alt.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.339</y-m>
+      <z-m>0.782</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+   <!--Clock-->
+   <model>
+    <name>Chrono</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/CHRONO/chronometer.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.257</y-m>
+      <z-m>0.782</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  
+  <!--VSI-->
+   <model>
+    <name>VSI</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/VSI/vsi.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.338</y-m>
+      <z-m>0.699</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--FUEL-->
+  
+  <model>
+    <name>FUEL</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/FUEL/fuelgauge.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.168</y-m>
+      <z-m>0.693</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>FUEL2</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/FUEL/fuelgauge2.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.196</y-m>
+      <z-m>0.649</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>FUEL3</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/FUEL/fuelgauge3.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.144</y-m>
+      <z-m>0.649</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--STBY-->
+  <model>
+    <name>STBYalt</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/STBY/alt.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.162</y-m>
+      <z-m>0.839</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>STBYai</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/STBYai/backupai.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.162</y-m>
+      <z-m>0.757</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--UD-->
+  <model>
+    <name>UD</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/UD/unknowndisplay.ac</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.058</y-m>
+      <z-m>0.860</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--VOR-->
+  <model>
+    <name>VOR</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/VOR/vor.xml</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.585</y-m>
+      <z-m>0.678</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--signal?-->
+  <model>
+    <name>signal</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/signal/signal.ac</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.310</y-m>
+      <z-m>0.866</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!--GPWSpanel-->
+  <model>
+    <name>GPWSpanel</name>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/GPWSpanel/gpwspanel.ac</path>
+    <offsets>
+      <x-m>-7.029</x-m>
+      <y-m>-0.296</y-m>
+      <z-m>0.613</z-m>
+      <pitch-deg>0</pitch-deg>
+    </offsets>
+  </model>
+  
+ 
+</PropertyList>

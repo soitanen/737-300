@@ -1,0 +1,1562 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>mcp.ac</path>
+ 
+ <!--<animation>
+        <type>material</type>
+            <object-name>base</object-name>
+     		<object-name>disk</object-name>
+		<object-name>n1_box</object-name>
+		<object-name>speed_box</object-name>
+		<object-name>cylinder</object-name>
+		<object-name>lvl_box</object-name>
+		<object-name>vnav_box</object-name>
+		<object-name>hdg_disk</object-name>
+		<object-name>hdg_rect</object-name>
+		<object-name>hdg_cylinder</object-name>
+		<object-name>hdg_box</object-name>
+		<object-name>lnav_box</object-name>
+		<object-name>vor_box</object-name>
+		<object-name>app_box</object-name>
+		<object-name>alt_box</object-name>
+		<object-name>alt_disk</object-name>
+		<object-name>alt_cylinder</object-name>
+		<object-name>vs_box</object-name>
+		<object-name>vs_rect</object-name>
+		<object-name>box1</object-name>
+		<object-name>box2</object-name>
+		<object-name>box3</object-name>
+		<object-name>box4</object-name>
+		<object-name>rect1</object-name>
+		<object-name>crz_disk2</object-name>
+		<object-name>crz_cylinder2</object-name>
+		<object-name>crz_disk1</object-name>
+		<object-name>crz_cylinder1</object-name>
+            <object-name>box5</object-name>
+            <object-name>at_disk1</object-name>
+            <object-name>at_disk2</object-name>
+		<object-name>vnav</object-name>
+		<object-name>lnav</object-name>
+		<object-name>app</object-name>
+		<object-name>vor_loc</object-name>
+		<object-name>hdg_sel</object-name>
+		<object-name>alt_hld</object-name>
+		<object-name>v/s</object-name>
+		<object-name>cmda</object-name>
+		<object-name>speed</object-name>
+      <emission>
+	   <red>0.3</red>
+	   <green>0.3</green>
+	   <blue>0.3</blue>
+            <factor-prop>controls/lighting/panel-norm</factor-prop>	
+      </emission>
+        </animation>-->
+
+    <!--<animation>
+        <type>material</type>
+        <object-name>MCP</object-name>
+        <emission>
+    <red>0.3</red>
+    <green>0.3</green>
+    <blue>0.3</blue>
+            <factor-prop>controls/lighting/panel-norm</factor-prop>
+        </emission>
+    </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>cmda</object-name>
+    <condition>
+    <equals>
+     <property>/autopilot/locks/cmda</property>
+      <value>1</value> 
+    </equals>
+    </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>hdg_sel</object-name>
+  <condition>
+   <equals>
+    <property>/autopilot/locks/heading</property>
+    <value>dg-heading-hold</value>
+   </equals>
+  </condition>
+ </animation>
+ 
+ <animation>
+ <type>select</type>
+ <object-name>aton</object-name>
+ <object-name>atlight</object-name>
+  <condition>
+  <equals>
+  <property>/autopilot/locks/at</property>
+  <value>1</value>
+  </equals>
+  </condition>
+  </animation>
+ 
+  <animation>
+ <type>select</type>
+ <object-name>atoff</object-name>
+  <condition>
+  <equals>
+  <property>/autopilot/locks/at</property>
+  <value>0</value>
+  </equals>
+  </condition>
+  </animation>-->
+ 
+<!--<animation>
+  <type>select</type>
+  <object-name>speed</object-name>
+  <condition>
+  <or>
+  	<and>
+     	  <equals>
+    	  	<property>/autopilot/locks/speed</property>
+    		<value>speed-with-throttle</value>
+    	 </equals>
+    	 <equals>
+    		<property>/autopilot/locks/vnav</property>
+    		<value>0</value>
+    	 </equals>
+   	</and>
+  	<and>
+     	  <equals>
+    	  	<property>/autopilot/locks/speed</property>
+    		<value>mach-hold</value>
+    	 </equals>
+    	 <equals>
+    		<property>/autopilot/locks/vnav</property>
+    		<value>0</value>
+    	 </equals>
+   	</and>
+  </or>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  	<object-name>vnav</object-name>
+  	<condition>
+		<or>
+  			<and>
+   				<equals>
+    					<property>/autopilot/locks/altitude</property>
+    					<value>altitude-hold</value>
+   				</equals>
+   				<equals>
+  				 	<property>/autopilot/locks/speed</property>
+ 	 <value>speed-with-throttle</value>
+  	</equals>
+	<equals>
+   <property>autopilot/locks/vnav</property>
+   <value>1</value>
+   </equals>
+  	</and>
+	 <and>
+    <equals>
+    <property>/autopilot/locks/altitude</property>
+    <value>altitude-hold</value>
+    </equals>
+    <equals>
+    <property>/autopilot/locks/speed</property>
+ 	<value>mach-hold</value>
+    </equals>
+	<equals>
+   <property>autopilot/locks/vnav</property>
+   <value>1</value>
+   </equals>
+   	</and>
+		</or>
+  	</condition>
+ </animation>
+
+  <animation>
+  <type>select</type>
+  <object-name>alt_hld</object-name>
+  <condition>
+  <and>
+   <equals>
+    <property>/autopilot/locks/altitude</property>
+    <value>vertical-speed-hold</value>
+   </equals>
+     <equals>
+    <property>/autopilot/settings/vertical-speed-fpm</property>
+    <value>0</value>
+   </equals>
+   </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>app</object-name>
+  <condition>
+   <and>
+   <equals>
+     <property>/autopilot/locks/heading</property>
+     <value>nav1-hold</value>
+   </equals>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>gs1-hold</value>
+   </equals>
+  </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>vor_loc</object-name>
+  <condition>
+  <and>
+    <property>/instrumentation/nav[0]/nav-loc</property>
+    <property>/autopilot/locks/nav[0]</property>
+  </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>lnav</object-name>
+  <condition>
+   <equals>
+   <property>/autopilot/locks/heading</property>
+    <value>true-heading-hold</value>
+   </equals>
+  </condition>
+ </animation>-->
+
+ <animation>
+  <type>select</type>
+  <object-name>apspd1</object-name>
+  <object-name>apspd2</object-name>
+  <object-name>apspd3</object-name>
+  <object-name>speedincrease</object-name>
+  <object-name>speeddecrease</object-name>
+  <condition>
+      <equals>
+    <property>/controls/autoflight/display-mach</property>>
+    <value>false</value>
+   </equals>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>machp</object-name>
+  <object-name>mach1</object-name>
+  <object-name>mach2</object-name>
+  <object-name>machincrease</object-name>
+  <object-name>machdecrease</object-name>  
+  <condition>
+    <equals>
+     <property>/controls/autoflight/display-mach</property>
+    <value>true</value>
+  </equals>
+   </condition>
+ </animation>
+ 
+ <!-- AutoPilot Speed -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>mach2</object-name>
+  <property>/autopilot/settings/target-mach</property>
+  <factor>1.0</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+<animation>
+  <type>textranslate</type>
+  <object-name>mach1</object-name>
+  <property>/autopilot/settings/target-mach</property>
+  <factor>10.0</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>apspd1</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+  <animation>
+  <type>textranslate</type>
+  <object-name>apspd2</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apspd3</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+  <!-- AutoPilot V/S -->
+ 
+ <!--<animation>
+<type>select</type>
+<object-name>v/s</object-name>
+  <condition>
+  <and>
+   <equals>
+   <property>/autopilot/locks/altitude</property>
+    <value>vertical-speed-hold</value>
+   </equals>
+  <or>
+  <less-than>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </less-than>
+  <greater-than>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </greater-than>
+  </or>
+  <not>
+  <equals>
+    <property>/autopilot/settings/vertical-speed-fpm</property>
+    <value>0</value>
+  </equals>
+  </not>
+  </and>
+  </condition>
+ </animation>-->
+ 
+ 
+<animation>
+<type>select</type>
+<object-name>apvs4</object-name>
+<object-name>apvs3</object-name>
+<object-name>apvs2</object-name>
+<object-name>apvs1</object-name>
+  <condition>
+  <and>
+       <equals>
+         <property>/autopilot/locks/altitude</property>
+         <value>vertical-speed-hold</value>
+      </equals>
+    <greater-than-equal>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </greater-than-equal>
+  </and>
+  </condition>
+ </animation>
+ 
+ <animation>
+<type>select</type>
+<object-name>apvs4b</object-name>
+<object-name>apvs3b</object-name>
+<object-name>apvs2b</object-name>
+<object-name>apvs1b</object-name>
+  <condition>
+  <and>
+       <equals>
+         <property>/autopilot/locks/altitude</property>
+         <value>vertical-speed-hold</value>
+      </equals>
+    <less-than>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </less-than>
+  </and>
+  </condition>
+ </animation>
+ 
+ <!--<animation>
+<type>select</type>
+<object-name>vsneg</object-name>
+  <condition>
+  <and>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>vertical-speed-hold</value>
+   </equals>
+   <not>
+   <equals>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>0</value>
+   </equals>
+   </not>
+   </and>
+ </condition>
+ </animation>
+ 
+   <animation>
+<type>select</type>
+<object-name>vspos</object-name>
+  <condition>
+  <and>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>vertical-speed-hold</value>
+   </equals>
+   <greater-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>0</value>
+   </greater-than>
+   </and>
+ </condition>
+ </animation>-->
+ 
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs4b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs3b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs2b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs1b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs4</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs3</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs2</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs1</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+   <!-- AutoPilot Altitude -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt1</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt2</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt3</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt4</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt5</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.00001</factor>
+  <step>10000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+  <!-- AutoPilot Heading -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>aphdg1</object-name>
+  <property>/autopilot/settings/heading-bug-deg</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>aphdg2</object-name>
+  <property>/autopilot/settings/heading-bug-deg</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>aphdg3</object-name>
+  <property>/autopilot/settings/heading-bug-deg</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+ <!-- AutoPilot Course-->
+ 
+  <animation>
+  <type>textranslate</type>
+  <object-name>apcrz1</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz2</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz3</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+   <animation>
+  <type>textranslate</type>
+  <object-name>apcrz1b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz2b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz3b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+<!-- Bottons rotation -->
+
+ <animation>
+   <type>rotate</type>
+   <object-name>lever</object-name>
+   <property>/instrumentation/flightdirector/fd-on</property>
+   <factor>-40</factor>
+   <center>
+     <x-m>2.19792e-005</x-m>
+     <y-m>0.224993</y-m>
+     <z-m>-0.0301058</z-m>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>lever1</object-name>
+   <property>/instrumentation/flightdirector/fd-on</property>
+   <factor>-40</factor>
+   <center>
+     <x-m>-2.19196e-005</x-m>
+     <y-m>-0.213383</y-m>
+     <z-m>-0.0300959</z-m>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+     <animation>
+        <type>rotate</type>
+        <object-name>crz_cylinder1</object-name>
+        <property>/instrumentation/nav/radials/selected-deg</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.215</y-m>
+            <z-m>0.959</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>hdg_cylinder</object-name>
+               <property>/autopilot/settings/heading-bug-deg</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.046</y-m>
+            <z-m>0.038</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>alt_cylinder</object-name>
+          <property>/autopilot/settings/target-altitude-ft</property>
+        <factor>-0.1</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.026</y-m>
+            <z-m>0.038</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>cylinder</object-name>
+           <property>/autopilot/settings/target-speed-kt</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.115</y-m>
+            <z-m>0.029</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+  
+    <animation>
+        <type>translate</type>
+        <object-name>box5</object-name>
+        <property>/autopilot/locks/passive-mode</property>
+        <factor>0.01</factor>
+        <offset>1</offset>
+       <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+    
+    <!--pick animation-->
+    
+<animation>
+<type>pick</type>        
+<object-name>crz_decrease</object-name>
+<action>
+  <button>0</button>
+   <repeatable>true</repeatable>
+  <x>-112</x>
+  <y>-40</y>
+  <w>5</w>
+  <h>20</h>
+  <binding>
+   <command>property-adjust</command>
+   <property>/instrumentation/nav[0]/radials/selected-deg</property>
+   <step>-1.0</step>
+   <min>0</min>
+   <max>360</max>
+   <wrap>1</wrap>
+  </binding>
+ </action>
+ </animation>
+
+
+
+<animation>
+<type>pick</type>        
+<object-name>crz_increase</object-name>
+<action>
+  <name>course increase lh</name>
+  <button>0</button>
+   <repeatable>true</repeatable>
+  <x>-107</x>
+  <y>-40</y>
+  <w>5</w>
+  <h>20</h>
+  <binding>
+   <command>property-adjust</command>
+   <property>/instrumentation/nav[0]/radials/selected-deg</property>
+   <step>1.0</step>
+   <min>0</min>
+   <max>360</max>
+   <wrap>1</wrap>
+  </binding>
+ </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>cmda</object-name>
+  <action>
+  <name>AP engage</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-assign</command>
+    <property>/controls/autoflight/autopilot/engage</property>
+    <value type="bool">true</value> 
+    </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">off</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/vert-speed</property>
+    <value type="string">off</value>
+   </binding>          
+  </action>
+ </animation>
+ 
+ 
+    <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>box5</object-name>
+  <action>
+  <name>AP disengage</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autopilot/engage</property>
+    <value type="bool">false</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string"></value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/vert-speed</property>
+    <value type="string">off</value>
+   </binding>   
+  </action>    
+  </animation>
+    
+<animation>
+        <type>pick</type>
+	 <visible>true</visible>
+		<object-name>ATengage</object-name>
+       <action>
+   <name>arm autothrottle</name>
+   <button>0</button>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">false</value>
+     </equals>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">true</value>   
+   </binding>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string">off</value>   
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/display-mach</property>
+    <value type="bool">false</value>   
+   </binding>         
+  </action>
+    </animation>
+    
+    <animation>
+<type>pick</type>
+<object-name>AToff</object-name>
+<action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">true</value>
+     </equals>
+   </condition>   
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">false</value>   
+   </binding>
+     <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string"></value>   
+   </binding>     
+  </action>
+    </animation>
+    
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>SPEEDhold</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <condition>
+     <and>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/speed</property>
+      <value type="string">off</value>
+     </equals>     
+     </and>      
+    </condition>         
+   <binding>
+    <command>property-cycle</command>
+    <property>/autopilot/locks/speed</property>   
+    <value type="string">speed-with-throttle</value>
+    <value type="string">off</value>
+   </binding>    
+   <binding>
+    <command>property-cycle</command>
+    <property>/controls/autoflight/autothrottle-engage</property>   
+    <value type="bool">true</value>
+    <value type="string"></value>
+   </binding>      
+  </action>
+ </animation>
+ 
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>HDGengage</object-name>
+  <action>
+    <name>engage heading select mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+      <condition>
+    <and> 
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string">off</value>
+     </equals>
+    </and>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">dg-heading-hold</value>
+   </binding>
+  </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>HDGdisengage</object-name>
+ <action>
+   <name>disengage heading select mode</name>
+     <repeatable>false</repeatable>
+   <button>0</button>
+    <condition>
+    <and> 
+    <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string">dg-heading-hold</value>
+     </equals>
+    </and>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">off</value>
+   </binding>
+  </action>
+  </animation>
+  
+  <animation>
+<type>pick</type>  
+<visible>false</visible>
+<object-name>HDGincrease</object-name>
+<action>
+  <name>course increase lh</name>
+  <button>0</button>
+   <repeatable>true</repeatable>
+    <binding>
+   <command>property-adjust</command>
+  <property>/autopilot/settings/heading-bug-deg</property>
+   <step>-1.0</step>
+   <min>0</min>   
+   <max>360</max>
+   <wrap>1</wrap>
+  </binding>
+ </action>
+ </animation>
+
+<animation>
+<type>pick</type>   
+<visible>false</visible>
+<object-name>HDGdecrease</object-name>
+  <action>
+  <name>heading adjust increase</name>
+  <button>0</button>
+  <repeatable>true</repeatable>  
+    <binding>
+   <command>property-adjust</command>
+  <property>/autopilot/settings/heading-bug-deg</property>
+   <step>1.0</step>
+   <min>0</min>
+   <max>360</max>
+   <wrap>1</wrap>
+  </binding>
+ </action>
+ </animation>
+
+ 
+ 
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALThold</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <condition>
+     <and>
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">off</value>
+     </equals>
+     </and>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">altitude-hold</value>
+   </binding>
+</action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALThold.001</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <condition>
+     <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">altitude-hold</value>
+     </equals>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding>
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALTincrease</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+ <binding>
+   <command>property-adjust</command>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <step>100</step>
+   <min>-2000</min>
+   <max>38000</max>    
+  </binding>   
+  </action>
+ </animation>
+ 
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALTdecrease</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+  <binding>
+   <command>property-adjust</command>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <step>-100</step>
+   <min>-1000</min>
+   <max>38000</max>    
+  </binding>
+ </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>VShold</object-name> 
+ <action>
+   <name>engage vertical speed mode</name>
+   <button>0</button>
+    <repeatable>true</repeatable>
+    <condition>
+    <and>
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">off</value>
+     </equals>
+    </and>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">vertical-speed-hold</value>
+   </binding> 
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>VShold.001</object-name> 
+  <action>
+   <name>disengage vertical speed mode</name>
+   <button>0</button>
+<condition>
+     <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">vertical-speed-hold</value>
+     </equals>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding>
+  </action>
+  </animation>
+ 
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vsdown</object-name> 
+  <action>
+  <name>vertical speed down</name>
+      <repeatable>true</repeatable>
+  <button>0</button>
+    <binding>
+   <command>property-adjust</command>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <step>-100</step>
+   <min>-10000</min>
+   <max>0</max>    
+  </binding>
+ </action>
+ </animation>
+ 
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vsup</object-name> 
+  <action>
+  <name>vertical speed down</name>
+      <repeatable>true</repeatable>
+  <button>0</button>
+    <binding>
+   <command>property-adjust</command>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <step>100</step>
+   <min>0</min>
+   <max>10000</max>    
+  </binding>
+ </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>apprengage</object-name> 
+ <action>
+   <name>engage approach mode</name>
+  <button>0</button>
+    <condition>
+     <and>
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <not-equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">gs1-hold</value>
+     </not-equals>
+     </and>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">gs1-hold</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">nav1-hold</value>
+   </binding>
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>apprdisengage</object-name> 
+  <action>
+   <name>disengage approach mode</name>
+   <button>0</button>
+      <condition>
+    <equals>
+      <property>/autopilot/locks/altitude</property>
+      <value type="string">gs1-hold</value>
+     </equals>
+    </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/altitude</property>
+    <value type="string">off</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">off</value>
+   </binding>
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vorlocengage</object-name> 
+ <action>
+   <name>engage vor/loc mode</name>
+   <button>0</button>
+      <condition>
+     <and>
+     <equals>
+      <property>/controls/autoflight/autopilot/engage</property>
+      <value type="bool">true</value>
+     </equals>
+     <not-equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string">nav1-hold</value>
+     </not-equals>
+     </and>
+    </condition>    
+   <binding>   
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">nav1-hold</value>
+   </binding>
+  </action>
+</animation>
+
+
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vorlocdisengage</object-name> 
+ <action>
+   <name>disengage vor/loc mode</name>
+   <button>0</button>
+    <condition>
+     <equals>
+      <property>/autopilot/locks/heading</property>
+      <value type="string">nav1-hold</value>
+     </equals>
+   </condition>    
+   <binding>   
+    <command>property-assign</command>
+    <property>/autopilot/locks/heading</property>
+    <value type="string">off</value>
+   </binding>
+  </action>  
+</animation>
+
+<animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>speeddecrease</object-name>
+<action>
+  <name>airspeed adjust (decrease)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-speed-kt</property>
+   <step>-1.0</step>
+   <min>0</min>   
+   <max>340</max>    
+  </binding>
+ </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>machdecrease</object-name>
+<action>
+  <name>airspeed adjust (decrease)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-mach</property>
+   <step>-0.01</step>
+   <min>0.0</min>   
+   <max>0.82</max>    
+  </binding>
+ </action>
+ </animation>
+
+
+<animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>speedincrease</object-name>
+ <action>
+  <name>airspeed adjust (increase)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-speed-kt</property>
+   <step>1.0</step>
+   <min>0</min>
+   <max>340</max>    
+  </binding>
+ </action>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>machincrease</object-name>
+ <action>
+  <name>airspeed adjust (increase)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-mach</property>
+   <step>0.01</step>
+   <min>0.0</min>
+   <max>0.82</max>    
+  </binding>
+ </action>
+ </animation>
+
+<animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>mach</object-name> 
+ <action>
+   <name>changeover to mach</name>
+   <button>0</button>
+     <repeatable>false</repeatable>
+     <condition>
+     <and>     
+     <equals>
+      <property>/controls/autoflight/display-mach</property>
+      <value type="bool">false</value>
+     </equals>
+    <equals>
+      <property>/controls/autoflight/autothrottle-engage</property>
+      <value type="bool">true</value>
+     </equals>
+     </and>          
+   </condition>   
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/display-mach</property>
+    <value type="bool">true</value>
+   </binding>
+  <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string">mach-with-throttle</value>
+   </binding>
+  </action>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>IAS</object-name> 
+ <action>
+   <name>changeover to airspeed</name>
+   <button>0</button>
+     <repeatable>false</repeatable>
+   <condition>
+     <and>     
+     <equals>
+      <property>/controls/autoflight/display-mach</property>
+      <value type="bool">true</value>
+     </equals>
+    <equals>
+      <property>/controls/autoflight/autothrottle-engage</property>
+      <value type="bool">true</value>
+     </equals>
+     </and>          
+   </condition>     
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/display-mach</property>
+    <value type="bool">false</value>
+   </binding> 
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string">speed-with-throttle</value>
+   </binding>   
+  </action>
+  </animation>
+
+ 
+
+ </PropertyList>
