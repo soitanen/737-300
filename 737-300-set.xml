@@ -19,7 +19,7 @@
 			<path>Aircraft/737-300/Models/737-300.xml</path>
 			<pushback>
   <kp type="double">100</kp>
-  <ki type="double">25</ki>
+ 
   <kd type="double">0</kd>
   <position-norm type="double">0</position-norm>
  </pushback>
@@ -33,12 +33,12 @@
 			<internal archive="y">true</internal>
 			<config>
 				<!-- x/y/z == right/up/back -->
-				<x-offset-m archive="y">-0.475</x-offset-m>
-				<y-offset-m archive="y">1.85</y-offset-m>
-				<z-offset-m archive="y">2.830</z-offset-m>
-<!--				<z-offset-m archive="y">-6.300</z-offset-m>-->
+				<x-offset-m archive="y">-0.470</x-offset-m>
+				<y-offset-m archive="y">1.2</y-offset-m>
+				<z-offset-m archive="y">2.83</z-offset-m>
+
 				<pitch-offset-deg archive="y">-11.0</pitch-offset-deg>
-        <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+        <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
         <dynamic>
         <enabled type="bool" userarchive="y">false</enabled>
         </dynamic>
@@ -80,7 +80,40 @@
 				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
 			</config>
 		</view>
-    
+		
+		<view n="101">
+          <name>Right Wing View</name>
+          <type>lookfrom</type>
+          <internal archive="y">true</internal>
+          <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+            <pitch-offset-deg>-15</pitch-offset-deg>
+            <heading-offset-deg>-160</heading-offset-deg>
+            <x-offset-m archive="y" type="double">2.16</x-offset-m>
+            <y-offset-m archive="y" type="double">1.27</y-offset-m>
+            <z-offset-m archive="y" type="double">5.88</z-offset-m>
+          </config>
+       </view>
+       
+       <view n="102">
+          <name>Passenger View</name>
+          <type>lookfrom</type>
+          <internal archive="y">true</internal>
+          <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+            <pitch-offset-deg>-15</pitch-offset-deg>
+            <heading-offset-deg>90</heading-offset-deg>
+            <x-offset-m archive="y" type="double">-1.11</x-offset-m>
+            <y-offset-m archive="y" type="double">1.09</y-offset-m>
+            <z-offset-m archive="y" type="double">22.34</z-offset-m>
+          </config>
+       </view>
 		 		
     
 		<chase-distance-m>-50</chase-distance-m>
@@ -112,6 +145,20 @@
 			</submodels>
 		</ai>-->
   
+ <multiplay>
+			<generic>
+				<string n="0"/>
+
+				<int n="0"
+						 alias="/gear/gear[0]/tyre-smoke"/>
+				<int n="1"
+						 alias="/gear/gear[1]/tyre-smoke"/>
+				<int n="2"
+						 alias="/gear/gear[2]/tyre-smoke"/>
+				
+			</generic>
+</multiplay>
+  
     <systems>
       <electrical>
         <path></path>
@@ -133,10 +180,17 @@
 <help>
  <title>Boeing 737-300</title>
  <line>the take off precedure for a 737 is to have flaps set at 5, 
- and power upto 40% N1,
+ and power upto 40% N1 
  till moving, the slowly build up to 94% N1 V1 
- rotate usally at around 155 knots 
-  </line>
+</line>
+<line>TOWlbs V1   VR   V2</line>
+<line>121200  140  141  148</line>
+<line>110231  133  133  141</line>
+<line>99208    123  123  133</line>
+<line>88185    114  114  126</line>
+ 
+ <line></line>
+
   <line>Maximum Flap Operating Speeds</line>
   <line>1 = 230 kn</line>
   <line>2 = 230 kn</line>
@@ -341,6 +395,33 @@
 </turn-indicator>
 </instrumentation>
 
+<payload>
+<weight>
+<name type="string">Pilot</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">300.0</max-lb>
+</weight>
+<weight>
+<name type="string">Co Pilot</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">300.0</max-lb>
+</weight>
+<weight>
+<name type="string">First Class</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">1600.0</max-lb>
+</weight>
+<weight>
+<name type="string">Economy Class</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">21600.0</max-lb>
+</weight>
+</payload>
+
 
 
 <nasal>
@@ -355,7 +436,7 @@
 <airground>
 <file>Aircraft/737-300/Systems/air-ground.nas</file>
 </airground>
-   
+
 
 		<tyresmoke>
 			<file>Aircraft/737-300/Nasal/tyresmoke.nas</file>

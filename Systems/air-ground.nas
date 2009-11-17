@@ -21,7 +21,7 @@ call_airground = func {
              
         if ((getprop("/controls/gear/autobrakes") == 5) and (REJECT=="false")) {
           if (getprop("/controls/engines/engine[0]/throttle") < 0.1) { 
-            if (GROUNDSPEED > 80.0) {
+            if (GROUNDSPEED > 60.0) {
               REJECT = "true";
               print ("Rejecting Takeoff at ", GROUNDSPEED, " kts ground speed.");
             }
@@ -43,6 +43,7 @@ call_airground = func {
         }
 
         if (LANDED == "true") {
+	if (GROUNDSPEED < 2.0){
           if (getprop("/controls/engines/engine[0]/throttle") > 0.3) { 
              LANDED = "false";
              setprop("/controls/flight/speedbrake", 0.0);
@@ -58,6 +59,7 @@ call_airground = func {
             setprop("/controls/gear/brake-right", 0.0);
           }
         }
+}	
 
 
      } else {
@@ -71,36 +73,52 @@ call_airground = func {
           # autobrakes are off, so do nothing here
         }
         elsif (SETTING == 1) {
+	if (getprop("/controls/flight/autospeedbrakes-armed") == "true") {
           # autobrakes set to level 1
           setprop("/controls/gear/brake-left", 0.2);
           setprop("/controls/gear/brake-right", 0.2);
+	  setprop("/controls/flight/speedbrake", 1.0);
+	  setprop("/controls/flight/spoilers", 1.0);
+	  setprop("/controls/flight/autospeedbrakes-armed", "false");
         }
+	 }
         elsif (SETTING == 2) {
+	if (getprop("/controls/flight/autospeedbrakes-armed") == "true") {
           # autobrakes set to level 2
           setprop("/controls/gear/brake-left", 0.4);
           setprop("/controls/gear/brake-right", 0.4);
+	  setprop("/controls/flight/speedbrake", 1.0);
+	  setprop("/controls/flight/spoilers", 1.0);
+	  setprop("/controls/flight/autospeedbrakes-armed", "false");
         }
+	 }
         elsif (SETTING == 3) {
+	if (getprop("/controls/flight/autospeedbrakes-armed") == "true") {
           # autobrakes set to level 3
           setprop("/controls/gear/brake-left", 0.8);
           setprop("/controls/gear/brake-right", 0.8);
+	  setprop("/controls/flight/speedbrake", 1.0);
+	  setprop("/controls/flight/spoilers", 1.0);
+	  setprop("/controls/flight/autospeedbrakes-armed", "false");
         }
+	 }
         elsif (SETTING == 4) {
+	if (getprop("/controls/flight/autospeedbrakes-armed") == "true") {
           # autobrakes set to level MAX
           setprop("/controls/gear/brake-left", 1.0);
           setprop("/controls/gear/brake-right", 1.0);
+	  setprop("/controls/flight/speedbrake", 1.0);
+	  setprop("/controls/flight/spoilers", 1.0);
+	  setprop("/controls/flight/autospeedbrakes-armed", "false");         
+        } 
         }
         else {
           # autobrakes mistakenly set to wrong value
           setprop("/controls/gear/autobrakes", 0);
         }
 
-        # raise speedbrakes and spoilers if they are armed
-        if (getprop("/controls/flight/autospeedbrakes-armed") == "true") {
-            setprop("/controls/flight/speedbrake", 1.0);
-            setprop("/controls/flight/spoilers", 1.0);
-            setprop("/controls/flight/autospeedbrakes-armed", "false");         
-        } 
+        
+       
      }
 
    } else {

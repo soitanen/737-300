@@ -890,7 +890,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/consumables/fuel/tank[1]/level-lbs</property>
+     <property>/consumables/fuel/tank[1]/level-lb</property>
      <scale>0.015</scale>
      <offset>-110</offset> 
     </transformation>
@@ -942,7 +942,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank[1]/level-lbs</property>
+      <property>/consumables/fuel/tank[1]/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -994,7 +994,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank[2]/level-lbs</property>
+      <property>/consumables/fuel/tank[2]/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>
@@ -1046,7 +1046,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/consumables/fuel/tank/level-lbs</property>
+      <property>/consumables/fuel/tank/level-lb</property>
       <format>%6.0f</format>
      </chunk>
     </chunks>

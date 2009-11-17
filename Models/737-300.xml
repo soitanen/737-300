@@ -12,11 +12,21 @@
       livery_update.stop();
     </unload>
   </nasal>
+  
+  <model>
+ <name>flightdeck</name>
+ <path>Aircraft/737-300/Models/Flightdeck/flightdeck.xml</path>
+ <offsets>
+   <x-m>0.3</x-m>
+   <z-m>1.957</z-m>
+   <pitch-deg>-15</pitch-deg>
+ </offsets>
+ </model>
  
  <offsets>
    <x-m>8.756</x-m>
-   <z-m>0.6</z-m>
-   <pitch-deg>-0.2</pitch-deg>
+   <z-m>0.0</z-m>
+   <pitch-deg>0</pitch-deg>
  </offsets>
  
  <model>
@@ -1701,7 +1711,7 @@
 
  
  <model>
-		<path>Aircraft/Generic/Effects/tyre-smoke-nose.xml</path>
+		<path>Aircraft/737-300/Models/tyre-smoke-nose.xml</path>
 		<name>tyre-smoke-n</name>
 		<offsets>
 			<x-m>-4.669</x-m>
@@ -1711,7 +1721,7 @@
 	</model>
 
 	<model>
-		<path>Aircraft/Generic/Effects/tyre-smoke-port.xml</path>
+		<path>Aircraft/737-300/Models/tyre-smoke-port.xml</path>
 		<name>tyre-smoke-p</name>
 		<offsets>
 			<x-m>7.962</x-m>
@@ -1721,7 +1731,7 @@
 	</model>
 
 	<model>
-		<path>Aircraft/Generic/Effects/tyre-smoke-stbd.xml</path>
+		<path>Aircraft/737-300/Models/tyre-smoke-stbd.xml</path>
 		<name>tyre-smoke-s</name>
 		<offsets>
 			<x-m>7.962</x-m>

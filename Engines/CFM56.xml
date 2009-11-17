@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  File:     CFM56_5.xml
+  File:     CFM56.xml
   Author:   Aero-Matic v 0.8
 
   Inputs:
@@ -13,7 +13,7 @@
 
 <turbine_engine name="CFM56">
   <milthrust> 20000.0 </milthrust>
-  <bypassratio>     5.9 </bypassratio>
+  <bypassratio>     5.0 </bypassratio>
   <tsfc>            0.657 </tsfc>
   <bleed>           0.04 </bleed>
   <idlen1>         30.0 </idlen1>

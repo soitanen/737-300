@@ -21,7 +21,7 @@
         <vtailarea unit="FT2"> 297.00 </vtailarea>
         <vtailarm unit="FT">    44.50 </vtailarm>
         <location name="AERORP" unit="IN">
-            <x> 625 </x>
+            <x> 610 </x>
             <y>   0 </y>
             <z>  24 </z>
         </location>
@@ -50,14 +50,52 @@
             <y>   0 </y>
             <z> -40 </z>
         </location>
-    </mass_balance>
+    
+    
+    <pointmass name="Pilot">
+            <weight unit="LBS"> 200.0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x> 101.5 </x>
+                <y> -18.88 </y>
+                <z> 16.52 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Co Pilot">
+            <weight unit="LBS"> 200.0 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 101.5 </x>
+                <y> 18.88 </y>
+                <z> 16.52 </z>
+            </location>
+        </pointmass>
+<!--first class with 8 pax. Passengers are more heavy ;-)!-->
+	 <pointmass name="First Class">
+            <weight unit="LBS"> 1600 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 357 </x>
+                <y> 0 </y>
+                <z> 16.52 </z>
+            </location>
+        </pointmass>
+<!--Economy class with 120 pax. Passengers are less heavy ;-)!-->
+	 <pointmass name="First Class">
+            <weight unit="LBS"> 21600.0 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 636 </x>
+                <y> 0 </y>
+                <z> 16.52 </z>
+            </location>
+        </pointmass>
+	
+</mass_balance>
+
 
     <ground_reactions>
         <contact name="Nose Gear" type="BOGEY">
             <location unit="IN">
                 <x> 158 </x>
                 <y>   0 </y>
-                <z> -75 </z>
+                  <z> -98.4 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -82,7 +120,7 @@
             <location unit="IN">
                 <x>  648 </x>
                 <y> -100 </y>
-                <z>  -82 </z>
+              <z>  -109.4 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -107,7 +145,7 @@
             <location unit="IN">
                 <x> 648 </x>
                 <y> 100 </y>
-                <z> -82 </z>
+                <z>  -109.4 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -337,7 +375,7 @@
         </engine>
         <tank type="FUEL"><!-- Left wing tank -->
             <location unit="IN">
-                <x> 520 </x>
+                <x> 550</x>
                 <y> -80 </y>
                 <z> -18 </z>
             </location>
@@ -347,7 +385,7 @@
         </tank>
         <tank type="FUEL"><!-- Right wing tank -->
             <location unit="IN">
-                <x> 520 </x>
+                <x> 550 </x>
                 <y>  80 </y>
                 <z> -18 </z>
             </location>
@@ -356,7 +394,7 @@
         </tank>
         <tank type="FUEL"><!-- Center tank -->
             <location unit="IN">
-                <x> 480 </x>
+                <x> 550 </x>
                 <y>   0 </y>
                 <z> -18 </z>
             </location>
