@@ -161,7 +161,7 @@
   
     <systems>
       <electrical>
-        <path></path>
+        <path>Aircraft/Generic/generic-electrical.xml</path>
       </electrical>
       <autopilot>
 	      <path>Aircraft/737-300/737-autopilotV5.xml</path>
