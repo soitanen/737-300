@@ -1,525 +1,0 @@
-<PropertyList>
-
- <name>777-200 Throttle Panel</name>
- <background>Aircraft/737-300/Panels/hotspotgrid.rgb</background>
- <w>512</w>
- <h>128</h>
-
-<instruments>
-
-<instrument>
-  <name>panel hotspots</name>
-  <x>256</x>
-  <y>64</y>
-  <w>512</w>
-  <h>128</h>
-  <w-base>512</w-base>
-  <h-base>128</h-base>
-
- <actions>
-<!--
-  <action>
-    <name>bezel outline</name>
-    <button>0</button>
-    <x>-262</x>
-    <y>-32</y>
-    <w>524</w>
-    <h>64</h>
-    <binding>
-    </binding>
-  </action>
--->
-
- <action>   <name>autopilot engage</name>   <button>0</button>   <x>57</x>   <y>13</y>   <w>10</w>   <h>15</h>   <binding>    <command>property-assign</command>    <property>/controls/autoflight/autopilot/engage</property>     <value type="bool">true</value>      </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>
-    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>   </action>
-
-<!--<action>
-    <name>AP on</name>
-    <button>0</button>
-    <x>-198</x>
-    <y>5</y>
-    <w>18</w>
-    <h>18</h>
-    <binding>
-    <command>property-toggle</command>
-    <property>/instrumentation/flightdirector/autopilot-on</property>
-    <value>1.0</value>
-    </binding>
-  </action>-->
-
-  <action>
-    <name>FD Toggle</name>
-    <button>0</button>
-    <x>-200</x>
-    <y>-24</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-toggle</command>
-     <property>/instrumentation/flightdirector/fd-on</property>
-    </binding>
-  </action>
-  
- <action>  <name>course decrease lh</name>  <button>0</button>  <x>-120</x>  <y>-20</y>  <w>15</w>  <h>15</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>-1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
- 
- <action>  <name>course increase lh</name>  <button>0</button>  <x>-110</x>  <y>-20</y>  <w>10</w>  <h>15</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
-
- <action>  <name>course decrease rh</name>  <button>0</button>  <x>94</x>  <y>-20</y>  <w>10</w>  <h>15</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>-1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
- 
- <action>  <name>course increase rh</name>  <button>0</button>  <x>105</x>  <y>-20</y>  <w>10</w>  <h>15</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
-
-<!--<action>
-    <name>AP off</name>
-    <button>0</button>
-    <x>-74</x>
-    <y>-27</y>
-    <w>26</w>
-    <h>10</h>
-    <binding>
-    <command>property-assign</command>
-    <property>/instrumentation/flightdirector/autopilot-on</property>
-    <value>0.0</value>
-    </binding>
-  </action>-->
-
-  <action>   <name>autopilot disengage</name>   <button>0</button>   <x>64</x>   <y>-54</y>   <w>15</w>   <h>25</h>   <binding>    <command>property-assign</command>    <property>/controls/autoflight/autopilot/engage</property>    <value type="bool">false</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>     </action>    
-
-  <action>
-    <name>VS up 100</name>
-    <button>0</button>
-    <x>90</x>
-    <y>8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/vertical-speed-fpm</property>
-    <step>100.0</step>
-	<min>-99000</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>VS down 100</name>
-    <button>0</button>
-    <x>90</x>
-    <y>-8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/vertical-speed-fpm</property>
-    <step>-100.0</step>
-	<min>-99000</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>ALT down 100</name>
-    <button>0</button>
-    <x>22</x>
-    <y>11</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
-    <step>-100.0</step>
-	<min>0</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>ALT down 1000</name>
-    <button>1</button>
-    <x>22</x>
-    <y>11</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
-    <step>-1000.0</step>
-	<min>0</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>ALT up 100</name>
-    <button>0</button>
-    <x>32</x>
-    <y>11</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
-    <step>100.0</step>
-	<min>0</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>ALT up 1000</name>
-    <button>1</button>
-    <x>32</x>
-    <y>11</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
-    <step>1000.0</step>
-	<min>0</min>
-    <max>99000</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>IAS decrease</name>
-    <button>0</button>
-    <x>-126</x>
-    <y>6</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-speed-kt</property>
-    <step>-1.0</step>
-	<min>0</min>
-    <max>400</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>IAS increase</name>
-    <button>0</button>
-    <x>-114</x>
-    <y>6</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-speed-kt</property>
-    <step>1.0</step>
-	<min>0</min>
-    <max>400</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-
-  <action>
-    <name>IAS decrease 10</name>
-    <button>1</button>
-    <x>-126</x>
-    <y>6</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-speed-kt</property>
-    <step>-10.0</step>
-	<min>0</min>
-    <max>400</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>IAS increase 10</name>
-    <button>1</button>
-    <x>-114</x>
-    <y>-6</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/target-speed-kt</property>
-    <step>10.0</step>
-	<min>0</min>
-    <max>400</max>
-    <wrap>false</wrap>
-    </binding>
-  </action>
-
-
-
-  <action>
-    <name>HDG decrease</name>
-    <button>0</button>
-    <x>-52</x>
-    <y>8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/heading-bug-deg</property>
-    <step>-1.0</step>
-	<min>0</min>
-    <max>360</max>
-    <wrap>true</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>HDG increase</name>
-    <button>0</button>
-    <x>-40</x>
-    <y>8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/heading-bug-deg</property>
-    <step>1.0</step>
-	<min>0</min>
-    <max>360</max>
-    <wrap>true</wrap>
-    </binding>
-  </action>
-
- <action>
-    <name>HDG decrease 10</name>
-    <button>1</button>
-    <x>-52</x>
-    <y>8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/heading-bug-deg</property>
-    <step>-10.0</step>
-	<min>0</min>
-    <max>360</max>
-    <wrap>true</wrap>
-    </binding>
-  </action>
-
-  <action>
-    <name>HDG increase 10</name>
-    <button>1</button>
-    <x>-40</x>
-    <y>8</y>
-    <w>15</w>
-    <h>15</h>
-    <binding>
-    <command>property-adjust</command>
-    <property>/autopilot/settings/heading-bug-deg</property>
-    <step>10.0</step>
-	<min>0</min>
-    <max>360</max>
-    <wrap>true</wrap>
-    </binding>
-  </action>
-
-
- <!--     LNAV MODES        -->
-
-
-  <action>
-    <name>Heading Toggle</name>
-    <button>0</button>
-    <x>-43</x>
-    <y>-26</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/lnav") != 1){
-    setprop("/instrumentation/flightdirector/lnav",1);}else{
-    setprop("/instrumentation/flightdirector/lnav",0);}
-    </script>
-    </binding>
-  </action>
-
-  <action>
-    <name>Nav Toggle</name>
-    <button>0</button>
-    <x>-91</x>
-    <y>5</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/lnav") != 2){
-    setprop("/instrumentation/flightdirector/lnav",2);}else{
-    setprop("/instrumentation/flightdirector/lnav",0);}
-    </script>
-    </binding>
-  </action>
-
-   <action>
-     <name>Appr Toggle</name>
-     <button>0</button>
-     <x>74</x>
-     <y>-26</y>
-     <w>12</w>
-     <h>12</h>
-     <binding>
-     <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/lnav") != 3){
-    setprop("/instrumentation/flightdirector/lnav",3);}else{
-    setprop("/instrumentation/flightdirector/lnav",0);}
-    </script>
-     </binding>
-   </action>
-
-<!-- VNAV     MODES -->
-
- <action>
-    <name>VS Hold Toggle </name>
-    <button>0</button>
-    <x>23</x>
-    <y>-26</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/vnav") != 3){
-    setprop("/instrumentation/flightdirector/vnav",3);
-    }else{
-    setprop("/instrumentation/flightdirector/vnav",0);}
-    </script>
-    </binding>
-  </action>
-
-<action>
-    <name>Altitude Select Toggle</name>
-    <button>0</button>
-    <x>45</x>
-    <y>-26</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/vnav") != 2){
-    setprop("/instrumentation/flightdirector/vnav",2);}else{
-    setprop("/instrumentation/flightdirector/vnav",0);}
-    </script>
-    </binding>
-  </action>
-
-
- <action>
-    <name>GS Hold Toggle </name>
-    <button>0</button>
-    <x>-91</x>
-    <y>-10</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/vnav") != 1){
-    setprop("/instrumentation/flightdirector/vnav",1);
-    setprop("/autopilot/settings/gs1-hold",getprop("/position/altitude-ft"));
-    }else{
-    setprop("/instrumentation/flightdirector/vnav",0);}
-    </script>
-    </binding>
-  </action>
-
-  <action>
-    <name>AT Toggle </name>
-    <button>0</button>
-    <x>-149</x>
-    <y>-26</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-    <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/flightdirector/vnav") != 4){
-    setprop("/instrumentation/flightdirector/vnav",4);
-    }else{
-    setprop("/instrumentation/flightdirector/vnav",0);}
-    </script>
-    </binding>
-  </action>
-
-<!--
-  <action>
-    <name>WXRADAR Toggle </name>
-    <button>0</button>
-    <x>-255</x>
-    <y>-16</y>
-    <w>10</w>
-    <h>6</h>
-    <binding>
-	   <command>nasal</command>
-    <script>
-    if(getprop("/instrumentation/wxradar/switch") != "on"){
-    setprop("/instrumentation/wxradar/switch","on");
-    }else{
-    setprop("/instrumentation/wxradar/switch","off");}
-    </script>
-    </binding>
-  </action>
-
-  <action>
-    <name>WXRADAR range up </name>
-    <button>0</button>
-    <x>-208</x>
-    <y>-6</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-	   <command>nasal</command>
-    <script>
-    test=getprop("/instrumentation/wxradar/range");
-	if(test ==10){setprop("/instrumentation/wxradar/range",20);setprop("/instrumentation/radar/range",20);}
-	elsif(test ==20){setprop("/instrumentation/wxradar/range",40);setprop("/instrumentation/radar/range",40);}
-    elsif(test ==40){setprop("/instrumentation/wxradar/range",80);setprop("/instrumentation/radar/range",80);}
-    elsif(test ==80){setprop("/instrumentation/wxradar/range",160);setprop("/instrumentation/radar/range",160);}
-	elsif(test ==160){setprop("/instrumentation/wxradar/range",320);setprop("/instrumentation/radar/range",320);}
-    elsif(test ==320){setprop("/instrumentation/wxradar/range",640);setprop("/instrumentation/radar/range",640);};
-    </script>
-    </binding>
-  </action>
-
-  <action>
-    <name>WXRADAR range down </name>
-    <button>0</button>
-    <x>-220</x>
-    <y>-6</y>
-    <w>12</w>
-    <h>12</h>
-    <binding>
-	   <command>nasal</command>
-    <script>
-    test=getprop("/instrumentation/wxradar/range");
-	if(test ==640){setprop("/instrumentation/wxradar/range",320);setprop("/instrumentation/radar/range",320);}
-	elsif(test ==320){setprop("/instrumentation/wxradar/range",160);setprop("/instrumentation/radar/range",160);}
-    elsif(test ==160){setprop("/instrumentation/wxradar/range",80);setprop("/instrumentation/radar/range",80);}
-    elsif(test ==80){setprop("/instrumentation/wxradar/range",40);setprop("/instrumentation/radar/range",40);}
-	elsif(test ==40){setprop("/instrumentation/wxradar/range",20);setprop("/instrumentation/radar/range",20);}
-    elsif(test ==20){setprop("/instrumentation/wxradar/range",10);setprop("/instrumentation/radar/range",10);};
-    </script>
-    </binding>
-  </action>-->
-
- </actions>
-
-</instrument>
-
-</instruments>
-
-</PropertyList>
