@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reflections
+
+PARAMETERS: There are two forms of cube map texture:- vertical cross and 6 images.
+Either can be used - alternative forms are shown in <parameters> and in <texture-unit>
+
+The reflection is set proportional to the shininess of the material. Thus by 
+varying the material shininess value over or between objects the amount of 
+refection can be controlled. The overall amount of reflection may be 
+adjusted by the use of <refl_correction> -1.0 (fully transparent)- 1.0 (fully opaque).
+
+The overall values of the noisiness, coloured fringing or fresnel effect may be adjusted
+by the use of <noisiness>, <rainbowiness> and <fresneliness>.
+
+If your result is too dark/too light the overall ambient light value can be adjusted
+by the use of <ambient_correction>. This correction also takes out some of the blueness
+added as default to compensate for the lack of reflection.
+
+To use a reflection map set <reflect_map> to 1,and the path to the map texture in 
+<texture n="8">
+
+USE: 	To use the default reflection effect (controlled by material shininess values) use 
+	
+	<effect>
+			<inherits-from>Effects/reflect</inherits-from>
+			<object-name>Fuselage</object-name>
+	</<effect>
+	
+			To use your own reflection effectuse
+			
+	<effect>
+		<inherits-from>Aircraft/Lightning/Models/Effects/lightningreflect</inherits-from>
+		<object-name>Fuselage</object-name>
+	</<effect>
+	
+in your model file.
+
+To use your own effect place your efffect file containing something like this:
+
+	<name>Effects/lightningreflect</name>
+	<inherits-from>Effects/reflect</inherits-from>
+	
+	and the the modified tags in the path as above
+
+EXAMPLES: You can find examples of both usages in the Hunter and Lightning models.
+-->
+<PropertyList>
+	<name>Effects/733reflect</name>
+	<inherits-from>Effects/reflect</inherits-from>
+
+	<parameters>
+		<texture n="5">
+			<type>cubemap</type>
+			<!-- use this form for a cube cross -->
+			<!--<image>Aircraft/Generic/Effects/CubeCrosses/blue_sky_big.jpg</image>-->
+
+			<!-- use this form for a 6 image cube map -->
+			<images>
+				<positive-x>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_px.png</positive-x>
+				<negative-x>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_nx.png</negative-x>
+				<positive-y>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_py.png</positive-y>
+				<negative-y>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_ny.png</negative-y>
+				<positive-z>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_pz.png</positive-z>
+				<negative-z>Aircraft/Generic/Effects/CubeMaps/fair-sky/fair-sky_nz.png</negative-z>
+			</images>
+
+		</texture>
+		<texture n="6">
+			<image>Aircraft/Generic/Effects/Rainbow.png</image>
+			<filter>linear-mipmap-linear</filter>
+			<wrap-s>repeat</wrap-s>
+			<wrap-t>repeat</wrap-t>
+			<internal-format>normalized</internal-format>
+		</texture>
+		<texture n="7">
+			<image>Aircraft/Generic/Effects/FresnelLookUp.png</image>
+			<filter>linear-mipmap-linear</filter>
+			<wrap-s>repeat</wrap-s>
+			<wrap-t>repeat</wrap-t>
+			<internal-format>normalized</internal-format>
+		</texture>
+		<texture n="8">
+			<image>Aircraft/737-300/Models/Effects/733LH.ReflectionMap3.png</image>
+			<filter>linear-mipmap-linear</filter>
+			<wrap-s>repeat</wrap-s>
+			<wrap-t>repeat</wrap-t>
+			<internal-format>normalized</internal-format>
+		</texture>
+		<rendering-hint>transparent</rendering-hint>
+		<shade-model>smooth</shade-model>
+		<rainbowiness type="float">0.05</rainbowiness>
+		<fresneliness>0.1</fresneliness>
+		<noisiness>0.25</noisiness>
+		<refl_correction>0.0</refl_correction>
+		<ambient_correction>0.25</ambient_correction>
+		<reflect_map>1</reflect_map>
+	</parameters>
+
+</PropertyList>
