@@ -17,13 +17,6 @@
   </condition>
  </animation>
  
-  <animation>
-   <type>select</type>
-   <object-name>light</object-name>
-   <condition>
-     <property>controls/switches/instruments-lights</property>
-   </condition>
- </animation> 
 
   
   <!--variometer-->

@@ -157,7 +157,7 @@
   <object-name>tyreln</object-name>
   <object-name>Cube</object-name>
     <property>gear/gear[0]/compression-norm</property>
-    <factor>0.85</factor>
+    <factor>0.2</factor>
     <axis>
       <x>0</x>
       <y>0</y>
@@ -172,7 +172,7 @@
   <object-name>mglhtyrerh</object-name>
   <object-name>mglhtyrelh</object-name>   
     <property>gear/gear[1]/compression-norm</property>
-    <factor>0.4</factor>
+    <factor>0.3</factor>
     <axis>
       <x>0</x>
       <y>0</y>
@@ -187,7 +187,7 @@
   <object-name>mgrhtyrerh</object-name>
   <object-name>mgrhtyrelh</object-name>   
     <property>gear/gear[2]/compression-norm</property>
-    <factor>0.4</factor>
+    <factor>0.3</factor>
     <axis>
       <x>0</x>
       <y>0</y>
@@ -266,12 +266,12 @@
     </entry>
   </interpolation>   
 		<axis>
-			<x1-m>-6.183</x1-m>
-			<y1-m>0.451</y1-m>
-			<z1-m>-1.113</z1-m>
-			<x2-m>-4.430</x2-m>
-			<y2-m>0.434</y2-m>
-			<z2-m>-1.402</z2-m>
+			<x1-m>-6.194</x1-m>
+			<y1-m>0.375</y1-m>
+			<z1-m>-1.114</z1-m>
+			<x2-m>-4.431</x2-m>
+			<y2-m>0.390</y2-m>
+			<z2-m>-1.331</z2-m>
 		</axis>
  </animation>
 
@@ -298,12 +298,12 @@
     </entry>
   </interpolation>   
 		<axis>
-			<x1-m>-6.191</x1-m>
-			<y1-m>-0.449</y1-m>
-			<z1-m>-1.113</z1-m>
-			<x2-m>-4.453</x2-m>
-			<y2-m>-0.450</y2-m>
-			<z2-m>-1.395</z2-m>
+			<x1-m>-6.194</x1-m>
+			<y1-m>-0.372</y1-m>
+			<z1-m>-1.112</z1-m>
+			<x2-m>-4.431</x2-m>
+			<y2-m>-0.395</y2-m>
+			<z2-m>-1.326</z2-m>
 		</axis>
  </animation>
 
@@ -643,25 +643,15 @@
    <y>1</y>
    <z>0.1</z>
   </axis>
- </animation>
-
+ </animation> <!--left stab trim--><animation>  <type>rotate</type><object-name>hstab</object-name>  <object-name>lehstab</object-name>  <object-name>lhelevator</object-name>  <object-name>lhelevatortab</object-name>  <property>controls/flight/elevator-trim</property>   <factor>17</factor>  <offset-deg>-3</offset-deg>     <max-deg>0</max-deg>  <axis>                              <x1-m>23.643</x1-m>			<y1-m>-5</y1-m>			<z1-m>2.270</z1-m>			<x2-m>21.443</x2-m>			<y2-m>-0.871</y2-m>			<z2-m>1.492</z2-m></axis> </animation>
+<!--elevator-->
   <animation>
   <type>rotate</type>
   <object-name>lhelevator</object-name>
   <object-name>lhelevatortab</object-name>
   <property>controls/flight/elevator</property>
-  <factor>15</factor>
-  <offset-deg>0</offset-deg>   
-  <center>
-   <x-m>22.368</x-m>
-   <y-m>-0.61</y-m>
-   <z-m> 1.428</z-m>
-  </center>
-  <axis>
-   <x>-0.33</x>
-   <y>1.0</y>
-   <z>-0.2</z>
-  </axis>
+ <factor>17</factor>  <offset-deg>-3</offset-deg>     <max-deg>0</max-deg> 
+  <axis>                              <x1-m>23.74</x1-m>			<y1-m>-5</y1-m>			<z1-m>2.275</z1-m>			<x2-m>22.3</x2-m>			<y2-m>-0.673</y2-m>			<z2-m>1.468</z2-m></axis>
  </animation>
 
  <animation>
@@ -670,18 +660,9 @@
   <property>controls/flight/elevator</property>
   <factor>-15</factor>
   <offset-deg>0</offset-deg>   
-  <center>
-   <x-m>23.067</x-m>
-   <y-m>-0.807</y-m>
-   <z-m> 1.523</z-m>
-  </center>
-  <axis>
-   <x>-0.29</x>
-   <y>1.0</y>
-   <z>-0.18</z>
-  </axis>
- </animation>
-
+  <axis>                              <x1-m>23.638</x1-m>			<y1-m>-2.974</y1-m>			<z1-m>1.893</z1-m>			<x2-m>23.056</x2-m>			<y2-m>-0.784</y2-m>			<z2-m>1.518</z2-m></axis>
+ </animation><!--right stab trim-->
+<animation>  <type>rotate</type><object-name>hstab.001</object-name>  <object-name>lehstab.001</object-name>  <object-name>rhelevator</object-name>  <object-name>rhelevatortab</object-name>  <property>controls/flight/elevator-trim</property>  <factor>15</factor>  <offset-deg>0</offset-deg>     <axis>                              <x2-m>23.643</x2-m>			<y2-m>5</y2-m>			<z2-m>2.270</z2-m>			<x1-m>21.443</x1-m>			<y1-m>0.871</y1-m>			<z1-m>1.492</z1-m></axis> </animation>
  <animation>
   <type>rotate</type>
   <object-name>rhelevator</object-name>
@@ -689,16 +670,7 @@
   <property>controls/flight/elevator</property>
   <factor>15</factor>
   <offset-deg>0</offset-deg>   
-  <center>
-   <x-m>22.989</x-m>
-   <y-m>0.44</y-m>
-   <z-m> 1.35</z-m>
-  </center>
-  <axis>
-   <x>0.33</x>
-   <y>1.0</y>
-   <z>0.2</z>
-  </axis>
+  <axis>                            	<x1-m>22.3</x1-m>			<y1-m>0.673</y1-m>			<z1-m>1.468</z1-m>						<x2-m>23.74</x2-m>			<y2-m>5</y2-m>			<z2-m>2.275</z2-m></axis>
  </animation>
 
  <animation>
@@ -707,16 +679,7 @@
   <property>controls/flight/elevator</property>
   <factor>-15</factor>
   <offset-deg>0</offset-deg>   
-  <center>
-   <x-m>23.682</x-m>
-   <y-m>0.79</y-m>
-   <z-m> 1.50</z-m>
-  </center>
-  <axis>
-   <x>0.29</x>
-   <y>1.0</y>
-   <z>0.18</z>
-  </axis>
+  <axis>                             	<x1-m>23.056</x1-m>			<y1-m>0.784</y1-m>			<z1-m>1.518</z1-m>						 <x2-m>23.638</x2-m>			<y2-m>2.974</y2-m>			<z2-m>1.893</z2-m></axis>
  </animation>
 
  <animation>
@@ -1543,7 +1506,7 @@
   <type>rotate</type>   
   <object-name>spoiler0</object-name>
   <object-name>spoiler1</object-name>
-  <property>surface-positions/spoilers-pos-norm</property>
+  <property>surface-positions/speedbrake-pos-norm</property>
   <factor>-70</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1563,7 +1526,7 @@
   <type>rotate</type>   
   <object-name>spoiler9</object-name>
   <object-name>spoiler8</object-name>
-  <property>surface-positions/spoilers-pos-norm</property>
+     <property>surface-positions/speedbrake-pos-norm</property>
   <factor>-70</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1583,7 +1546,7 @@
   <type>rotate</type>   
   <object-name>spoiler2</object-name>
   <object-name>spoiler3</object-name>
-  <property>surface-positions/speedbrake-pos-norm</property>
+   <property>surface-positions/spoilers-pos-norm</property> 
   <factor>-40</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1604,7 +1567,7 @@
   <object-name>spoiler2</object-name>
   <object-name>spoiler3</object-name>
   <property>surface-positions/left-aileron-pos-norm</property>
-  <factor>20</factor>
+  <factor>40</factor>
   <offset-deg>0</offset-deg>   
   <max-deg>0</max-deg>
   <center>
@@ -1624,7 +1587,7 @@
   <type>rotate</type>   
   <object-name>spoiler6</object-name>
   <object-name>spoiler7</object-name>
-  <property>surface-positions/speedbrake-pos-norm</property>
+   <property>surface-positions/spoilers-pos-norm</property>
   <factor>-40</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1645,7 +1608,7 @@
   <object-name>spoiler6</object-name>
   <object-name>spoiler7</object-name>
   <property>surface-positions/right-aileron-pos-norm</property>
-  <factor>20</factor>
+  <factor>40</factor>
   <offset-deg>0</offset-deg>
   <max-deg>0</max-deg>   
   <center>
@@ -1664,7 +1627,7 @@
  <animation>
   <type>rotate</type>   
   <object-name>spoiler4</object-name>   
-  <property>surface-positions/spoilers-pos-norm</property>
+ <property>surface-positions/speedbrake-pos-norm</property>
   <factor>-70</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1683,7 +1646,7 @@
  <animation>
   <type>rotate</type>   
   <object-name>spoiler5</object-name>   
-  <property>surface-positions/spoilers-pos-norm</property>
+  <property>surface-positions/speedbrake-pos-norm</property>
   <factor>-70</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -1793,16 +1756,14 @@
     <object-name>backdoorright</object-name>
     <object-name>geardoor</object-name>
     <object-name>rhgeardoor</object-name>
-    <object-name>rlngdoor</object-name>
+    <object-name>rhngdoor</object-name>
     <object-name>lhngdoor</object-name>
      <object-name>vstab</object-name>
     <object-name>rudder</object-name>
-    
-
+   <object-name>antlo</object-name> <object-name>tyreln</object-name>    <object-name>tyrern</object-name>    <object-name>mglhtyrelh</object-name>    <object-name>mglhtyrerh</object-name>    <object-name>mgrhtyrelh</object-name>     <object-name>mgrhtyrerh</object-name>    <object-name>Plane.011</object-name>          <object-name>removal</object-name>            <object-name>engcore</object-name>          <object-name>tailpipe</object-name>            <object-name>removal</object-name>    
     <property-base>sim/model/livery</property-base>
     <texture-prop>texture</texture-prop>
-    <texture>texture.png</texture>
-</animation>
+    <texture>texture.png</texture>        </animation>    <!--eyebrow variant animation--><animation>		<type>select</type>				<object-name>removal</object-name>		<condition>			<property>sim/model/Boeing-737-300/removalkit</property>		</condition></animation><animation>		<type>select</type>				<object-name>eyebrowwindow</object-name>		<condition>			<property>sim/model/Boeing-737-300/eyebrowwindow</property>		</condition></animation><!-- ENGINE CONTRAIL --><model><path>Aircraft/737-300/Models/contrail.xml</path><offsets><x-m>16.0</x-m><y-m>-4.98</y-m><z-m>0.0</z-m><heading-deg>0</heading-deg></offsets></model><model><path>Aircraft/737-300/Models/contrail.xml</path><offsets><x-m>16.0</x-m><y-m>4.98</y-m><z-m>0.0</z-m><heading-deg>0</heading-deg></offsets></model>
 	
  
 </PropertyList>

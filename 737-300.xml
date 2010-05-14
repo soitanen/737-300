@@ -68,22 +68,94 @@
                 <z> 16.52 </z>
             </location>
         </pointmass>
-<!--first class with 8 pax. Passengers are more heavy ;-)!-->
-	 <pointmass name="First Class">
-            <weight unit="LBS"> 1600 </weight>
+<!--Cabin Zones from Trim-sheet ZK-PLU, one passenger a 200lbs-->
+	 <pointmass name="Cabin Zone 0a">
+            <weight unit="LBS"> 4000 </weight>
             <location name="POINTMASS" unit="IN">
-              <x> 357 </x>
+              <x> 252 </x>
                 <y> 0 </y>
-                <z> 16.52 </z>
+                <z> 27.5 </z>
             </location>
         </pointmass>
-<!--Economy class with 120 pax. Passengers are less heavy ;-)!-->
-	 <pointmass name="First Class">
-            <weight unit="LBS"> 21600.0 </weight>
+	<pointmass name="Cabin Zone 0b">
+            <weight unit="LBS"> 4800 </weight>
             <location name="POINTMASS" unit="IN">
-              <x> 636 </x>
+              <x> 430 </x>
                 <y> 0 </y>
-                <z> 16.52 </z>
+                <z> 27.5 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cabin Zone 0c">
+            <weight unit="LBS"> 6800 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 610 </x>
+                <y> 0 </y>
+               <z> 27.5 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cabin Zone 0d">
+            <weight unit="LBS"> 6000 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 790 </x>
+                <y> 0 </y>
+                <z> 27.5 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cabin Zone 0e">
+            <weight unit="LBS"> 3600</weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 975 </x>
+                <y> 0 </y>
+                <z> 27.5 </z>
+            </location>
+        </pointmass>
+<!--cargo compartment!-->
+	 <pointmass name="Cargo1">
+            <weight unit="LBS"> 1526 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 256 </x>
+                <y> 0 </y>
+                <z> -27.7 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cargo2">
+            <weight unit="LBS"> 776 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x>340 </x>
+                <y> 0 </y>
+                <z> -27.7 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cargo3">
+            <weight unit="LBS"> 2263 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 424 </x>
+                <y> 0 </y>
+                <z> -27.7 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cargo4">
+            <weight unit="LBS"> 4674 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 748 </x>
+                <y> 0 </y>
+                <z> -27.7 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cargo5">
+            <weight unit="LBS"> 414 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 852 </x>
+                <y> 0 </y>
+                <z> -27.7 </z>
+            </location>
+        </pointmass>
+	<pointmass name="Cargo6">
+            <weight unit="LBS">718 </weight>
+            <location name="POINTMASS" unit="IN">
+              <x> 956 </x>
+                <y> 0 </y>
+                <z> -23.2 </z>
             </location>
         </pointmass>
 	
@@ -95,7 +167,7 @@
             <location unit="IN">
                 <x> 158 </x>
                 <y>   0 </y>
-                  <z> -98.4 </z>
+                  <z> -97.6 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -120,7 +192,7 @@
             <location unit="IN">
                 <x>  648 </x>
                 <y> -100 </y>
-              <z>  -109.4 </z>
+              <z>  -108.6 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -145,7 +217,7 @@
             <location unit="IN">
                 <x> 648 </x>
                 <y> 100 </y>
-                <z>  -109.4 </z>
+                <z>  -108.6 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -430,8 +502,8 @@
             <aerosurface_scale name="Elevator Normalized">
                 <input>fcs/elevator-pos-rad</input>
                 <domain>
-                    <min>-0.3</min>
-                    <max> 0.3</max>
+                    <min>-0.4</min>
+                    <max> 0.4</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -455,8 +527,8 @@
             <aerosurface_scale name="Left Aileron Control">
                 <input>fcs/roll-trim-sum</input>
                 <range>
-                    <min>-0.35</min>
-                    <max> 0.35</max>
+                    <min>-0.25</min>
+                    <max> 0.25</max>
                 </range>
                 <output>fcs/left-aileron-pos-rad</output>
             </aerosurface_scale>
@@ -464,8 +536,8 @@
             <aerosurface_scale name="Right Aileron Control">
                 <input>-fcs/roll-trim-sum</input>
                 <range>
-                    <min>-0.35</min>
-                    <max> 0.35</max>
+                    <min>-0.25</min>
+                    <max> 0.25</max>
                 </range>
                 <output>fcs/right-aileron-pos-rad</output>
             </aerosurface_scale>
@@ -473,8 +545,8 @@
             <aerosurface_scale name="Left aileron Normalized">
                 <input>fcs/left-aileron-pos-rad</input>
                 <domain>
-                    <min>-0.35</min>
-                    <max> 0.35</max>
+                    <min>-0.25</min>
+                    <max> 0.25</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -486,8 +558,8 @@
             <aerosurface_scale name="Right aileron Normalized">
                 <input>fcs/right-aileron-pos-rad</input>
                 <domain>
-                    <min>-0.35</min>
-                    <max> 0.35</max>
+                    <min>-0.25</min>
+                    <max> 0.25</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -894,8 +966,9 @@
 		    
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
+			
                           <tableData>
-                             -0.20    0.20
+                             -0.20    -0.68
                               0.00	0.20
                               0.23	1.20
                               0.46	0.20
@@ -923,7 +996,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/elevator-pos-rad</property>
-                    <value>0.2</value>
+                    <value>0.1</value>
                 </product>
             </function>
 

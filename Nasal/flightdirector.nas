@@ -1,370 +1,421 @@
- #############################################################################
+#############################################################################
+# Flight Director/Autopilot controller.
+# Syd Adams
 #
-# Citation Bravo Flight Director/Autopilot controller.
+# HDG:
+# Heading Bug hold - Low Bank can be selected
+# NAV:
+# Arm & Capture VOR , LOC or FMS
+# APR : (ILS approach)
+# Arm & Capture VOR APR , LOC or BC
+# Also arm and capture GS
+# BC :
+# Arm & capture localizer backcourse
+# Nav also illuminates
+# VNAV:
+# Arm and capture VOR/DME or FMS vertical profile
+# profile entered in MFD VNAV menu
+# ALT:
+# Hold current Altitude or PFD preset altitude
+# VS:
+# Hold current vertical speed
+# adjustable with pitch wheel
+# SPD :
+# Hold current speed
+# adjustable with pitch wheel
 #
-# Written by Syd Adams
-#Modification of Curtis Olson's flight director.
-# Started 30 Jan 2006.
-
-
-#
 #############################################################################
-# 1 meter = 0.000539956803 nm
-#
-#
-#############################################################################
-# Global shared variables
-#############################################################################
+# lnav
+#0=W-LVL , 1=HDG , 2=NAV Arm ,3=NAV Cap , 4=LOC arm , 5=LOC Cap , 6=FMS
+# vnav
+# 0=PITCH,  1=VNAV, 2=ALT hold , 3=VS , 4=GS arm ,5 = GS cap
+#FlightDirector/Autopilot
+# ie: var fltdir = flightdirector.new(property);
 
-# 0 - Off: v-bars hidden
-# lnav -0=off,1=HDG,2=NAV,3=APR,4=BC
-# vnav - 0=off,1=GS,2=ALT SELECT,3=VS,4=IAS
+var ap_settings = gui.Dialog.new("/sim/gui/dialogs/primus-autopilot/dialog",
+        "Aircraft/737-300/Systems/autopilot-dlg.xml");
 
+var flightdirector = {
+    new : func(fdprop){
+        m = {parents : [flightdirector]};
+        m.lnav_text=["ROLL","HDG","NAV-ARM","NAV","LOC-ARM","LOC","LNAV"];
+        m.vnav_text=["PTCH","VNAV","ALT","VS","GS-ARM","GS"];
+        m.spd_text=["","IAS"];
+        m.LAT=["ROL","HDG","HDG","VOR","HDG","LOC","LNAV"];
+        m.subLAT=["   ","   ","VOR","   ","LOC","   ","   "];
+        m.VRT=["PIT","VNAV","ALT","VS","   ","GS"];
+        m.subVRT=["   ","GS"];
+        m.node = props.globals.getNode(fdprop,1);
+        m.yawdamper = props.globals.getNode("autopilot/locks/yaw-damper",1);
+        m.yawdamper.setBoolValue(0);
+        m.lnav = m.node.getNode("lnav",1);
+        m.lnav.setIntValue(0);
+        m.vnav = m.node.getNode("vnav",1);
+        m.vnav.setIntValue(0);
+        m.gs_arm = m.node.getNode("gs-arm",1);
+        m.gs_arm.setBoolValue(0);
+        m.vnav_alt = m.node.getNode("vnav-alt",1);
+        m.vnav_alt.setDoubleValue(30000);
+        m.speed = m.node.getNode("spd",1);
+        m.speed.setDoubleValue(0);
+        m.crs = m.node.getNode("crs",1);
+        m.crs.setDoubleValue(0);
+        m.Defl = m.node.getNode("crs-deflection",1);
+        m.Defl.setDoubleValue(0);
+        m.DH= props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height",1);
+        m.GSDefl = m.node.getNode("gs-deflection",1);
+        m.GSDefl.setDoubleValue(0);
+        m.NavLoc = m.node.getNode("localizer",1);
+        m.NavLoc.setBoolValue(0);
+        m.hasGS = m.node.getNode("glideslope",1);
+        m.hasGS.setBoolValue(0);
+        m.navValid = m.node.getNode("in-range",1);
+        m.navValid.setBoolValue(0);
+        m.navDist = props.globals.getNode("instrumentation/primus1000/nav-dist-nm",1);
+        m.navCRS = m.node.getNode("nav-crs-offset",1);
+        m.navCRS.setDoubleValue(0);
+        m.FMS = props.globals.getNode("instrumentation/primus1000/control/fms",1);
+        m.NAV = props.globals.getNode("instrumentation/primus1000/control/nav",1);
+        m.AP_hdg = props.globals.getNode("/autopilot/locks/heading",1);
+        m.AP_hdg.setValue(m.lnav_text[0]);
+        m.AP_hdg_setting = props.globals.getNode("/autopilot/settings/heading",1);
+        m.AP_hdg_setting.setDoubleValue(0);
+        m.AP_spd_setting = props.globals.getNode("/autopilot/settings/target-speed-kt",1);
+        m.AP_spd_setting.setDoubleValue(0);
+        m.AP_alt = props.globals.getNode("/autopilot/locks/altitude",1);
+        m.AP_alt.setValue(m.vnav_text[0]);
+        m.AP_spd = props.globals.getNode("/autopilot/locks/speed",1);
+        m.AP_spd.setValue(m.spd_text[0]);
+        m.AP_off = props.globals.getNode("/autopilot/locks/passive-mode",1);
+        m.AP_off.setBoolValue(1);
 
-lnav = 0;
-vnav=0;
-lnav_last = 0;
-vbar_roll = 0.0;
-vbar_pitch = 0.0;
-vbar_rol_propl = 0.0;
-vbar_pitch_prop = 0.0;
-nav_dist = 0.0;
-last_nav_dist = 0.0;
-last_nav_time = 0.0;
-tth_filter = 0.0;
-alt_select = 0.0;
-current_alt=0.0;
-current_heading = 0.0;
-n_offset = 0.0;
-alt_offset = 0.0;
-fd_on = 0;
-ap_on = 0.0;
-alt_alert = 0.0;
-course = 0.0;
-course_offset=0.0;
-nav_hdg_offset=0.0;
-nav_mag_brg=0.0;
-gs_active = 0.0;
-to_flag = 0;
-slaved = 0;
-#############################################################################
-# Use tha nasal timer to call the initialization function once the sim is
-# up and running
-#############################################################################
+    m.AP_lat_annun = m.node.getNode("LAT-annun",1);
+        m.AP_lat_annun.setValue(" ");
+    m.AP_sublat_annun = m.node.getNode("LAT-arm-annun",1);
+        m.AP_sublat_annun.setValue(" ");
+    m.AP_vert_annun = m.node.getNode("VRT-annun",1);
+        m.AP_vert_annun.setValue(" ");
+    m.AP_subvert_annun = m.node.getNode("VRT-arm-annun",1);
+        m.AP_subvert_annun.setValue(" ");
 
-INIT = func {
-    # default values
-    print("Initializing Flight Director");
-    setprop("/instrumentation/flightdirector/lnav", 0.0);
-    setprop("/instrumentation/flightdirector/vnav", 0.0);
-    setprop("/instrumentation/flightdirector/vbar-pitch", 0.0);
-    setprop("/instrumentation/flightdirector/vbar-roll", 0.0);
-    setprop("/instrumentation/flightdirector/alt-offset", 0.0);
-    setprop("/instrumentation/flightdirector/autopilot-on",0.0);
-	setprop("/instrumentation/flightdirector/fd-on",0.0);
-    setprop("/instrumentation/flightdirector/alt-alert", alt_alert);
-    setprop("/instrumentation/flightdirector/course", 0.0);
-    setprop("/instrumentation/flightdirector/dtk", 0.0);
-    setprop("/instrumentation/flightdirector/nav-hdg", 0.0);
-    setprop("/instrumentation/flightdirector/gs-pitch", 0.0);
-    setprop("/instrumentation/flightdirector/nav-mag-brg", 0.0);
-    setprop("/instrumentation/flightdirector/course-offset", course_offset);
-    setprop("/instrumentation/flightdirector/target-inhg", 29.92);
-    setprop("/instrumentation/flightdirector/to-flag",0);
-    setprop("/instrumentation/flightdirector/from-flag",0);
-    setprop("/autopilot/settings/heading-bug-deg",0);
-    setprop("/autopilot/settings/target-altitude-ft",0);
-    setprop("/instrumentation/nav/slaved-to-gps",slaved);
-current_alt = getprop("/instrumentation/altimer/indicated-altitude-ft");
-alt_select = getprop("/autopilot/settings/target-altitude-ft");
-}
-settimer(INIT, 0);
+        m.pitch_active=props.globals.getNode("/autopilot/locks/pitch-active",1);
+        m.pitch_active.setBoolValue(1);
+        m.roll_active=props.globals.getNode("/autopilot/locks/roll-active",1);
+        m.roll_active.setBoolValue(1);
+        m.bank_limit=m.node.getNode("bank-limit-switch",1);
+        m.bank_limit.setBoolValue(0);
 
-
-#############################################################################
-# handle KC 290 Mode Controller inputs, and compute correct mode/settings
-#############################################################################
-
-handle_inputs = func {
-# Autopilot  activate
-    lnav = getprop("/instrumentation/flightdirector/lnav");
-    vnav = getprop("/instrumentation/flightdirector/vnav");
-   ap_on = getprop("/instrumentation/flightdirector/autopilot-on");
-
-if(ap_on==1){
-if(lnav == 0 or lnav ==nil){setprop("autopilot/locks/heading","wing-leveler");}
-if(lnav == 1){setprop("autopilot/locks/heading","dg-heading-hold");}
-if(lnav == 2){setprop("autopilot/locks/heading","nav1-hold");}
-if(lnav == 3){setprop("autopilot/locks/heading","appr-hold");}
-if(lnav == 4){setprop("autopilot/locks/heading","bc-hold");}
-
-if(vnav == 0 or vnav == nil){setprop("autopilot/locks/altitude","");}
-if(vnav == 1){if(getprop("/instrumentation/nav/has-gs")!=0){
-setprop("autopilot/locks/altitude","gs1-hold");}}
-if(vnav == 2){setprop("autopilot/locks/altitude","altitude-hold");}
-if(vnav == 3){setprop("autopilot/locks/altitude","vertical-speed-hold");}
-if(vnav == 4){setprop("autopilot/locks/speed","speed-with-throttle");}
-if(vnav == 5){setprop("autopilot/locks/speed","dcs-hold");}
-if(vnav == 6){setprop("autopilot/locks/speed","climb-hold");}
-maxroll = getprop("/orientation/roll-deg");
-if(maxroll > 45 or maxroll < -45){ap_on = 0;}
-maxpitch = getprop("/orientation/pitch-deg");
-if(maxpitch > 45 or maxpitch < -45){ap_on = 0;}
-#if(getprop("/position/altitude-agl-ft") < 50){ap_on = 0;}
-setprop("/instrumentation/flightdirector/autopilot-on",ap_on);
-}else{
-setprop("autopilot/locks/heading","");
-setprop("autopilot/locks/altitude","");
-setprop("autopilot/locks/speed","");
-  }
-}
-
-
-#############################################################################
-# track and update mode
-#############################################################################
-
-update_mode = func {
-    lnav = getprop("/instrumentation/flightdirector/lnav");
-
-    # compute elapsed time since last iteration
-    nav_time = getprop("/sim/time/elapsed-sec");
-    nav_dt = nav_time - last_nav_time;
-    last_nav_time = nav_time;
-
-    inrange = getprop("/instrumentation/nav/in-range");
-    if ( inrange ) {
-        # compute distance to nav heading intercept
-        nav_dist = getprop("/instrumentation/nav/crosstrack-error-m");
-
-        # compute time to heading (tth)
-        nav_rate = (last_nav_dist - nav_dist) / nav_dt;
-        if ( abs(nav_rate) > 0.00001 ) {
-            tth = nav_dist / nav_rate;
-        } else {
-            tth = 9999.9;
+        m.max_pitch=m.node.getNode("pitch-max",1);
+        m.max_pitch.setDoubleValue(10);
+        m.min_pitch=m.node.getNode("pitch-min",1);
+        m.min_pitch.setDoubleValue(-10);
+        m.max_roll=m.node.getNode("roll-max",1);
+        m.max_roll.setDoubleValue(27);
+        m.min_roll=m.node.getNode("roll-min",1);
+        m.min_roll.setDoubleValue(-27);
+    return m;
+    },
+    ############################
+    set_lateral_mode : func(lnv){
+    var tst =me.lnav.getValue();
+    if(lnv ==tst)lnv=0;
+        if(lnv==4){
+            if(!me.NavLoc.getBoolValue()){
+                lnv=2;
+            }else{
+                if(me.hasGS.getBoolValue())me.gs_arm.setBoolValue(1);
+            }
         }
-      #  print("nav-dist = ", nav_dist, " tth = ", tth);
-
-        tth_filter = 0.9 * tth_filter + 0.1 * tth;
-        last_nav_dist = nav_dist;
-    }        
-
-    if ( lnav == 2 ) {
-        curhdg = getprop("/orientation/heading-magnetic-deg");
-        tgtrad = getprop("/instrumentation/flightdirector/nav-hdg");
-        if ( tgtrad == nil or tgtrad == "" ) {
-            tgtrad = 0.0;
+        if(lnv==2){
+            if(me.FMS.getBoolValue())lnv = 6;
+            }
+        me.lnav.setValue(lnv);
+        me.AP_hdg.setValue(me.lnav_text[lnv]);
+    },
+###########################
+    set_vertical_mode : func(vnv){
+    var tst =me.vnav.getValue();
+    if(vnv ==tst)vnv=0;
+        if(vnv==1){
+            if(!me.FMS.getBoolValue()){
+                vnv = 0;
+            }else{
+                me.update_vnav_alt();
+            }
         }
-        diff = tgtrad - curhdg;
-        if ( diff < -180.0 ) {
-            diff += 360.0;
-        } elsif ( diff > 180.0 ) {
-            diff -= 180.0;
+        if(vnv==2){
+        var asel=getprop("instrumentation/altimeter/indicated-altitude-ft");
+        asel = int(asel * 0.01) * 100;
+        setprop("autopilot/settings/target-altitude-ft",asel);
+        }
+        me.vnav.setValue(vnv);
+        me.AP_alt.setValue(me.vnav_text[vnv]);
+    },
+###########################
+    update_vnav_alt : func(){
+                var tmpalt =getprop("autopilot/route-manager/route/wp/altitude-ft");
+                if(tmpalt == nil)tmpalt = 0;
+                if(tmpalt <= 0) tmpalt=30000;
+                me.vnav_alt.setValue(tmpalt);
+    },
+###########################
+    set_course : func(crs){
+        var rd =0;
+        var nvnum =getprop("instrumentation/primus1000/control/nav");
+        if(nvnum == nil)nvnum=0;
+
+            rd = getprop("instrumentation/nav["~nvnum~"]/radials/selected-deg");
+            if(crs ==0){
+                rd=int(getprop("orientation/heading-magnetic-deg"));
+            }else{
+                rd = rd+crs;
+                if(rd >360)rd =rd-360;
+                if(rd <1)rd = rd +360;
+            }
+            setprop("instrumentation/nav["~nvnum~"]/radials/selected-deg",rd);
+    },
+###########################
+    set_hdg_bug : func(hbg){
+        var rd =0;
+            rd = getprop("autopilot/settings/heading-bug-deg");
+            if(rd==nil)rd=0;
+            if(hbg ==0){
+                rd=int(getprop("orientation/heading-magnetic-deg"));
+            }else{
+                rd = rd+hbg;
+                if(rd >360)rd =rd-360;
+                if(rd <1)rd = rd +360;
+            }
+            setprop("autopilot/settings/heading-bug-deg",rd);
+    },
+###########################
+    ias_set : func(spd){
+        var rd =0;
+            rd = me.AP_spd_setting.getValue();
+            if(rd==nil)rd=0;
+            if(spd ==0){
+                rd=0;
+            }else{
+                rd = rd+spd;
+                if(rd >400)rd =400;
+                if(rd <0)rd = 0;
+            }
+            me.AP_spd_setting.setValue(rd);
+    },
+#### button press handler####
+    set_mode : func(mode){
+        if(mode=="hdg"){
+            me.set_lateral_mode(1);
+        }elsif(mode=="nav"){
+            me.set_lateral_mode(2);
+        }elsif(mode=="apr"){
+            me.set_lateral_mode(4);
+        }elsif(mode=="bc"){
+            var tst=me.lnav.getValue();
+            var bcb = getprop("instrumentation/nav/back-course-btn");
+            bcb = 1-bcb;
+            if(tst <2 and tst >5)bcb = 0;
+            setprop("instrumentation/nav/back-course-btn",bcb);
+        }elsif(mode=="vnav"){
+            me.set_vertical_mode(1);
+        }elsif(mode=="alt"){
+            me.set_vertical_mode(2);
+        }elsif(mode=="vs"){
+            me.set_vertical_mode(3);
+        }elsif(mode=="ias"){
+            var sp=me.speed.getValue();
+            sp=1-sp;
+            me.speed.setValue(sp);
+            var kt= int(getprop("velocities/airspeed-kt"));
+            me.AP_spd_setting.setValue(kt);
+            me.AP_spd.setValue(me.spd_text[sp]);
+        }
+    },
+#### check AP errors####
+    check_AP_limits : func(){
+        var apmode = me.AP_off.getBoolValue();
+        var navunit =me.NAV.getValue();
+        me.nav_crs(navunit);
+        var tmp_nav="instrumentation/nav["~navunit~"]/";
+            me.crs.setValue(getprop(tmp_nav~"radials/selected-deg"));
+            me.Defl.setValue(getprop(tmp_nav~"heading-needle-deflection"));
+            me.GSDefl.setValue(getprop(tmp_nav~"gs-needle-deflection"));
+        if(getprop(tmp_nav~"data-is-valid")){
+            me.NavLoc.setValue(getprop(tmp_nav~"nav-loc") or 0);
+            me.hasGS.setValue(getprop(tmp_nav~"has-gs") or 0);
+            me.navValid.setValue(getprop(tmp_nav~"in-range") or 0);
+         }else{
+            me.NavLoc.setValue(0);
+            me.hasGS.setValue(0);
+            me.navValid.setValue(0);
         }
 
-        # standard rate turn is 3 dec/sec
-        roll_out_time_sec = abs(diff) / 3.0;
-
-      #  print("tth = ", tth_filter, " hdgdiff = ", diff, " rollout = ", roll_out_time_sec );
-        if ( roll_out_time_sec >= abs(tth_filter) ) {
-            # switch from arm to cpld
-           # lnav = 3;
+        var agl=getprop("/position/altitude-agl-ft");
+        if(!apmode){
+            var maxroll = getprop("/orientation/roll-deg");
+            var maxpitch = getprop("/orientation/pitch-deg");
+            if(maxroll > 65 or maxroll < -65){
+                apmode = 1;
+            }
+            if(maxpitch > 30 or maxpitch < -20){
+                apmode = 1;
+                setprop("controls/flight/elevator-trim",0);
+            }
+            if(agl < 180)apmode = 1;
+            me.AP_off.setBoolValue(apmode);
         }
-
+        if(agl < 50)me.yawdamper.setBoolValue(0);
+        return apmode;
+    },
+#### nav offset ####
+    nav_crs : func(unit){
+    var  hdg= me.crs.getValue() -getprop("orientation/heading-magnetic-deg");
+    hdg+=me.Defl.getValue()*3;
+    if(hdg>180)hdg-=360;
+    if(hdg<-180)hdg+=360;
+    me.navCRS.setValue(hdg);
+    },
+#### update lnav####
+    update_lnav : func(){
+        var lnv = me.lnav.getValue();
+        var valid=me.navValid.getBoolValue();
+        if(lnv   >1 and lnv<6){
+        if(me.FMS.getBoolValue())lnv=6;
     }
+    if(lnv==2){
+        var defl = me.Defl.getValue();
+        if(valid){
+            if(defl <= 9 and defl >= -9)lnv=3;
+        }
+    }elsif(lnv==4){
+        var defl = me.Defl.getValue();
+        if(valid){
+            if(defl <= 9 and defl >= -9)lnv=5;
+        }
+    }
+    me.lnav.setValue(lnv);
+        me.AP_hdg.setValue(me.lnav_text[lnv]);
+    me.AP_lat_annun.setValue(me.LAT[lnv]);
+    me.AP_sublat_annun.setValue(me.subLAT[lnv]);
+    },
+#### update vnav####
+    update_vnav : func(){
+        var vnv = me.vnav.getValue();
+        if(vnv==1){
+        var alt =getprop("position/altitude-ft") * 0.0001;
+        var ptch = 5-alt;
+        me.max_pitch.setValue(ptch);
+        }
+        if(me.gs_arm.getBoolValue()){
+            if(me.lnav.getValue() ==5 and me.navDist.getValue() <20){
+                var defl = me.GSDefl.getValue();
+                if(defl < 1 and defl > -1){
+                    vnv=5;
+                    me.gs_arm.setBoolValue(0);
+                }
+            }
+        }
+    me.vnav.setValue(vnv);
+        me.AP_alt.setValue(me.vnav_text[vnv]);
+    me.AP_vert_annun.setValue(me.VRT[vnv]);
+    me.AP_subvert_annun.setValue(me.subVRT[me.gs_arm.getValue()]);
+    },
+#### autopilot engage####
+    toggle_autopilot : func(apmd){
+        var md1=0;
+        if(apmd=="ap"){
+            md1 = me.AP_off.getBoolValue();
+            md1=1-md1;
+            if(getprop("/position/altitude-agl-ft") < 180)md1=1;
+            me.AP_off.setBoolValue(md1);
+            if(md1==0)me.yawdamper.setBoolValue(1);
+        }elsif(apmd=="yd"){
+            md1 = me.yawdamper.getBoolValue();
+            md1=1-md1;
+            me.yawdamper.setBoolValue(md1);
+            if(md1==0)me.AP_off.setBoolValue(1);
+        }elsif(apmd=="bank"){
+            md1 = me.bank_limit.getBoolValue();
+            md1=1-md1;
+            me.bank_limit.setBoolValue(md1);
+            if(md1==1){
+                me.max_roll.setValue(14);
+                me.min_roll.setValue(-14);
+            }else{
+                me.max_roll.setValue(27);
+                me.min_roll.setValue(-27);
+            }
+        }
+    },
+#### pitch wheel####
+    pitch_wheel : func(amt){
+        var factor=amt;
+        var vmd = me.vnav.getValue();
+        var ptc=0;
+            var mx=0;
+            var mn=0;
+        if(vmd==0){
+            mx=me.max_pitch.getValue();
+            mn=me.min_pitch.getValue();
+            ptc = getprop("autopilot/settings/target-pitch-deg");
+            if(ptc==nil)ptc=0;
+            ptc=ptc+0.10 *  amt;
+            if(ptc>mx)ptc=mx;
+            if(ptc<mn)ptc=mn;
+            setprop("autopilot/settings/target-pitch-deg",ptc);
+        }elsif(vmd==3){
+            mx=6000;
+            mn=-6000;
+            ptc = getprop("autopilot/settings/vertical-speed-fpm");
+            if(ptc==nil)ptc=0;
+            ptc=ptc+100 *amt;
+            if(ptc>mx)ptc=mx;
+            if(ptc<mn)ptc=mn;
+            setprop("autopilot/settings/vertical-speed-fpm",ptc);
+        }
+    },
+#### altitude ###
+    preset_altitude : func(alt){
+        if(alt==0){
+            setprop("autopilot/settings/target-altitude-ft",0);
+        }else{
+            var asel =getprop("autopilot/settings/target-altitude-ft");
+            asel +=alt;
+            if(asel<0)asel=0;
+            if(asel>50000)asel=50000;
+            setprop("autopilot/settings/target-altitude-ft",asel);
+  }
+        }
+};
+
+var FlDr=flightdirector.new("instrumentation/flightdirector");
+
+######################################
 
 setlistener("/sim/signals/fdm-initialized", func {
-    setprop("/instrumentation/flightdirector/lnav", lnav);
+    init();
+    print("Flight Director ...Check");
+    settimer(update_fd, 2);
 });
+
+setlistener("/sim/signals/reinit", func {
+    init();
+});
+
+setlistener("autopilot/route-manager/route/num", func {
+FlDr.update_vnav_alt();
+},1,0);
+
+var init = func {
+    setprop("autopilot/settings/target-altitude-ft",10000);
+    setprop("autopilot/settings/heading-bug-deg",0);
+    setprop("autopilot/settings/vertical-speed-fpm",0);
+    setprop("autopilot/settings/target-pitch-deg",0);
 }
 
-#############################################################################
-#get pitch from autopilot altitude setting
-#############################################################################
-
-get_altpitch = func(){
-vnav = getprop("/instrumentation/flightdirector/vnav");
-current_pitch = getprop("/orientation/pitch-deg");
-if(vnav == 0){return(current_pitch);}
-alt_offset = 0.0;
-
-if(vnav == 6){return(5.0);}
-if(vnav == 5){return(0.0);}
-if(vnav == 4){return(0.0);}
-if(vnav == 3){return(getprop("/autopilot/settings/vertical-speed-fpm"));}
-if(vnav == 1){alt_select = getprop("/autopilot/settings/target-alt-hold");}
-if(vnav == 2){alt_select = getprop("/autopilot/settings/target-altitude-ft");}
-if(lnav == 3){test = getprop("/instrumentation/flightdirector/gs-pitch");
-if(test == nil){test = 0.0;}
-return(test);
+var update_fd = func {
+var APoff = FlDr.check_AP_limits();
+FlDr.update_lnav();
+FlDr.update_vnav();
+settimer(update_fd, 0);
 }
-
-if ( alt_select == nil or alt_select == "" ){ alt_select = 0.0;
-return(current_pitch);}
-
-current_alt = getprop("/position/altitude-ft");
-if(current_alt == nil){current_alt = 0.0;}
-alt_offset = (alt_select-current_alt);
-setprop("/instrumentation/flightdirector/alt-alert",alt_offset);
-if(alt_offset > 500.0){alt_offset = 500.0;}
-if(alt_offset < -500.0){alt_offset = -500.0;}
-return(alt_offset * 0.012);
-}
-
-#############################################################################
-#update nav gps or nav setting
-#############################################################################
-
-update_nav = func (){
-slaved = getprop("/instrumentation/primus1000/dc550/fms");
-current_heading = getprop("/orientation/heading-magnetic-deg");
-if(slaved == nil){slaved = 0};
-
-if(slaved == 0){
-setprop("/instrumentation/flightdirector/to-flag",getprop("/instrumentation/nav/to-flag"));
-desired_course = getprop("/instrumentation/nav/radials/selected-deg");
-course_offset = getprop("/instrumentation/nav/heading-needle-deflection");
-nav_mag_brg = getprop("/instrumentation/nav/heading-deg");
-if (getprop("/instrumentation/nav/has-gs") != 0){
-gs_offset=getprop("/instrumentation/nav/gs-needle-deflection");
-if(gs_offset == nil){gs_offset = 0};
-gs_active = gs_offset *1.0; 
-if(gs_active > 30.0){gs_active = 30.0};
-if(gs_active < -30.0){gs_active = -30.0};
-setprop("/instrumentation/flightdirector/gs-pitch",gs_active * 100);}
-}
-else
-{
-setprop("/instrumentation/flightdirector/to-flag",getprop("/instrumentation/gps/wp/wp[1]/to-flag"));
-desired_course = getprop("/instrumentation/gps/wp/wp[1]/desired-course-deg");
-if(desired_course == nil){desired_course=0;}
-desired_course -= getprop("/environment/magnetic-variation-deg");
-nav_mag_brg = getprop("/instrumentation/gps/wp/wp[1]/bearing-mag-deg");
-if(desired_course < 0){desired_course += 360;}
-elsif(desired_course > 360){desired_course -= 360;}
-course_offset = getprop("/instrumentation/gps/wp/wp[1]/course-deviation-deg");
-if(course_offset > 10.0){course_offset = 10.0;}
-if(course_offset < -10.0){course_offset = -10.0;}
-}
-setprop("/instrumentation/flightdirector/dtk",desired_course);
-
-if(nav_mag_brg == nil){nav_mag_brg = 0;}
-nav_mag_brg -= current_heading;
-if(nav_mag_brg > 180){nav_mag_brg -= 360};
-if(nav_mag_brg < -180){nav_mag_brg += 360};
-#########    set radial offset from current heading ###########
-desired_course -= current_heading;
-if(desired_course < -180){desired_course += 360;}
-elsif(desired_course > 180){desired_course -= 360;}
-setprop("/instrumentation/flightdirector/course",desired_course);
-
-##### adjust autopilot nav heading with deviation ###########
-nav_adjust = ( course_offset * 4.5);
-nav_hdg_offset = desired_course + nav_adjust;
-if(nav_hdg_offset < -180){nav_hdg_offset += 360;}
-elsif(nav_hdg_offset > 180){nav_hdg_offset -= 360;}
-
-
-setprop("/instrumentation/flightdirector/nav-mag-brg",nav_mag_brg);
-setprop("/instrumentation/flightdirector/course-offset",course_offset);
-setprop("/instrumentation/flightdirector/nav-hdg",nav_hdg_offset);
-
-
-
-}
-
-
-#############################################################################
-# update the FD vbar position for the various modes
-#############################################################################
-
-update_vbar = func {
-    if ( lnav == 0 ) {
-        # wings level maintain pitch at time of mode activation
-        if ( lnav_last != 0 ) {
-            vbar_roll = 0.0;
-           vbar_pitch = getprop("/orientation/pitch-deg");
-}
-    } elsif ( lnav == 1) {
-        # FIXME: at what angle off of the hdg bug do we start the rollout?
-        # bank to track heading bug
-
-        if ( lnav_last != "hdg" ) {
-
-        }
-        tgtrad = getprop("/autopilot/settings/heading-bug-deg");
-        if ( tgtrad == nil or tgtrad == "" ) {
-            tgtrad = 0.0;
-        }
-        curhdg = getprop("/orientation/heading-magnetic-deg");
-        diff = tgtrad - curhdg;
-        if ( diff < -180.0 ) {
-            diff += 360.0;
-        } elsif ( diff > 180.0 ) {
-            diff -= 180.0;
-        }
-        # max bank = 30, so this means roll out begins at 15 dgs off target hdg
-        bank = 2 * diff;
-        if ( bank < -30.0 ) {
-            bank = -30.0;
-        }
-        if ( bank > 30.0 ) {
-            bank = 30.0;
-        }
-        vbar_roll = bank;
-#        print("diff = ", diff);
-} elsif ( lnav == 2 or lnav == 3) {
-tgtrad = getprop("/instrumentation/flightdirector/nav-hdg") * 3;
-        
-if(tgtrad > 30){tgtrad = 30;} 
-if(tgtrad < -30){tgtrad = -30;} 
-
-vbar_roll = tgtrad;
-
-    } else {
-        # assume off if nothing else specified, and hide vbars
-        vbar_roll = 0.0;
-    }
-vnav = getprop("/instrumentation/flightdirector/vnav");
-if (vnav != 0 or vnav !=nil){vbar_pitch =  get_altpitch();}
-
-lnav_last = lnav;
-vbar_pitch_prop = (vbar_pitch - getprop("/orientation/pitch-deg"));
-vbar_roll_prop = (getprop("/orientation/roll-deg") - vbar_roll);
-if(vbar_roll_prop > 30.0){vbar_roll_prop = 30.0;}
-if(vbar_roll_prop < -30.0){vbar_roll_prop = -30.0;}
-if(vbar_pitch_prop > 15.0){vbar_pitch_prop = 15.0;}
-if(vbar_pitch_prop < -15.0){vbar_pitch_prop = -15.0;}
-
-
-setprop("/instrumentation/flightdirector/vbar-pitch",vbar_pitch_prop);
-setprop("/instrumentation/flightdirector/vbar-roll", vbar_roll_prop);
-setprop("/instrumentation/flightdirector/alt-offset", alt_offset);
-setprop("/instrumentation/flightdirector/current-alt", current_alt);
-}
-
-
-#############################################################################
-# main update function to be called each frame
-#############################################################################
-
-update = func {
-    handle_inputs();
-    update_mode();
-    update_nav();
-   update_vbar();
- 
-    registerTimer();
-}
-
-
-
-#############################################################################
-# Use tha nasal timer to call ourselves every frame
-#############################################################################
-
-registerTimer = func {
-    settimer(update, 0);
-}
-registerTimer();

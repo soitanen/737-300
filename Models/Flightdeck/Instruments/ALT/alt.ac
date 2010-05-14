@@ -1601,7 +1601,7 @@ refs 3
 2 0.0835438370705 1.00750696659
 kids 0
 OBJECT poly
-name "inhg4.001"
+name "inhg4"
 data 8
 Mesh.026
 texture "altdigits.png"
@@ -1731,7 +1731,7 @@ refs 3
 2 0.0835438370705 1.00750696659
 kids 0
 OBJECT poly
-name "needle.010"
+name "needle"
 data 8
 Mesh.031
 crease 30.000000

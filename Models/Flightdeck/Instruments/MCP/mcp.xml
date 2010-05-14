@@ -892,36 +892,7 @@
  </action>
  </animation>
  
- <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>cmda</object-name>
-  <action>
-  <name>AP engage</name>
-   <button>0</button>
-   <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-    <property>/controls/autoflight/autopilot/engage</property>
-    <value type="bool">true</value> 
-    </binding>
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/heading</property>
-    <value type="string">off</value>
-   </binding>
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/altitude</property>
-    <value type="string">off</value>
-   </binding> 
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/vert-speed</property>
-    <value type="string">off</value>
-   </binding>          
-  </action>
- </animation>
+ <animation>  <type>pick</type>  <visible>false</visible>  <object-name>cmda</object-name>  <action>  <name>AP engage</name>   <button>0</button>   <repeatable>false</repeatable>   <binding>     <command>property-assign</command>    <property>/controls/autoflight/autopilot/engage</property>    <value type="bool">true</value>     </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>            </action> </animation>  <animation>  <type>pick</type>  <visible>false</visible>  <object-name>cmdb</object-name>  <action>  <name>AP engage</name>   <button>0</button>   <repeatable>false</repeatable>   <binding>     <command>property-assign</command>    <property>/controls/autoflight/autopilot[1]/engage</property>    <value type="bool">true</value>     </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>            </action> </animation>
  
  
     <animation>
@@ -936,7 +907,7 @@
     <command>property-assign</command>
     <property>/controls/autoflight/autopilot/engage</property>
     <value type="bool">false</value>
-   </binding> 
+   </binding>    <binding>    <command>property-assign</command>    <property>/controls/autoflight/autopilot[1]/engage</property>    <value type="bool">false</value>   </binding> 
    <binding>
     <command>property-assign</command>
     <property>/autopilot/locks/heading</property>
@@ -1018,29 +989,17 @@
   <action>
    <button>0</button>
    <repeatable>false</repeatable>
-   <condition>
-     <and>
-     <equals>
-      <property>/controls/autoflight/autothrottle-arm</property>
-      <value type="bool">true</value>
-     </equals>
-     <equals>
-      <property>/autopilot/locks/speed</property>
-      <value type="string">off</value>
-     </equals>     
-     </and>      
-    </condition>         
-   <binding>
+   
+   <binding><condition>     <and>     <equals>      <property>/controls/autoflight/autothrottle-arm</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">off</value>     </equals>          </and>          </condition>         
     <command>property-cycle</command>
     <property>/autopilot/locks/speed</property>   
     <value type="string">speed-with-throttle</value>
     <value type="string">off</value>
    </binding>    
    <binding>
-    <command>property-cycle</command>
+    <command>property-assign</command>
     <property>/controls/autoflight/autothrottle-engage</property>   
-    <value type="bool">true</value>
-    <value type="string"></value>
+    <value type="bool">false</value>       
    </binding>      
   </action>
  </animation>
@@ -1054,19 +1013,8 @@
     <name>engage heading select mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-      <condition>
-    <and> 
-     <equals>
-      <property>/controls/autoflight/autopilot/engage</property>
-      <value type="bool">true</value>
-     </equals>
-     <equals>
-      <property>/autopilot/locks/heading</property>
-      <value type="string">off</value>
-     </equals>
-    </and>
-   </condition>    
-   <binding>
+      
+   <binding>   <condition>    <and>      <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">off</value>     </equals>    </and>   </condition>    
     <command>property-assign</command>
     <property>/autopilot/locks/heading</property>
     <value type="string">dg-heading-hold</value>
@@ -1311,63 +1259,9 @@
  </action>
  </animation>
  
- <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>apprengage</object-name> 
- <action>
-   <name>engage approach mode</name>
-  <button>0</button>
-    <condition>
-     <and>
-     <equals>
-      <property>/controls/autoflight/autopilot/engage</property>
-      <value type="bool">true</value>
-     </equals>
-     <not-equals>
-      <property>/autopilot/locks/altitude</property>
-      <value type="string">gs1-hold</value>
-     </not-equals>
-     </and>
-    </condition>    
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/altitude</property>
-    <value type="string">gs1-hold</value>
-   </binding>
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/heading</property>
-    <value type="string">nav1-hold</value>
-   </binding>
-  </action>
-  </animation>
+ <animation>  <type>pick</type>  <visible>false</visible>  <object-name>apprengage</object-name>  <action>   <name>engage approach mode</name>  <button>0</button>      <binding>   <condition>     <and>          <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>           <not-equals>      <property>/autopilot/locks/altitude</property>      <value type="string">gs1-hold</value>     </not-equals>     </and>    </condition>        <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">gs1-hold</value>   </binding>   <binding>    <condition>     <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <not-equals>      <property>/autopilot/locks/heading</property>      <value type="string">nav1-hold</value>     </not-equals>     </and>    </condition>        <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">nav1-hold</value>   </binding>  </action>  </animation>    
   
-  <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>apprdisengage</object-name> 
-  <action>
-   <name>disengage approach mode</name>
-   <button>0</button>
-      <condition>
-    <equals>
-      <property>/autopilot/locks/altitude</property>
-      <value type="string">gs1-hold</value>
-     </equals>
-    </condition>    
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/altitude</property>
-    <value type="string">off</value>
-   </binding>
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/locks/heading</property>
-    <value type="string">off</value>
-   </binding>
-  </action>
-  </animation>
+  <animation>  <type>pick</type>  <visible>false</visible>  <object-name>apprdisengage</object-name>   <action>   <name>disengage approach mode</name>   <button>0</button>        <binding>      <condition>    <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">gs1-hold</value>     </equals>    </condition>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>  </action>  </animation>
   
   <animation>
   <type>pick</type>
@@ -1555,8 +1449,7 @@
     <value type="string">speed-with-throttle</value>
    </binding>   
   </action>
-  </animation>
-
+  </animation>             <animation>  <type>pick</type>  <visible>false</visible>  <object-name>Plane.007</object-name>  <action>    <name>engage LNAV select mode</name>   <button>0</button>   <repeatable>false</repeatable>      <condition>    <and>      <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">off</value>     </equals>    </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">true-heading-hold</value>   </binding>  </action> </animation>  <animation>  <type>pick</type>  <visible>false</visible>  <object-name>Plane</object-name>  <action>    <name>disengage LNAV select mode</name>   <button>0</button>   <repeatable>false</repeatable>      <condition>    <and>      <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">true-heading-hold</value>     </equals>    </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>  </action> </animation> 
  
 
  </PropertyList>

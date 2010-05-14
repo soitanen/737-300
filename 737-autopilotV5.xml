@@ -114,7 +114,7 @@
 			<prop>/orientation/roll-deg</prop>
 		</input>
 		<reference>
-			<prop>/autopilot/internal/target-roll-deg</prop>
+			<prop>/autopilot/internal/target-roll-deg-filtered</prop>
 		</reference>
 		<output>
 			<prop>/controls/flight/aileron</prop>
@@ -161,7 +161,8 @@
 			<prop>/autopilot/internal/target-roll-deg</prop>
 		</output>
 		<config>
-			<Kp>-1.2</Kp>
+			 <Ts>0.05</Ts> 
+			<Kp>-2.5</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
@@ -172,11 +173,11 @@
 			<!-- unfiltered derivative error -->
 			<Ti>10.0</Ti>
 			<!-- integrator time -->
-			<Td>0.00001</Td>
+			<Td>0.0</Td>
 			<!-- derivator time -->
-			<u_min>-20.0</u_min>
+			<u_min>-30.0</u_min>
 			<!-- minimum output clamp -->
-			<u_max>20.0</u_max>
+			<u_max>30.0</u_max>
 			<!-- maximum output clamp -->
 		</config>
 	</pid-controller>
@@ -192,13 +193,14 @@
 			<prop>/orientation/roll-deg</prop>
 		</input>
 		<reference>
-			<prop>/autopilot/internal/target-roll-deg</prop>
+			<prop>/autopilot/internal/target-roll-deg-filtered</prop>
 		</reference>
 		<output>
 			<prop>/controls/flight/aileron</prop>
 		</output>
 		<config>
-			<Kp>0.2</Kp>
+		           <Ts>0.05</Ts> 
+			<Kp>0.04</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
@@ -209,7 +211,7 @@
 			<!-- unfiltered derivative error -->
 			<Ti>10.0</Ti>
 			<!-- integrator time -->
-			<Td>0.0001</Td>
+			<Td>0.1</Td>
 			<!-- derivator time -->
 			<u_min>-1.0</u_min>
 			<!-- minimum output clamp -->
@@ -217,6 +219,16 @@
 			<!-- maximum output clamp -->
 		</config>
 	</pid-controller>
+<!--simple servo simulation avoids strong roll rates-->
+	<filter>
+    <name>Simple Roll rate limiter Filter</name>
+    <debug>false</debug>
+    <type>noise-spike</type>
+    <input>/autopilot/internal/target-roll-deg</input>
+    <output>/autopilot/internal/target-roll-deg-filtered</output>
+    <max-rate-of-change>4.0</max-rate-of-change>
+  </filter>
+	
 	<!--
     Nav1 hold.  2 stage cascade controller.
     Stage #1 sets target roll based on nav1-heading-error-deg.
@@ -298,7 +310,6 @@
 <!-- =============================================================== -->
  <!-- Pitch Axis Modes                                                -->
  <!-- =============================================================== -->
-
 <!-- Simple pitch hold -->
 	<pid-controller>
 		<name>Pitch hold</name>
@@ -314,7 +325,7 @@
 			<prop>/autopilot/settings/target-pitch-deg</prop>
 		</reference>
 		<output>
-			<prop>/controls/flight/elevator-trim</prop>
+			<prop>/controls/flight/elevator</prop>
 		</output>
 		<config>
 			<Kp>-0.15</Kp>
@@ -372,6 +383,7 @@
 			<u_max>1.0</u_max>
 			<!-- maximum output clamp -->
 		</config>
+
 	</pid-controller>
 	<!-- Simple angle of attack hold -->
 	<pid-controller>
@@ -437,14 +449,14 @@
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </output>
     <config>
-      <Kp>0.05</Kp>          <!-- proportional gain -->
-     
-      <u_min>-16.67</u_min> <!-- minimum output clamp -->
-      <u_max>33.33</u_max>   <!-- maximum output clamp -->
+      <Kp>0.1</Kp>          <!-- proportional gain -->
+     <Ki>0.0</Ki>
+      <u_min>-25</u_min> <!-- minimum output clamp -->
+      <u_max>30</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
-  <!-- Stage #2 drives the elevator-trim to achieve the desired climb rate. -->
+  <!-- Stage #2 drives the elevator to achieve the desired climb rate. -->
   <pid-controller>
     <name>Altitude Hold (Altimeter based) Stage 2</name>
     <debug>false</debug>
@@ -462,17 +474,21 @@
       <prop>/controls/flight/elevator</prop>
     </output>
     <config>
-      <Kp>-0.01</Kp>      <!-- proportional gain -->
+      <Ts>0.15</Ts> 
+      <Kp>-0.0025</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1.0</u_min> <!-- minimum output clamp -->
-      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+      <Td>0.1</Td>    <!-- derivator time -->
+      <u_min>-1</u_min> <!-- minimum output clamp -->
+      <u_max>1</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
+  
+  
+  
 	<!--
     AGL hold.  2 stage cascade controller.
     Stage #1 sets target rate of climb based on diff between current agl
@@ -524,7 +540,7 @@
 			<prop>/controls/flight/elevator-trim</prop>
 		</output>
 		<config>
-			<Kp>-0.001</Kp>
+			<Kp>-0.002</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
@@ -535,7 +551,7 @@
 			<!-- unfiltered derivative error -->
 			<Ti>10.0</Ti>
 			<!-- integrator time -->
-			<Td>0.00001</Td>
+			<Td>0.1</Td>
 			<!-- derivator time -->
 			<u_min>-1.0</u_min>
 			<!-- minimum output clamp -->
@@ -561,18 +577,19 @@
       <prop>/instrumentation/nav[0]/gs-rate-of-climb</prop>
     </reference>
      <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
+    <Ts>0.15</Ts>
       <Kp>-0.01</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1.0</u_min> <!-- minimum output clamp -->
-      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+      <Ti>40.0</Ti>       <!-- integrator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
+      <u_min>-5.0</u_min> <!-- minimum output clamp -->
+      <u_max>5.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -594,7 +611,7 @@
       <scale>0.01667</scale>
     </reference>
     <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
       <Kp>-0.007</Kp>      
@@ -603,7 +620,7 @@
       <gamma>0.0</gamma>  
                           
       <Ti>40.0</Ti>       
-      <Td>0.000001</Td>    
+      <Td>0.01</Td>    
       <u_min>-2.0</u_min> 
       <u_max>2.0</u_max>  
     </config>

@@ -18,15 +18,21 @@
 		<model>
 			<path>Aircraft/737-300/Models/737-300.xml</path>
 			<pushback>
-  <kp type="double">100</kp>
+                                 <kp type="double">1000</kp>
  
   <kd type="double">0</kd>
   <position-norm type="double">0</position-norm>
  </pushback>
-  <livery>  
-    <file type="string">733UA</file>
-   </livery> 
-</model>
+<livery>
+      <file type="string">LH86</file>
+</livery>
+	    
+<Boeing-737-300>
+      <removalkit>false</removalkit>
+      <eyebrowwindow>true</eyebrowwindow>
+</Boeing-737-300>
+
+  </model>
 		
     
 		<view>
@@ -116,7 +122,7 @@
        </view>
 		 		
     
-		<chase-distance-m>-50</chase-distance-m>
+		<chase-distance-m>-40</chase-distance-m>
 
 		<flaps>
 			<setting>0.000</setting>
@@ -166,6 +172,7 @@
       <autopilot>
 	      <path>Aircraft/737-300/737-autopilotV5.xml</path>
       </autopilot>
+      <path>Aircraft/737-300/Systems/systems.xml</path>
     </systems>
     <sound>
      <path>Aircraft/737-300/Sounds/737-sound.xml</path>
@@ -180,16 +187,33 @@
 <help>
  <title>Boeing 737-300</title>
  <line>the take off precedure for a 737 is to have flaps set at 5, 
- and power upto 40% N1 
- till moving, the slowly build up to 94% N1 V1 
+ and power up to 40% N1 
+ till moving, the slowly build up to 94-96% N1 ,
+pull when Vr and keep at 15degrees pitch, retract gear when positive climb rate 
 </line>
-<line>TOWlbs V1   VR   V2</line>
-<line>121200  140  141  148</line>
-<line>110231  133  133  141</line>
-<line>99208    123  123  133</line>
-<line>88185    114  114  126</line>
+<line>Takeoff Speeds Flaps 5</line>
+
+<line> TOW KG   TOWlbs     V1   VR   V2</line>
+<line>  65K             143000    154  155  160</line>
+<line>  60K             132000    147  148  154</line>
+<line>  55K             121000    140  141  148</line>
+<line>  50K             110000    133  133  141</line>
+<line>  45K              99000    123  133  133</line>
+<line>  40K               88000   114  114  126</line>
+<line>  35K               77000   104  104  117</line>
  
  <line></line>
+
+ <line>Landing Speeds with following flaps settings</line>
+
+<line> TOW KG   TOWlbs     40   30     15</line>
+<line>  65K             143000    152  153  165</line>
+<line>  60K             132000    145  147  158</line>
+<line>  55K             121000    138  141  151</line>
+<line>  50K             110000    131  134  144</line>
+<line>  45K              99000    123  127  136</line>
+<line>  40K               88000   115  119  128</line>
+<line>  35K               77000   107  111  119</line>
 
   <line>Maximum Flap Operating Speeds</line>
   <line>1 = 230 kn</line>
@@ -200,6 +224,11 @@
   <line>25 = 190 kn</line>
   <line>30 = 185 kn</line>
   <line>40 = 158 kn</line>
+ 
+  <line>Landing Gear Limits</line>
+  <line>Extend 270IAS/ 0.82M</line>
+  <line>Retract 235IAS</line>
+  
  
    <key>
     <name>Ctrl-b</name>
@@ -308,7 +337,6 @@
      <value>5</value> 
     </binding>
    </key>
-      
     </keyboard>
   </input>
   
@@ -316,6 +344,7 @@
 
 	<controls>
 		<gear>
+		            <brake-parking type="bool">1</brake-parking>
 			<autobrakes type="int">5</autobrakes>
 			<!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
 		</gear>
@@ -393,6 +422,7 @@
 <serviceable type="bool">true</serviceable>
 <spin type="double">1</spin>
 </turn-indicator>
+<path>Aircraft/737-300/Systems/instrumentation.xml</path>
 </instrumentation>
 
 <payload>
@@ -409,16 +439,70 @@
 <max-lb type="double">300.0</max-lb>
 </weight>
 <weight>
-<name type="string">First Class</name>
+<name type="string">Cabin Zone 0a</name>
 <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
 <min-lb type="double">0.0</min-lb>
-<max-lb type="double">1600.0</max-lb>
+<max-lb type="double">4000</max-lb>
 </weight>
 <weight>
-<name type="string">Economy Class</name>
+<name type="string">Cabin Zone 0b</name>
 <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
 <min-lb type="double">0.0</min-lb>
-<max-lb type="double">21600.0</max-lb>
+<max-lb type="double">4800</max-lb>
+</weight>
+<weight>
+<name type="string">Cabin Zone 0c</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">6800</max-lb>
+</weight>
+<weight>
+<name type="string">Cabin Zone 0d</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">6000</max-lb>
+</weight>
+<weight>
+<name type="string">Cabin Zone 0e</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">3600</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 1</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[7]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">1526</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 2</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[8]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">776</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 3</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[9]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">2263</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 4</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">4674</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 5</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[11]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">414</max-lb>
+</weight>
+<weight>
+<name type="string">Cargo 6</name>
+<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[12]"/>
+<min-lb type="double">0.0</min-lb>
+<max-lb type="double">718</max-lb>
 </weight>
 </payload>
 
@@ -427,14 +511,16 @@
 <nasal>
     <Boeing-737-300>
              <file>Aircraft/737-300/Nasal/liveries.nas</file>      
+	    <file>Aircraft/737-300/Nasal/contrail.nas</file>
 </Boeing-737-300>
 
 <reversethrust>
-   <file>Aircraft/747-400/Nasal/reverse-thrust.nas</file>
+   <file>Aircraft/737-300/Nasal/reverse-thrust.nas</file>
   </reversethrust>
 
 <airground>
 <file>Aircraft/737-300/Systems/air-ground.nas</file>
+<file>Aircraft/737-300/Systems/speedbrakevalve.nas</file>
 </airground>
 
 

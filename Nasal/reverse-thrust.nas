@@ -9,7 +9,7 @@ togglereverser = func {
   pos2 = "/engines/engine[1]/reverser-pos-norm"; 
 
   # The reverse can only be actuated while the engine is idling
-  if (getprop(throttle1) == 0) {
+  if (getprop(throttle1) < 0.01) {
     val = getprop(pos1);
     if (val == 0 or val == nil) {
       interpolate(pos1, 1.0, 1.4); 
