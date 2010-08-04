@@ -1,534 +1,539 @@
 <PropertyList>
-<sim>
-		<description>Boeing 737-300</description>
-		<author>David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d)</author>
-		<status>early-production</status>
+  <sim>
+    <description>Boeing 737-300</description>
+    <author>David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d)</author>
+    <status>early-production</status>
 
-		<flight-model>jsb</flight-model>
-		<aero>737-300</aero>
+    <flight-model>jsb</flight-model>
+    <aero>737-300</aero>
+
+    <submodels>
+      <servicable type="bool">true</servicable>
+      <path type="string">Aircraft/737-300/b737-submodels.xml</path>
+    </submodels>
+
+    <panel>
+      <path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
+      <visibility>false</visibility>
+    </panel>
+
+    <model>
+      <path>Aircraft/737-300/Models/737-300.xml</path>
+      <pushback>
+        <kp type="double">1000</kp>
+
+        <kd type="double">0</kd>
+        <position-norm type="double">0</position-norm>
+      </pushback>
+      <livery>
+        <file type="string">LH86</file>
+      </livery>
+
+      <Boeing-737-300>
+        <removalkit>false</removalkit>
+        <eyebrowwindow>true</eyebrowwindow>
+      </Boeing-737-300>
+
+    </model>
 
 
+    <view>
+      <internal archive="y">true</internal>
+      <config>
+        <!-- x/y/z == right/up/back -->
+        <x-offset-m archive="y">-0.470</x-offset-m>
+        <y-offset-m archive="y">1.2</y-offset-m>
+        <z-offset-m archive="y">2.83</z-offset-m>
 
-
-<panel>
-		<path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
-		<visibility>true</visibility>
-</panel>
-    
-		<model>
-			<path>Aircraft/737-300/Models/737-300.xml</path>
-			<pushback>
-                                 <kp type="double">1000</kp>
- 
-  <kd type="double">0</kd>
-  <position-norm type="double">0</position-norm>
- </pushback>
-<livery>
-      <file type="string">LH86</file>
-</livery>
-	    
-<Boeing-737-300>
-      <removalkit>false</removalkit>
-      <eyebrowwindow>true</eyebrowwindow>
-</Boeing-737-300>
-
-  </model>
-		
-    
-		<view>
-			<internal archive="y">true</internal>
-			<config>
-				<!-- x/y/z == right/up/back -->
-				<x-offset-m archive="y">-0.470</x-offset-m>
-				<y-offset-m archive="y">1.2</y-offset-m>
-				<z-offset-m archive="y">2.83</z-offset-m>
-
-				<pitch-offset-deg archive="y">-11.0</pitch-offset-deg>
+        <pitch-offset-deg archive="y">-11.0</pitch-offset-deg>
         <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
         <dynamic>
-        <enabled type="bool" userarchive="y">false</enabled>
+          <enabled type="bool" userarchive="y">false</enabled>
         </dynamic>
-			</config>
-		</view>
-    
-		<view n="1">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
-    
-		<view n="2">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
+      </config>
+    </view>
 
-		<view n="3">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
+    <view n="1">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
 
-		<view n="4">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
+    <view n="2">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
 
-		<view n="5">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
+    <view n="3">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
 
-		<view n="6">
-			<config>
-				<target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
-			</config>
-		</view>
-		
-		<view n="101">
-          <name>Right Wing View</name>
-          <type>lookfrom</type>
-          <internal archive="y">true</internal>
-          <config>
-            <from-model type="bool">true</from-model>
-            <from-model-idx type="int">0</from-model-idx>
-            <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
-            <default-field-of-view-deg type="double">50</default-field-of-view-deg>
-            <pitch-offset-deg>-15</pitch-offset-deg>
-            <heading-offset-deg>-160</heading-offset-deg>
-            <x-offset-m archive="y" type="double">2.16</x-offset-m>
-            <y-offset-m archive="y" type="double">1.27</y-offset-m>
-            <z-offset-m archive="y" type="double">5.88</z-offset-m>
-          </config>
-       </view>
-       
-       <view n="102">
-          <name>Passenger View</name>
-          <type>lookfrom</type>
-          <internal archive="y">true</internal>
-          <config>
-            <from-model type="bool">true</from-model>
-            <from-model-idx type="int">0</from-model-idx>
-            <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
-            <default-field-of-view-deg type="double">50</default-field-of-view-deg>
-            <pitch-offset-deg>-15</pitch-offset-deg>
-            <heading-offset-deg>90</heading-offset-deg>
-            <x-offset-m archive="y" type="double">-1.11</x-offset-m>
-            <y-offset-m archive="y" type="double">1.09</y-offset-m>
-            <z-offset-m archive="y" type="double">22.34</z-offset-m>
-          </config>
-       </view>
-		 		
-    
-		<chase-distance-m>-40</chase-distance-m>
+    <view n="4">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
 
-		<flaps>
-			<setting>0.000</setting>
-			<!-- flaps up -->
-			<setting>0.125</setting>
-			<!-- flaps 1  -->
-			<setting>0.250</setting>
-			<!-- flaps 2  -->
-			<setting>0.375</setting>
-			<!-- flaps 5  -->
-			<setting>0.500</setting>
-			<!-- flaps 10 -->
-			<setting>0.625</setting>
-			<!-- flaps 15 -->
-			<setting>0.750</setting>
-			<!-- flaps 25 -->
-			<setting>0.875</setting>
-			<!-- flaps 30 -->
-			<setting>1.000</setting>
-			<!-- flaps 40 -->
-		</flaps>
-    
- 		<!--<ai>
+    <view n="5">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="6">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="101">
+      <name>Right Wing View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+        <heading-offset-deg>-160</heading-offset-deg>
+        <x-offset-m archive="y" type="double">2.16</x-offset-m>
+        <y-offset-m archive="y" type="double">1.27</y-offset-m>
+        <z-offset-m archive="y" type="double">5.88</z-offset-m>
+      </config>
+    </view>
+
+    <view n="102">
+      <name>Passenger View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+        <heading-offset-deg>90</heading-offset-deg>
+        <x-offset-m archive="y" type="double">-1.11</x-offset-m>
+        <y-offset-m archive="y" type="double">1.09</y-offset-m>
+        <z-offset-m archive="y" type="double">22.34</z-offset-m>
+      </config>
+    </view>
+
+
+    <chase-distance-m>-40</chase-distance-m>
+
+    <flaps>
+      <setting>0.000</setting>
+      <!-- flaps up -->
+      <setting>0.125</setting>
+      <!-- flaps 1  -->
+      <setting>0.250</setting>
+      <!-- flaps 2  -->
+      <setting>0.375</setting>
+      <!-- flaps 5  -->
+      <setting>0.500</setting>
+      <!-- flaps 10 -->
+      <setting>0.625</setting>
+      <!-- flaps 15 -->
+      <setting>0.750</setting>
+      <!-- flaps 25 -->
+      <setting>0.875</setting>
+      <!-- flaps 30 -->
+      <setting>1.000</setting>
+      <!-- flaps 40 -->
+    </flaps>
+
+    <!--<ai>
 			<submodels>
 				<contrails type="bool">true</contrails>
 			</submodels>
 		</ai>-->
-  
- <multiplay>
-			<generic>
-				<string n="0"/>
 
-				<int n="0"
+    <multiplay>
+      <generic>
+        <string n="0"/>
+
+        <int n="0"
 						 alias="/gear/gear[0]/tyre-smoke"/>
-				<int n="1"
+        <int n="1"
 						 alias="/gear/gear[1]/tyre-smoke"/>
-				<int n="2"
+        <int n="2"
 						 alias="/gear/gear[2]/tyre-smoke"/>
-				
-			</generic>
-</multiplay>
-  
+
+      </generic>
+    </multiplay>
+
     <systems>
       <electrical>
         <path>Aircraft/Generic/generic-electrical.xml</path>
       </electrical>
       <autopilot>
-	      <path>Aircraft/737-300/737-autopilotV5.xml</path>
+        <path>Aircraft/737-300/737-autopilotV5.xml</path>
       </autopilot>
       <path>Aircraft/737-300/Systems/systems.xml</path>
     </systems>
     <sound>
-     <path>Aircraft/737-300/Sounds/737-sound.xml</path>
-	 <switch type = "bool"></switch>
+      <path>Aircraft/737-300/Sounds/737-sound.xml</path>
+      <switch type = "bool"></switch>
     </sound>
     <hud>
       <enable3d>false</enable3d>
     </hud>
     <virtual-cockpit archive="y">true</virtual-cockpit>
     <allow-toggle-cockpit>true</allow-toggle-cockpit>
-  
-<help>
- <title>Boeing 737-300</title>
- <line>the take off precedure for a 737 is to have flaps set at 5, 
- and power up to 40% N1 
- till moving, the slowly build up to 94-96% N1 ,
-pull when Vr and keep at 15degrees pitch, retract gear when positive climb rate 
-</line>
-<line>Takeoff Speeds Flaps 5</line>
 
-<line> TOW KG   TOWlbs     V1   VR   V2</line>
-<line>  65K             143000    154  155  160</line>
-<line>  60K             132000    147  148  154</line>
-<line>  55K             121000    140  141  148</line>
-<line>  50K             110000    133  133  141</line>
-<line>  45K              99000    123  133  133</line>
-<line>  40K               88000   114  114  126</line>
-<line>  35K               77000   104  104  117</line>
- 
- <line></line>
+    <help>
+      <title>Boeing 737-300</title>
+      <line>
+        the take off precedure for a 737 is to have flaps set at 5,
+        and power up to 40% N1
+        till moving, the slowly build up to 94-96% N1 ,
+        pull when Vr and keep at 15degrees pitch, retract gear when positive climb rate
+      </line>
+      <line>Takeoff Speeds Flaps 5</line>
 
- <line>Landing Speeds with following flaps settings</line>
+      <line> TOW KG   TOWlbs     V1   VR   V2</line>
+      <line>  65K             143000    154  155  160</line>
+      <line>  60K             132000    147  148  154</line>
+      <line>  55K             121000    140  141  148</line>
+      <line>  50K             110000    133  133  141</line>
+      <line>  45K              99000    123  133  133</line>
+      <line>  40K               88000   114  114  126</line>
+      <line>  35K               77000   104  104  117</line>
 
-<line> TOW KG   TOWlbs     40   30     15</line>
-<line>  65K             143000    152  153  165</line>
-<line>  60K             132000    145  147  158</line>
-<line>  55K             121000    138  141  151</line>
-<line>  50K             110000    131  134  144</line>
-<line>  45K              99000    123  127  136</line>
-<line>  40K               88000   115  119  128</line>
-<line>  35K               77000   107  111  119</line>
+      <line></line>
 
-  <line>Maximum Flap Operating Speeds</line>
-  <line>1 = 230 kn</line>
-  <line>2 = 230 kn</line>
-  <line>5 = 225 kn</line>
-  <line>10 =210 kn</line>
-  <line>15 =195 kn</line>
-  <line>25 = 190 kn</line>
-  <line>30 = 185 kn</line>
-  <line>40 = 158 kn</line>
- 
-  <line>Landing Gear Limits</line>
-  <line>Extend 270IAS/ 0.82M</line>
-  <line>Retract 235IAS</line>
-  
- 
-   <key>
-    <name>Ctrl-b</name>
-    <desc>Toggle speedbrakes</desc>
-   </key>
-     <key>
-    <name>Tab-key</name>
-    <desc>selects Autobrake-setting</desc>
-   </key>
-   <key>
-    <name>Delete</name>
-    <desc>Thrust Reverser</desc>
-   </key>
- </help> 
- 
- <menubar>
-   <default>
-    <menu n="5">
+      <line>Landing Speeds with following flaps settings</line>
 
-     <item n="10">
-      <label>Pushback</label>
-      <name>pushback</name>
-      <binding>
-       <command>dialog-show</command>
-       <dialog-name>pushback</dialog-name>
-      </binding>
-     </item>
+      <line> TOW KG   TOWlbs     40   30     15</line>
+      <line>  65K             143000    152  153  165</line>
+      <line>  60K             132000    145  147  158</line>
+      <line>  55K             121000    138  141  151</line>
+      <line>  50K             110000    131  134  144</line>
+      <line>  45K              99000    123  127  136</line>
+      <line>  40K               88000   115  119  128</line>
+      <line>  35K               77000   107  111  119</line>
 
-    </menu>
+      <line>Maximum Flap Operating Speeds</line>
+      <line>1 = 230 kn</line>
+      <line>2 = 230 kn</line>
+      <line>5 = 225 kn</line>
+      <line>10 =210 kn</line>
+      <line>15 =195 kn</line>
+      <line>25 = 190 kn</line>
+      <line>30 = 185 kn</line>
+      <line>40 = 158 kn</line>
 
-    <menu n="10">
-     <label>Boeing 737-300</label>
-     <enabled type="bool">true</enabled>
+      <line>Landing Gear Limits</line>
+      <line>Extend 270IAS/ 0.82M</line>
+      <line>Retract 235IAS</line>
 
-     
-     <item>
-      <label>Select Livery</label>
-      <binding>
-       <command>nasal</command>
-       <script>aircraft.livery.dialog.open()</script>
-      </binding>
-     </item>
-     <item>
-	<label>Pushback</label>
-      <name>pushback</name>
-      <binding>
-       <command>dialog-show</command>
-       <dialog-name>pushback</dialog-name>
-      </binding>
-     </item>
-    </menu>
-   </default>
-  </menubar>
- 
+
+      <key>
+        <name>Ctrl-b</name>
+        <desc>Toggle speedbrakes</desc>
+      </key>
+      <key>
+        <name>Tab-key</name>
+        <desc>selects Autobrake-setting</desc>
+      </key>
+      <key>
+        <name>Delete</name>
+        <desc>Thrust Reverser</desc>
+      </key>
+    </help>
+
+    <menubar>
+      <default>
+        <menu n="5">
+
+          <item n="10">
+            <label>Pushback</label>
+            <name>pushback</name>
+            <binding>
+              <command>dialog-show</command>
+              <dialog-name>pushback</dialog-name>
+            </binding>
+          </item>
+
+        </menu>
+
+        <menu n="10">
+          <label>Boeing 737-300</label>
+          <enabled type="bool">true</enabled>
+
+
+          <item>
+            <label>Select Livery</label>
+            <binding>
+              <command>nasal</command>
+              <script>aircraft.livery.dialog.open()</script>
+            </binding>
+          </item>
+          <item>
+            <label>Pushback</label>
+            <name>pushback</name>
+            <binding>
+              <command>dialog-show</command>
+              <dialog-name>pushback</dialog-name>
+            </binding>
+          </item>
+        </menu>
+      </default>
+    </menubar>
+
   </sim>
-  
- 
- 
-  
-	<consumables>
-		<fuel>
-			<tank n="0">
-				<level-gal_us archive="y">1540</level-gal_us>
-			</tank>
-			<tank n="1">
-				<level-gal_us archive="y">1540</level-gal_us>
-			</tank>
-			<tank n="2">
-				<level-gal_us archive="y">2275</level-gal_us>
-			</tank>
-		</fuel>
-	</consumables>
 
-	<engines>
-		<engine n="0">
-			<running>true</running>
-		</engine>
-		<engine n="1">
-			<running>true</running>
-		</engine>
-	</engines>
+
+
+
+  <consumables>
+    <fuel>
+      <tank n="0">
+        <level-gal_us archive="y">1540</level-gal_us>
+      </tank>
+      <tank n="1">
+        <level-gal_us archive="y">1540</level-gal_us>
+      </tank>
+      <tank n="2">
+        <level-gal_us archive="y">2275</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
+
+  <engines>
+    <engine n="0">
+      <running>true</running>
+    </engine>
+    <engine n="1">
+      <running>true</running>
+    </engine>
+  </engines>
 
   <input>
     <keyboard>
       <key n="127">
-	<name>Delete</name>
-	<desc>Toggle Reversers</desc>
-	<binding> <command>nasal</command>
-	<script>reversethrust.togglereverser()</script>
-	</binding>
-</key> 
-   
+        <name>Delete</name>
+        <desc>Toggle Reversers</desc>
+        <binding>
+          <command>nasal</command>
+          <script>reversethrust.togglereverser()</script>
+        </binding>
+      </key>
 
- 
-<key n="9">
-    <name>Tab</name>
-    <desc>switch autobrake</desc>
-    <binding>
-     <command>property-cycle</command>
-     <property>/controls/gear/autobrakes</property>
-     <value>0</value> 
-     <value>1</value> 
-     <value>2</value> 
-     <value>3</value> 
-     <value>4</value> 
-     <value>5</value> 
-    </binding>
-   </key>
+
+
+      <key n="9">
+        <name>Tab</name>
+        <desc>switch autobrake</desc>
+        <binding>
+          <command>property-cycle</command>
+          <property>/controls/gear/autobrakes</property>
+          <value>0</value>
+          <value>1</value>
+          <value>2</value>
+          <value>3</value>
+          <value>4</value>
+          <value>5</value>
+        </binding>
+      </key>
     </keyboard>
   </input>
-  
 
 
-	<controls>
-		<gear>
-		            <brake-parking type="bool">1</brake-parking>
-			<autobrakes type="int">5</autobrakes>
-			<!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
-		</gear>
-		<flight>
-			<autospeedbrakes-armed type="string">true</autospeedbrakes-armed>
-		</flight>
-	
 
-<switches>
-<landing-light-l type = "bool">true</landing-light-l> 
-<landing-light-r type = "bool">true</landing-light-r> 
-<taxi-light>0</taxi-light>
-<inboard-lights>0</inboard-lights>
-<outboard-lights>0</outboard-lights>
-<nav-lights>0</nav-lights>
-<beacon>1</beacon>
-<strobe>1</strobe>
-<logo-lights>1</logo-lights>
-<cabin-lights>0</cabin-lights>
-<map-lights>0</map-lights>
-<master-panel>0</master-panel>
-<instruments-lights>0</instruments-lights>
-<seatbelt-sign>0</seatbelt-sign>
-</switches>
-</controls>
+  <controls>
+    <gear>
+      <brake-parking type="bool">1</brake-parking>
+      <autobrakes type="int">5</autobrakes>
+      <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
+    </gear>
+    <flight>
+      <autospeedbrakes-armed type="string">true</autospeedbrakes-armed>
+    </flight>
 
-<gear>
-		<gear n="0">
-			<tyre-smoke type="int">0</tyre-smoke>
-			<sprayspeed-ms type="double">0</sprayspeed-ms>
-			<spray-density type="double">0</spray-density>
-			<caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
-		</gear>
-		<gear n="1">
-			<tyre-smoke type="int">0</tyre-smoke>
-			<sprayspeed-ms type="double">0</sprayspeed-ms>
-			<spray-density type="double">0</spray-density>
-		</gear>
-		<gear n="2">
-			<tyre-smoke type="int">0</tyre-smoke>
-			<sprayspeed-ms type="double">0</sprayspeed-ms>
-			<spray-density type="double">0</spray-density>
-		</gear>
-		<!--<tailhook>
+
+    <switches>
+      <landing-light-l type = "bool">true</landing-light-l>
+      <landing-light-r type = "bool">true</landing-light-r>
+      <taxi-light>0</taxi-light>
+      <inboard-lights>0</inboard-lights>
+      <outboard-lights>0</outboard-lights>
+      <nav-lights>0</nav-lights>
+      <beacon>1</beacon>
+      <strobe>1</strobe>
+      <logo-lights>1</logo-lights>
+      <cabin-lights>0</cabin-lights>
+      <map-lights>0</map-lights>
+      <master-panel>0</master-panel>
+      <instruments-lights>0</instruments-lights>
+      <seatbelt-sign>0</seatbelt-sign>
+    </switches>
+  </controls>
+
+  <gear>
+    <gear n="0">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+      <caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
+    </gear>
+    <gear n="1">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+    </gear>
+    <gear n="2">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+    </gear>
+    <!--<tailhook>
 			<position-norm type="double">0</position-norm>
 		</tailhook>-->
-	</gear>
+  </gear>
 
-<instrumentation>
-<mk-viii>
-            <serviceable>true</serviceable>
-            <configuration-module>
-            <category-1>1</category-1><!-- GA Fast, 150' Mode 4B -->
-            </configuration-module>
-            <inputs>
-                <arinc429>
-                <decision-height-ncd>false</decision-height-ncd>
-                <decision-height>200</decision-height>
-                </arinc429>
-            </inputs>
-        </mk-viii>
- <wxradar>
- <serviceable>true</serviceable>
-  <range type="int" archive="y">20</range>
-  <minimized type="bool" archive="y">false</minimized>
-  <switch archive="y">off</switch>
-  <mode archive="y">wx</mode>
-  <lightning type="bool" archive="y">false</lightning>
-  <display-mode archive="y">arc</display-mode>
- </wxradar>
- 	<radar>
-		<range type="int" archive="y">20</range>
-	</radar>
-<turn-indicator>
-<serviceable type="bool">true</serviceable>
-<spin type="double">1</spin>
-</turn-indicator>
-<path>Aircraft/737-300/Systems/instrumentation.xml</path>
-</instrumentation>
+  <instrumentation>
+    <mk-viii>
+      <serviceable>true</serviceable>
+      <configuration-module>
+        <category-1>1</category-1>
+        <!-- GA Fast, 150' Mode 4B -->
+      </configuration-module>
+      <inputs>
+        <arinc429>
+          <decision-height-ncd>false</decision-height-ncd>
+          <decision-height>200</decision-height>
+        </arinc429>
+      </inputs>
+    </mk-viii>
+    <wxradar>
+      <serviceable>true</serviceable>
+      <range type="int" archive="y">20</range>
+      <minimized type="bool" archive="y">false</minimized>
+      <switch archive="y">off</switch>
+      <mode archive="y">wx</mode>
+      <lightning type="bool" archive="y">false</lightning>
+      <display-mode archive="y">arc</display-mode>
+    </wxradar>
+    <radar>
+      <range type="int" archive="y">20</range>
+    </radar>
+    <turn-indicator>
+      <serviceable type="bool">true</serviceable>
+      <spin type="double">1</spin>
+    </turn-indicator>
+    <path>Aircraft/737-300/Systems/instrumentation.xml</path>
+  </instrumentation>
 
-<payload>
-<weight>
-<name type="string">Pilot</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">300.0</max-lb>
-</weight>
-<weight>
-<name type="string">Co Pilot</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">300.0</max-lb>
-</weight>
-<weight>
-<name type="string">Cabin Zone 0a</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">4000</max-lb>
-</weight>
-<weight>
-<name type="string">Cabin Zone 0b</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">4800</max-lb>
-</weight>
-<weight>
-<name type="string">Cabin Zone 0c</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">6800</max-lb>
-</weight>
-<weight>
-<name type="string">Cabin Zone 0d</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">6000</max-lb>
-</weight>
-<weight>
-<name type="string">Cabin Zone 0e</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">3600</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 1</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[7]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">1526</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 2</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[8]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">776</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 3</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[9]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">2263</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 4</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">4674</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 5</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[11]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">414</max-lb>
-</weight>
-<weight>
-<name type="string">Cargo 6</name>
-<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[12]"/>
-<min-lb type="double">0.0</min-lb>
-<max-lb type="double">718</max-lb>
-</weight>
-</payload>
+  <payload>
+    <weight>
+      <name type="string">Pilot</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">300.0</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Co Pilot</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">300.0</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0a</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4000</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0b</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4800</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0c</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">6800</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0d</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">6000</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0e</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">3600</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 1</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[7]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">1526</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 2</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[8]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">776</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 3</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[9]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">2263</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 4</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4674</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 5</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[11]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">414</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 6</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[12]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">718</max-lb>
+    </weight>
+  </payload>
 
 
 
-<nasal>
+  <nasal>
     <Boeing-737-300>
-             <file>Aircraft/737-300/Nasal/liveries.nas</file>      
-	    <file>Aircraft/737-300/Nasal/contrail.nas</file>
-</Boeing-737-300>
+      <file>Aircraft/737-300/Nasal/liveries.nas</file>
+      <file>Aircraft/737-300/Nasal/contrail.nas</file>
+    </Boeing-737-300>
 
-<reversethrust>
-   <file>Aircraft/737-300/Nasal/reverse-thrust.nas</file>
-  </reversethrust>
+    <reversethrust>
+      <file>Aircraft/737-300/Nasal/reverse-thrust.nas</file>
+    </reversethrust>
 
-<airground>
-<file>Aircraft/737-300/Systems/air-ground.nas</file>
-<file>Aircraft/737-300/Systems/speedbrakevalve.nas</file>
-</airground>
+    <airground>
+      <file>Aircraft/737-300/Systems/air-ground.nas</file>
+      <file>Aircraft/737-300/Systems/speedbrakevalve.nas</file>
+    </airground>
 
 
-		<tyresmoke>
-			<file>Aircraft/737-300/Nasal/tyresmoke.nas</file>
-		</tyresmoke>
-		
-	
-   
+    <tyresmoke>
+      <file>Aircraft/737-300/Nasal/tyresmoke.nas</file>
+    </tyresmoke>
+
+
+
   </nasal>
 </PropertyList>
