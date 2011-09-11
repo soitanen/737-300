@@ -130,7 +130,7 @@ _______________________________________________________________________________
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[0]/egt_degf</property>
+      <property>/engines/engine[0]/egt-degf</property>
       <offset>-17.77777777</offset>
       <scale>0.55555556</scale>
       <format>%6.0f</format>
@@ -161,7 +161,7 @@ _______________________________________________________________________________
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[1]/egt_degf</property>
+      <property>/engines/engine[1]/egt-degf</property>
       <offset>-17.77777777</offset>
       <scale>0.55555556</scale>
       <format>%6.0f</format>

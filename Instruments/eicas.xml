@@ -552,7 +552,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine[0]/egt_degf</property>
+     <property>/engines/engine[0]/egt-degf</property>
      <scale>0.19444444</scale>
      <offset>-7.77777777</offset> 
     </transformation>
@@ -580,7 +580,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[0]/egt_degf</property>
+      <property>/engines/engine[0]/egt-degf</property>
       <format>%6.0f</format>
       <offset>-17.77777777</offset>
       <scale>0.55555556</scale>
@@ -643,7 +643,7 @@
      </transformation>
     <transformation>
      <type>rotation</type>
-     <property>/engines/engine[1]/egt_degf</property>
+     <property>/engines/engine[1]/egt-degf</property>
      <scale>0.19444444</scale>
      <offset>-7.77777777</offset> 
     </transformation>
@@ -671,7 +671,7 @@
     <chunks>
      <chunk>
       <type>number-value</type>
-      <property>/engines/engine[1]/egt_degf</property>
+      <property>/engines/engine[1]/egt-degf</property>
       <format>%6.0f</format>
       <offset>-17.77777777</offset>
       <!-- add * back if wrong -->
