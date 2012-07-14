@@ -1,8 +1,15 @@
 <PropertyList>
   <sim>
     <description>Boeing 737-300</description>
-    <author>David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d)</author>
-    <status>early-production</status>
+    <author>David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel)</author>
+   <status>early production</status>
+<rating>
+<status>early production</status>
+ <FDM type="int">4</FDM>
+ <systems type="int">2</systems>
+ <cockpit type="int">2</cockpit>
+ <model type="int">4</model>
+</rating>
 
     <flight-model>jsb</flight-model>
     <aero>737-300</aero>
@@ -166,6 +173,8 @@
 
       </generic>
     </multiplay>
+    
+           <flight-recorder include="Systems/flight-recorder.xml"/>
 
     <systems>
       <electrical>

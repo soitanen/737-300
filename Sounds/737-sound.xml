@@ -43,7 +43,7 @@
   
   <engine>
    <name>leftengine</name>
-   <path>Sounds/thrust.wav</path>
+   <path>thrust.wav</path>
    <mode>looped</mode>
    <condition>
     <or>
@@ -119,7 +119,7 @@
   
   <engine>
    <name>rightengine</name>
-   <path>Sounds/thrust.wav</path>
+   <path>thrust.wav</path>
    <mode>looped</mode>
    <condition>
     <or>
