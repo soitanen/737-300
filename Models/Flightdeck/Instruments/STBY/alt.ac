@@ -5,7 +5,7 @@ OBJECT world
 kids 17
 OBJECT poly
 name "ALT.bezel"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 45.000000
 numvert 196
@@ -1417,7 +1417,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ALT.face"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 9
@@ -1482,7 +1482,7 @@ refs 3
 kids 0
 OBJECT poly
 name "ALT.needle"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 7
@@ -1517,7 +1517,7 @@ refs 3
 kids 0
 OBJECT poly
 name "alttxt"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1536,7 +1536,7 @@ refs 4
 kids 0
 OBJECT poly
 name "alttxt.001"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1555,7 +1555,7 @@ refs 4
 kids 0
 OBJECT poly
 name "alttxt.002"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1574,7 +1574,7 @@ refs 4
 kids 0
 OBJECT poly
 name "alttxt.003"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1593,7 +1593,7 @@ refs 4
 kids 0
 OBJECT poly
 name "alttxt.004"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1612,7 +1612,7 @@ refs 4
 kids 0
 OBJECT poly
 name "iastape"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1631,7 +1631,7 @@ refs 4
 kids 0
 OBJECT poly
 name "inhg.001"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1650,7 +1650,7 @@ refs 4
 kids 0
 OBJECT poly
 name "inhg.002"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1669,7 +1669,7 @@ refs 4
 kids 0
 OBJECT poly
 name "inhg.003"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1688,7 +1688,7 @@ refs 4
 kids 0
 OBJECT poly
 name "inhg.004"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1707,7 +1707,7 @@ refs 4
 kids 0
 OBJECT poly
 name "kpa.001"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1726,7 +1726,7 @@ refs 4
 kids 0
 OBJECT poly
 name "kpa.002"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1745,7 +1745,7 @@ refs 4
 kids 0
 OBJECT poly
 name "kpa.003"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1764,7 +1764,7 @@ refs 4
 kids 0
 OBJECT poly
 name "kpa.004"
-texture "ALT.png"
+texture "alt.png"
 texrep 1 1
 crease 30.000000
 numvert 4
