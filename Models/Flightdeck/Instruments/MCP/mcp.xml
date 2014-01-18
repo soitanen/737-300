@@ -686,6 +686,56 @@
  </action>
  </animation>
 
+  <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>cylinder</object-name>
+    <action>
+      <name>airspeed adjust (increase)</name>
+      <button>3</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>1.0</step>
+        <min>0</min>
+        <max>350</max>    
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-mach</property>
+        <step>0.01</step>
+        <min>0.0</min>
+        <max>0.82</max>    
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>cylinder</object-name>
+    <action>
+      <name>airspeed adjust (increase)</name>
+      <button>4</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>-1.0</step>
+        <min>0</min>
+        <max>350</max>    
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-mach</property>
+        <step>-0.01</step>
+        <min>0.0</min>
+        <max>0.82</max>    
+      </binding>
+    </action>
+  </animation>
+
 
 <!-- N1 button -->
  
