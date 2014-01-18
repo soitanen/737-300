@@ -711,12 +711,14 @@
     </action>
   </animation>
 
+
+
   <animation>
     <type>pick</type>
     <visible>true</visible>
     <object-name>cylinder</object-name>
     <action>
-      <name>airspeed adjust (increase)</name>
+      <name>airspeed adjust (decrease)</name>
       <button>4</button>
       <repeatable>false</repeatable>
       <binding>
