@@ -1,0 +1,95 @@
+<PropertyList>
+
+ <name>737-300 Autopilot</name>
+ <background>Aircraft/737-300/Panels/hotspotgrid.rgb</background>
+ <w>256</w>
+ <h>256</h>
+
+<instruments>
+
+<instrument>
+  <name>panel hotspots</name>
+  <x>128</x>
+  <y>128</y>
+  <w>256</w>
+  <h>256</h>
+  <w-base>256</w-base>
+  <h-base>256</h-base>
+
+<!-- start of switching actions for autopilot panel    -->
+
+ <actions> 
+ <action>  <name>course decrease lh</name>  <button>0</button>  <x>-112</x>  <y>-40</y>  <w>5</w>  <h>20</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>-1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+ <action>  <name>course increase lh</name>  <button>0</button>  <x>-107</x>  <y>-40</y>  <w>5</w>  <h>20</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+ <action>  <name>course decrease rh</name>  <button>0</button>  <x>94</x>  <y>-20</y>  <w>5</w>  <h>20</h>  <binding>  <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>-1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+ <action>  <name>course increase rh</name>  <button>0</button>  <x>105</x>  <y>-20</y>  <w>5</w>  <h>20</h>  <binding>   <command>property-adjust</command>   <property>/instrumentation/nav[0]/radials/selected-deg</property>   <step>1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+
+ <action>   <name>autopilot engage</name>   <button>0</button>   <x>64</x>   <y>30</y>   <w>15</w>   <h>40</h>   <binding>    <command>property-assign</command>    <property>/controls/autoflight/autopilot/engage</property>     <value type="bool">true</value>      </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>   </action>
+
+  <action>   <name>autopilot disengage</name>   <button>0</button>   <x>64</x>   <y>-110</y>   <w>20</w>   <h>40</h>   <binding>    <command>property-assign</command>    <property>/controls/autoflight/autopilot/engage</property>    <value type="bool">false</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/vert-speed</property>    <value type="string">off</value>   </binding>     </action>    
+
+  <action>   <name>engage heading select mode</name>   <button>0</button>   <x>-25</x>   <y>-110</y>   <w>12</w>   <h>40</h>   <condition>    <and>      <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">off</value>     </equals>    </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">dg-heading-hold</value>   </binding>  </action>
+
+  <action>   <name>disengage heading select mode</name>   <button>0</button>   <x>-25</x>   <y>-110</y>   <w>12</w>   <h>40</h>   <condition>    <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">dg-heading-hold</value>     </equals>    </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>  </action>
+ <action>   <name>to the left</name>   <button>0</button>  <x>-32</x>  <y>-15</y>  <w>8</w>  <h>15</h>   <binding>   <command>property-adjust</command>  <property>/autopilot/settings/heading-bug-deg</property>   <step>-1.0</step>   <min>0</min>      <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+  <action>  <name>heading adjust increase</name>  <button>0</button>  <x>-20</x>  <y>-15</y>  <w>8</w>  <h>15</h>  <binding>   <command>property-adjust</command>  <property>/autopilot/settings/heading-bug-deg</property>   <step>1.0</step>   <min>0</min>   <max>360</max>   <wrap>1</wrap>  </binding> </action>
+
+  <action>  <name>engage altitude lock</name>   <button>0</button>   <x>9</x>   <y>-110</y>   <w>15</w>   <h>40</h>   <condition>     <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">off</value>     </equals>     </and>    </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">altitude-hold</value>   </binding>  </action>
+
+  <action>   <name>disengage altitude lock</name>   <button>0</button>   <x>9</x>   <y>-110</y>   <w>15</w>   <h>40</h>   <condition>     <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">altitude-hold</value>     </equals>    </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>  </action>
+  
+<action>  <name>altitude adjust decrease</name>  <button>0</button>  <x>5</x>  <y>-15</y>  <w>15</w>  <h>20</h>  <binding>   <command>property-adjust</command>   <property>/autopilot/settings/target-altitude-ft</property>   <step>-100</step>   <min>-2000</min>   <max>50000</max>      </binding> </action>
+
+ <action>  <name>altitude adjust increase</name>  <button>0</button>  <x>15</x>  <y>-15</y>  <w>15</w>  <h>20</h>  <binding>   <command>property-adjust</command>   <property>/autopilot/settings/target-altitude-ft</property>   <step>100</step>   <min>-2000</min>   <max>50000</max>      </binding>    </action> 
+
+  <action>   <name>engage vertical speed mode</name>   <button>0</button>   <x>30</x>   <y>-110</y>   <w>15</w>   <h>40</h>   <condition>    <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">off</value>     </equals>    </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">vertical-speed-hold</value>   </binding>   </action>
+
+  <action>   <name>disengage vertical speed mode</name>   <button>0</button>   <x>30</x>   <y>-110</y>   <w>15</w>   <h>40</h>   <condition>     <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">vertical-speed-hold</value>     </equals>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>  </action>
+
+ <action>  <name>vertical speed down</name>  <button>0</button>  <x>40</x>  <y>-40</y>  <w>10</w>  <h>40</h>  <binding>   <command>property-adjust</command>   <property>/autopilot/settings/vertical-speed-fpm</property>   <step>-100</step>   <min>0</min>   <max>-10000</max>      </binding> </action>
+
+ <action>  <name>vertical speed up</name>  <button>0</button>  <x>40</x>  <y>-110</y>  <w>10</w>  <h>40</h>  <binding>   <command>property-adjust</command>   <property>/autopilot/settings/vertical-speed-fpm</property>   <step>100</step>   <min>0</min>   <max>10000</max>      </binding>    </action> 
+
+  <action>   <name>engage approach mode</name>  <button>0</button>   <x>-10</x>   <y>-110</y>   <w>10</w>   <h>15</h>   <condition>     <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <not-equals>      <property>/autopilot/locks/altitude</property>      <value type="string">gs1-hold</value>     </not-equals>     </and>    </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">gs1-hold</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">nav1-hold</value>   </binding>  </action>
+
+  <action>   <name>disengage approach mode</name>   <button>0</button>   <x>-10</x>   <y>-110</y>   <w>10</w>   <h>15</h>   <condition>    <equals>      <property>/autopilot/locks/altitude</property>      <value type="string">gs1-hold</value>     </equals>    </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/altitude</property>    <value type="string">off</value>   </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>  </action>
+
+
+  <action>   <name>engage vor/loc mode</name>   <button>0</button>   <x>-10</x>   <y>-16</y>   <w>10</w>   <h>15</h>   <condition>     <and>     <equals>      <property>/controls/autoflight/autopilot/engage</property>      <value type="bool">true</value>     </equals>     <not-equals>      <property>/autopilot/locks/heading</property>      <value type="string">nav1-hold</value>     </not-equals>     </and>    </condition>       <binding>       <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">nav1-hold</value>   </binding>  </action>
+
+  <action>   <name>disengage vor/loc mode</name>   <button>0</button>   <x>-10</x>   <y>-16</y>   <w>10</w>   <h>15</h>   <condition>     <equals>      <property>/autopilot/locks/heading</property>      <value type="string">nav1-hold</value>     </equals>   </condition>       <binding>       <command>property-assign</command>    <property>/autopilot/locks/heading</property>    <value type="string">off</value>   </binding>  </action>  
+ 
+  <action>   <name>arm autothrottle</name>   <button>0</button>   <x>-85</x>   <y>-1</y>   <w>15</w>   <h>40</h>        <condition>     <equals>      <property>/controls/autoflight/autothrottle-arm</property>      <value type="bool">false</value>     </equals>   </condition>       <binding>    <command>property-assign</command>    <property>/controls/autoflight/autothrottle-arm</property>    <value type="bool">true</value>      </binding>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string">off</value>      </binding>   <binding>    <command>property-assign</command>    <property>/controls/autoflight/display-mach</property>    <value type="bool">false</value>      </binding>           </action>
+  
+  <action>   <name>disarm autothrottle</name>   <button>0</button>   <x>-85</x>   <y>-1</y>   <w>15</w>   <h>40</h>   <condition>     <equals>      <property>/controls/autoflight/autothrottle-arm</property>      <value type="bool">true</value>     </equals>   </condition>       <binding>    <command>property-assign</command>    <property>/controls/autoflight/autothrottle-arm</property>    <value type="bool">false</value>      </binding>   <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string"></value>      </binding>       </action>
+ <action>  <name>airspeed adjust (decrease)</name>  <button>0</button>  <x>-72</x>  <y>-40</y>  <w>12</w>  <h>20</h>      <binding>  <command>property-adjust</command>  <property>/autopilot/settings/target-speed-kt</property>   <step>-1.0</step>   <min>0</min>      <max>360</max>      </binding> </action>
+
+ <action>  <name>airspeed adjust (increase)</name>  <button>0</button>  <x>-57</x>  <y>-40</y>  <w>12</w>  <h>20</h>      <binding>  <command>property-adjust</command>  <property>/autopilot/settings/target-speed-kt</property>   <step>1.0</step>   <min>0</min>   <max>360</max>      </binding> </action>
+<!--
+ <action>  <name>mach adjust (decrease)</name>  <button>0</button>  <x>-66</x>  <y>-20</y>  <w>8</w>  <h>10</h>      <binding>  <command>property-adjust</command>  <property>/autopilot/settings/target-mach</property>   <step>-0.01</step>   <min>0.4</min>      <max>0.9</max>      </binding> </action>
+
+ <action>  <name>mach adjust (increase)</name>  <button>0</button>  <x>-57</x>  <y>-20</y>  <w>8</w>  <h>10</h>      <binding>  <command>property-adjust</command>  <property>/autopilot/settings/target-mach</property>   <step>0.01</step>   <min>0.0</min>   <max>0.9</max>      </binding> </action>-->
+   <action>   <name>engage speed mode</name>   <button>0</button>   <x>-80</x>   <y>-110</y>   <w>15</w>   <h>40</h>         <condition>     <and>     <equals>      <property>/controls/autoflight/autothrottle-arm</property>      <value type="bool">true</value>     </equals>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">off</value>     </equals>          </and>          </condition>            <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>       <value type="string">speed-with-throttle</value>   </binding>       <binding>    <command>property-assign</command>    <property>/controls/autoflight/autothrottle-engage</property>       <value type="bool">true</value>   </binding>        </action>
+
+  <action>   <name>disengage speed mode</name>   <button>0</button>   <x>-80</x>   <y>-110</y>   <w>15</w>   <h>40</h>         <condition>     <or>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">speed-with-throttle</value>     </equals>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">mach-with-throttle</value>     </equals>     </or>    </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>       <value type="string">off</value>   </binding>    <binding>    <command>property-assign</command>    <property>/controls/autoflight/autothrottle-engage</property>       <value type="bool">false</value>   </binding>           </action>
+   <!--
+  <action>   <name>changeover to mach</name>   <button>0</button>   <x>-72</x>   <y>-13</y>   <w>6</w>   <h>8</h>            <condition>     <and>          <equals>      <property>/controls/autoflight/display-mach</property>      <value type="bool">false</value>     </equals>    <equals>      <property>/controls/autoflight/autothrottle-engage</property>      <value type="bool">true</value>     </equals>     </and>             </condition>      <binding>    <command>property-assign</command>    <property>/controls/autoflight/display-mach</property>    <value type="bool">true</value>   </binding>  <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string">mach-with-throttle</value>   </binding>  </action>-->
+   
+ <!-- <action>   <name>changeover to airspeed</name>   <button>0</button>   <x>-72</x>   <y>-5</y>   <w>6</w>   <h>8</h>    <condition>     <and>          <equals>      <property>/controls/autoflight/display-mach</property>      <value type="bool">true</value>     </equals>    <equals>      <property>/controls/autoflight/autothrottle-engage</property>      <value type="bool">true</value>     </equals>     </and>             </condition>        <binding>    <command>property-assign</command>    <property>/controls/autoflight/display-mach</property>    <value type="bool">false</value>   </binding>    <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string">speed-with-throttle</value>   </binding>     </action>-->
+    
+  <action>   <name>level change engage</name>   <button>0</button>   <x>-45</x>   <y>-110</y>   <w>10</w>   <h>15</h>        <condition>    <and>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">off</value>     </equals>     <equals>      <property>/controls/autoflight/autothrottle-engage</property>      <value type="bool">false</value>     </equals>     </and>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string">speed-with-pitch</value>   </binding>  </action>
+   
+  <action>   <name>level change disengage</name>   <button>0</button>   <x>-45</x>   <y>-110</y>   <w>10</w>   <h>15</h>        <condition>     <equals>      <property>/autopilot/locks/speed</property>      <value type="string">speed-with-pitch</value>     </equals>   </condition>       <binding>    <command>property-assign</command>    <property>/autopilot/locks/speed</property>    <value type="string">off</value>   </binding>       <binding>    <command>property-assign</command>    <property>/controls/autoflight/autothrottle-engage</property>    <value type="bool">false</value>   </binding>  </action>
+   
+  <!-- end of switching for autopilot panel -->   
+ </actions> 
+</instrument>
+
+</instruments>
+
+</PropertyList>

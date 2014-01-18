@@ -1,0 +1,175 @@
+<PropertyList>
+
+ <name>777-200 Throttle Panel</name>
+ <background>Aircraft/777-200/Panels/transparent-bg.rgb</background>
+ <w>256</w>
+ <h>512</h>
+
+<instruments>
+
+<instrument>
+  <name>panel hotspots</name>
+  <x>128</x>
+  <y>256</y>
+  <w>256</w>
+  <h>512</h>
+  <w-base>256</w-base>
+  <h-base>512</h-base>
+
+ <actions> 
+
+   <!--             Throttles              -->
+   <action>
+     <name>Increase LH throttle</name>
+     <button>0</button>
+     <x>0</x>
+     <y>105</y>
+     <w>25</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <step>.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <action>
+     <name>Increase RH throttle</name>
+     <button>0</button>
+     <x>25</x>
+     <y>105</y>
+     <w>25</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[1]/throttle</property>
+       <step>.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+x     </binding>
+   </action>
+   
+   <action>
+     <name>Increase both throttles</name>
+     <button>0</button>
+     <x>0</x>
+     <y>125</y>
+     <w>50</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <step>.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[1]/throttle</property>
+       <step>.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   
+   <action>
+     <name>reduce LH throttle</name>
+     <button>0</button>
+     <x>0</x>
+     <y>70</y>
+     <w>25</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <step>-0.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <action>
+     <name>reduce RH throttle</name>
+     <button>0</button>
+     <x>25</x>
+     <y>70</y>
+     <w>25</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[1]/throttle</property>
+       <step>-0.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <action>
+     <name>reduce both throttles</name>
+     <button>0</button>
+     <x>0</x>
+     <y>50</y>
+     <w>50</w>
+     <h>20</h>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <step>-0.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine[1]/throttle</property>
+       <step>-0.05</step>
+       <min>0</min>
+       <max>1</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+
+   <action>
+     <name>step flap down</name>
+     <button>0</button>
+     <x>70</x>
+     <y>45</y>
+     <w>20</w>
+     <h>20</h>
+     <binding>
+       <command>nasal</command>
+       <script>controls.flapsDown(1)</script>
+     </binding>
+   </action>
+
+   <action>
+     <name>step flap up</name>
+     <button>0</button>
+     <x>70</x>
+     <y>125</y>
+     <w>20</w>
+     <h>20</h>
+     <binding>
+       <command>nasal</command>
+       <script>controls.flapsDown(-1)</script>
+     </binding>
+   </action>
+
+
+
+</actions>
+
+</instrument>
+
+</instruments>
+
+</PropertyList>

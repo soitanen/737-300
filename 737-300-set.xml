@@ -1,0 +1,1473 @@
+<PropertyList>
+  <sim>
+    <description>Boeing 737-300</description>
+    <author>Original by David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d) - Current Version by e-pilot, Skyop</author>
+    <status>Heavy Development</status>
+    <rating>
+       <FDM type="int">4</FDM>
+       <systems type="int">3</systems>
+       <cockpit type="int">3</cockpit>
+       <model type="int">3</model>
+    </rating>
+    
+    <flight-model>jsb</flight-model>
+    <aero>737-300</aero>
+
+<!--    <submodels>
+      <servicable type="bool">true</servicable>
+      <path type="string">Aircraft/737-300/b737-submodels.xml</path>
+    </submodels>  -->
+
+    <allow-toggle-cockpit >true</allow-toggle-cockpit>
+    <chase-distance-m>-40</chase-distance-m>
+    <co-pilot type="bool">true</co-pilot>
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+		
+		
+    <panel>
+      <path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
+      <visibility>false</visibility>
+    </panel>
+
+    <instrumentation>
+        <path>Aircraft/737-300/Systems/instrumentation.xml</path>
+    </instrumentation>
+
+    <model>
+      <path>Aircraft/737-300/Models/737-300.xml</path>
+      <pushback>
+        <kp type="double">1000</kp>
+        <kd type="double">0</kd>
+				<ki type="double">0</ki>
+        <position-norm type="double">0</position-norm>
+      </pushback>
+
+      <livery>
+        <file type="string"></file>
+      </livery>
+
+      <Boeing-737-300>
+        <removalkit>false</removalkit>
+        <eyebrowwindow>true</eyebrowwindow>
+      </Boeing-737-300>
+
+      <yokes type="bool">1</yokes>
+      
+      <door>
+      	<position-x-m type="float">5.08373</position-x-m>
+      	<position-y-m type="float">-1.6024</position-y-m>
+      	<position-z-m type="float">0.11167</position-z-m>
+      	<jetway-hood-deg type="float">5</jetway-hood-deg>
+      </door>
+    </model>
+
+   <startup>
+		<splash-texture>Aircraft/737-300/737-300.png</splash-texture>
+   </startup>
+		
+    <view>
+      <internal archive="y">true</internal>
+      <config>
+        <!-- x/y/z == right/up/back -->
+        <x-offset-m archive="y">-0.470</x-offset-m>
+        <y-offset-m archive="y">1.23</y-offset-m>
+        <z-offset-m archive="y">2.83</z-offset-m>
+
+        <pitch-offset-deg archive="y">-11.0</pitch-offset-deg>
+        <default-field-of-view-deg type="double">65.0</default-field-of-view-deg>
+        <dynamic>
+          <enabled type="bool" userarchive="y">false</enabled>
+        </dynamic>
+      </config>
+    </view>
+
+    <view n="1">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="2">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="3">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="4">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="5">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="6">
+      <config>
+        <target-z-offset-m archive="y" type="double">16.859</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="101">
+      <name>Left Wing View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+        <heading-offset-deg>160</heading-offset-deg>
+        <x-offset-m archive="y" type="double">-2.16</x-offset-m>
+        <y-offset-m archive="y" type="double">1.27</y-offset-m>
+        <z-offset-m archive="y" type="double">5.88</z-offset-m>
+      </config>
+    </view>
+
+    <view n="102">
+      <name>Right Wing View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+        <heading-offset-deg>-160</heading-offset-deg>
+        <x-offset-m archive="y" type="double">2.16</x-offset-m>
+        <y-offset-m archive="y" type="double">1.27</y-offset-m>
+        <z-offset-m archive="y" type="double">5.88</z-offset-m>
+      </config>
+    </view>
+
+    <view n="103">
+      <name>Passenger View Front</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-10</pitch-offset-deg>
+        <heading-offset-deg>0</heading-offset-deg>
+        <x-offset-m archive="y" type="double">0</x-offset-m>
+        <y-offset-m archive="y" type="double">1.4</y-offset-m>
+        <z-offset-m archive="y" type="double">6.00</z-offset-m>
+      </config>
+    </view>
+
+    <view n="104">
+      <name>Passenger View Middle</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-10</pitch-offset-deg>
+        <heading-offset-deg>0</heading-offset-deg>
+        <x-offset-m archive="y" type="double">0</x-offset-m>
+        <y-offset-m archive="y" type="double">1.4</y-offset-m>
+        <z-offset-m archive="y" type="double">11.50</z-offset-m>
+      </config>
+    </view>
+
+    <view n="105">
+      <name>Passenger View Rear</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">50</default-field-of-view-deg>
+        <pitch-offset-deg>-10</pitch-offset-deg>
+        <heading-offset-deg>0</heading-offset-deg>
+        <x-offset-m archive="y" type="double">0</x-offset-m>
+        <y-offset-m archive="y" type="double">1.4</y-offset-m>
+        <z-offset-m archive="y" type="double">26.50</z-offset-m>
+      </config>
+    </view>
+		
+    <view n="106">
+      <name>Co-Pilot View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+				<heading-offset-deg>10</heading-offset-deg>
+        <x-offset-m archive="y">0.470</x-offset-m>
+        <y-offset-m archive="y">1.2</y-offset-m>
+        <z-offset-m archive="y">2.83</z-offset-m>
+      </config>
+    </view>
+		
+    <view n="107">
+      <name>Center Cockpit View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+        <pitch-offset-deg>-15</pitch-offset-deg>
+				<heading-offset-deg>0</heading-offset-deg>
+        <x-offset-m archive="y">0.0</x-offset-m>
+        <y-offset-m archive="y">1.2</y-offset-m>
+        <z-offset-m archive="y">2.83</z-offset-m>
+      </config>
+    </view>
+
+    <view n="108">
+      <name>CDU View</name>
+      <type>lookfrom</type>
+      <internal archive="y">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+        <pitch-offset-deg>-67</pitch-offset-deg>
+				<heading-offset-deg>0</heading-offset-deg>
+        <x-offset-m archive="y">-0.15</x-offset-m>
+        <y-offset-m archive="y">1.25</y-offset-m>
+        <z-offset-m archive="y">2.4</z-offset-m>
+      </config>
+    </view>
+
+    <flaps>
+      <setting>0.000</setting>
+      <!-- flaps up -->
+      <setting>0.125</setting>
+      <!-- flaps 1  -->
+      <setting>0.250</setting>
+      <!-- flaps 2  -->
+      <setting>0.375</setting>
+      <!-- flaps 5  -->
+      <setting>0.500</setting>
+      <!-- flaps 10 -->
+      <setting>0.625</setting>
+      <!-- flaps 15 -->
+      <setting>0.750</setting>
+      <!-- flaps 25 -->
+      <setting>0.875</setting>
+      <!-- flaps 30 -->
+      <setting>1.000</setting>
+      <!-- flaps 40 -->
+    </flaps>
+
+
+
+
+    <!--<ai>
+			<submodels>
+				<contrails type="bool">true</contrails>
+			</submodels>
+		</ai>-->
+
+    <multiplay>
+      <generic>
+        <string n="0"/>
+        <int n="0"
+						 alias="/gear/gear[0]/tyre-smoke"/>
+        <int n="1"
+						 alias="/gear/gear[1]/tyre-smoke"/>
+        <int n="2"
+						 alias="/gear/gear[2]/tyre-smoke"/>
+      </generic>
+    </multiplay>
+
+    <systems>
+      <electrical>
+        <path>Aircraft/Generic/generic-electrical.xml</path>
+      </electrical>
+      <autopilot>
+        <path>Aircraft/737-300/Systems/737-autopilot.xml</path>
+      </autopilot>
+      <path>Aircraft/737-300/Systems/systems.xml</path>
+    </systems>
+
+    <sound>
+      <path>Aircraft/737-300/Sounds/737-sound.xml</path>
+      <switch type = "bool"></switch>
+    </sound>
+
+    <hud>
+      <enable3d n="1">false</enable3d>
+    </hud>
+
+    <help>
+      <title>Boeing 737-300</title>
+        <text>
+          Keys: 
+          Tab            = Set AutoBrake Level
+          Del            = Thrust Reverse
+          Up/Down    = Control Elevator / Adjust A/P Alt and V/S
+          PgUp/PgDn = Control Throttle / Adjust A/P IAS and Mach
+          Ctrl-P        = Toggle Vertical Speed Hold
+          Ctrl-F11     = AutoPilot Disengage
+
+          Engine Start: 
+          Apply electrical power with APU Gen switches 1 and 2 (overhead)
+          Turn on all fuel pumps (overhead)
+          Click Engine Start Selector knob (forward row of Overhead Panel)
+          Selector will move to GND position - observe engine instruments
+          Wait for N2 to achieve 25% (about 10 seconds)
+          Raise Idle/Cutoff selector lever to IDLE position (small levers behind throttles)
+          Engine Start Selector knob will reset back to off automatically. 
+          Wait for engine to stabilize. Repeat procedure for second engine.
+          Turn off APU Gen 1 and 2
+          
+          Engine Shutdown: Lower throttles to idle. Lower Idle/Cutoff selector lever to
+          CUTOFF position. Turn off fuel pumps. 
+
+          Take off precedure:  flaps  5, power up to 40% N1 till moving, then slowly
+          build up to 94-96% N1. Rotate at VR and hold 15 degrees pitch.
+
+
+            Takeoff  Flaps 5                   Landing      
+            Gross lbs  V1   VR   V2     |  40   30    15
+            -------------------|---------------
+            143000    154  155  160    |  152  153  165
+            132000    147  148  154    |  145  147  158
+            121000    140  141  148    |  138  141  151
+            110000    133  133  141    |  131  134  144
+              99000    123  133  133    |  123  127  136
+              88000    114  114  126    |  115  119  128
+              77000    104  104  117    |  107  111  119
+
+            Maximum Flap Operating Speeds
+              1 = 230 kts     |    15 = 195 kts 
+              2 = 230 kts     |    25 = 190 kts
+              5 = 225 kts     |    30 = 185 kts
+            10 = 210 kts     |    40 = 158 kts
+
+           Landing Gear Limits - Extend 270kts / 0.82M - Retract 235kts
+       </text>
+    </help>
+
+    <menubar>
+      <default>
+        <menu n="10">
+          <label>Boeing 737-300</label>
+          <enabled type="bool">true</enabled>
+          <item>
+           <label>Autostart</label>
+             <binding>
+                <command>nasal</command>
+						    <script>Boeing733.autostart()</script>
+             </binding>
+          </item>
+					<item>
+           <label>Shutdown</label>
+             <binding>
+                <command>nasal</command>
+						    <script>Boeing733.shutdown()</script>
+             </binding>
+          </item>
+					<item>
+            <label>Pushback</label>
+            <name>pushback</name>
+            <binding>
+              <command>dialog-show</command>
+              <dialog-name>pushback</dialog-name>
+            </binding>
+          </item>
+					<item>
+					<label>Yokes On/Off</label>
+					  <binding>						  
+						  <command>nasal</command>
+							  <script>
+								  setprop("/sim/model/yokes", abs(getprop("sim/model/yokes") - 1));
+									if (getprop("/sim/model/yokes")) { 
+									  var yokestatus = "VISIBLE";
+									  } else {
+									  var yokestatus = "INVSIBLE";
+						  		} 
+									setprop ("/sim/messages/copilot", "Yokes " ~ yokestatus);
+							  </script>
+					  </binding>
+				  </item>
+
+					<item>
+					<label>Co-Pilot On/Off</label>
+						<binding>
+						  <command>nasal</command>
+							  <script>
+								  setprop("/sim/co-pilot", abs(getprop("sim/co-pilot") - 1));
+									if (getprop("/sim/co-pilot")) { 
+									  var cpstatus = "ON";
+									  } else {
+									  var cpstatus = "OFF";
+							 		} 
+									setprop ("/sim/messages/copilot", "Co-Pilot " ~ cpstatus);
+							  </script>
+            </binding>
+				  </item>
+          <item>
+            <label>Select Livery</label>
+            <binding>
+              <command>nasal</command>
+              <script>aircraft.livery.dialog.open()</script>
+            </binding>
+          </item>
+					<item>
+		        <label>Lights</label>
+		          <binding>
+		            <command>nasal</command>
+		            <script>
+		              var dlg = gui.Dialog.new("/sim/gui/dialogs/lights-config/dialog", "Aircraft/737-300/Dialogs/lights-dialog.xml");
+		            </script>
+		         </binding>
+		         <binding>
+		           <command>dialog-show</command>
+		           <dialog-name>lightcontrol</dialog-name>
+		         </binding>
+	        </item>
+			    <item>
+            <label>Ground Ops</label>
+             <binding>
+               <command>nasal</command>
+                 <script>
+	               var mal = gui.Dialog.new("/sim/gui/dialogs/ground-ops-config/dialog", "Aircraft/737-300/Dialogs/ground-ops-dialog.xml");
+                 mal.open();
+                 </script>
+             </binding>
+          </item>
+					<item>
+	   			  <label>Doors</label>
+	   				<binding>
+	   				  <command>nasal</command>
+	   					 <script>
+	   					   var ddlg = gui.Dialog.new("/sim/gui/dialogs/doors-config/dialog", "Aircraft/737-300/Dialogs/doors-dialog.xml");
+	   						 ddlg.open();
+	   					</script>
+	   				</binding>
+	  			</item>
+        </menu>
+      </default>
+    </menubar>
+
+  </sim>
+
+  <autopilot>
+    <settings>
+	    <vertical-speed-fpm type="double">2000</vertical-speed-fpm>
+		  <target-altitude-ft type="double">32000</target-altitude-ft>
+		  <target-speed-kt type="double">230</target-speed-kt>
+		  <target-speed-mach type="double">.65</target-speed-mach>       
+      <heading-bug-deg type="double">0</heading-bug-deg>
+      <true-heading-deg type="double">0</true-heading-deg>
+	  </settings>
+
+    <internal>
+      <CMDA type="bool">false</CMDA>
+      <CMDB type="bool">false</CMDB>
+      <ATArm type="bool">false</ATArm>
+      <IAS-SEL type="bool">true</IAS-SEL>
+      <LNAV type="bool">true</LNAV>
+      <LNAV-LVL type="bool">true</LNAV-LVL>
+      <LNAV-NAV1 type="bool">false</LNAV-NAV1>
+      <LNAV-NAV2 type="bool">false</LNAV-NAV2>
+      <LNAV-HDG type="bool">false</LNAV-HDG>
+      <LNAV-FMS type="bool">false></LNAV-FMS>
+
+      <VNAV type="bool">false</VNAV>
+      <VNAV-VS type="bool">true</VNAV-VS>
+      <VNAV-ALT type="bool">false</VNAV-ALT>
+      <VNAV-GS type="bool">false</VNAV-GS>
+            
+      <SPD type="bool">false</SPD>
+      <SPD-SPEED type="bool">false</SPD-SPEED>
+      <SPD-N1 type="bool">false</SPD-N1>
+      <SPD-LVLCHG type="bool">false</SPD-LVLCHG>
+      <SPD-IAS type="bool">true</SPD-IAS>
+      <SPD-MACH type="bool">false</SPD-MACH>
+    </internal>
+
+  </autopilot>
+
+  
+  <limits>
+	  <max-flap-extension-speed>
+		  <speed>230</speed>
+			<flaps>0.125</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>230</speed>
+			<flaps>0.250</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>225</speed>
+			<flaps>0.375</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>210</speed>
+			<flaps>0.500</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>195</speed>
+			<flaps>0.625</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>190</speed>
+			<flaps>0.750</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>185</speed>
+			<flaps>0.875</flaps>
+		</max-flap-extension-speed>	
+	  <max-flap-extension-speed>				
+		  <speed>158</speed>
+			<flaps>1.000</flaps>
+		</max-flap-extension-speed>	
+		
+		<max-gear-extension-speed>270</max-gear-extension-speed>		
+		<vne>350</vne>
+		<max-positive-g>2.5</max-positive-g>
+		<max-negative-g>-1</max-negative-g>
+		<max-altitude>37000</max-altitude>
+	</limits>
+
+  <consumables>
+    <fuel>
+      <tank n="0">
+        <level-gal_us archive="y">1000</level-gal_us>
+      </tank>
+      <tank n="1">
+        <level-gal_us archive="y">1000</level-gal_us>
+      </tank>
+      <tank n="2">
+        <level-gal_us archive="y">1667</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
+
+<engines>
+    <engine n="0">
+      <running>0</running>
+      <reverser-pos-norm>0</reverser-pos-norm>
+    </engine>
+    <engine n="1">
+      <running>0</running>
+      <reverser-pos-norm>0</reverser-pos-norm>
+    </engine>
+  </engines>
+
+  <input>
+    <keyboard>
+
+ <key n="1">
+  <name>Ctrl-A</name>
+  <desc>Toggle autopilot altitude lock</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+
+  <key n="7">
+  <name>Ctrl-G</name>
+  <desc>Toggle autopilot glide slope lock</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+
+ <key n="8">
+  <name>Ctrl-H</name>
+  <desc>Toggle autopilot heading lock</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+ 
+ <key n="14">
+  <name>Ctrl-N</name>
+  <desc>Toggle autopilot nav1 lock</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+
+ <key n="16">
+  <name>Ctrl-P</name>
+  <desc>Toggle VS hold</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+
+  <key n="19">
+  <name>Ctrl-S</name>
+  <desc>Toggle SPEED Button</desc>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-SPEED</property>
+   </binding>
+ </key>
+
+ <key n="23">
+  <name>Ctrl-W</name>
+  <desc>Toggle autopilot wing leveler</desc>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+     <value type="bool">0</value>
+   </binding>
+ </key>
+
+
+		  <key n="267">
+        <name>F11</name>
+        <desc>Pop Autopilot Dialog</desc>
+        <binding>
+           <command>nasal</command>
+           <script>dialogs.ap_settings.toggle()</script>
+        </binding>
+				<mod-ctrl>
+        <desc>Disengage AutoPilot</desc>
+        <binding>
+          <command>nasal</command>
+    				<script>
+		    		  setprop("/autopilot/internal/CMDA", 0);
+				    	setprop("/autopilot/internal/CMDA", 0);
+              if (getprop("sim/co-pilot")) {
+  							setprop ("/sim/messages/copilot", "AutoPilot DISENGAGED");
+              }
+			    	</script>
+        </binding>
+        </mod-ctrl>
+      </key>
+			
+ <key n="268">
+  <name>F12</name>
+  <desc>Pop radio stack</desc>
+  <binding>
+   <command>nasal</command>
+           <script>dialogs.radio.toggle()</script>
+  </binding>
+ </key>		
+			
+      <key n="127">
+        <name>Delete</name>
+        <desc>Toggle Reversers</desc>
+        <binding>
+          <command>nasal</command>
+          <script>reversethrust.togglereverser()</script>
+        </binding>
+      </key>
+
+      <key n="9">
+        <name>Tab</name>
+        <desc>switch autobrake</desc>
+        <binding>
+        	<command>property-cycle</command>
+        	<property>/controls/gear/autobrakes</property>
+        	<value>0</value>
+        	<value>1</value>
+        	<value>2</value>
+        	<value>3</value>
+        	<value>4</value>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>
+          	var setting = getprop ("/controls/gear/autobrakes");
+		        var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO (disused)"];
+						if (getprop("sim/co-pilot")) {
+		          setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
+            }
+	        </script>
+        </binding>
+      </key>
+			
+			<key n="50">
+        <name>2</name>
+        <desc>Elevator up / increase autopilot altitude</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            customkeys.incElevator(-0.05, 100)
+          </script>
+        </binding>
+        <mod-shift>
+        <desc>Look back</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/back-direction-deg</property>
+        </binding>
+        </mod-shift>
+      </key>
+
+      <key n="359">
+        <name>Down</name>
+        <desc>Elevator up or increase autopilot altitude</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            if (getprop("/sim/freeze/replay-state"))
+              controls.speedup(-1);
+            else
+              customkeys.incElevator(-0.05, 100)
+          </script>
+        </binding>
+        <mod-shift>
+        <desc>Look backwards</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/back-direction-deg</property>
+        </binding>
+        </mod-shift>
+      </key>
+			
+      <key n="56">
+        <name>8</name>
+        <desc>Elevator down or decrease autopilot altitude</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            customkeys.incElevator(0.05, -100)
+          </script>
+        </binding>
+        <mod-shift>
+        <desc>Look forward</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/front-direction-deg</property>
+        </binding>
+        </mod-shift>
+      </key>
+
+      <key n="357">
+        <name>Up</name>
+        <desc>Elevator down or decrease autopilot altitude</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            if (getprop("/sim/freeze/replay-state"))
+              controls.speedup(1);
+            else
+              customkeys.incElevator(0.05, -100)
+          </script>
+        </binding>
+        <mod-shift>
+        <desc>Look forward</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/front-direction-deg</property>
+        </binding>
+        </mod-shift>
+      </key>
+
+			 <key n="57">
+         <name>9</name>
+         <desc>Increase throttle or autopilot autothrottle</desc>
+         <repeatable type="bool">true</repeatable>
+         <binding>
+           <command>nasal</command>
+           <script>
+             customkeys.incThrottle(0.01, 5.0)
+           </script>
+         </binding>
+         <mod-shift>
+         <desc>Look front right</desc>
+         <binding>
+           <command>property-assign</command>
+           <property>/sim/current-view/goal-heading-offset-deg</property>
+           <property>/sim/view/config/front-right-direction-deg</property>
+         </binding>
+         </mod-shift>
+       </key>
+
+			  <key n="360">
+          <name>PageUp</name>
+          <desc>Increase throttle or autopilot autothrottle</desc>
+          <repeatable type="bool">true</repeatable>
+          <binding>
+            <command>nasal</command>
+            <script>
+              customkeys.incThrottle(0.01, 5.0)
+            </script>
+          </binding>
+          <mod-shift>
+          <desc>Look front right</desc>
+          <binding>
+            <command>property-assign</command>
+            <property>/sim/current-view/goal-heading-offset-deg</property>
+            <property>/sim/view/config/front-right-direction-deg</property>
+          </binding>
+          </mod-shift>
+        </key>
+
+        <key n="51">
+          <name>3</name>
+          <desc>Decrease throttle or autopilot autothrottle</desc>
+          <repeatable type="bool">true</repeatable>
+          <binding>
+            <command>nasal</command>
+            <script>
+              customkeys.incThrottle(-0.01, -5.0)
+            </script>
+          </binding>
+          <mod-shift>
+          <desc>Look back right</desc>
+          <binding>
+            <command>property-assign</command>
+            <property>/sim/current-view/goal-heading-offset-deg</property>
+            <property>/sim/view/config/back-right-direction-deg</property>
+          </binding>
+          </mod-shift>
+        </key>
+
+        <key n="361">
+          <name>PageDown</name>
+          <desc>Decrease throttle or autopilot autothrottle</desc>
+          <repeatable type="bool">true</repeatable>
+          <binding>
+            <command>nasal</command>
+            <script>
+              customkeys.incThrottle(-0.01, -5.0)
+            </script>
+          </binding>
+          <mod-shift>
+          <desc>Look back right</desc>
+          <binding>
+            <command>property-assign</command>
+            <property>/sim/current-view/goal-heading-offset-deg</property>
+            <property>/sim/view/config/back-right-direction-deg</property>
+          </binding>
+          </mod-shift>
+        </key>
+				 <key n="54">
+  			   <name>6</name>
+  				 <desc>Move aileron right (or adjust AP heading.)</desc>
+  				 <repeatable type="bool">true</repeatable>
+  				 <binding>
+   				 	 <command>nasal</command>
+   					 <script>
+     				   customkeys.incAileron(0.05, 1.0)
+   					</script>
+  					</binding>
+  					<mod-shift>
+   					<desc>Look right</desc>
+   					<binding>
+    				  <command>property-assign</command>
+    				  <property>/sim/current-view/goal-heading-offset-deg</property>
+    				  <property>/sim/view/config/right-direction-deg</property>
+   					</binding>
+  				</mod-shift>
+ 				</key>
+				
+			   <key n="358">
+  			   <name>Right</name>
+  				 <desc>Move aileron right (or adjust AP heading.)</desc>
+  				 <repeatable type="bool">true</repeatable>
+  				 <binding>
+   				   <command>nasal</command>
+   					 <script>
+     				   if (getprop("/sim/freeze/replay-state"))
+       				   controls.replaySkip(5);
+     					 else
+       			     customkeys.incAileron(0.05, 1.0)
+   					 </script>
+   					 <step type="double">0.05</step>
+  				 </binding>
+  				 <mod-shift>
+   				 <desc>Look right</desc>
+   				 <binding>
+    			   <command>property-assign</command>
+    				 <property>/sim/current-view/goal-heading-offset-deg</property>
+    				 <property>/sim/view/config/right-direction-deg</property>
+   				 </binding>
+  				 </mod-shift>
+ 				 </key>
+				 
+				 
+				 <key n="52">
+           <name>4</name>
+        	 <desc>Move aileron left (or adjust AP heading.)</desc>
+  				 <repeatable type="bool">true</repeatable>
+  				 <binding>
+   				   <command>nasal</command>
+   					 <script>
+     			     customkeys.incAileron(-0.05, -1.0)
+   				   </script>
+  				 </binding>
+  				 <mod-shift>
+   				 <desc>Look left</desc>
+   				 <binding>
+    		     <command>property-assign</command>
+    				 <property>/sim/current-view/goal-heading-offset-deg</property>
+    				 <property>/sim/view/config/left-direction-deg</property>
+   				 </binding>
+  			 </mod-shift>
+ 			 </key>
+
+			 <key n="356">
+  		   <name>Left</name>
+  		   <desc>Move aileron left (or adjust AP heading)</desc>
+  		   <repeatable type="bool">true</repeatable>
+  		   <binding>
+   		     <command>nasal</command>
+   			   <script>
+     		     if (getprop("/sim/freeze/replay-state"))
+       		     controls.replaySkip(-5);
+     			   else
+       		 	   customkeys.incAileron(-0.05, -1.0)
+   			   </script>
+  		   </binding>
+  		   <mod-shift>
+   		   <desc>Look left</desc>
+   		   <binding>
+    	     <command>property-assign</command>
+    		   <property>/sim/current-view/goal-heading-offset-deg</property>
+    		   <property>/sim/view/config/left-direction-deg</property>
+   		   </binding>
+  		   </mod-shift>
+ 		   </key>
+
+			
+ 			<key n="53">
+  		<name>5</name>
+  		<desc>Center aileron, elevator, and rudder</desc>
+  		<binding>
+   			<command>nasal</command>
+   			<script>controls.centerFlightControls()</script>
+  		</binding>
+ 			</key>
+
+			<key n="309">
+  		<name>Keypad 5</name>
+  		<desc>Center aileron, elevator, and rudder</desc>
+  		<binding>
+ 			  <command>nasal</command>
+   		  <script>controls.centerFlightControls()</script>
+			</binding>
+ 			</key>
+
+      <key n="66">
+       <name>B</name>
+       <desc>Toggle parking brake on / off</desc>
+       <binding>
+        <command>nasal</command>
+        <script>customkeys.applyParkingBrake(1)</script>
+        </binding>
+       <mod-up>
+        <binding>
+         <command>nasal</command>
+         <script>customkeys.applyParkingBrake(0)</script>
+        </binding>
+       </mod-up>
+      </key>
+
+
+			<!-- map keys for seat vertical adjust -->
+			<key n="21">
+				<name>CTRL-U</name>
+				<desc>Seat Default</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/seat/vertical-adjust</property>
+					<value type="double">0</value>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-assign</command>
+					<property>sim/current-view/y-offset-m</property>
+					<value type="double">1.23</value>
+				</binding>
+			</key>
+			<key n="85">
+				<name>U</name>
+				<desc>Seat Down.</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>/controls/seat/vertical-adjust</property>
+					<step type="double">-0.01</step>
+					<min type="double">-0.05</min>
+					<max type="double">0.05</max>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-adjust</command>
+					<property>sim/current-view/y-offset-m</property>
+					<step type="double">-0.01</step>
+					<min type="double">1.18</min>
+					<max type="double">1.28</max>
+				</binding>
+			</key>
+			<key n="117">
+				<name>u</name>
+				<desc>Seat Up.</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>controls/seat/vertical-adjust</property>
+					<step type="double">0.01</step>
+					<min type="double">-0.05</min>
+					<max type="double">0.05</max>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-adjust</command>
+					<property>sim/current-view/y-offset-m</property>
+					<step type="double">0.01</step>
+					<min type="double">1.18</min>
+					<max type="double">1.28</max>
+				</binding>
+			</key>
+			
+    </keyboard>
+  </input>
+
+	
+  <controls>
+  
+    <electric>
+      <battery-switch type="bool">false</battery-switch>
+      <bus-tran-switch type="bool">true</bus-tran-switch>
+    </electric>
+    
+    <gear>
+      <brake-parking type="bool">1</brake-parking>
+      <autobrakes type="int">5</autobrakes>
+      <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
+    </gear>
+    <flight>
+      <autospeedbrakes-armed type="bool">1</autospeedbrakes-armed>
+    </flight>
+
+    <switches>
+			<seatbelt-sign type="bool">1</seatbelt-sign>
+    </switches>
+
+		<lighting>
+		    <instruments-norm type="double">1</instruments-norm>
+	      <beacon type="bool">1</beacon>
+        <strobe type="bool">1</strobe>
+				<landing-lights type="bool">0</landing-lights>
+        <nav-lights type="bool">1</nav-lights>
+		</lighting>
+
+		<engines>
+		  <autostart type="int">1</autostart>
+		</engines>
+  </controls>
+
+  <gear>
+    <gear n="0">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+      <caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
+    </gear>
+    <gear n="1">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+    </gear>
+    <gear n="2">
+      <tyre-smoke type="int">0</tyre-smoke>
+      <sprayspeed-ms type="double">0</sprayspeed-ms>
+      <spray-density type="double">0</spray-density>
+    </gear>
+  </gear>
+
+  <instrumentation>
+
+    <adf>
+      <volume-norm type="double">0.0</volume-norm>
+    </adf>
+  
+    <adf n="1">
+      <volume-norm type="double">0.0</volume-norm>
+    </adf>
+
+    <comm>
+      <volume type="double">0.7</volume>
+    </comm>
+  
+    <comm n="1">
+      <volume type="double">0.7</volume>
+    </comm>
+
+    <nav>
+      <volume type="double">0.0</volume>
+    </nav>
+  
+    <nav n="1">
+      <volume type="double">0.0</volume>
+    </nav>
+
+    <dme>
+       <frequencies>
+         <source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
+       </frequencies>
+       <serviceable type="bool">true</serviceable>
+    </dme>
+
+    <dme n="1">
+       <frequencies>
+         <source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
+       </frequencies>
+       <serviceable type="bool">true</serviceable>
+    </dme>
+
+		<nav-compass>
+      <nav-display type="int">0</nav-display>
+      <nav-display n="1" type="int">0</nav-display>
+		</nav-compass>
+      
+
+    <flightdirector>
+      <fd-on>1</fd-on>
+    </flightdirector>
+
+		<transponder>
+		<id-code>1200</id-code>
+		</transponder>
+
+    <airspeed-indicator>
+    <speed-bug-pushed type="bool">true</speed-bug-pushed>
+    <speed-bug type="int">182</speed-bug>
+    </airspeed-indicator>		
+
+ <mk-viii>                         <!-- http://wiki.flightgear.org/index.php/GPWS -->
+
+  <serviceable>true</serviceable>  <!-- EGPWS_ENABLE -->
+
+  <configuration-module>
+   <category-1>  255 </category-1>  <!-- AIRCRAFT_MODE_TYPE_SELECT -->
+   <category-3>   2 </category-3>  <!-- POSITION_INPUT_SELECT -->
+   <category-4>  13 </category-4>  <!-- ALTITUDE_CALLOUTS -->
+   <category-5>   0 </category-5>  <!-- AUDIO_MENU_SELECT -->
+   <category-6>   1 </category-6>  <!-- TERRAIN_DISPLAY_SELECT -->
+   <category-7> 124 </category-7>  <!-- OPTIONS_SELECT_GROUP_1 -->
+   <category-8>   2 </category-8>  <!-- RADIO_ALTITUDE_INPUT_SELECT -->
+   <category-9>   3 </category-9>  <!-- NAVIGATION_INPUT_SELECT -->
+   <category-10>  6 </category-10> <!-- ATTITUDE_INPUT_SELECT -->
+   <category-13>  7 </category-13> <!-- INPUT_OUTPUT_DISCRETE_TYPE_SELECT -->
+   <category-14>  0 </category-14> <!-- AUDIO_OUTPUT_LEVEL -->
+  </configuration-module>
+
+  <inputs>                         <!-- Module I/O -->
+   <arinc429>
+    <decision-height-ncd> true </decision-height-ncd>
+    <decision-height> 200 </decision-height>
+   </arinc429>
+  </inputs>
+
+  <speaker>                        <!-- Speaker Configuration -->
+   <max-dist> 2 </max-dist>        <!-- Max. distance where speaker is heard -->
+   <reference-dist> 1 </reference-dist> <!-- Distance to pilot -->
+   <volume> 0.8 </volume>          <!-- Volume at reference distance -->
+  </speaker>
+ </mk-viii>
+
+    <wxradar>
+      <serviceable>true</serviceable>
+      <range type="int" archive="y">40</range>
+      <minimized type="bool" archive="y">false</minimized>
+      <switch archive="y">on</switch>
+      <mode archive="y">wx</mode>
+      <lightning type="bool" archive="y">false</lightning>
+      <display-mode archive="y">arc</display-mode>
+    </wxradar>
+
+    <radar>
+      <range type="int" archive="y">40</range>
+    </radar>
+
+    <turn-indicator>
+      <serviceable type="bool">true</serviceable>
+      <spin type="double">1</spin>
+    </turn-indicator>
+
+<!--    <vor-adf>
+		    <vor1-select type="double">1</vor1-select>
+				<vor2-select type="double">1</vor2-select>
+		    <adf1-select type="double">0</adf1-select>
+				<adf2-select type="double">0</adf2-select>
+		</vor-adf>  -->
+
+		<cdu>
+			<display>IDENT</display>
+			<ident>
+				<model>737-300</model>
+				<engines>CFM56-3C-1</engines>
+			</ident>
+			<input type="string"/>
+			<serviceable type="bool">true</serviceable>
+		</cdu>
+
+  </instrumentation>
+
+  <payload>
+    <weight>
+      <name type="string">Pilot</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">300.0</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Co Pilot</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">300.0</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0a</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4000</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0b</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4800</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0c</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">6800</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0d</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">6000</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cabin Zone 0e</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">3600</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 1</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[7]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">1526</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 2</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[8]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">776</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 3</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[9]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">2263</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 4</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">4674</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 5</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[11]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">414</max-lb>
+    </weight>
+    <weight>
+      <name type="string">Cargo 6</name>
+      <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[12]"/>
+      <min-lb type="double">0.0</min-lb>
+      <max-lb type="double">718</max-lb>
+    </weight>
+  </payload>
+
+
+
+  <nasal>
+    <Boeing733>
+      <file>Aircraft/737-300/Nasal/liveries.nas</file>
+			<file>Aircraft/737-300/Nasal/autostart.nas</file>
+    </Boeing733>
+
+    <reversethrust>
+      <file>Aircraft/737-300/Nasal/reverse-thrust.nas</file>
+    </reversethrust>
+
+    <airground>
+      <file>Aircraft/737-300/Systems/air-ground.nas</file>
+    </airground>
+
+    <sbvalve>
+			<file>Aircraft/737-300/Systems/sbvalve.nas</file>
+		</sbvalve>
+			
+    <tyresmoke>
+      <file>Aircraft/737-300/Nasal/tyresmoke.nas</file>
+    </tyresmoke>
+
+    <dialogs>
+      <file>Aircraft/737-300/Nasal/dialogs.nas</file>
+    </dialogs>
+		
+    <customkeys>
+      <file>Aircraft/737-300/Nasal/customkeys.nas</file>
+    </customkeys>
+
+    <copilot>
+      <file>Aircraft/737-300/Nasal/copilot-vs.nas</file>
+      <file>Aircraft/737-300/Nasal/copilot-gear.nas</file>
+			<file>Aircraft/737-300/Nasal/copilot-flaps.nas</file>
+    </copilot>
+
+    <limits>
+      <file>Aircraft/737-300/Nasal/limits.nas</file>
+    </limits>
+
+	  <doors>
+	    <file>Aircraft/737-300/Nasal/doors.nas</file>
+    </doors>
+
+	  <lights>
+	    <file>Aircraft/737-300/Nasal/lights.nas</file>
+    </lights>
+
+		<cdu>
+			<file>Aircraft/737-300/Models/Flightdeck/Instruments/CDU/cdu.nas</file>
+		</cdu>
+		
+  </nasal>
+
+</PropertyList>

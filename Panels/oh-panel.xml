@@ -1,0 +1,261 @@
+<PropertyList>
+
+ <name>777-200 Overhead Panel</name>
+ <background>Aircraft/777-200/Panels/transparent-bg.rgb</background>
+ <w>256</w>
+ <h>512</h>
+
+<instruments>
+
+<instrument>
+  <name>panel hotspots</name>
+  <x>128</x>
+  <y>256</y>
+  <w>256</w>
+  <h>512</h>
+  <w-base>256</w-base>
+  <h-base>512</h-base>
+
+ <actions> 
+
+  
+<!-- ********************* Master Switches    *************************  -->
+<!--
+<action>
+  <name>Master Battery Switch</name>
+  <button>0</button>
+  <x>-278</x>
+  <y>-188</y>
+  <w>10</w>
+  <h>10</h>
+  <binding>
+    <command>property-toggle</command>
+    <property>/controls/electric/battery-switch</property>
+    <step>1</step>
+    <min>0</min>
+    <max>1</max>
+    <wrap>true</wrap>
+  </binding>
+</action>
+
+<action>
+  <name>LH Generator Switch</name>
+  <button>0</button>
+  <x>-256</x>
+  <y>-188</y>
+  <w>10</w>
+  <h>10</h>
+  <binding>
+    <command>property-toggle</command>
+    <property>/controls/electric/engine[0]/generator</property>
+    <step>1</step>
+    <min>0</min>
+    <max>1</max>
+    <wrap>true</wrap>
+  </binding>
+</action>
+
+<action>
+  <name>RH Generator Switch</name>
+  <button>0</button>
+  <x>-233</x>
+  <y>-188</y>
+  <w>10</w>
+  <h>10</h>
+  <binding>
+    <command>property-toggle</command>
+    <property>/controls/electric/engine[1]/generator</property>
+    <step>1</step>
+    <min>0</min>
+    <max>1</max>
+    <wrap>true</wrap>
+  </binding>
+</action>
+
+<action>
+  <name>Ext Power Switch</name>
+  <button>0</button>
+  <x>-266</x>
+  <y>-156</y>
+  <w>10</w>
+  <h>10</h>
+  <binding>
+    <command>property-toggle</command>
+    <property>/controls/electric/external-power</property>
+    <step>1</step>
+    <min>0</min>
+    <max>1</max>
+    <wrap>true</wrap>
+  </binding>
+</action>
+
+<action>
+  <name>Avoinics Switch</name>
+  <button>0</button>
+  <x>-280</x>
+  <y>-124</y>
+  <w>10</w>
+  <h>10</h>
+  <binding>
+    <command>property-toggle</command>
+    <property>/controls/switches/master-avionics</property>
+    <step>1</step>
+    <min>0</min>
+    <max>1</max>
+    <wrap>true</wrap>
+  </binding>
+</action>
+
+-->
+
+   <action>
+     <name>Left Landing Light</name>
+     <button>0</button>
+     <x>-45</x>
+     <y>-209</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/landing-light-l</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+   <action>
+     <name>Center Landing Light</name>
+     <button>0</button>
+     <x>-30</x>
+     <y>-219</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/landing-light-c</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+   <action>
+     <name>Right Landing Light</name>
+     <button>0</button>
+     <x>-15</x>
+     <y>-209</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/landing-light-r</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+ 
+
+
+   <action>
+     <name>Beacon</name>
+     <button>0</button>
+     <x>8</x>
+     <y>-142</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/beacon</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+   <action>
+     <name>Nav Lights</name>
+     <button>0</button>
+     <x>16</x>
+     <y>-142</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/nav-lights</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+
+
+   <action>
+     <name>Tail Flood Lights</name>
+     <button>0</button>
+     <x>24</x>
+     <y>-142</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/logo-lights</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+
+   <action>
+     <name>Taxi Lights</name>
+     <button>0</button>
+     <x>27</x>
+     <y>-209</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/taxi-lights</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+   <action>
+     <name>Strobe</name>
+     <button>0</button>
+     <x>38</x>
+     <y>-209</y>
+     <w>8</w>
+     <h>18</h>
+     <binding>
+       <command>property-toggle</command>
+       <property>/controls/switches/strobe</property>
+     </binding>
+     <binding>
+       <command>property-toggle</command>
+	<property>/sim/sound/switch</property>
+     </binding>
+   </action>
+
+
+
+
+
+</actions>
+</instrument>
+</instruments>
+
+</PropertyList>

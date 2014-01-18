@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <animation>
+   <type>select</type>
+  <object-name>Circle</object-name>
+  <object-name>face</object-name>
+  <object-name>Plane</object-name>
+  <object-name>Plane.001</object-name>
+  <object-name>Plane.002</object-name>
+  <object-name>Plane.003</object-name>
+   <condition>
+   <equals>
+    <property>sim/current-view/view-number</property>
+    <value>0</value>
+   </equals>
+  </condition>
+ </animation>
+
+	<path>fuelgauge.ac</path>
+  <animation>
+        <type>rotate</type>
+        <object-name>Plane</object-name>
+</animation>
+
+</PropertyList>
+

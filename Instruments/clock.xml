@@ -1,0 +1,49 @@
+<PropertyList>
+ <name>clock</name>
+ <w-base>64</w-base>
+ <h-base>64</h-base>
+ <layers>
+
+  <layer>
+   <name>background</name>
+   <w>128</w>
+   <h>128</h>
+   <texture>
+    <path>Aircraft/737-300/Instruments/Textures/clock.rgb</path>
+    <x1>0</x1>
+    <y1>0</y1>
+    <x2>1</x2>
+    <y2>1</y2>
+   </texture>
+  </layer>
+
+   <layer>    
+    <name>time</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>text-value</type>
+      <property>/sim/time/gmt-string</property>     
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>-20</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>2</offset>
+     </transformation>
+    </transformations>
+   </layer>
+
+ </layers>
+</PropertyList>

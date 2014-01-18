@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+<path>radio.ac</path>
+
+
+<!-- RADIO STACK -->
+
+ <animation>
+  <type>select</type>
+    <object-name>Com1Swap</object-name>
+    <object-name>Com2Swap</object-name>
+    <object-name>NavActive.01Left</object-name>
+    <object-name>NavActive.01Right</object-name>
+    <object-name>NavActive.1Left</object-name>
+    <object-name>NavActive.1Right</object-name>
+    <object-name>NavActive100Left</object-name>
+    <object-name>NavActive100Right</object-name>
+    <object-name>NavActive10Left</object-name>
+    <object-name>NavActive10Right</object-name>
+    <object-name>NavActive1Left</object-name>
+    <object-name>NavActive1Right</object-name>
+    <object-name>NavStandby.01Left</object-name>
+    <object-name>NavStandby.01Right</object-name>
+    <object-name>NavStandby.1Left</object-name>
+    <object-name>NavStandby.1Right</object-name>
+    <object-name>NavStandby100Left</object-name>
+    <object-name>NavStandby100Right</object-name>
+    <object-name>NavStandby10Left</object-name>
+    <object-name>NavStandby10Right</object-name>
+    <object-name>NavStandby1Left</object-name>
+    <object-name>NavStandby1Right</object-name>
+    <object-name>VHFActive.01Left</object-name>
+    <object-name>VHFActive.01Right</object-name>
+    <object-name>VHFActive.1Left</object-name>
+    <object-name>VHFActive.1Right</object-name>
+    <object-name>VHFActive100Left</object-name>
+    <object-name>VHFActive100Right</object-name>
+    <object-name>VHFActive10Left</object-name>
+    <object-name>VHFActive10Right</object-name>
+    <object-name>VHFActive1Left</object-name>
+    <object-name>VHFActive1Right</object-name>
+    <object-name>VHFStandby.01Left</object-name>
+    <object-name>VHFStandby.01Right</object-name>
+    <object-name>VHFStandby.1Left</object-name>
+    <object-name>VHFStandby.1Right</object-name>
+    <object-name>VHFStandby100Left</object-name>
+    <object-name>VHFStandby100Right</object-name>
+    <object-name>VHFStandby10Left</object-name>
+    <object-name>VHFStandby10Right</object-name>
+    <object-name>VHFStandby1Left</object-name>
+    <object-name>VHFStandby1Right</object-name>
+    <object-name>ADF1Active1000</object-name>
+    <object-name>ADF1Active100</object-name>
+    <object-name>ADF1Active10</object-name>
+    <object-name>ADF1Active1</object-name>
+    <object-name>ADF2Active1000</object-name>
+    <object-name>ADF2Active100</object-name>
+    <object-name>ADF2Active10</object-name>
+    <object-name>ADF2Active1</object-name>
+    <object-name>ADF1Stby1000</object-name>
+    <object-name>ADF1Stby100</object-name>
+    <object-name>ADF1Stby10</object-name>
+    <object-name>ADF1Stby1</object-name>
+    <object-name>ADF2Stby1000</object-name>
+    <object-name>ADF2Stby100</object-name>
+    <object-name>ADF2Stby10</object-name>
+    <object-name>ADF2Stby1</object-name>
+    <object-name>xpdr-1</object-name>
+    <object-name>xpdr-10</object-name>
+    <object-name>xpdr-100</object-name>
+    <object-name>xpdr-1000</object-name>
+    <object-name>Nav1Swap</object-name>
+    <object-name>Nav2Swap</object-name>
+    <object-name>ADF1Swap</object-name>
+    <object-name>ADF2Swap</object-name>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+</animation>
+
+
+<!-- COMM1 ACTIVE -->
+<animation>
+  <type>textranslate</type>
+  <object-name>VHFActive100Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+	<bias>900</bias>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive10Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive1Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive.1Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive.01Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- COMM1 STANDBY -->
+<animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby100Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+	<bias>900</bias>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby10Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby1Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby.1Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby.01Left</object-name>
+  <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- COMM2 ACTIVE -->
+<animation>
+  <type>textranslate</type>
+  <object-name>VHFActive100Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+	<bias>900</bias>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive10Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive1Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive.1Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>VHFActive.01Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- COMM2 STANDBY -->
+<animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby100Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+	<bias>900</bias>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby10Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby1Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby.1Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>VHFStandby.01Right</object-name>
+  <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- NAV1 ACTIVE -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NavActive100Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+  <bias>900</bias>
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive10Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive1Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive.1Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>NavActive.01Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- NAV1 STANDBY -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NavStandby100Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+  <bias>900</bias>
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby10Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby1Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby.1Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby.01Left</object-name>
+  <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- NAV2 ACTIVE -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NavActive100Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+  <bias>900</bias>
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive10Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive1Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavActive.1Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>NavActive.01Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- NAV2 STANDBY -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NavStandby100Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+  <bias>900</bias>
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby10Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby1Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby.1Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>NavStandby.01Right</object-name>
+  <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+	<bias>0.0001</bias>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- ADF1 Active -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF1Active1000</object-name>
+  <property>/instrumentation/adf[0]/frequencies/selected-khz</property>
+
+  <factor>.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF1Active100</object-name>
+  <property>/instrumentation/adf[0]/frequencies/selected-khz</property>
+<!--  <bias>900</bias> -->
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF1Active10</object-name>
+  <property>/instrumentation/adf[0]/frequencies/selected-khz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF1Active1</object-name>
+  <property>/instrumentation/adf[0]/frequencies/selected-khz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- ADF1 Stby -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF1Stby1000</object-name>
+  <property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+
+  <factor>.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF1Stby100</object-name>
+  <property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+<!--  <bias>900</bias> -->
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF1Stby10</object-name>
+  <property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF1Stby1</object-name>
+  <property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- ADF2 Active -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF2Active1000</object-name>
+  <property>/instrumentation/adf[1]/frequencies/selected-khz</property>
+
+  <factor>.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF2Active100</object-name>
+  <property>/instrumentation/adf[1]/frequencies/selected-khz</property>
+<!--  <bias>900</bias> -->
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF2Active10</object-name>
+  <property>/instrumentation/adf[1]/frequencies/selected-khz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF2Active1</object-name>
+  <property>/instrumentation/adf[1]/frequencies/selected-khz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- ADF1 Stby -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF2Stby1000</object-name>
+  <property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+
+  <factor>.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>ADF2Stby100</object-name>
+  <property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+<!--  <bias>900</bias> -->
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF2Stby10</object-name>
+  <property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>ADF2Stby1</object-name>
+  <property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<!-- XPDR -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>xpdr-1000</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+
+  <factor>.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>xpdr-100</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+<!--  <bias>900</bias> -->
+  <factor>.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>xpdr-10</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>xpdr-1</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+  </axis>
+ </animation>
+
+ <!-- Frequency Change Buttons -->
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Com1Swap</object-name> 
+  <action>
+  <name>Comm 1 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+    <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+  </binding>
+ </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Nav1Swap</object-name> 
+  <action>
+  <name>Nav 1 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+    <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+  </binding>
+ </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Com2Swap</object-name> 
+  <action>
+  <name>Comm 2 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+    <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+  </binding>
+ </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Nav2Swap</object-name> 
+  <action>
+  <name>Nav 2 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+    <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+  </binding>
+ </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>ADF1Swap</object-name> 
+  <action>
+  <name>ADF 1 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/adf[0]/frequencies/selected-khz</property>
+    <property>/instrumentation/adf[0]/frequencies/standby-khz</property>
+  </binding>
+ </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>ADF2Swap</object-name> 
+  <action>
+  <name>ADF 2 Swap</name>
+      <repeatable>false</repeatable>
+  <button>0</button>
+  <binding>
+    <command>property-swap</command>
+    <property>/instrumentation/adf[1]/frequencies/selected-khz</property>
+    <property>/instrumentation/adf[1]/frequencies/standby-khz</property>
+  </binding>
+ </action>
+ </animation>
+ 
+</PropertyList>

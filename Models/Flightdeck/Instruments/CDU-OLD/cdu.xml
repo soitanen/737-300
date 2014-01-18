@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<PropertyList>
+
+	<path>cdu.ac</path>
+
+	
+	<animation>
+		<type>material</type>
+		<object-name>Keys</object-name>
+		<emission>
+			<red>0.4</red>
+			<green>0.384</green>
+			<blue>0.171</blue>
+		</emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>Case</object-name>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+		</emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+	</animation>
+  
+  
+	<animation>
+		<type>material</type>
+		<object-name>Display</object-name>
+		<emission>
+			<red>0.4</red>
+			<green>0.384</green>
+			<blue>0.171</blue>
+		</emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+	</animation>
+	
+
+</PropertyList>

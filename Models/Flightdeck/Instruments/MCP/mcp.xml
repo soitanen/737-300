@@ -1,0 +1,2114 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>mcp.ac</path>
+
+
+ <animation>
+   <type>select</type>
+   <object-name>apalt1</object-name>
+   <object-name>apalt2</object-name>
+   <object-name>apalt3</object-name>
+   <object-name>apalt4</object-name>
+   <object-name>apalt5</object-name>
+   <object-name>apcrz1</object-name>
+   <object-name>apcrz2</object-name>
+   <object-name>apcrz3</object-name>
+   <object-name>apcrz1b</object-name>
+   <object-name>apcrz2b</object-name>
+   <object-name>apcrz3b</object-name>
+   <object-name>aphdg1</object-name>
+   <object-name>aphdg2</object-name>
+   <object-name>aphdg3</object-name>
+   <object-name>apspd1</object-name>
+   <object-name>apspd2</object-name>
+   <object-name>apspd3</object-name>
+   <object-name>apvs1</object-name>
+   <object-name>apvs2</object-name>
+   <object-name>apvs3</object-name>
+   <object-name>apvs4</object-name>
+   <object-name>apvs1b</object-name>
+   <object-name>apvs2b</object-name>
+   <object-name>apvs3b</object-name>
+   <object-name>apvs4b</object-name>
+   <object-name>apvs4b</object-name>
+   <object-name>speeddecrease</object-name>
+   <object-name>speedincrease</object-name>
+   <object-name>machdecrease</object-name>
+   <object-name>machincrease</object-name>
+   <object-name>vsup</object-name> 
+   <object-name>vsdown</object-name> 
+   <object-name>ALTdecrease</object-name>
+   <object-name>ALTincrease</object-name>
+   <object-name>NAV1Decrease</object-name>
+   <object-name>NAV1Increase</object-name>
+   <object-name>NAV1Decreaseb</object-name>
+   <object-name>NAV1Increaseb</object-name>
+   <object-name>HDGDecrease</object-name>
+   <object-name>HDGIncrease</object-name>
+   
+   <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+   </condition>
+ </animation>
+
+   <animation>
+    <type>material</type>
+    <object-name>at_cylinder</object-name>
+    <object-name>base</object-name>
+    <object-name>base.001</object-name>
+    <object-name>base.002</object-name>
+    <object-name>base.003</object-name>
+    <object-name>cap-fd</object-name>
+    <object-name>cop-fd</object-name>
+    <object-name>IAS-SEL</object-name>
+    <object-name>crz_cylinder</object-name>
+    <object-name>crz_cylinder1</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>hdg_cylinder</object-name>
+    <object-name>mcppanel</object-name>
+    <object-name>Circle.001</object-name>
+
+    
+
+
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.2 </red>
+      <green> 0.2 </green>
+      <blue>  0.2 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+   <animation>
+    <type>material</type>
+    <object-name>ALTHLD</object-name>
+    <object-name>APP</object-name>
+    <object-name>CMDA</object-name>
+    <object-name>CMDB</object-name>
+    <object-name>CWSA</object-name>
+    <object-name>CWSB</object-name>
+    <object-name>HDGSEL</object-name>
+    <object-name>LNAV</object-name>
+    <object-name>LVLCHG</object-name>
+    <object-name>N1</object-name>
+    <object-name>SPEED</object-name>
+    <object-name>VNAV</object-name>
+    <object-name>VORLOC</object-name>
+    <object-name>VS</object-name>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   1 </red>
+      <green> 1 </green>
+      <blue>  1 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+  
+       
+ 
+<!--  <animation>
+    <type>material</type>
+    <object-name>base</object-name>
+    <object-name>disk</object-name>
+		<object-name>n1_box</object-name>
+		<object-name>speed_box</object-name>
+		<object-name>cylinder</object-name>
+		<object-name>lvl_box</object-name>
+		<object-name>vnav_box</object-name>
+		<object-name>hdg_disk</object-name>
+		<object-name>hdg_rect</object-name>
+		<object-name>hdg_cylinder</object-name>
+		<object-name>hdg_box</object-name>
+		<object-name>lnav_box</object-name>
+		<object-name>vor_box</object-name>
+		<object-name>app_box</object-name>
+		<object-name>alt_box</object-name>
+		<object-name>alt_disk</object-name>
+		<object-name>alt_cylinder</object-name>
+		<object-name>vs_box</object-name>
+		<object-name>vs_rect</object-name>
+		<object-name>box1</object-name>
+		<object-name>box2</object-name>
+		<object-name>box3</object-name>
+		<object-name>box4</object-name>
+		<object-name>rect1</object-name>
+		<object-name>crz_disk2</object-name>
+		<object-name>crz_cylinder2</object-name>
+		<object-name>crz_disk1</object-name>
+		<object-name>crz_cylinder1</object-name>
+    <object-name>APDisengage</object-name>
+    <object-name>at_disk1</object-name>
+    <object-name>at_disk2</object-name>
+		<object-name>vnav</object-name>
+		<object-name>lnav</object-name>
+		<object-name>app</object-name>
+		<object-name>vor_loc</object-name>
+		<object-name>hdg_sel</object-name>
+		<object-name>alt_hld</object-name>
+		<object-name>v/s</object-name>
+		<object-name>cmda</object-name>
+		<object-name>speed</object-name>
+    <emission>
+	   <red>0.3</red>
+	   <green>0.3</green>
+	   <blue>0.3</blue>
+     <factor-prop>controls/lighting/panel-norm</factor-prop>
+     </emission>
+   </animation> -->
+
+    <!--<animation>
+        <type>material</type>
+        <object-name>MCP</object-name>
+        <emission>
+    <red>0.3</red>
+    <green>0.3</green>
+    <blue>0.3</blue>
+            <factor-prop>controls/lighting/panel-norm</factor-prop>
+        </emission>
+    </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>cmda</object-name>
+    <condition>
+    <equals>
+     <property>/autopilot/locks/cmda</property>
+      <value>1</value> 
+    </equals>
+    </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>hdg_sel</object-name>
+  <condition>
+   <equals>
+    <property>/autopilot/locks/heading</property>
+    <value>dg-heading-hold</value>
+   </equals>
+  </condition>
+ </animation>
+ 
+ <animation>
+ <type>select</type>
+ <object-name>aton</object-name>
+ <object-name>atlight</object-name>
+  <condition>
+  <equals>
+  <property>/autopilot/locks/at</property>
+  <value>1</value>
+  </equals>
+  </condition>
+  </animation>
+ 
+  <animation>
+ <type>select</type>
+ <object-name>atoff</object-name>
+  <condition>
+  <equals>
+  <property>/autopilot/locks/at</property>
+  <value>0</value>
+  </equals>
+  </condition>
+  </animation>-->
+ 
+<!--<animation>
+  <type>select</type>
+  <object-name>speed</object-name>
+  <condition>
+  <or>
+  	<and>
+     	  <equals>
+    	  	<property>/autopilot/locks/speed</property>
+    		<value>speed-with-throttle</value>
+    	 </equals>
+    	 <equals>
+    		<property>/autopilot/locks/vnav</property>
+    		<value>0</value>
+    	 </equals>
+   	</and>
+  	<and>
+     	  <equals>
+    	  	<property>/autopilot/locks/speed</property>
+    		<value>mach-hold</value>
+    	 </equals>
+    	 <equals>
+    		<property>/autopilot/locks/vnav</property>
+    		<value>0</value>
+    	 </equals>
+   	</and>
+  </or>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  	<object-name>vnav</object-name>
+  	<condition>
+		<or>
+  			<and>
+   				<equals>
+    					<property>/autopilot/locks/altitude</property>
+    					<value>altitude-hold</value>
+   				</equals>
+   				<equals>
+  				 	<property>/autopilot/locks/speed</property>
+ 	 <value>speed-with-throttle</value>
+  	</equals>
+	<equals>
+   <property>autopilot/locks/vnav</property>
+   <value>1</value>
+   </equals>
+  	</and>
+	 <and>
+    <equals>
+    <property>/autopilot/locks/altitude</property>
+    <value>altitude-hold</value>
+    </equals>
+    <equals>
+    <property>/autopilot/locks/speed</property>
+ 	<value>mach-hold</value>
+    </equals>
+	<equals>
+   <property>autopilot/locks/vnav</property>
+   <value>1</value>
+   </equals>
+   	</and>
+		</or>
+  	</condition>
+ </animation>
+
+  <animation>
+  <type>select</type>
+  <object-name>alt_hld</object-name>
+  <condition>
+  <and>
+   <equals>
+    <property>/autopilot/locks/altitude</property>
+    <value>vertical-speed-hold</value>
+   </equals>
+     <equals>
+    <property>/autopilot/settings/vertical-speed-fpm</property>
+    <value>0</value>
+   </equals>
+   </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>app</object-name>
+  <condition>
+   <and>
+   <equals>
+     <property>/autopilot/locks/heading</property>
+     <value>nav1-hold</value>
+   </equals>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>gs1-hold</value>
+   </equals>
+  </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>vor_loc</object-name>
+  <condition>
+  <and>
+    <property>/instrumentation/nav[0]/nav-loc</property>
+    <property>/autopilot/locks/nav[0]</property>
+  </and>
+  </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>lnav</object-name>
+  <condition>
+   <equals>
+   <property>/autopilot/locks/heading</property>
+    <value>true-heading-hold</value>
+   </equals>
+  </condition>
+ </animation>-->
+ 
+ 
+  <!-- AutoPilot V/S -->
+ 
+ <!--<animation>
+<type>select</type>
+<object-name>v/s</object-name>
+  <condition>
+  <and>
+   <equals>
+   <property>/autopilot/locks/altitude</property>
+    <value>vertical-speed-hold</value>
+   </equals>
+  <or>
+  <less-than>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </less-than>
+  <greater-than>
+  <property>/autopilot/settings/vertical-speed-fpm</property>
+  <value>0</value>
+  </greater-than>
+  </or>
+  <not>
+  <equals>
+    <property>/autopilot/settings/vertical-speed-fpm</property>
+    <value>0</value>
+  </equals>
+  </not>
+  </and>
+  </condition>
+ </animation>-->
+ 
+ 
+ 
+ <!--<animation>
+<type>select</type>
+<object-name>vsneg</object-name>
+  <condition>
+  <and>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>vertical-speed-hold</value>
+   </equals>
+   <not>
+   <equals>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>0</value>
+   </equals>
+   </not>
+   </and>
+ </condition>
+ </animation>
+ 
+   <animation>
+<type>select</type>
+<object-name>vspos</object-name>
+  <condition>
+  <and>
+   <equals>
+     <property>/autopilot/locks/altitude</property>
+     <value>vertical-speed-hold</value>
+   </equals>
+   <greater-than>
+   <property>/autopilot/settings/vertical-speed-fpm</property>
+   <value>0</value>
+   </greater-than>
+   </and>
+ </condition>
+ </animation>-->
+ 
+ 
+ 
+ 
+<!-- Bottons rotation -->
+
+ 
+
+
+  
+<!--    <animation>
+        <type>translate</type>
+        <object-name>APDisengage</object-name>
+        <property>/autopilot/locks/passive-mode</property>
+        <factor>0.01</factor>
+        <offset>1</offset>
+       <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+-->    
+    <!--pick animation-->
+    
+
+<!--     
+<animation>
+        <type>pick</type>
+	 <visible>true</visible>
+		<object-name>ATengage</object-name>
+       <action>
+   <name>arm autothrottle</name>
+   <button>0</button>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">false</value>
+     </equals>
+   </condition>    
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">true</value>   
+   </binding>    
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string">off</value>   
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/display-mach</property>
+    <value type="bool">false</value>   
+   </binding>         
+  </action>
+    </animation>
+    
+    <animation>
+<type>pick</type>
+<visible>true</visible>
+<object-name>AToff</object-name>
+<action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+    <condition>
+     <equals>
+      <property>/controls/autoflight/autothrottle-arm</property>
+      <value type="bool">true</value>
+     </equals>
+   </condition>   
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/autoflight/autothrottle-arm</property>
+    <value type="bool">false</value>   
+   </binding>
+     <binding>
+    <command>property-assign</command>
+    <property>/autopilot/locks/speed</property>
+    <value type="string"></value>   
+   </binding>     
+  </action>
+    </animation>
+-->
+    
+
+  
+ 
+
+<!-- =============================================================  -->
+<!-- SPEED CONTROL                                                 -->
+<!-- =============================================================  --> 
+
+
+
+<!-- ATArm Switch -->
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>ATArm</object-name>
+  <action>
+    <name>AT Arm Switch</name>
+   <button>0</button>
+   <repeatable>false</repeatable> 
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>ATArm</object-name>
+   <property>/autopilot/internal/SPD</property>
+   <factor>-30</factor>
+	 <offset-deg>30</offset-deg>
+   <center>
+     <x-m>-0.00019</x-m>
+     <z-m>0.05404</z-m>
+   </center>
+   <axis>
+     <y>1</y>
+   </axis>
+ </animation>
+
+<!-- MACH Sel -->
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>IAS-SEL</object-name>
+  <action>
+    <name>MACH Sel Switch</name>
+   <button>0</button>
+   <repeatable>false</repeatable> 
+<!--   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/IAS-SEL</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>  -->
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-IAS</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-MACH</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>IAS-SEL</object-name>
+   <property>/autopilot/internal/SPD-MACH</property>
+   <factor>-30</factor>
+	 <offset-deg>30</offset-deg>
+   <center>
+     <x-m>-0.00019</x-m>
+     <z-m>0.04060</z-m>
+   </center>
+   <axis>
+     <y>1</y>
+   </axis>
+ </animation>
+
+<!-- Speed Decrease --> 
+ 
+  <animation>
+    <type>pick</type>
+    <visible>false</visible>
+    <object-name>speeddecrease</object-name>
+    <action>
+      <name>airspeed adjust (decrease)</name>
+        <button>0</button>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/autopilot/settings/target-speed-kt</property>
+          <step>-1.0</step>
+          <min>0</min>   
+          <max>350</max>    
+        </binding>
+    </action>
+  </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>machdecrease</object-name>
+<action>
+  <name>airspeed adjust (decrease)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-speed-mach</property>
+   <step>-0.01</step>
+   <min>0.0</min>   
+   <max>0.82</max>    
+  </binding>
+ </action>
+ </animation>
+
+
+  <animation>
+    <type>pick</type>
+    <visible>false</visible>
+    <object-name>speedincrease</object-name>
+    <action>
+      <name>airspeed adjust (increase)</name>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>1.0</step>
+        <min>0</min>
+        <max>350</max>    
+      </binding>
+    </action>
+  </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>machincrease</object-name>
+ <action>
+  <name>airspeed adjust (increase)</name>
+  <button>0</button>
+      <repeatable>true</repeatable>
+    <binding>
+  <command>property-adjust</command>
+  <property>/autopilot/settings/target-speed-mach</property>
+   <step>0.01</step>
+   <min>0.0</min>
+   <max>0.82</max>    
+  </binding>
+ </action>
+ </animation>
+
+
+<!-- N1 button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>N1</object-name>
+  <action>
+    <name>Toggle N1</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-N1</property>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>N1</object-name>
+       <property>/autopilot/internal/SPD-N1</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01356</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+  
+<!-- SPEED button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>SPEED</object-name>
+  <action>
+    <name>Toggle SPEED</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-SPEED</property>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>SPEED</object-name>
+       <property>/autopilot/internal/SPD-SPEED</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01342</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+<!-- LVLCHG button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>LVLCHG</object-name>
+  <action>
+    <name>Toggle LVLCHG</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/SPD-LVLCHG</property>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>LVLCHG</object-name>
+       <property>/autopilot/internal/SPD-LVLCHG</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01342</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+<!-- Show IAS in SPD-IAS=true mode -->
+
+ <animation>
+  <type>select</type>
+  <object-name>apspd1</object-name>
+  <object-name>apspd2</object-name>
+  <object-name>apspd3</object-name>
+  <object-name>speedincrease</object-name>
+  <object-name>speeddecrease</object-name>
+  <condition>
+	  <equals>
+     <property>/autopilot/internal/SPD-IAS</property>
+		 <value>true</value>
+		</equals>
+   </condition>
+ </animation> 
+ 
+
+<!-- Show MACH in SPD-MACH=true mode -->
+
+ <animation>
+  <type>select</type>
+  <object-name>machp</object-name>
+  <object-name>mach1</object-name>
+  <object-name>mach2</object-name>
+  <object-name>machincrease</object-name>
+  <object-name>machdecrease</object-name>  
+  <condition>
+	  <equals>
+     <property>/autopilot/internal/SPD-MACH</property>
+		 <value>true</value>
+		</equals>
+   </condition>
+ </animation>
+ 
+
+ <!-- MACH Display -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>mach2</object-name>
+  <property>/autopilot/settings/target-speed-mach</property>
+  <factor>1.0</factor>
+  <step>0.1</step>
+  <offset>.001</offset>
+    <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+<animation>
+  <type>textranslate</type>
+  <object-name>mach1</object-name>
+  <property>/autopilot/settings/target-speed-mach</property>
+  <factor>10.0</factor>
+  <step>0.01</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- IAS Display -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>apspd1</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+  <animation>
+  <type>textranslate</type>
+  <object-name>apspd2</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apspd3</object-name>
+  <property>/autopilot/settings/target-speed-kt</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+
+<!-- Rotate Speed Knob -->
+
+  <animation>
+    <type>rotate</type>
+    <object-name>cylinder</object-name>
+      <property>/autopilot/settings/target-speed-kt</property>
+      <factor>-5</factor>
+      <center>
+        <x-m>0.0</x-m>
+        <y-m>-0.115</y-m>
+        <z-m>0.029</z-m>
+      </center>
+      <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+  </animation>
+
+<!-- =============================================================  -->
+<!-- VERTICAL NAV                                                   -->
+<!-- =============================================================  --> 
+
+<!-- Toggle VNAV -->
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>VNAV</object-name>
+  <action>
+    <name>Toggle VNAV</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/VNAV</property>
+   </binding>
+  </action>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+     <object-name>VNAV</object-name>
+       <property>/autopilot/internal/VNAV</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.06338</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+ 
+
+<!-- VS button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>VS</object-name>
+  <action>
+    <name>Toggle VS Mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>VS</object-name>
+       <property>/autopilot/internal/VNAV-VS</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01331</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+ 
+ <!-- Vertical Speed Adjust Up --> 
+
+ <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vsup</object-name> 
+  <action>
+  <name>vertical speed down</name>
+    <repeatable>true</repeatable>
+    <button>0</button>
+    <binding>
+      <command>property-adjust</command>
+        <property>/autopilot/settings/vertical-speed-fpm</property>
+        <step>100</step>
+        <max>3000</max>    
+    </binding>
+    </action>
+  </animation>
+
+<!-- Vertical Speed Adjust Down -->
+
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>vsdown</object-name> 
+  <action>
+  <name>vertical speed down</name>
+    <repeatable>true</repeatable>
+    <button>0</button>
+    <binding>
+      <command>property-adjust</command>
+        <property>/autopilot/settings/vertical-speed-fpm</property>
+        <step>-100</step>
+        <min>-3000</min>
+    </binding>
+  </action>
+  </animation>
+
+
+<!-- Show VS Setting in VS Mode -->  
+
+  <animation>
+  <type>select</type>
+  <object-name>apvs4</object-name>
+  <object-name>apvs3</object-name>
+  <object-name>apvs2</object-name>
+  <object-name>apvs1</object-name>
+  <condition>
+  <and>
+    <equals>
+      <property>/autopilot/internal/VNAV-VS</property>
+      <value>true</value>
+    </equals>
+    <greater-than>
+      <property>/autopilot/settings/vertical-speed-fpm</property>
+      <value>0</value>
+    </greater-than>
+  </and>
+  </condition>
+  </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>apvs4b</object-name>
+  <object-name>apvs3b</object-name>
+  <object-name>apvs2b</object-name>
+  <object-name>apvs1b</object-name>
+  <condition>
+  <and>
+    <equals>
+      <property>/autopilot/internal/VNAV-VS</property>
+      <value>true</value>
+    </equals>
+    <less-than>
+      <property>/autopilot/settings/vertical-speed-fpm</property>
+      <value>0</value>
+    </less-than>
+  </and>
+  </condition>
+  </animation>
+
+
+<!-- VS neg Display -->
+
+      <animation>
+        <type>textranslate</type>
+        <object-name>apvs4b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs3b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs2b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs1b</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+<!-- VS Pos Display -->    
+    
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs4</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs3</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs2</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>apvs1</object-name>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+
+<!-- ALT button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>ALTHLD</object-name>
+  <action>
+    <name>Toggle ALT Mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>ALTHLD</object-name>
+       <property>/autopilot/internal/VNAV-ALT</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01342</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+<!-- AutoPilot Altitude Display -->
+ 
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt1</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt2</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt3</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt4</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apalt5</object-name>
+  <property>/autopilot/settings/target-altitude-ft</property>
+  <factor>0.00001</factor>
+  <step>10000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- ALT Adjust Down  -->
+
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALTdecrease</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/target-altitude-ft</property>
+      <step>-100</step>
+      <min>0</min>
+      <max>37000</max>    
+   </binding>
+ </action>
+ </animation>
+
+<!-- ALT Adjust Up  -->
+
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>ALTincrease</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/target-altitude-ft</property>
+      <step>100</step>
+      <min>0</min>
+      <max>37000</max>    
+    </binding>   
+  </action>
+ </animation>
+ 
+<!-- Rotate ALT Select Cyl -->
+
+  <animation>
+    <type>rotate</type>
+    <object-name>alt_cylinder</object-name>
+    <property>/autopilot/settings/target-altitude-ft</property>
+    <factor>-0.1</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0.026</y-m>
+      <z-m>0.038</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+<!-- The APP button is a fake button which only serves to activate Vertical G/S Mode -->  
+  
+<!-- APP button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>APP</object-name>
+  <action>
+    <name>Toggle APP (G/S) Mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-GS</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-VS</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/VNAV-ALT</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>APP</object-name>
+       <property>/autopilot/internal/VNAV-GS</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01354</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+  
+<!-- =============================================================  -->
+<!-- LATERAL NAV                                                    -->
+<!-- =============================================================  --> 
+
+<!-- LNAV button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>LNAV</object-name>
+  <action>
+    <name>Toggle LNAV</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>LNAV</object-name>
+       <property>/autopilot/internal/LNAV-FMS</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.06373</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+<!-- HDG button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>HDGSEL</object-name>
+  <action>
+    <name>Toggle Heading Bug Mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>HDGSEL</object-name>
+       <property>/autopilot/internal/LNAV-HDG</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.01342</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+<!-- HDG Increase  -->
+  
+  <animation>
+  <type>pick</type>
+  <visible>false</visible>
+  <object-name>HDGIncrease</object-name>
+  <action>
+  <name>Heading Bug Right</name>
+  <button>0</button>
+   <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/heading-bug-deg</property>
+      <step>1.0</step>
+      <min>0</min>   
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  </animation>
+
+<!-- HDG Decrease  -->  
+  
+  <animation>
+  <type>pick</type>   
+  <visible>false</visible>
+  <object-name>HDGDecrease</object-name>
+  <action>
+  <name>Heading Bug Left</name>
+  <button>0</button>
+    <repeatable>true</repeatable>  
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-1.0</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+    </action>
+  </animation>
+
+
+<!-- VOR/LOC button -->
+ 
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>VORLOC</object-name>
+  <action>
+    <name>Toggle VOR/LOC Mode</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/LNAV-NAV1</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-LVL</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-HDG</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-NAV2</property>
+     <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/LNAV-FMS</property>
+     <value type="bool">0</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>VORLOC</object-name>
+       <property>/autopilot/internal/LNAV-NAV1</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.03875</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+<!-- Cap NAV1 Course Decrease -->
+
+  <animation>
+  <type>pick</type>        
+  <object-name>NAV1Decrease</object-name>
+  <action>
+    <name>NAV1 Radial Decrease</name>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <x>-112</x>
+    <y>-40</y>
+    <w>5</w>
+    <h>20</h>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[0]/radials/selected-deg</property>
+      <step>-1.0</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  </animation>
+
+<!-- Cap NAV1 Course Increase -->
+
+  <animation>
+  <type>pick</type>        
+  <object-name>NAV1Increase</object-name>
+  <action>
+  <name>NAV1 Radial Increase</name>
+  <button>0</button>
+    <repeatable>true</repeatable>
+    <x>-107</x>
+    <y>-40</y>
+    <w>5</w>
+    <h>20</h>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[0]/radials/selected-deg</property>
+      <step>1.0</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  </animation>
+ 
+<!-- Cop NAV1 Course Decrease -->
+
+  <animation>
+  <type>pick</type>        
+  <object-name>NAV1Decreaseb</object-name>
+  <action>
+    <name>NAV1 Radial Decrease</name>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <x>-112</x>
+    <y>-40</y>
+    <w>5</w>
+    <h>20</h>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[0]/radials/selected-deg</property>
+      <step>-1.0</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  </animation>
+
+<!-- Cop NAV1 Course Increase -->
+
+  <animation>
+  <type>pick</type>        
+  <object-name>NAV1Increaseb</object-name>
+  <action>
+  <name>NAV1 Radial Increase</name>
+  <button>0</button>
+    <repeatable>true</repeatable>
+    <x>-107</x>
+    <y>-40</y>
+    <w>5</w>
+    <h>20</h>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[0]/radials/selected-deg</property>
+      <step>1.0</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  </animation>
+
+
+<!-- Rotate NAV1 Radial Cyls -->
+ 
+     <animation>
+        <type>rotate</type>
+        <object-name>crz_cylinder</object-name>
+        <property>/instrumentation/nav/radials/selected-deg</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.215</y-m>
+            <z-m>0.038</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+     <animation>
+        <type>rotate</type>
+        <object-name>crz_cylinder1</object-name>
+        <property>/instrumentation/nav/radials/selected-deg</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.204</y-m>
+            <z-m>0.038</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+<!-- Rotate Heading Bug Cyl -->
+
+    <animation>
+        <type>rotate</type>
+        <object-name>hdg_cylinder</object-name>
+               <property>/autopilot/settings/heading-bug-deg</property>
+        <factor>-5</factor>
+        <center>
+            <x-m>0</x-m>
+            <y-m>-0.046</y-m>
+            <z-m>0.038</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+  
+
+<!-- NAV1 Radial Display -->
+ 
+  <animation>
+  <type>textranslate</type>
+  <object-name>apcrz1</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz2</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz3</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+   <animation>
+  <type>textranslate</type>
+  <object-name>apcrz1b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.10</factor>
+  <step>1.0</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz2b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>textranslate</type>
+  <object-name>apcrz3b</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+
+<!-- Heading Bug Display -->
+ 
+  <animation>
+   <type>textranslate</type>
+   <object-name>aphdg1</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.10</factor>
+   <step>1.0</step>
+   <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+   </axis>
+  </animation>
+
+  <animation>
+   <type>textranslate</type>
+   <object-name>aphdg2</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+   </axis>
+  </animation>
+
+  <animation>
+   <type>textranslate</type>
+   <object-name>aphdg3</object-name>
+   <property>/autopilot/settings/heading-bug-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+   </axis>
+  </animation>
+ 
+ 
+<!-- =============================================================  -->
+<!-- ENGAGE / DISENGAGE                                             -->
+<!-- =============================================================  --> 
+
+<!-- AP CMDA Toggle -->
+
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>CMDA</object-name>
+  <action>
+    <name>Toggle CMDA</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/CMDA</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/CMDB</property>
+     <value>false</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>CMDA</object-name>
+       <property>/autopilot/internal/CMDA</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.06024</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+<!-- AP CMDB Toggle -->
+
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>CMDB</object-name>
+  <action>
+    <name>Toggle CMDB</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/CMDB</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/CMDA</property>
+     <value>false</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>CMDB</object-name>
+       <property>/autopilot/internal/CMDB</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.06082</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+<!-- AP CWSA Toggle -->
+
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>CWSA</object-name>
+  <action>
+    <name>Toggle CWSA</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/CWSA</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/CWSB</property>
+     <value>false</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>CWSA</object-name>
+       <property>/autopilot/internal/CWSA</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.03980</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+<!-- AP CWSB Toggle -->
+
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>CWSB</object-name>
+  <action>
+    <name>Toggle CWSB</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>/autopilot/internal/CWSB</property>
+   </binding>
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/internal/CWSA</property>
+     <value>false</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+     <object-name>CWSB</object-name>
+       <property>/autopilot/internal/CWSB</property>
+       <factor>-90</factor>
+       <center>
+         <x-m>-0.00281</x-m>
+         <z-m>0.03956</z-m>
+       </center>
+       <axis>
+         <y>1</y>
+       </axis>
+ </animation>
+
+
+<!-- AP Disengage -->
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>APDisengage</object-name>
+  <action>
+  <name>AP disengage</name>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/internal/CMDA</property>
+    <value type="bool">0</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>/autopilot/internal/CMDB</property>
+    <value type="bool">0</value>
+   </binding>   
+  </action>    
+  </animation>
+
+<!-- Captains FD Switch -->
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>cap-fd</object-name>
+  <action>
+    <name>Captains FD switch</name>
+   <button>0</button>
+   <repeatable>false</repeatable> 
+   <binding>
+    <command>property-toggle</command>
+    <property>/instrumentation/flightdirector/fd-on</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>cap-fd</object-name>
+   <property>/instrumentation/flightdirector/fd-on</property>
+   <factor>-30</factor>
+	 <offset-deg>30</offset-deg>
+   <center>
+     <x-m>-0.004</x-m>
+     <z-m>0.005</z-m>
+   </center>
+   <axis>
+     <y>1</y>
+   </axis>
+ </animation>
+
+ <!-- Co-Pilots FD Switch -->
+ 
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>cop-fd</object-name>
+  <action>
+    <name>Co-Pilots FD switch</name>
+   <button>0</button>
+   <repeatable>false</repeatable> 
+   <binding>
+    <command>property-toggle</command>
+    <property>/instrumentation/flightdirector/fd-on</property>
+		<step>1</step>
+		<min>0></min>
+		<max>1</max>
+		<wrap>true</wrap>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>cop-fd</object-name>
+   <property>/instrumentation/flightdirector/fd-on</property>
+   <factor>-30</factor>
+	 <offset-deg>30</offset-deg>
+   <center>
+     <x-m>-0.004</x-m>
+     <z-m>0.005</z-m>
+   </center>
+   <axis>
+     <y>1</y>
+   </axis>
+ </animation>
+
+
+ 
+ </PropertyList>
