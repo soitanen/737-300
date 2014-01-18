@@ -28,20 +28,27 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>needle</object-name>
-		<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
-		<interpolation>
-			<entry><ind>-500</ind><dep>30</dep></entry>
-			<entry><ind>-1000</ind><dep>60</dep></entry>
-			<entry><ind>-2000</ind><dep>100</dep></entry>
-			<entry><ind>-4000</ind><dep>140</dep></entry>
+		<!--<property>/velocities/vertical-speed-fps</property>
+		<factor>60</factor>-->
+		<expression>
+		<table>
+			<product>
+				<property>/velocities/vertical-speed-fps</property>
+				<value>60</value>
+			</product>
 			<entry><ind>-6000</ind><dep>170</dep></entry>
+			<entry><ind>-4000</ind><dep>140</dep></entry>
+			<entry><ind>-2000</ind><dep>100</dep></entry>
+			<entry><ind>-1000</ind><dep>60</dep></entry>
+			<entry><ind>-500</ind><dep>30</dep></entry>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>500</ind><dep>-30</dep></entry>
 			<entry><ind>1000</ind><dep>-60</dep></entry>
 			<entry><ind>2000</ind><dep>-100</dep></entry>
 			<entry><ind>4000</ind><dep>-145</dep></entry>
 			<entry><ind>6000</ind><dep>-170</dep></entry>
-		</interpolation>
+		</table>
+		</expression>
   <center>
    <x-m>0.004</x-m>
    <y-m>0.0</y-m>
