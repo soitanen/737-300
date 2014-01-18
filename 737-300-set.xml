@@ -1467,7 +1467,9 @@
 		<cdu>
 			<file>Aircraft/737-300/Models/Flightdeck/Instruments/CDU/cdu.nas</file>
 		</cdu>
-		
+    <instruments>
+      <file>Aircraft/737-300/Nasal/instruments.nas</file>
+    </instruments>	
   </nasal>
 
 </PropertyList>

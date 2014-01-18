@@ -62,19 +62,23 @@
   <animation>
     <type>rotate</type>
     <object-name>vmo-mark</object-name>
-  <property>instrumentation/altimeter/indicated-altitude-ft</property>
+    <property>/b733/instrumentation/ASI/vmo-kts</property>
     <interpolation>
-      <entry><ind>   0 </ind><dep>  0 </dep></entry>
-      <entry><ind> 4000 </ind><dep>   10 </dep></entry>
-      <entry><ind> 8000 </ind><dep>  15 </dep></entry>
-      <entry><ind> 12000 </ind><dep> 20 </dep></entry>
-      <entry><ind> 16000 </ind><dep> 25 </dep></entry>
-      <entry><ind> 20000 </ind><dep> 30 </dep></entry>
-      <entry><ind> 24000 </ind><dep> 33 </dep></entry>
-      <entry><ind> 28000 </ind><dep> 36 </dep></entry>
-      <entry><ind> 32000 </ind><dep> 39 </dep></entry>
-      <entry><ind> 36000 </ind><dep> 42 </dep></entry>
+      <entry><ind>   0 </ind><dep>  -9 </dep></entry>
+      <entry><ind>  60 </ind><dep>   0 </dep></entry>
+      <entry><ind> 100 </ind><dep>  61 </dep></entry>
+      <entry><ind> 120 </ind><dep>  91 </dep></entry>
+      <entry><ind> 140 </ind><dep> 120 </dep></entry>
+      <entry><ind> 160 </ind><dep> 149 </dep></entry>
+      <entry><ind> 180 </ind><dep> 166 </dep></entry>
+      <entry><ind> 200 </ind><dep> 183 </dep></entry>
+      <entry><ind> 250 </ind><dep> 229 </dep></entry>
+      <entry><ind> 300 </ind><dep> 256 </dep></entry>
+      <entry><ind> 350 </ind><dep> 283 </dep></entry>
+      <entry><ind> 400 </ind><dep> 309 </dep></entry>
+      <entry><ind> 450 </ind><dep> 335 </dep></entry>
     </interpolation>
+    <offset-deg>-90</offset-deg>
     <axis>
       <x> -1 </x>
       <y>  0 </y>
