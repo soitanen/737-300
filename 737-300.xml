@@ -636,10 +636,32 @@
             </aerosurface_scale>
 
         </channel>
+
         <channel name="Flaps">
 
+          <switch name="fcs/flap-lrs">
+            <default value="fcs/flap-lrs"/>
+            <test value="1">
+              fcs/flap-cmd-norm == 1
+              fcs/flap-lrs == 0
+              velocities/vc-kts GE 158
+            </test>
+            <test value="0">
+              fcs/flap-cmd-norm == 1
+              fcs/flap-lrs == 1
+              velocities/vc-kts LE 153
+            </test>
+          </switch>
+
+          <switch name="fcs/flap-cmd-norm-lrs">
+            <default value="fcs/flap-cmd-norm"/>
+            <test value="0.875">
+              fcs/flap-lrs == 1
+            </test>
+          </switch> 
+
             <kinematic name="Flaps Control">
-                <input>fcs/flap-cmd-norm</input>
+                <input>fcs/flap-cmd-norm-lrs</input>
                 <traverse>
                     <setting>
                         <position>0</position>

@@ -1204,6 +1204,14 @@
     </gear>
   </gear>
 
+  <fdm>
+    <jsbsim>
+      <fcs>
+        <flap-lrs type="double">0</flap-lrs>
+      </fcs>
+    </jsbsim>
+  </fdm>
+
   <instrumentation>
 
     <adf>
