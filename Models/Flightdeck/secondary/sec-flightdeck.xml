@@ -208,8 +208,8 @@
 <animation>
  <type>rotate</type>
  <object-name>RIGHTTRIM</object-name>
- <property>controls/flight/elevator-trim</property>
- <factor>14400</factor>
+ <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+ <factor>-5400</factor>
  <offset-deg>0</offset-deg>
  <center>
   <x-m>-6.76773</x-m>
@@ -243,8 +243,8 @@
 <animation>
  <type>rotate</type>
  <object-name>LEFTTRIM</object-name>
- <property>controls/flight/elevator-trim</property>
- <factor>14400</factor>
+ <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+ <factor>-5400</factor>
  <offset-deg>0</offset-deg>
  <center>
   <x-m>-6.76773</x-m>
@@ -258,6 +258,40 @@
  </axis>
 </animation>
 
+<animation>
+  <type>pick</type>
+  <object-name>LEFTTRIM</object-name>
+  <object-name>RIGHTTRIM</object-name>
+  <visible>true</visible>
+  <action>
+    <button>3</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+      <step>-0.0035</step>
+      <min>0</min>
+      <max>17</max>
+    </binding>
+  </action>
+</animation>
+<animation>
+  <type>pick</type>
+  <object-name>LEFTTRIM</object-name>
+  <object-name>RIGHTTRIM</object-name>
+  <visible>true</visible>
+  <action>
+    <button>4</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+      <step>0.0035</step>
+      <min>0</min>
+      <max>17</max>
+    </binding>
+  </action>
+</animation>
 
 <animation>
  <type>rotate</type>
