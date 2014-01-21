@@ -29,7 +29,7 @@ This file selects the instrumentation modules that should be available.
         <name>altimeter</name>
         <number>0</number>
         <static-pressure>/systems/static/pressure-inhg</static-pressure>
-        <quantum>10</quantum>
+        <quantum>0</quantum>
         <tau>0.1</tau>
    </altimeter>
 
