@@ -1210,6 +1210,7 @@
     <jsbsim>
       <fcs>
         <flap-lrs type="double">0</flap-lrs>
+        <stabilizer-pos-unit type="double">3</stabilizer-pos-unit>
       </fcs>
     </jsbsim>
   </fdm>
@@ -1484,6 +1485,10 @@
     <instruments>
       <file>Aircraft/737-300/Nasal/instruments.nas</file>
     </instruments>
+
+    <controls>
+      <file>Aircraft/737-300/Nasal/controls.nas</file>
+    </controls>
  
   </nasal>
 

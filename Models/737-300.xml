@@ -695,9 +695,9 @@
     <object-name>lehstab</object-name>
     <object-name>lhelevator</object-name>
     <object-name>lhelevatortab</object-name>
-    <property>controls/flight/elevator-trim</property>
-    <factor>15</factor>
-    <offset-deg>0</offset-deg>
+    <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+    <factor>-1</factor>
+    <offset-deg>3</offset-deg>
 
     <axis>
       <x1-m>23.643</x1-m>
@@ -753,9 +753,9 @@
     <object-name>lehstab.001</object-name>
     <object-name>rhelevator</object-name>
     <object-name>rhelevatortab</object-name>
-    <property>controls/flight/elevator-trim</property>
-    <factor>15</factor>
-    <offset-deg>0</offset-deg>
+    <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
+    <factor>-1</factor>
+    <offset-deg>3</offset-deg>
     <axis>
       <x2-m>23.643</x2-m>
       <y2-m>5</y2-m>
