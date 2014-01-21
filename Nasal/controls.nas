@@ -40,6 +40,7 @@ var trim_handler = func{
   controls.slewProp ("/fdm/jsbsim/fcs/stabilizer-pos-unit", trim_speed * stab_cmd );
 
   if (stab_pos > 12.5 and stab_cmd == 1 and !ap_a_on and !ap_b_on) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
+  if (stab_pos > 14 and stab_cmd == 1 and (ap_a_on or ap_b_on)) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
   if (stab_pos < 2.5 and stab_cmd == -1 and !ap_a_on and !ap_b_on and flaps_pos > 0) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
   if (stab_pos < 0.25 and stab_cmd == -1 and !ap_a_on and !ap_b_on and flaps_pos == 0) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
 
