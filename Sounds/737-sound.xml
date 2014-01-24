@@ -357,12 +357,12 @@
   <condition>
   <or>
     <greater-than>
-      <property>/velocities/airspeed-kt</property>
-	    <value>350</value>
+      <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+	    <value>340</value>
 	  </greater-than>
 	  <greater-than>
-	    <property>/velocities/airspeed-mach</property>
-	    <value>.82</value>
+	    <property>/instrumentation/airspeed-indicator/indicated-mach</property>
+	    <value>0.82</value>
 	  </greater-than>
 	</or>
 	</condition>
@@ -385,6 +385,21 @@
     <factor>1</factor>
   </volume>
   </overalt>
+
+  <trimming>
+    <name>trimming</name>
+    <mode>once</mode>
+    <path>Aircraft/737-300/Sounds/trim.wav</path>
+    <condition>
+      <greater-than>
+        <property>/b733/sound/stab-trim</property>
+        <value>0.01</value>
+      </greater-than>
+    </condition>
+    <volume>
+      <factor>1</factor>
+    </volume>
+  </trimming>
 	
 	
 	<seatbelt-on>

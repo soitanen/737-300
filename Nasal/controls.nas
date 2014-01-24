@@ -44,9 +44,65 @@ var trim_handler = func{
   if (stab_pos < 2.5 and stab_cmd == -1 and !ap_a_on and !ap_b_on and flaps_pos > 0) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
   if (stab_pos < 0.25 and stab_cmd == -1 and !ap_a_on and !ap_b_on and flaps_pos == 0) setprop( "/fdm/jsbsim/fcs/stabilizer-pos-unit", stab_pos );
 
+  var sound = stab_pos * 952.94 / 360;
+  while (sound > 1) sound -= 1;
+  if (sound > 0.9 or sound < 0.1) setprop("/b733/sound/stab-trim", 0);
+  if (sound < 0.9 and sound > 0.1) setprop("/b733/sound/stab-trim", 1);
+
   settimer( trim_handler, 0 );
 }
 
 setprop( "b733/controls/trim/elevator-cmd-dummy", 0 );
 trim_handler();
+
+var spoilers_control = func {
+  var lever_pos = num( getprop("b733/controls/flight/spoilers-lever-pos") );
+
+  if (lever_pos == 0) setprop( "/controls/flight/speedbrake", 0.00 );
+  if (lever_pos == 1) setprop( "/controls/flight/speedbrake", 0.00 );
+  if (lever_pos == 2) setprop( "/controls/flight/speedbrake", 0.1625 );
+  if (lever_pos == 3) {
+    setprop( "/controls/flight/speedbrake", 0.325 );
+    setprop( "/controls/flight/spoilers", 0 );
+  }
+  if (lever_pos == 4) setprop( "/controls/flight/speedbrake", 0.4875 );
+  if (lever_pos == 5) setprop( "/controls/flight/speedbrake", 0.65 );
+  if (lever_pos == 6) {
+    setprop( "/controls/flight/speedbrake", 1.00 );
+
+    var wow_right = getprop("/gear/gear[2]/wow");
+    if (wow_right) setprop( "/controls/flight/spoilers", 1 );
+    if (!wow_right) setprop( "/controls/flight/spoilers", 0 );
+
+    var height = getprop("/position/altitude-agl-ft");
+    var time = height / 70;
+    if (time < 0.2 or time > 600) time = 0.2;
+
+    settimer(spoilers_control, time);
+  }
+}
+
+setlistener( "/b733/controls/flight/spoilers-lever-pos", spoilers_control, 0, 0 );
+
+var landing_check = func{
+	var air_ground = getprop("/b733/sensors/air-ground");
+	var spin_up = getprop("/b733/sensors/main-gear-spin");
+	var was_ia = getprop("/b733/sensors/was-in-air");
+	var lever_pos = num( getprop("b733/controls/flight/spoilers-lever-pos") );
+
+	if ((air_ground == "ground" or spin_up) and was_ia) {
+		if (lever_pos == 1) setprop("b733/controls/flight/spoilers-lever-pos", 6);
+	} elsif (air_ground == "air") {
+
+	}
+
+    var height = getprop("/position/altitude-agl-ft");
+    var time = height / 70;
+    if (time < 0.2 or time > 600) time = 0.2;
+
+    settimer(landing_check, time);
+}
+landing_check();
+
+#setlistener( "/b733/sensors/air-ground", landing_check, 0, 0);
 

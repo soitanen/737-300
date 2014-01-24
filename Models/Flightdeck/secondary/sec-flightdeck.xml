@@ -209,7 +209,7 @@
  <type>rotate</type>
  <object-name>RIGHTTRIM</object-name>
  <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
- <factor>-5400</factor>
+ <factor>-952.94</factor>
  <offset-deg>0</offset-deg>
  <center>
   <x-m>-6.76773</x-m>
@@ -244,7 +244,7 @@
  <type>rotate</type>
  <object-name>LEFTTRIM</object-name>
  <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
- <factor>-5400</factor>
+ <factor>-952.94</factor>
  <offset-deg>0</offset-deg>
  <center>
   <x-m>-6.76773</x-m>

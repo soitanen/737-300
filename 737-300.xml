@@ -184,7 +184,7 @@
               <side>120.0 </side>
             </force_lag_filter>
             <wheel_slip_filter> 120.0 </wheel_slip_filter>
-            <max_steer unit="DEG"> 35 </max_steer>
+            <max_steer unit="DEG"> 78 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>1</retractable>
         </contact>
@@ -476,8 +476,11 @@
     </propulsion>
     
    <system file="pushback"/>
+   <system file="steering"/>
 
     <flight_control name="FCS: 737">
+
+
 
         <channel name="Pitch">
 

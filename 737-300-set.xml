@@ -459,6 +459,16 @@
          </script>
         </binding>
       </item>
+        <item>
+          <label>Tiller steering</label>
+          <binding>
+            <command>nasal</command>
+            <script>
+              var tiller = gui.Dialog.new("/sim/gui/dialogs/b733/menu/dialog","Aircraft/737-300/Dialogs/tiller-steering.xml");
+              tiller.open();
+            </script>
+          </binding>
+        </item>
         </menu>
       </default>
     </menubar>
@@ -1147,6 +1157,29 @@
           <max type="double">1.28</max>
         </binding>
       </key>
+
+      <key n="106">
+        <name>j</name>
+        <desc>Decrease spoiler lever position</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>b733/controls/flight/spoilers-lever-pos</property>
+          <step type="double">-1</step>
+          <min type="double">0</min>
+          <max type="double">6</max>
+        </binding>
+      </key>
+      <key n="107">
+        <name>k</name>
+        <desc>Increase spoiler lever position</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>b733/controls/flight/spoilers-lever-pos</property>
+          <step type="double">1</step>
+          <min type="double">0</min>
+          <max type="double">6</max>
+        </binding>
+      </key>
    
     </keyboard>
   </input>
@@ -1161,12 +1194,12 @@
     
     <gear>
       <brake-parking type="bool">1</brake-parking>
-      <autobrakes type="int">5</autobrakes>
+      <autobrakes type="int">0</autobrakes>
       <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
     </gear>
 
     <flight>
-      <autospeedbrakes-armed type="bool">1</autospeedbrakes-armed>
+      <autospeedbrakes-armed type="bool">0</autospeedbrakes-armed>
     </flight>
 
     <switches>
@@ -1214,6 +1247,19 @@
       </fcs>
     </jsbsim>
   </fdm>
+
+  <b733>
+    <controls>
+      <flight>
+        <spoilers-lever-pos type="double">0</spoilers-lever-pos>
+      </flight>
+    </controls>
+    <sensors>
+      <air-ground type="string">ground</air-ground>
+      <main-gear-spin type="bool">false</main-gear-spin>
+      <was-in-air type="bool">false</was-in-air>
+    </sensors>
+  </b733>
 
   <instrumentation>
 

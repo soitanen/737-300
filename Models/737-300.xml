@@ -159,8 +159,8 @@
     <object-name>rhsteercyl</object-name>
     <object-name>lhsteercyl</object-name>
     <object-name>collar</object-name>
-    <property>controls/flight/rudder</property>
-    <factor>-45</factor>
+    <property>/fdm/jsbsim/fcs/steer-pos-deg</property>
+    <factor>-1</factor>
     <offset-deg>0</offset-deg>
     <axis>
       <x1-m>-4.652</x1-m>
@@ -1625,7 +1625,7 @@
     <type>rotate</type>
     <object-name>spoiler0</object-name>
     <object-name>spoiler1</object-name>
-    <property>surface-positions/speedbrake-pos-norm</property>
+    <property>surface-positions/spoilers-pos-norm</property>
     <factor>-70</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -1645,7 +1645,7 @@
     <type>rotate</type>
     <object-name>spoiler9</object-name>
     <object-name>spoiler8</object-name>
-    <property>surface-positions/speedbrake-pos-norm</property>
+    <property>surface-positions/spoilers-pos-norm</property>
     <factor>-70</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -1665,7 +1665,7 @@
     <type>rotate</type>
     <object-name>spoiler2</object-name>
     <object-name>spoiler3</object-name>
-    <property>surface-positions/spoilers-pos-norm</property>
+    <property>surface-positions/speedbrake-pos-norm</property>
 
     <factor>-40</factor>
     <offset-deg>0</offset-deg>
@@ -1707,7 +1707,7 @@
     <type>rotate</type>
     <object-name>spoiler6</object-name>
     <object-name>spoiler7</object-name>
-    <property>surface-positions/spoilers-pos-norm</property>
+    <property>surface-positions/speedbrake-pos-norm</property>
     <factor>-40</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -1747,7 +1747,7 @@
   <animation>
     <type>rotate</type>
     <object-name>spoiler4</object-name>
-    <property>surface-positions/speedbrake-pos-norm</property>
+    <property>surface-positions/spoilers-pos-norm</property>
     <factor>-70</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -1766,7 +1766,7 @@
   <animation>
     <type>rotate</type>
     <object-name>spoiler5</object-name>
-    <property>surface-positions/speedbrake-pos-norm</property>
+    <property>surface-positions/spoilers-pos-norm</property>
     <factor>-70</factor>
     <offset-deg>0</offset-deg>
     <center>

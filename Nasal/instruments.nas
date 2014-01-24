@@ -8,10 +8,12 @@ var vmo = func {
 	if ( tas == 0 ) tas = 0.001;
 	var mmo_kts = a * 0.82 * 0.5913174946 * ias / tas;
 	var vmo_kts = 340;
+	var time = (mmo_kts - vmo_kts)/2;
+	if ( time < 1 or time > 300) time = 1;
 	if ( mmo_kts < 340) vmo_kts = mmo_kts;
 	setprop("/b733/instrumentation/ASI/vmo-kts", vmo_kts);
 
-	settimer(vmo, 1);
+	settimer(vmo, time);
 }
 
 vmo();
