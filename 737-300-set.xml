@@ -1253,6 +1253,9 @@
       <flight>
         <spoilers-lever-pos type="double">0</spoilers-lever-pos>
       </flight>
+      <gear>
+        <autobrake-used type="bool">0</autobrake-used>
+      </gear>
     </controls>
     <sensors>
       <air-ground type="string">ground</air-ground>

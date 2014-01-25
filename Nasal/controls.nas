@@ -71,13 +71,8 @@ var spoilers_control = func {
     setprop( "/controls/flight/speedbrake", 0.325 );
     setprop( "/controls/flight/spoilers", 0 );
   }
-  if (lever_pos == 4) setprop( "/controls/flight/speedbrake", 0.4875 );
-  if (lever_pos == 5) {
-    setprop( "/controls/flight/speedbrake", 0.65 );
-    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers at FLIGHT DETENT!");
-  }
-  if (lever_pos == 6) {
-    setprop( "/controls/flight/speedbrake", 1.00 );
+  if (lever_pos == 4) {
+    setprop( "/controls/flight/speedbrake", 0.4875 );
 
     var wow_right = getprop("/gear/gear[2]/wow");
     if (wow_right) setprop( "/controls/flight/spoilers", 1 );
@@ -86,9 +81,36 @@ var spoilers_control = func {
     var height = getprop("/position/altitude-agl-ft");
     var time = height / 70;
     if (time < 0.2 or time > 600) time = 0.2;
+    settimer(spoilers_control, time);
+  }
+  if (lever_pos == 5) {
+    setprop( "/controls/flight/speedbrake", 0.65 );
 
-    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers UP!");
+    var wow_right = getprop("/gear/gear[2]/wow");
+    if (wow_right) setprop( "/controls/flight/spoilers", 1 );
+    if (!wow_right) setprop( "/controls/flight/spoilers", 0 );
 
+    if (getprop("/sim/messages/copilot") == "Spoilers at FLIGHT DETENT!") { } else {
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers at FLIGHT DETENT!");}
+
+    var height = getprop("/position/altitude-agl-ft");
+    var time = height / 70;
+    if (time < 0.2 or time > 600) time = 0.2;
+    settimer(spoilers_control, time);
+  }
+  if (lever_pos == 6) {
+    setprop( "/controls/flight/speedbrake", 1.00 );
+
+    var wow_right = getprop("/gear/gear[2]/wow");
+    if (wow_right) setprop( "/controls/flight/spoilers", 1 );
+    if (!wow_right) setprop( "/controls/flight/spoilers", 0 );
+
+    if (getprop("/sim/messages/copilot") == "Spoilers UP!") { } else {
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers UP!");}
+
+    var height = getprop("/position/altitude-agl-ft");
+    var time = height / 70;
+    if (time < 0.2 or time > 600) time = 0.2;
     settimer(spoilers_control, time);
   }
 }
@@ -103,11 +125,38 @@ var landing_check = func{
 	var throttle_1 = getprop("/controls/engines/engine[0]/throttle");
 	var throttle_2 = getprop("/controls/engines/engine[1]/throttle");
 	var ab_pos = getprop("/controls/gear/autobrakes");
+	var ab_used = getprop("b733/controls/gear/autobrake-used");
 
-	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) {
+	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) { #normal landing
 		if (lever_pos == 1) setprop("b733/controls/flight/spoilers-lever-pos", 6);
-	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == 5) {
+		if (!ab_used) {
+			if (ab_pos == 1) {
+				setprop("/controls/gear/brake-left", 0.2);
+				setprop("/controls/gear/brake-right", 0.2);
+			} elsif (ab_pos == 2) {
+				setprop("/controls/gear/brake-left", 0.4);
+				setprop("/controls/gear/brake-right", 0.4);
+			} elsif (ab_pos == 3) {
+				setprop("/controls/gear/brake-left", 0.6);
+				setprop("/controls/gear/brake-right", 0.6);
+			} elsif (ab_pos == 4) {
+				setprop("/controls/gear/brake-left", 0.8);
+				setprop("/controls/gear/brake-right", 0.8);
+			}
+			setprop("b733/controls/gear/autobrake-used", 1);
+		}
+	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == 5) { #Rejected take-off
+		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593; 
 		if (lever_pos == 0) setprop("b733/controls/flight/spoilers-lever-pos", 6);
+
+		var ab_used = getprop("b733/controls/gear/autobrake-used");
+		if (!ab_used) {
+			if (GROUNDSPEED > 84) {
+				setprop("/controls/gear/brake-left", 1);
+				setprop("/controls/gear/brake-right", 1);
+			}
+			setprop("b733/controls/gear/autobrake-used", 1);
+		}
 	}
 
     var height = getprop("/position/altitude-agl-ft");
@@ -117,4 +166,14 @@ var landing_check = func{
     settimer(landing_check, time);
 }
 landing_check();
+
+
+var ab_reset = func{
+	var ab_pos = getprop("/controls/gear/autobrakes");
+	var ab_used = getprop("b733/controls/gear/autobrake-used");
+
+	if (ab_pos == 0 and ab_used) setprop("b733/controls/gear/autobrake-used", 0);
+
+}
+setlistener( "/controls/gear/autobrakes", ab_reset, 0, 0);
 

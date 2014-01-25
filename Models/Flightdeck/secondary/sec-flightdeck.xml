@@ -340,13 +340,20 @@
 <animation>
  <type>rotate</type>
  <object-name>SPEEDBRAKE</object-name>
- <property>controls/gear/autobrakes</property>
- <factor>20</factor>
- <offset-deg>-90</offset-deg>
+ <property>/b733/controls/flight/spoilers-lever-pos</property>
+    <interpolation>
+	<entry><ind>	0</ind>	<dep>	-90</dep></entry>
+        <entry><ind>	1</ind>	<dep>	-86</dep></entry>
+        <entry><ind>	2</ind>	<dep>	-81</dep></entry>
+        <entry><ind>	3</ind>	<dep>	-72</dep></entry>
+        <entry><ind>	4</ind>	<dep>	-63</dep></entry>
+        <entry><ind>	5</ind>	<dep>	-51</dep></entry>
+        <entry><ind>	6</ind>	<dep>	-42</dep></entry>
+    </interpolation>
  <center>
-  <x-m>-6.73474</x-m>
+  <x-m>-6.7821</x-m>
   <y-m>-0.10868</y-m>
-  <z-m>0.56368</z-m>
+  <z-m>0.4624</z-m>
  </center>
  <axis>
   <x>0</x>
@@ -361,27 +368,32 @@
   <visible>true</visible>
   <object-name>SPEEDBRAKE</object-name> 
   <action>
-  <name>Combo Speed Brake and AutoBrake</name>
-      <repeatable>false</repeatable>
-  <button>0</button>
-<binding>
-        	<command>property-cycle</command>
-        	<property>/controls/gear/autobrakes</property>
-        	<value>0</value>
-        	<value>1</value>
-        	<value>2</value>
-        	<value>3</value>
-        	<value>4</value>
+  <name>Speed Brake</name>
+	<repeatable>false</repeatable>
+	<button>3</button>
+	<binding>
+          <command>property-adjust</command>
+          <property>b733/controls/flight/spoilers-lever-pos</property>
+          <step type="double">-1</step>
+          <min type="double">0</min>
+          <max type="double">6</max>
         </binding>
-        <binding>
-          <command>nasal</command>
-          <script>
-          	var setting = getprop ("/controls/gear/autobrakes");
-		        var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO (disused)"];
-						if (getprop("sim/co-pilot")) {
-		          setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
-            }
-	        </script>
+ </action>
+ </animation>
+ <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>SPEEDBRAKE</object-name> 
+  <action>
+  <name>Speed Brake</name>
+	<repeatable>false</repeatable>
+	<button>4</button>
+	<binding>
+          <command>property-adjust</command>
+          <property>b733/controls/flight/spoilers-lever-pos</property>
+          <step type="double">1</step>
+          <min type="double">0</min>
+          <max type="double">6</max>
         </binding>
  </action>
  </animation>
