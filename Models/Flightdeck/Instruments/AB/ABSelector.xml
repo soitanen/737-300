@@ -28,13 +28,19 @@
   <type>rotate</type>
   <object-name>knob1.006</object-name>
   <property>/controls/gear/autobrakes</property>
-  <factor>50</factor>
+    <interpolation>
+	<entry><ind>	0</ind>	<dep>	-90</dep></entry>
+        <entry><ind>	1</ind>	<dep>	-45</dep></entry>
+        <entry><ind>	2</ind>	<dep>	0</dep></entry>
+        <entry><ind>	3</ind>	<dep>	45</dep></entry>
+        <entry><ind>	4</ind>	<dep>	90</dep></entry>
+        <entry><ind>	5</ind>	<dep>	-135</dep></entry>
+    </interpolation>
   <axis>
    <x>-1</x>
    <y>0</y>
    <z>0</z>
   </axis>
-	<offset-deg>-100</offset-deg>
  </animation>
  
   <animation>
@@ -53,15 +59,70 @@
         	<value>2</value>
         	<value>3</value>
         	<value>4</value>
+        	<value>5</value>
    </binding> 
    <binding>
     <command>nasal</command>
           <script>
           	var setting = getprop ("/controls/gear/autobrakes");
-		        var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO (disused)"];
+		        var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO"];
 						if (getprop("sim/co-pilot")) {
 		          setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
             }
+	        </script>
+   </binding>
+  </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>knob1.006</object-name>
+  <action>
+    <name>AutoBrake Selector</name>
+   <button>3</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+          <script>
+          	var setting = getprop ("/controls/gear/autobrakes");
+		if (setting == 5) {
+			setting = 0;
+		} elsif (setting == 4) {
+		} else {
+			setting += 1;
+		}
+		setprop ("/controls/gear/autobrakes", setting);
+
+		var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO"];
+		if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
+	        </script>
+   </binding>
+  </action>
+ </animation>
+
+  <animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>knob1.006</object-name>
+  <action>
+    <name>AutoBrake Selector</name>
+   <button>4</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+          <script>
+          	var setting = getprop ("/controls/gear/autobrakes");
+		if (setting == 5) {
+		} elsif (setting == 0) {
+			setting = 5;
+		} else {
+			setting -= 1;
+		}
+		setprop ("/controls/gear/autobrakes", setting);
+
+		var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO"];
+		if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
 	        </script>
    </binding>
   </action>
