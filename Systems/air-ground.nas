@@ -194,7 +194,7 @@ var was_in_air = func{
 		if (GROUNDSPEED < 60){
 			setprop("/b733/sensors/was-in-air", "false");
 		} else {
-			settimer (was_in_air, 0.5);
+			settimer (was_in_air, 2);
 		}
 	}
 }

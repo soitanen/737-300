@@ -58,15 +58,24 @@ trim_handler();
 var spoilers_control = func {
   var lever_pos = num( getprop("b733/controls/flight/spoilers-lever-pos") );
 
-  if (lever_pos == 0) setprop( "/controls/flight/speedbrake", 0.00 );
-  if (lever_pos == 1) setprop( "/controls/flight/speedbrake", 0.00 );
+  if (lever_pos == 0) {
+    setprop( "/controls/flight/speedbrake", 0.00 );
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers DOWN!");
+  }
+  if (lever_pos == 1) {
+    setprop( "/controls/flight/speedbrake", 0.00 );
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers ARMED!");
+  }
   if (lever_pos == 2) setprop( "/controls/flight/speedbrake", 0.1625 );
   if (lever_pos == 3) {
     setprop( "/controls/flight/speedbrake", 0.325 );
     setprop( "/controls/flight/spoilers", 0 );
   }
   if (lever_pos == 4) setprop( "/controls/flight/speedbrake", 0.4875 );
-  if (lever_pos == 5) setprop( "/controls/flight/speedbrake", 0.65 );
+  if (lever_pos == 5) {
+    setprop( "/controls/flight/speedbrake", 0.65 );
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers at FLIGHT DETENT!");
+  }
   if (lever_pos == 6) {
     setprop( "/controls/flight/speedbrake", 1.00 );
 
@@ -77,6 +86,8 @@ var spoilers_control = func {
     var height = getprop("/position/altitude-agl-ft");
     var time = height / 70;
     if (time < 0.2 or time > 600) time = 0.2;
+
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers UP!");
 
     settimer(spoilers_control, time);
   }
@@ -89,11 +100,14 @@ var landing_check = func{
 	var spin_up = getprop("/b733/sensors/main-gear-spin");
 	var was_ia = getprop("/b733/sensors/was-in-air");
 	var lever_pos = num( getprop("b733/controls/flight/spoilers-lever-pos") );
+	var throttle_1 = getprop("/controls/engines/engine[0]/throttle");
+	var throttle_2 = getprop("/controls/engines/engine[1]/throttle");
+	var ab_pos = getprop("/controls/gear/autobrakes");
 
-	if ((air_ground == "ground" or spin_up) and was_ia) {
+	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) {
 		if (lever_pos == 1) setprop("b733/controls/flight/spoilers-lever-pos", 6);
-	} elsif (air_ground == "air") {
-
+	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == 5) {
+		if (lever_pos == 0) setprop("b733/controls/flight/spoilers-lever-pos", 6);
 	}
 
     var height = getprop("/position/altitude-agl-ft");
@@ -103,6 +117,4 @@ var landing_check = func{
     settimer(landing_check, time);
 }
 landing_check();
-
-#setlistener( "/b733/sensors/air-ground", landing_check, 0, 0);
 
