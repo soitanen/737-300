@@ -193,6 +193,7 @@ var was_in_air = func{
 	if (air_ground == "ground" and was_ia) {
 		if (GROUNDSPEED < 60){
 			setprop("/b733/sensors/was-in-air", "false");
+			copilot.copilot.init();
 		} else {
 			settimer (was_in_air, 2);
 		}
