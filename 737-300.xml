@@ -762,6 +762,130 @@
 
         </channel>
 
+        <channel name="Stabilizer">
+          
+          <pure_gain name="fcs/stabilizer/trim-rate-per-tick">
+            <input>fcs/stabilizer/trim-rate</input>
+            <gain>0.0083333333333333</gain>
+          </pure_gain>
+
+          <summer>
+            <input> fcs/stabilizer/stab-target </input>
+            <input> -fcs/stabilizer-pos-unit </input>
+            <clipto>
+              <min>-fcs/stabilizer/trim-rate-per-tick</min>
+              <max> fcs/stabilizer/trim-rate-per-tick</max>
+            </clipto>
+            <output>fcs/stabilizer/stab-error</output>
+          </summer>
+
+          <summer>
+            <input> fcs/stabilizer-pos-unit </input>
+            <input> fcs/stabilizer/stab-error </input>
+            <output>fcs/stabilizer-pos-unit</output>
+          </summer>
+
+        </channel>
+
+        <channel name="Autobrake">
+
+          <switch>
+            <default value="fcs/autobrake/target-decel-fps_sec2"/>
+            <test value="12">
+              velocities/u-fps LE 134
+              fcs/autobrake/target-decel-fps_sec2 == 14
+            </test>
+            <output>fcs/autobrake/target-decel-fps_sec2-filtered</output>
+          </switch>
+
+          <summer name="fcs/autobrake/time-work">
+            <input> sim-time-sec </input>
+            <input>-fcs/autobrake/start-time-sec </input>
+          </summer>
+
+          <pure_gain name="fcs/autobrake/target-decel-15sec">
+            <input>fcs/autobrake/time-work</input>
+            <gain>2</gain>
+          </pure_gain>
+
+          <fcs_function name="fcs/autobrake/target-decel-25sec">
+            <function>
+              <sum>
+                <product>
+                  <property>fcs/autobrake/time-work</property>
+                  <sum>
+                    <property>fcs/autobrake/target-decel-fps_sec2-filtered</property>
+                    <value>-3</value>
+                  </sum>
+                </product>
+                <sum>
+                  <value>3</value>
+                  <product>
+                    <sum>
+                      <property>fcs/autobrake/target-decel-fps_sec2-filtered</property>
+                      <value>-3</value>
+                    </sum>
+                    <value>-1.5</value>
+                  </product>
+                </sum>
+              </sum>
+            </function>
+          </fcs_function>
+
+          <switch>
+            <default value="fcs/autobrake/target-decel-fps_sec2-filtered"/>
+            <test value="25">
+              fcs/autobrake/target-decel-fps_sec2-filtered == 25
+            </test>
+            <test value="fcs/autobrake/target-decel-15sec">
+              fcs/autobrake/time-work LE 1.5
+            </test>
+            <test value="fcs/autobrake/target-decel-25sec">
+              fcs/autobrake/time-work LE 2.5
+              fcs/autobrake/time-work GT 1.5
+            </test>
+            <output>fcs/autobrake/target-decel-fps_sec2-final</output>
+          </switch>
+
+          <summer name="fcs/autobrake/decel-error">
+            <input> fcs/autobrake/target-decel-fps_sec2-final </input>
+            <input> accelerations/udot-ft_sec2 </input>
+          </summer>
+
+          <pure_gain>
+            <input>fcs/autobrake/decel-error</input>
+            <gain>0.01</gain>
+            <output>fcs/autobrake/brake-cmd-gain</output>
+          </pure_gain>
+
+          <summer>
+            <input> fcs/autobrake/autobrake-cmd </input>
+            <input> fcs/autobrake/brake-cmd-gain </input>
+            <clipto>
+             <min>0</min>
+             <max>1</max>
+            </clipto>
+            <output>fcs/autobrake/autobrake-cmd</output>
+          </summer>
+
+          <switch name="fcs/autobrake/brake-left-cmd-final">
+            <default value="fcs/brake-left-cmd"/>
+            <test value="fcs/autobrake/autobrake-cmd">
+              fcs/autobrake/autobrake-in-use == 1
+            </test>
+            <output>fcs/left-brake-cmd-norm</output>
+          </switch>
+
+          <switch name="fcs/autobrake/brake-right-cmd-final">
+            <default value="fcs/brake-right-cmd"/>
+            <test value="fcs/autobrake/autobrake-cmd">
+              fcs/autobrake/autobrake-in-use == 1
+            </test>
+            <output>fcs/right-brake-cmd-norm</output>
+          </switch>
+
+        </channel>
+
   <channel name="Skidslip">
 
     <!-- Check for z accel not-zero -->

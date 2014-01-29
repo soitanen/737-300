@@ -1181,6 +1181,39 @@
         </binding>
       </key>
    
+     <!-- <key n="362">
+       <name>Home</name>
+       <desc>Stabilizer trim down</desc>
+       <binding>
+          <command>property-assign</command>
+          <property>b733/controls/trim/elevator-cmd</property>
+          <value>-1</value>
+       </binding>
+       <mod-up>
+         <binding>
+           <command>property-assign</command>
+           <property>b733/controls/trim/elevator-cmd</property>
+           <value>0</value>
+         </binding>            
+       </mod-up>
+      </key>
+      <key n="363">
+       <name>End</name>
+       <desc>Stabilizer trim up</desc>
+       <binding>
+          <command>property-assign</command>
+          <property>b733/controls/trim/elevator-cmd</property>
+          <value>1</value>
+       </binding>
+       <mod-up>
+         <binding>
+           <command>property-assign</command>
+           <property>b733/controls/trim/elevator-cmd</property>
+           <value>0</value>
+         </binding>            
+       </mod-up>
+      </key> -->
+
     </keyboard>
   </input>
 
@@ -1193,7 +1226,7 @@
     </electric>
     
     <gear>
-      <brake-parking type="bool">1</brake-parking>
+      <brake-parking type="bool">0</brake-parking>
       <autobrakes type="int">0</autobrakes>
       <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
     </gear>
@@ -1244,6 +1277,18 @@
       <fcs>
         <flap-lrs type="double">0</flap-lrs>
         <stabilizer-pos-unit type="double">3</stabilizer-pos-unit>
+        <brake-left-cmd type="double">0</brake-left-cmd>
+        <brake-right-cmd type="double">0</brake-right-cmd>
+        <autobrake>
+          <autobrake-in-use type="bool">0</autobrake-in-use>
+          <autobrake-used type="bool">0</autobrake-used>
+          <target-decel-fps_sec2 type="double">0</target-decel-fps_sec2>
+          <start-time-sec type="double">0</start-time-sec>
+        </autobrake>
+        <stabilizer>
+          <stab-target>3</stab-target>
+          <trim-rate type="double">0</trim-rate>
+        </stabilizer>
       </fcs>
     </jsbsim>
   </fdm>
@@ -1253,9 +1298,6 @@
       <flight>
         <spoilers-lever-pos type="double">0</spoilers-lever-pos>
       </flight>
-      <gear>
-        <autobrake-used type="bool">0</autobrake-used>
-      </gear>
     </controls>
     <sensors>
       <air-ground type="string">ground</air-ground>
