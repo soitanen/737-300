@@ -16,8 +16,8 @@ var elevatorTrim = func {
 
 	if (stab_pos > 12.5 and arg[0]*-1 == 1 and !ap_a_on and !ap_b_on) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
 	if (stab_pos > 14 and arg[0]*-1 == 1 and (ap_a_on or ap_b_on)) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
-	if (stab_pos < 2.5 and arg[0]*-1 == -1 and !ap_a_on and !ap_b_on and flaps_pos > 0) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
-	if (stab_pos < 0.25 and arg[0]*-1 == -1 and !ap_a_on and !ap_b_on and flaps_pos == 0) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
+	if (stab_pos < 2.5 and arg[0]*-1 == -1 and !ap_a_on and !ap_b_on and flaps_pos == 0) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
+	if (stab_pos < 0.25 and arg[0]*-1 == -1 and !ap_a_on and !ap_b_on and flaps_pos > 0) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos );
 
 	
 	settimer( elev_trim_stop, 0.1 );
