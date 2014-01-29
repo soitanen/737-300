@@ -1,21 +1,20 @@
 <?xml version="1.0"?>
 <!--
   File:     CFM56.xml
-  Author:   e-pilot
+  Author:   e-pilot, changes Soitanen
 	
 	CFM56-3C-1
 	
   Inputs:
     name:           CFM56
     type:           turbine
-    thrust:         23500 lb
+    thrust:         20000 lb BASIC ENGINE FOR 737-300
     augmented?      no
     injected?       no
 -->
 
 <turbine_engine name="CFM56">
-  <milthrust> 23500.0 </milthrust>
-	<maxthrust> 23500.0 </maxthrust>
+  <milthrust> 20000.0 </milthrust>
   <bypassratio>     1.0 </bypassratio>
   <tsfc>            0.657 </tsfc>
   <bleed>           0.03 </bleed>

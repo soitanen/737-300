@@ -769,9 +769,9 @@
             <gain>0.0083333333333333</gain>
           </pure_gain>
 
-          <summer>
+          <summer name="fcs/stabilizer/errorfree-stab-error">
             <input> fcs/stabilizer/stab-target </input>
-            <input> -fcs/stabilizer-pos-unit </input>
+            <input>-fcs/stabilizer-pos-unit </input>
             <clipto>
               <min>-fcs/stabilizer/trim-rate-per-tick</min>
               <max> fcs/stabilizer/trim-rate-per-tick</max>
@@ -779,7 +779,7 @@
             <output>fcs/stabilizer/stab-error</output>
           </summer>
 
-          <summer>
+          <summer name="fcs/stabilizer/stabilizer-pos-unit">
             <input> fcs/stabilizer-pos-unit </input>
             <input> fcs/stabilizer/stab-error </input>
             <output>fcs/stabilizer-pos-unit</output>
@@ -789,7 +789,7 @@
 
         <channel name="Autobrake">
 
-          <switch>
+          <switch name="fcs/autobrake/errorfree-target-decel-fps_sec2-filtered">
             <default value="fcs/autobrake/target-decel-fps_sec2"/>
             <test value="12">
               velocities/u-fps LE 134
@@ -832,7 +832,7 @@
             </function>
           </fcs_function>
 
-          <switch>
+          <switch name="fcs/autobrake/errorfree-target-decel-fps_sec2-final">
             <default value="fcs/autobrake/target-decel-fps_sec2-filtered"/>
             <test value="25">
               fcs/autobrake/target-decel-fps_sec2-filtered == 25
@@ -858,7 +858,7 @@
             <output>fcs/autobrake/brake-cmd-gain</output>
           </pure_gain>
 
-          <summer>
+          <summer name="fcs/autobrake/errorfree-autobrake-cmd">
             <input> fcs/autobrake/autobrake-cmd </input>
             <input> fcs/autobrake/brake-cmd-gain </input>
             <clipto>
