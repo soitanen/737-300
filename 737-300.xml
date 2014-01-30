@@ -1103,15 +1103,15 @@
                 </product>
             </function>
 
-<function name="aero/coefficient/CDrv">
-            <description>Drag_due_to_reverse</description>
+            <function name="aero/coefficient/CDrv">
+              <description>Drag_due_to_reverse</description>
                 <product>
                     <property>aero/qbar-psf</property>
                  <property>metrics/Sw-sqft</property>
                   <property>/engines/engine/reverser-pos-norm</property>
                    <value>0.018</value>
                </product>
-	       </function>
+	    </function>
 
         </axis>
 
@@ -1122,7 +1122,16 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/beta-rad</property>
-                    <value>-1</value>
+                    <value>-0.670158</value>   <!-- Data taken from datcom comparison. Original here was -1 -->
+                </product>
+            </function>
+            <function name="aero/coefficient/Cyp">
+                <description>Side_force_due_to_roll_rate</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>velocities/p-aero-rad_sec</property>
+                    <value>-0.1004</value>   <!-- Data taken from datcom comparison. Original was not presented here -->
                 </product>
             </function>
         </axis>
@@ -1186,7 +1195,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/beta-rad</property>
-                    <value>-0.09</value>
+                    <value>-0.066931</value>   <!-- Data taken from datcom comparison. Original here was -0.09 -->
                 </product>
             </function>
 
@@ -1198,7 +1207,7 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/p-aero-rad_sec</property>
-                    <value>-0.4</value>
+                    <value>-0.556338</value>   <!-- Data taken from datcom comparison. Original here was -0.4 -->
                 </product>
             </function>
 
@@ -1210,7 +1219,7 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-                    <value>0.09</value>
+                    <value>0.149231</value>   <!-- Data taken from datcom comparison. Original here was 0.09 -->
                 </product>
             </function>
 
@@ -1251,7 +1260,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/alpha-rad</property>
-                    <value>-0.6</value>
+                    <value>-0.8436</value> <!-- Data taken from datcom comparison. Original here was -0.6 -->
                 </product>
             </function>
             <function name="aero/coefficient/Cmde">
@@ -1293,7 +1302,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
-                    <value>-27.0</value>
+                    <value>-11.0</value> <!-- Data taken from datcom comparison. Original here was -27 -->
                 </product>
             </function>
             <function name="aero/coefficient/Cmadot">
@@ -1304,7 +1313,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>aero/alphadot-rad_sec</property>
-                    <value>-16.0</value>
+                    <value>-18.06</value>  <!-- Data taken from datcom comparison. Original here was -16 -->
                 </product>
             </function>
         </axis>
@@ -1317,7 +1326,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/beta-rad</property>
-                    <value>0.26</value>
+                    <value>0.099226</value>  <!-- Data taken from datcom comparison. Original here was 0.26 -->
                 </product>
             </function>
             <function name="aero/coefficient/Cnr">
@@ -1328,7 +1337,18 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-                    <value>-0.35</value>
+                    <value>-0.062892</value>   <!-- Data taken from datcom comparison. Original here was -0.35 -->
+                </product>
+            </function>
+            <function name="aero/coefficient/Cnp">
+                <description>Yaw_moment_due_to_roll_rate</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>aero/bi2vel</property>
+                    <property>velocities/p-aero-rad_sec</property>
+                    <value>-0.034969</value>   <!-- Data taken from datcom comparison. Original was not presented here -->
                 </product>
             </function>
             <function name="aero/coefficient/Cndr">

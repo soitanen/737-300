@@ -202,5 +202,6 @@ setlistener( "/controls/gear/brake-parking", parking_brake, 0, 0);
 
 var parking_brake_set = func {
 	setprop("/controls/gear/brake-parking", 1);
+	setprop("/sim/menubar/visibility", "true");
 }
 settimer (parking_brake_set, 2);
