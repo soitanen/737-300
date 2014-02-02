@@ -92,7 +92,7 @@
     <object-name>needle</object-name>
     <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
     <interpolation>
-      <entry><ind>   0 </ind><dep>  -9 </dep></entry>
+      <entry><ind>  56 </ind><dep>  -5 </dep></entry>
       <entry><ind>  60 </ind><dep>   0 </dep></entry>
       <entry><ind> 100 </ind><dep>  61 </dep></entry>
       <entry><ind> 120 </ind><dep>  91 </dep></entry>
@@ -118,7 +118,7 @@
     <object-name>bug-auto</object-name>
     <property>/autopilot/settings/target-speed-kt</property>
     <interpolation>
-      <entry><ind>   0 </ind><dep>  -9 </dep></entry>
+      <entry><ind>  56 </ind><dep>  -5 </dep></entry>
       <entry><ind>  60 </ind><dep>   0 </dep></entry>
       <entry><ind> 100 </ind><dep>  61 </dep></entry>
       <entry><ind> 120 </ind><dep>  91 </dep></entry>
@@ -232,7 +232,7 @@
   <animation>
     <type>textranslate</type>
     <object-name>rouek1</object-name>
-    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-numbers-kt</property>
 		<factor>.1</factor>
     <center>
       <x-m> -0.016 </x-m>
@@ -249,7 +249,7 @@
   <animation>
     <type>textranslate</type>
     <object-name>rouek10</object-name>
-    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-numbers-kt</property>
 		<factor>.01</factor>
 		<step>10</step>
 		<scroll>2</scroll>
@@ -268,7 +268,7 @@
   <animation>
     <type>textranslate</type>
     <object-name>rouek100</object-name>
-    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-numbers-kt</property>
 		<factor>.001</factor>
     <step>100</step>
     <scroll>3</scroll>
