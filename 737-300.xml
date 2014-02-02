@@ -404,8 +404,7 @@
                 <pitch> -5 </pitch>
                 <yaw>   0 </yaw>
             </orient>
-            <feed>0</feed>
-            <feed>2</feed>
+            <feed>3</feed> <!-- Feed from pipe -->
             <thruster file="direct">
                 <location unit="IN">
                     <x>  540 </x>
@@ -430,8 +429,7 @@
                 <pitch> -5 </pitch>
                 <yaw>   0 </yaw>
             </orient>
-            <feed>1</feed>
-            <feed>2</feed>
+            <feed>4</feed> <!-- Feed from pipe -->
             <thruster file="direct">
                 <location unit="IN">
                     <x> 540 </x>
@@ -473,10 +471,29 @@
             <capacity unit="LBS"> 15000 </capacity>
             <contents unit="LBS"> 10500 </contents>
         </tank>
+        <tank type="FUEL"><!-- Feed pipe for left engine -->
+            <location unit="IN">
+                <x> 540 </x>
+                <y>-193 </y>
+                <z> -40 </z>
+            </location>
+            <capacity unit="LBS"> 0.5 </capacity>
+            <contents unit="LBS"> 0.25 </contents>
+        </tank>
+        <tank type="FUEL"><!-- Feed pipe for right engine -->
+            <location unit="IN">
+                <x> 540 </x>
+                <y> 193 </y>
+                <z> -40 </z>
+            </location>
+            <capacity unit="LBS"> 0.5 </capacity>
+            <contents unit="LBS"> 0.25 </contents>
+        </tank>
     </propulsion>
     
    <system file="pushback"/>
    <system file="steering"/>
+   <system file="fuel"/>
 
     <flight_control name="FCS: 737">
 
@@ -661,7 +678,7 @@
             <test value="0.875">
               fcs/flap-lrs == 1
             </test>
-          </switch> 
+          </switch>
 
             <kinematic name="Flaps Control">
                 <input>fcs/flap-cmd-norm-lrs</input>

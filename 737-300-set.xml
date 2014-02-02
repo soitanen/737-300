@@ -1251,6 +1251,22 @@
       <autostart type="int">1</autostart>
     </engines>
 
+    <fuel>
+      <crossfeed type="bool">0</crossfeed>
+      <tank n="0">
+        <pump-fwd type="bool">0</pump-fwd>
+        <pump-aft type="bool">0</pump-aft>
+      </tank>
+      <tank n="1">
+        <pump-fwd type="bool">0</pump-fwd>
+        <pump-aft type="bool">0</pump-aft>
+      </tank>
+      <tank n="2">
+        <pump-left type="bool">0</pump-left>
+        <pump-right type="bool">0</pump-right>
+      </tank>
+    </fuel>
+
   </controls>
 
   <gear>
