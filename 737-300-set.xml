@@ -1580,7 +1580,11 @@
     <controls>
       <file>Aircraft/737-300/Nasal/controls.nas</file>
     </controls>
- 
+
+    <nd>
+      <file>Aircraft/737-300/Nasal/ND.nas</file>
+    </nd> 
+
   </nasal>
 
 </PropertyList>
