@@ -17,3 +17,15 @@ var vmo = func {
 }
 
 vmo();
+
+var min_ind_speed = func {
+	var ias = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
+	if ( ias == nil ) ias = 0.001;
+
+	if (ias < 45) ias = 45;
+	setprop("/instrumentation/airspeed-indicator/indicated-speed-numbers-kt", ias);
+
+	settimer(min_ind_speed, 0);
+}
+
+min_ind_speed();
