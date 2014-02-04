@@ -661,10 +661,6 @@
 		  <condition>
         <and>
           <equals>
-            <property>/autopilot/internal/CMDA</property>
-            <value>true</value>
-          </equals>
-          <equals>
             <property>/autopilot/internal/SPD</property>
             <value>true</value>
           </equals>
@@ -696,8 +692,7 @@
       <prop>/autopilot/settings/target-speed-kt</prop>
     </reference>
     <output>
-      <prop>/controls/engines/engine[0]/throttle</prop>
-      <prop>/controls/engines/engine[1]/throttle</prop>
+      <prop>/autopilot/internal/at-throttle</prop>
     </output>
     <config>
       <Kp>0.1</Kp>        <!-- proportional gain -->
@@ -719,10 +714,6 @@
 		<enable>
 		  <condition>
         <and>
-          <equals>
-            <property>/autopilot/internal/CMDA</property>
-            <value>true</value>
-          </equals>
           <equals>
             <property>/autopilot/internal/SPD</property>
             <value>true</value>
@@ -770,6 +761,56 @@
       <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
+
+<filter>
+  <name>SERVO-DRIVER:autothrottle</name>	
+  <debug>false</debug>
+  <feedback-if-disabled>true</feedback-if-disabled>
+  <enable>
+    <condition>
+        <and>
+          <equals>
+            <property>/autopilot/internal/SPD</property>
+            <value>true</value>
+          </equals>
+          <or>
+            <equals>
+              <property>/autopilot/internal/SPD-N1</property>
+              <value>true</value>
+            </equals>
+            <equals>
+              <property>/autopilot/internal/SPD-SPEED</property>
+              <value>true</value>
+            </equals>
+            <equals>
+              <property>/autopilot/internal/SPD-LVLCHG</property>
+              <value>true</value>
+            </equals>
+          </or>
+          <equals>
+            <property>/autopilot/internal/SPD-IAS</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+  </enable>
+  <type>noise-spike</type>
+  <max-rate-of-change>
+    <condition>
+      <less-than>
+        <property>/autopilot/internal/at-throttle</property>
+        <property>/controls/engines/engine[0]/throttle</property>
+      </less-than>
+    </condition>
+    <value>0.0468</value>
+  </max-rate-of-change>
+  <max-rate-of-change>.0932</max-rate-of-change>
+  <input>/autopilot/internal/at-throttle</input>
+    <output>
+      <prop>/controls/engines/engine[0]/throttle</prop>
+      <prop>/controls/engines/engine[1]/throttle</prop>
+    </output>
+</filter>
 
 <filter>
   <name>SERVO-DRIVER:aileron</name>	
