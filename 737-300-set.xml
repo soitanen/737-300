@@ -775,30 +775,6 @@
           <script>reversethrust.togglereverser()</script>
         </binding>
       </key>
-
-      <key n="9">
-        <name>Tab</name>
-        <desc>switch autobrake</desc>
-        <binding>
-         <command>property-cycle</command>
-         <property>/controls/gear/autobrakes</property>
-         <value>0</value>
-         <value>1</value>
-         <value>2</value>
-         <value>3</value>
-         <value>4</value>
-        </binding>
-        <binding>
-          <command>nasal</command>
-          <script>
-           var setting = getprop ("/controls/gear/autobrakes");
-          var names = ["Off", "Level 1", "Level 2", "Level 3", "Maximum", "RTO (disused)"];
-      if (getprop("sim/co-pilot")) {
-            setprop ("/sim/messages/copilot", "Autobrakes set to " ~ names[setting] ~ ".");
-            }
-         </script>
-        </binding>
-      </key>
    
    <key n="50">
         <name>2</name>

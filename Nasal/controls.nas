@@ -47,11 +47,13 @@ var spoilers_control = func {
 
   if (lever_pos == 0) {
     setprop( "/controls/flight/speedbrake", 0.00 );
-    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers DOWN!");
+    if (getprop("/sim/messages/copilot") == "Spoilers DOWN!") { } else {
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers DOWN!");}
   }
   if (lever_pos == 1) {
     setprop( "/controls/flight/speedbrake", 0.00 );
-    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers ARMED!");
+    if (getprop("/sim/messages/copilot") == "Spoilers ARMED!") { } else {
+    if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers ARMED!");}
   }
   if (lever_pos == 2) setprop( "/controls/flight/speedbrake", 0.1625 );
   if (lever_pos == 3) {
@@ -117,7 +119,7 @@ var landing_check = func{
 	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) { #normal landing
 		if (lever_pos == 1) setprop("b733/controls/flight/spoilers-lever-pos", 6);
 		if (ab_pos > 0 and !ab_used) autobrake_apply();
-	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == 5) { #Rejected take-off
+	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == -1) { #Rejected take-off
 		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593; 
 		if (lever_pos == 0) setprop("b733/controls/flight/spoilers-lever-pos", 6);
 
@@ -161,7 +163,7 @@ var autobrake_apply = func {
 	if (ab_pos == 2) setprop("/fdm/jsbsim/fcs/autobrake/target-decel-fps_sec2", 5);
 	if (ab_pos == 3) setprop("/fdm/jsbsim/fcs/autobrake/target-decel-fps_sec2", 7.2);
 	if (ab_pos == 4) setprop("/fdm/jsbsim/fcs/autobrake/target-decel-fps_sec2",14);
-	if (ab_pos == 5) setprop("/fdm/jsbsim/fcs/autobrake/target-decel-fps_sec2",25);
+	if (ab_pos == -1) setprop("/fdm/jsbsim/fcs/autobrake/target-decel-fps_sec2",25);
 }
 
 var left_brake = func {
