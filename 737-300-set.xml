@@ -1160,39 +1160,6 @@
         </binding>
       </key>
    
-     <!-- <key n="362">
-       <name>Home</name>
-       <desc>Stabilizer trim down</desc>
-       <binding>
-          <command>property-assign</command>
-          <property>b733/controls/trim/elevator-cmd</property>
-          <value>-1</value>
-       </binding>
-       <mod-up>
-         <binding>
-           <command>property-assign</command>
-           <property>b733/controls/trim/elevator-cmd</property>
-           <value>0</value>
-         </binding>            
-       </mod-up>
-      </key>
-      <key n="363">
-       <name>End</name>
-       <desc>Stabilizer trim up</desc>
-       <binding>
-          <command>property-assign</command>
-          <property>b733/controls/trim/elevator-cmd</property>
-          <value>1</value>
-       </binding>
-       <mod-up>
-         <binding>
-           <command>property-assign</command>
-           <property>b733/controls/trim/elevator-cmd</property>
-           <value>0</value>
-         </binding>            
-       </mod-up>
-      </key> -->
-
     </keyboard>
   </input>
 
@@ -1297,6 +1264,12 @@
       <flight>
         <spoilers-lever-pos type="double">0</spoilers-lever-pos>
       </flight>
+      <ehsi n="0">
+        <mode-selector type="double">3</mode-selector>
+      </ehsi>
+      <ehsi n="1">
+        <mode-selector type="double">3</mode-selector>
+      </ehsi>
     </controls>
     <sensors>
       <air-ground type="string">ground</air-ground>
@@ -1582,7 +1555,11 @@
 
     <nd>
       <file>Aircraft/737-300/Nasal/ND.nas</file>
-    </nd> 
+    </nd>
+
+    <ehsi-control>
+      <file>Aircraft/737-300/Nasal/ehsi-control.nas</file>
+    </ehsi-control>
 
   </nasal>
 
