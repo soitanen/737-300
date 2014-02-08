@@ -300,6 +300,9 @@
         <path>Aircraft/737-300/Systems/737-autopilot.xml</path>
       </autopilot>
       <path>Aircraft/737-300/Systems/systems.xml</path>
+      <property-rule n="101">
+        <path>Aircraft/737-300/Systems/instrument-filters.xml</path>
+      </property-rule>
     </systems>
 
     <sound>
@@ -1200,6 +1203,10 @@
       <battery-switch type="bool">false</battery-switch>
       <bus-tran-switch type="bool">true</bus-tran-switch>
     </electric>
+
+    <efis n="0">
+      <brightness type="double">0.1</brightness>
+    </efis>
     
     <gear>
       <brake-parking type="bool">0</brake-parking>

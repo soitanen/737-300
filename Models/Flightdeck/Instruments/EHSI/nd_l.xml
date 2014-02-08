@@ -18,6 +18,27 @@
 </animation>
 
 <animation>
+    <type>material</type>
+    <object-name>ndScreenL</object-name>
+   
+    <emission>
+      <factor-prop>/controls/efis[0]/brightness</factor-prop>
+      <red>   1 </red>
+      <green> 1 </green>
+      <blue>  1 </blue>
+    </emission>
+<!--  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>-->
+  </animation>
+
+<animation>
 	<type>pick</type>
 	<object-name>ndScreenL</object-name>
 	<action>

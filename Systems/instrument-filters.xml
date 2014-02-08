@@ -1,0 +1,16 @@
+<PropertyList>
+
+<!-- Helper for smooth slip-skid indication -->
+<filter n="10001">
+  <name>slip-skid-filter</name>	
+  <debug>false</debug>
+  <feedback-if-disabled>true</feedback-if-disabled>
+  <type>noise-spike</type>
+  <max-rate-of-change>5</max-rate-of-change>
+  <input>/fdm/jsbsim/instrumentation/slip-skid-indicator/slip-skid-deg</input>
+  <output>
+   <prop>instrumentation/slip-skid-indicator/slip-skid-deg-filtered</prop>
+  </output>
+</filter>
+
+</PropertyList>

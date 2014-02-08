@@ -677,18 +677,14 @@
  </animation>
  
      <animation>
-        <type>translate</type>
+        <type>rotate</type>
         <object-name>slipball</object-name>
-        <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
-        <min>-1.0</min>
-        <max>1.0</max>
-        <interpolation>
-            <entry><ind>-1.0</ind><dep>-0.02</dep></entry>
-            <entry><ind>1.0</ind><dep>0.02</dep></entry>
-        </interpolation>
+        <property>instrumentation/slip-skid-indicator/slip-skid-deg-filtered</property>
+        <max-deg>10.0</max-deg>
+        <min-deg>-10.0</min-deg>
         <axis>
-            <x>0.0</x>
-            <y>1.0</y>
+            <x>-1.0</x>
+            <y>0.0</y>
             <z>0.0</z>
         </axis>
         <center>
