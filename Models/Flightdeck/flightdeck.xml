@@ -101,10 +101,10 @@
   <!-- EHSI -->
   <model>
     <name>Captains EHSI</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd.xml</path>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd_l.xml</path>
     <offsets>
       <x-m>-7.039</x-m>
-      <y-m>0.450</y-m>
+      <y-m>-0.459</y-m>
       <z-m>0.671</z-m>
       <pitch-deg>0</pitch-deg>
     </offsets>
@@ -112,10 +112,10 @@
   
   <model>
     <name>Co-Pilots EHSI</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd.xml</path>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/EHSI/nd_r.xml</path>
     <offsets>
       <x-m>-7.039</x-m>
-      <y-m>-0.459</y-m>
+      <y-m>0.450</y-m>
       <z-m>0.671</z-m>
       <pitch-deg>0</pitch-deg>
     </offsets>
