@@ -26,7 +26,6 @@ var elevatorTrim = func {
 var elev_trim_stop = func {
   var stab_pos = num( getprop("/fdm/jsbsim/fcs/stabilizer-pos-unit") );
   setprop("fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos);
-  #setprop("fdm/jsbsim/fcs/stabilizer/trim-rate", 0);
 }
 
 var trim_handler = func{
@@ -207,3 +206,5 @@ var parking_brake_set = func {
 	setprop("/sim/menubar/visibility", "true");
 }
 settimer (parking_brake_set, 2);
+
+setprop("fdm/jsbsim/fcs/stabilizer/trim-rate", 0.615); #setting initial treem spedd for possibility to work AP without trimming first

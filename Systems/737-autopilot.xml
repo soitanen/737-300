@@ -552,8 +552,8 @@
   <pid-controller>
     <name>Glideslope Hold</name>
     <debug>false</debug>
-		<enable>
-		  <condition>
+    <enable>
+      <condition>
         <and>
           <equals>
             <property>/autopilot/internal/CMDA</property>
@@ -567,29 +567,29 @@
             <property>/autopilot/internal/VNAV-GS</property>
             <value>true</value>
           </equals> 
-		      <equals>
-		        <property>/instrumentation/nav/gs-in-range</property>
-		          <value>true</value>
-		      </equals>
+          <equals>
+            <property>/instrumentation/nav[0]/gs-in-range</property>
+            <value>true</value>
+          </equals>
          <less-than>
             <property>/instrumentation/nav/gs-needle-deflection</property>
-            <value>0.5</value>
+            <value>0.8</value>
           </less-than>
           <greater-than>
             <property>/instrumentation/nav/gs-needle-deflection</property>
-            <value>-0.5</value>
+            <value>-0.8</value>
           </greater-than>
         </and>
       </condition>
     </enable>
     <input>
-      <prop>/velocities/vertical-speed-fps</prop>
+      <prop>/instrumentation/nav/gs-rate-of-climb</prop>
     </input>
     <reference>
-      <prop>/instrumentation/nav/gs-rate-of-climb</prop>
+      <prop>/velocities/vertical-speed-fps</prop>
     </reference>
      <output>
-      <prop>/autopilot/internal/elevator-trim</prop>
+      <prop>/autopilot/internal/elevator-trim-servo</prop>
     </output>
     <config>
       <Kp>-0.02</Kp>      <!-- proportional gain -->
@@ -854,10 +854,6 @@
        <equals>
          <property>/autopilot/internal/VNAV</property>
          <value>true</value>
-       </equals>
-       <equals>
-         <property>/autopilot/internal/VNAV-GS</property>
-         <value>false</value>
        </equals>
      </and>
    </condition>
@@ -1126,6 +1122,5 @@
     </period>
     <gain>1.0</gain>
   </filter>
-
  
 </PropertyList>

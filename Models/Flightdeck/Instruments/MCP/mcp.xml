@@ -1406,10 +1406,6 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
      <property>/autopilot/internal/VNAV-VS</property>
      <value type="bool">0</value>
@@ -1418,6 +1414,10 @@
      <command>property-assign</command>
      <property>/autopilot/internal/VNAV-ALT</property>
      <value type="bool">0</value>
+   </binding>
+   <binding>
+     <command>property-toggle</command>
+     <property>/autopilot/internal/VNAV-GS</property>
    </binding>
   </action>
  </animation>
