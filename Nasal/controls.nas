@@ -26,7 +26,7 @@ var elevatorTrim = func {
 var elev_trim_stop = func {
   var stab_pos = num( getprop("/fdm/jsbsim/fcs/stabilizer-pos-unit") );
   setprop("fdm/jsbsim/fcs/stabilizer/stab-target", stab_pos);
-  setprop("fdm/jsbsim/fcs/stabilizer/trim-rate", 0);
+  #setprop("fdm/jsbsim/fcs/stabilizer/trim-rate", 0);
 }
 
 var trim_handler = func{

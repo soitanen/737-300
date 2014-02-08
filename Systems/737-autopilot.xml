@@ -524,24 +524,24 @@
       </condition>
 		</enable>	
     <input>
-      <prop>/velocities/vertical-speed-fps</prop>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </input>
     <reference>
-      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+      <prop>/velocities/vertical-speed-fps</prop>
     </reference>
     <output>
       <prop>/autopilot/internal/elevator-trim-servo</prop>
     </output>
     <config>
-      <Kp>-0.005</Kp>      <!-- proportional gain -->
+      <Kp>-0.02</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+      <gamma>0.8</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1.0</u_min> <!-- minimum output clamp -->
-      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+      <u_min>0.25</u_min> <!-- minimum output clamp -->
+      <u_max>14.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -589,18 +589,18 @@
       <prop>/instrumentation/nav/gs-rate-of-climb</prop>
     </reference>
      <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/autopilot/internal/elevator-trim</prop>
     </output>
     <config>
-      <Kp>-0.01</Kp>      <!-- proportional gain -->
+      <Kp>-0.02</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+      <gamma>0.8</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1.0</u_min> <!-- minimum output clamp -->
-      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+      <u_min>0.25</u_min> <!-- minimum output clamp -->
+      <u_max>14.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -627,25 +627,25 @@
       </condition>
 		</enable>	
     <input>
-      <prop>/velocities/vertical-speed-fps</prop>
-    </input>
-    <reference>
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
       <scale>0.01667</scale>
+    </input>
+    <reference>
+      <prop>/velocities/vertical-speed-fps</prop>
     </reference>
     <output>
       <prop>/autopilot/internal/elevator-trim-servo</prop>
     </output>
     <config>
-      <Kp>-0.005</Kp>      <!-- proportional gain -->
+      <Kp>-0.02</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+      <gamma>0.8</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1.0</u_min> <!-- minimum output clamp -->
-      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+      <u_min>0.25</u_min> <!-- minimum output clamp -->
+      <u_max>14.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -864,66 +864,19 @@
   </enable>
   <input>/autopilot/internal/elevator-trim-servo</input>
   <output>
-   <prop>/controls/flight/elevator-trim</prop>
+   <prop>/fdm/jsbsim/fcs/stabilizer/stab-target</prop>
   </output>
   <type>noise-spike</type>
   <max-rate-of-change>
-	  <expression>
-       <table>
-        <property>/velocities/airspeed-kt</property> 
-        <entry>
-				 <ind>
-				  <condition>
-					 <greater-than>
-						 291
-					 </greater-than>
-				  </condition>
-		     </ind>
-				 <dep>.1</dep>
-        </entry>
-        <entry>
-				 <ind>
-				  <condition>
-					 <and>
-					  <greater-than>
-						 269
-						</greater-than>
-						<less-than>
-						 292
-						</less-than>
-					 </and>
-				  </condition>
-		     </ind>
-				 <dep>.2</dep>
-        </entry>
-        <entry>
-				 <ind>
-				  <condition>
-					 <and>
-					  <greater-than>
-						 229
-						</greater-than>
-						<less-than>
-						 270
-						</less-than>
-					 </and>
-				  </condition>
-		     </ind>
-				 <dep>.5</dep>
-        </entry>
-        <entry>
-				 <ind>
-				  <condition>
-						<less-than>
-						 230
-						</less-than>
-				  </condition>
-		     </ind>
-				 <dep>1.0</dep>
-        </entry>
-       </table>
-    </expression>
-	</max-rate-of-change>
+    <condition>
+      <greater-than>
+        <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <value>0.205</value>
+  </max-rate-of-change>
+  <max-rate-of-change>0.1025</max-rate-of-change>
  </filter>
 
 <!-- This prediction filter is required by the Mach Hold Speed Mode -->
