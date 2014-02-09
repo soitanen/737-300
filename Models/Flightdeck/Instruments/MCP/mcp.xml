@@ -32,20 +32,8 @@
    <object-name>apvs3b</object-name>
    <object-name>apvs4b</object-name>
    <object-name>apvs4b</object-name>
-   <object-name>speeddecrease</object-name>
-   <object-name>speedincrease</object-name>
-   <object-name>machdecrease</object-name>
-   <object-name>machincrease</object-name>
    <object-name>vsup</object-name> 
    <object-name>vsdown</object-name> 
-   <object-name>ALTdecrease</object-name>
-   <object-name>ALTincrease</object-name>
-   <object-name>NAV1Decrease</object-name>
-   <object-name>NAV1Increase</object-name>
-   <object-name>NAV1Decreaseb</object-name>
-   <object-name>NAV1Increaseb</object-name>
-   <object-name>HDGDecrease</object-name>
-   <object-name>HDGIncrease</object-name>
    
    <condition>
     <or>
@@ -55,6 +43,26 @@
       <property>controls/electric/apugen2</property>
       <property>engines/engine[0]/running</property>
     </or>
+   </condition>
+ </animation>
+
+ <animation>
+   <type>select</type>
+   <object-name>ALTdecrease</object-name>
+   <object-name>ALTincrease</object-name>
+   <object-name>NAV1Decrease</object-name>
+   <object-name>NAV1Increase</object-name>
+   <object-name>NAV1Decreaseb</object-name>
+   <object-name>NAV1Increaseb</object-name>
+   <object-name>HDGDecrease</object-name>
+   <object-name>HDGIncrease</object-name>
+   <object-name>speeddecrease</object-name>
+   <object-name>speedincrease</object-name>
+   <object-name>machdecrease</object-name>
+   <object-name>machincrease</object-name>
+   
+   <condition>
+    <property>/b733/ap-hide-helper</property>
    </condition>
  </animation>
 
@@ -1039,20 +1047,41 @@
  <!-- Vertical Speed Adjust Up --> 
 
  <animation>
-  <type>pick</type>
+  <type>knob</type>
   <visible>false</visible>
-  <object-name>vsup</object-name> 
+  <object-name>vsup</object-name>
   <action>
-  <name>vertical speed down</name>
-    <repeatable>true</repeatable>
-    <button>0</button>
     <binding>
       <command>property-adjust</command>
         <property>/autopilot/settings/vertical-speed-fpm</property>
-        <step>100</step>
-        <max>3000</max>    
+        <factor><property>/b733/helpers/vs-increase-factor</property></factor>
+        <min>-7900</min>
+        <max>6000</max>    
+        <wrap>false</wrap>
     </binding>
-    </action>
+  </action>
+ <!-- <increase>
+    <binding>
+      <command>property-adjust</command>
+        <property>/autopilot/settings/vertical-speed-fpm</property>
+        <factor><property>/b733/helpers/vs-increase-factor</property></factor>
+        <min>-7900</min>
+        <max>6000</max>    
+        <wrap>false</wrap>
+    </binding>
+  </increase>
+  <decrease>
+    <binding>
+      <command>property-adjust</command>
+        <property>/autopilot/settings/vertical-speed-fpm</property>
+        <factor><property>/b733/helpers/vs-decrease-factor</property></factor>
+        <min>-7900</min>
+        <max>6000</max>    
+        <wrap>false</wrap>
+    </binding>
+  </decrease> -->
+  <drag-direction>vertical</drag-direction>
+  <drag-scale>5</drag-scale>
   </animation>
 
 <!-- Vertical Speed Adjust Down -->
@@ -1069,7 +1098,7 @@
       <command>property-adjust</command>
         <property>/autopilot/settings/vertical-speed-fpm</property>
         <step>-100</step>
-        <min>-3000</min>
+        <min>-7900</min>
     </binding>
   </action>
   </animation>
@@ -1124,7 +1153,8 @@
         <type>textranslate</type>
         <object-name>apvs4b</object-name>
         <property>autopilot/settings/vertical-speed-fpm</property>
-        <factor>0.0001</factor>
+        <bias>999.99</bias>
+        <factor>-0.0001</factor>
         <step>1000</step>
         <axis>
             <x>0</x>
@@ -1137,7 +1167,7 @@
         <type>textranslate</type>
         <object-name>apvs3b</object-name>
         <property>autopilot/settings/vertical-speed-fpm</property>
-        <factor>0.001</factor>
+        <factor>-0.001</factor>
         <step>100</step>
         <axis>
             <x>0</x>
@@ -1150,7 +1180,7 @@
         <type>textranslate</type>
         <object-name>apvs2b</object-name>
         <property>autopilot/settings/vertical-speed-fpm</property>
-        <factor>0.01</factor>
+        <factor>-0.01</factor>
         <step>10</step>
         <axis>
             <x>0</x>
@@ -1163,7 +1193,7 @@
         <type>textranslate</type>
         <object-name>apvs1b</object-name>
         <property>autopilot/settings/vertical-speed-fpm</property>
-        <factor>0.1</factor>
+        <factor>-0.1</factor>
         <step>1</step>
         <axis>
             <x>0</x>
@@ -1335,48 +1365,10 @@
   </axis>
  </animation>
 
- <!-- ALT Adjust Down  -->
-
-  <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>ALTdecrease</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/autopilot/settings/target-altitude-ft</property>
-      <step>-100</step>
-      <min>0</min>
-      <max>37000</max>    
-   </binding>
- </action>
- </animation>
-
-<!-- ALT Adjust Up  -->
-
-  <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>ALTincrease</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/autopilot/settings/target-altitude-ft</property>
-      <step>100</step>
-      <min>0</min>
-      <max>37000</max>    
-    </binding>   
-  </action>
- </animation>
- 
 <!-- Rotate ALT Select Cyl -->
 
   <animation>
-    <type>rotate</type>
+    <type>knob</type>
     <object-name>alt_cylinder</object-name>
     <property>/autopilot/settings/target-altitude-ft</property>
     <factor>-0.1</factor>
@@ -1390,6 +1382,16 @@
       <y>0</y>
       <z>0</z>
     </axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-altitude-ft</property>
+        <factor>100</factor>
+        <min>0</min>
+        <max>50000</max>                
+        <wrap>false</wrap>
+      </binding>
+    </action>
   </animation>
 
 
@@ -1545,49 +1547,6 @@
  </animation>
 
 
-<!-- HDG Increase  -->
-  
-  <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>HDGIncrease</object-name>
-  <action>
-  <name>Heading Bug Right</name>
-  <button>0</button>
-   <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/autopilot/settings/heading-bug-deg</property>
-      <step>1.0</step>
-      <min>0</min>   
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  </animation>
-
-<!-- HDG Decrease  -->  
-  
-  <animation>
-  <type>pick</type>   
-  <visible>false</visible>
-  <object-name>HDGDecrease</object-name>
-  <action>
-  <name>Heading Bug Left</name>
-  <button>0</button>
-    <repeatable>true</repeatable>  
-      <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
-        <step>-1.0</step>
-        <min>0</min>
-        <max>360</max>
-        <wrap>1</wrap>
-      </binding>
-    </action>
-  </animation>
-
-
 <!-- VOR/LOC button -->
  
  <animation>
@@ -1639,107 +1598,11 @@
        </axis>
  </animation>
 
-<!-- Cap NAV1 Course Decrease -->
-
-  <animation>
-  <type>pick</type>        
-  <object-name>NAV1Decrease</object-name>
-  <action>
-    <name>NAV1 Radial Decrease</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <x>-112</x>
-    <y>-40</y>
-    <w>5</w>
-    <h>20</h>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <step>-1.0</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  </animation>
-
-<!-- Cap NAV1 Course Increase -->
-
-  <animation>
-  <type>pick</type>        
-  <object-name>NAV1Increase</object-name>
-  <action>
-  <name>NAV1 Radial Increase</name>
-  <button>0</button>
-    <repeatable>true</repeatable>
-    <x>-107</x>
-    <y>-40</y>
-    <w>5</w>
-    <h>20</h>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <step>1.0</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  </animation>
- 
-<!-- Cop NAV1 Course Decrease -->
-
-  <animation>
-  <type>pick</type>        
-  <object-name>NAV1Decreaseb</object-name>
-  <action>
-    <name>NAV1 Radial Decrease</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <x>-112</x>
-    <y>-40</y>
-    <w>5</w>
-    <h>20</h>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <step>-1.0</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  </animation>
-
-<!-- Cop NAV1 Course Increase -->
-
-  <animation>
-  <type>pick</type>        
-  <object-name>NAV1Increaseb</object-name>
-  <action>
-  <name>NAV1 Radial Increase</name>
-  <button>0</button>
-    <repeatable>true</repeatable>
-    <x>-107</x>
-    <y>-40</y>
-    <w>5</w>
-    <h>20</h>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <step>1.0</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  </animation>
-
 
 <!-- Rotate NAV1 Radial Cyls -->
  
      <animation>
-        <type>rotate</type>
+        <type>knob</type>
         <object-name>crz_cylinder</object-name>
         <property>/instrumentation/nav/radials/selected-deg</property>
         <factor>-5</factor>
@@ -1753,10 +1616,20 @@
             <y>0</y>
             <z>0</z>
         </axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav/radials/selected-deg</property>
+        <factor>1</factor>
+        <min>0</min>
+        <max>360</max>                
+        <wrap>true</wrap>
+      </binding>
+    </action>
     </animation>
 
      <animation>
-        <type>rotate</type>
+        <type>knob</type>
         <object-name>crz_cylinder1</object-name>
         <property>/instrumentation/nav/radials/selected-deg</property>
         <factor>-5</factor>
@@ -1770,14 +1643,24 @@
             <y>0</y>
             <z>0</z>
         </axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav/radials/selected-deg</property>
+        <factor>1</factor>
+        <min>0</min>
+        <max>360</max>                
+        <wrap>true</wrap>
+      </binding>
+    </action>
     </animation>
 
 <!-- Rotate Heading Bug Cyl -->
 
     <animation>
-        <type>rotate</type>
+        <type>knob</type>
         <object-name>hdg_cylinder</object-name>
-               <property>/autopilot/settings/heading-bug-deg</property>
+        <property>/autopilot/settings/heading-bug-deg</property>
         <factor>-5</factor>
         <center>
             <x-m>0</x-m>
@@ -1789,6 +1672,16 @@
             <y>0</y>
             <z>0</z>
         </axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <factor>1</factor>
+        <min>0</min>
+        <max>360</max>                
+        <wrap>true</wrap>
+      </binding>
+    </action>
     </animation>
   
 

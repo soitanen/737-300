@@ -1276,6 +1276,7 @@
       <main-gear-spin type="bool">false</main-gear-spin>
       <was-in-air type="bool">false</was-in-air>
     </sensors>
+    <ap-hide-helper type="bool">0</ap-hide-helper>
   </b733>
 
   <instrumentation>
@@ -1560,6 +1561,14 @@
     <ehsi-control>
       <file>Aircraft/737-300/Nasal/ehsi-control.nas</file>
     </ehsi-control>
+
+    <friction>
+      <file>Aircraft/737-300/Nasal/friction.nas</file>
+    </friction>
+
+    <autopilot737>
+      <file>Aircraft/737-300/Nasal/autopilot.nas</file>
+    </autopilot737>
 
   </nasal>
 
