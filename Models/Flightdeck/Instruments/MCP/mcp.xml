@@ -1054,7 +1054,7 @@
     <binding>
       <command>property-adjust</command>
         <property>/autopilot/settings/vertical-speed-fpm</property>
-        <factor><property>/b733/helpers/vs-increase-factor</property></factor>
+        <factor>100</factor>
         <min>-7900</min>
         <max>6000</max>    
         <wrap>false</wrap>
