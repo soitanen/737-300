@@ -1507,10 +1507,6 @@
     <airground>
       <file>Aircraft/737-300/Systems/air-ground.nas</file>
     </airground>
-
-    <sbvalve>
-      <file>Aircraft/737-300/Systems/sbvalve.nas</file>
-    </sbvalve>
    
     <tyresmoke>
       <file>Aircraft/737-300/Nasal/tyresmoke.nas</file>
