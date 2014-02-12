@@ -1604,8 +1604,8 @@
      <animation>
         <type>knob</type>
         <object-name>crz_cylinder</object-name>
-        <property>/instrumentation/nav/radials/selected-deg</property>
-        <factor>-5</factor>
+        <property>/instrumentation/nav[0]/radials/selected-deg</property>
+        <factor>-0.5</factor>
         <center>
             <x-m>0</x-m>
             <y-m>-0.215</y-m>
@@ -1628,11 +1628,13 @@
     </action>
     </animation>
 
+<!-- Rotate NAV2 Radial Cyls -->
+
      <animation>
         <type>knob</type>
         <object-name>crz_cylinder1</object-name>
-        <property>/instrumentation/nav/radials/selected-deg</property>
-        <factor>-5</factor>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
+        <factor>-0.5</factor>
         <center>
             <x-m>0</x-m>
             <y-m>0.204</y-m>
@@ -1646,7 +1648,7 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/nav/radials/selected-deg</property>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
         <factor>1</factor>
         <min>0</min>
         <max>360</max>                
@@ -1661,7 +1663,7 @@
         <type>knob</type>
         <object-name>hdg_cylinder</object-name>
         <property>/autopilot/settings/heading-bug-deg</property>
-        <factor>-5</factor>
+        <factor>-0.5</factor>
         <center>
             <x-m>0</x-m>
             <y-m>-0.046</y-m>
@@ -1690,7 +1692,7 @@
   <animation>
   <type>textranslate</type>
   <object-name>apcrz1</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[0]/radials/selected-deg</property>
   <factor>0.10</factor>
   <step>1.0</step>
   <axis>
@@ -1703,7 +1705,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apcrz2</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[0]/radials/selected-deg</property>
   <factor>0.01</factor>
   <step>10</step>
   <axis>
@@ -1716,7 +1718,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apcrz3</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[0]/radials/selected-deg</property>
   <factor>0.001</factor>
   <step>100</step>
   <axis>
@@ -1726,10 +1728,12 @@
   </axis>
  </animation>
 
+<!-- NAV2 Radial Display -->
+
    <animation>
   <type>textranslate</type>
   <object-name>apcrz1b</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[1]/radials/selected-deg</property>
   <factor>0.10</factor>
   <step>1.0</step>
   <axis>
@@ -1742,7 +1746,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apcrz2b</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[1]/radials/selected-deg</property>
   <factor>0.01</factor>
   <step>10</step>
   <axis>
@@ -1755,7 +1759,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apcrz3b</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>/instrumentation/nav[1]/radials/selected-deg</property>
   <factor>0.001</factor>
   <step>100</step>
   <axis>
