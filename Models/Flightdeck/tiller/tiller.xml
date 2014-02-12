@@ -40,38 +40,19 @@
   </animation>
 	
   
-<!--  <animation>
-      <type>pick</type>
-			<object-name>Tiller</object-name>
-      <action>
-          <button>0</button>
-          <binding>
-							<command>nasal</command>
-							<script>interpolate("/controls/flight/rudder", 0, 1);</script>
-          </binding>
-      </action>
-      <action>
-          <button>0</button>
-          <binding>
-              <command>property-adjust</command>
-              <property>/controls/flight/rudder</property>
-              <step>0.05</step>
-              <min>-1</min>
-              <max> 1</max>
-              <wrap>0</wrap>
-          </binding>
-      </action>
-      <action>
-          <button>2</button>
-          <binding>
-              <command>property-adjust</command>
-              <property>/controls/flight/rudder</property>
-              <step>-0.05</step>
-              <min>-1</min>
-              <max> 1</max>
-              <wrap>0</wrap>
-          </binding>
-      </action>
+  <animation>
+    <type>pick</type>
+    <object-name>Tiller</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+            <command>nasal</command>
+            <script>
+              var tiller = gui.Dialog.new("/sim/gui/dialogs/b733/menu/dialog","Aircraft/737-300/Dialogs/tiller-steering.xml");
+              tiller.open();
+            </script>
+      </binding>
+    </action>
   </animation>
--->  
+  
 </PropertyList>
