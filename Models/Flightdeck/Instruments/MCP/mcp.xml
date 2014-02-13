@@ -1012,7 +1012,7 @@
     <name>Toggle VS Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
+   <!--<binding>
      <command>property-toggle</command>
      <property>/autopilot/internal/VNAV-VS</property>
    </binding>
@@ -1025,6 +1025,11 @@
      <command>property-assign</command>
      <property>/autopilot/internal/VNAV-GS</property>
      <value type="bool">0</value>
+   </binding>-->
+   <binding>
+     <command>property-assign</command>
+     <property>/autopilot/switches/VS-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1120,7 +1125,7 @@
     </equals>
     <greater-than>
       <property>/autopilot/settings/vertical-speed-fpm</property>
-      <value>0</value>
+      <value>-1</value>
     </greater-than>
   </and>
   </condition>
@@ -1140,7 +1145,7 @@
     </equals>
     <less-than>
       <property>/autopilot/settings/vertical-speed-fpm</property>
-      <value>0</value>
+      <value>-1</value>
     </less-than>
   </and>
   </condition>
@@ -1167,6 +1172,7 @@
         <type>textranslate</type>
         <object-name>apvs3b</object-name>
         <property>autopilot/settings/vertical-speed-fpm</property>
+        <bias>99.99</bias>
         <factor>-0.001</factor>
         <step>100</step>
         <axis>

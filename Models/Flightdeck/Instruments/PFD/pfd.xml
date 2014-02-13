@@ -197,10 +197,44 @@
  </animation>
 
  <animation>
+  <type>rotate</type>
+  <object-name>FDbars</object-name>
+  <property>/orientation/roll-deg</property>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.007</x-m>
+     <y-m>-0.014</y-m>
+     <z-m>0.005</z-m>
+   </center>
+ </animation>
+
+ <animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
    <property>/instrumentation/flightdirector/vbar-pitch</property>
 <factor>0.0014</factor>
+<offset-m>0.002</offset-m>
+<axis>
+     <x>0.0</x>
+     <y>0.0</y>
+     <z>1.0</z>
+   </axis>
+   <center>
+     <x-m>0.007</x-m>
+     <y-m>-0.014</y-m>
+     <z-m>0.005</z-m>
+   </center>
+ </animation>
+
+ <animation>
+   <type>translate</type>
+   <object-name>FDbars</object-name>
+   <property>/orientation/pitch-deg</property>
+<factor>-0.0014</factor>
 <axis>
      <x>0.0</x>
      <y>0.0</y>

@@ -299,6 +299,9 @@
       <autopilot>
         <path>Aircraft/737-300/Systems/737-autopilot.xml</path>
       </autopilot>
+      <autopilot n="102">
+        <path>Aircraft/737-300/Systems/737-afds.xml</path>
+      </autopilot>
       <path>Aircraft/737-300/Systems/systems.xml</path>
       <property-rule n="101">
         <path>Aircraft/737-300/Systems/instrument-filters.xml</path>
@@ -317,8 +320,7 @@
     <help>
       <title>Boeing 737-300</title>
         <text>
-          Keys: 
-          Tab            = Set AutoBrake Level
+          Keys:
           Del            = Thrust Reverse
           Up/Down    = Control Elevator / Adjust A/P Alt and V/S
           PgUp/PgDn = Control Throttle / Adjust A/P IAS and Mach
@@ -488,20 +490,24 @@
       <true-heading-deg type="double">0</true-heading-deg>
    </settings>
 
+    <switches>
+      <VS-button type="bool">0</VS-button>
+    </switches>
+
     <internal>
       <CMDA type="bool">false</CMDA>
       <CMDB type="bool">false</CMDB>
       <ATArm type="bool">false</ATArm>
       <IAS-SEL type="bool">true</IAS-SEL>
       <LNAV type="bool">true</LNAV>
-      <LNAV-LVL type="bool">true</LNAV-LVL>
+      <LNAV-LVL type="bool">false</LNAV-LVL>
       <LNAV-NAV1 type="bool">false</LNAV-NAV1>
       <LNAV-NAV2 type="bool">false</LNAV-NAV2>
       <LNAV-HDG type="bool">false</LNAV-HDG>
       <LNAV-FMS type="bool">false></LNAV-FMS>
 
       <VNAV type="bool">false</VNAV>
-      <VNAV-VS type="bool">true</VNAV-VS>
+      <VNAV-VS type="bool">false</VNAV-VS>
       <VNAV-ALT type="bool">false</VNAV-ALT>
       <VNAV-GS type="bool">false</VNAV-GS>
             
@@ -1327,6 +1333,7 @@
 
     <flightdirector>
       <fd-on>1</fd-on>
+      <vbar-pitch type="double">0</vbar-pitch>
     </flightdirector>
 
     <transponder>
