@@ -28,4 +28,4 @@ var min_ind_speed = func {
 	settimer(min_ind_speed, 0);
 }
 
-min_ind_speed();
+#min_ind_speed();
