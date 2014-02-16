@@ -482,9 +482,10 @@
 
   <autopilot>
     <settings>
-     <vertical-speed-fpm type="double">2000</vertical-speed-fpm>
+    <vertical-speed-knob type="int">0</vertical-speed-knob>
     <target-altitude-ft type="double">3000</target-altitude-ft>
     <target-speed-kt type="double">110</target-speed-kt>
+    <target-pitch-deg type="double">7</target-pitch-deg>
     <target-speed-mach type="double">.65</target-speed-mach>       
       <heading-bug-deg type="double">0</heading-bug-deg>
       <true-heading-deg type="double">0</true-heading-deg>

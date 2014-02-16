@@ -655,10 +655,10 @@
 
  <!-- IAS Auto throttle --> 
  <pid-controller>
-    <name>AIS Auto Throttle</name>
+    <name>IAS Auto Throttle</name>
     <debug>false</debug>
-		<enable>
-		  <condition>
+      <enable>
+       <condition>
         <and>
           <equals>
             <property>/autopilot/internal/SPD</property>
@@ -682,9 +682,9 @@
             <property>/autopilot/internal/SPD-IAS</property>
             <value>true</value>
           </equals>
-			  </and>
+        </and>
       </condition>
-		</enable>	
+     </enable>	
     <input>
       <prop>/velocities/airspeed-kt</prop>
     </input>

@@ -1058,33 +1058,13 @@
   <action>
     <binding>
       <command>property-adjust</command>
-        <property>/autopilot/settings/vertical-speed-fpm</property>
-        <factor>100</factor>
-        <min>-7900</min>
-        <max>6000</max>    
+        <property>/autopilot/settings/vertical-speed-knob</property>
+        <factor>1</factor>
+        <min>-89</min>
+        <max>70</max>    
         <wrap>false</wrap>
     </binding>
   </action>
- <!-- <increase>
-    <binding>
-      <command>property-adjust</command>
-        <property>/autopilot/settings/vertical-speed-fpm</property>
-        <factor><property>/b733/helpers/vs-increase-factor</property></factor>
-        <min>-7900</min>
-        <max>6000</max>    
-        <wrap>false</wrap>
-    </binding>
-  </increase>
-  <decrease>
-    <binding>
-      <command>property-adjust</command>
-        <property>/autopilot/settings/vertical-speed-fpm</property>
-        <factor><property>/b733/helpers/vs-decrease-factor</property></factor>
-        <min>-7900</min>
-        <max>6000</max>    
-        <wrap>false</wrap>
-    </binding>
-  </decrease> -->
   <drag-direction>vertical</drag-direction>
   <drag-scale>5</drag-scale>
   </animation>

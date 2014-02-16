@@ -9,24 +9,15 @@
  <!-- =============================================================== -->
 
 
- <!-- vertical speed hold -->
+ <!-- vertical speed hold, calculate pitch -->
   <pid-controller>
-    <name>Pitch vs fd</name>
+    <name>VS hold</name>
     <debug>false</debug>
-		<enable>
-		  <condition>
-        <and>
-          <equals>
-            <property>/autopilot/internal/VNAV</property>
-            <value>true</value>
-          </equals>
-          <equals>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <value>true</value>
-          </equals>
-			  </and>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/VNAV-VS</property>
       </condition>
-		</enable>	
+    </enable>	
     <input>
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
       <scale>0.01667</scale>
@@ -38,59 +29,49 @@
       <prop>/instrumentation/flightdirector/vbar-pitch</prop>
     </output>
     <config>
-      <Kp>-0.2</Kp>      <!-- proportional gain -->
+      <Kp>-0.1566</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.8</gamma>  <!-- input value weighing factor for -->
+      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
+      <Ti>7.0</Ti>       <!-- integrator time -->
+      <Td>0.0000</Td>    <!-- derivator time -->
       <u_min>-15</u_min> <!-- minimum output clamp -->
       <u_max>30</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
- <!-- vertical speed hold -->
+ <!-- pitch hold -->
   <pid-controller>
-    <name>Pitch vs</name>
+    <name>Pitch hold</name>
     <debug>false</debug>
-		<enable>
-		  <condition>
+    <enable>
+      <condition>
         <and>
-          <equals>
-            <property>/autopilot/internal/CMDB</property>
-            <value>true</value>
-          </equals>
-          <equals>
-            <property>/autopilot/internal/VNAV</property>
-            <value>true</value>
-          </equals>
-          <equals>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <value>true</value>
-          </equals>
-			  </and>
+          <property>/autopilot/internal/CMDB</property>
+          <property>/autopilot/internal/VNAV-VS</property>
+        </and>
       </condition>
-		</enable>	
+    </enable>	
     <input>
       <prop>/orientation/pitch-deg</prop>
     </input>
     <reference>
-      <prop>/instrumentation/flightdirector/vbar-pitch</prop>
+      <prop>/instrumentation/flightdirector/vbar-pitch</prop> <!--<prop>/autopilot/settings/target-pitch-deg</prop>-->
     </reference>
     <output>
       <prop>/autopilot/internal/elevator-trim-servo-b</prop>
     </output>
     <config>
-      <Kp>0.02</Kp>      <!-- proportional gain -->
+      <Kp>0.12</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.8</gamma>  <!-- input value weighing factor for -->
+      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-15</u_min> <!-- minimum output clamp -->
-      <u_max>30</u_max>  <!-- maximum output clamp -->
+      <Ti>10</Ti>       <!-- integrator time -->
+      <Td>0.00007</Td>    <!-- derivator time -->
+      <u_min>0.25</u_min> <!-- minimum output clamp -->
+      <u_max>14</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -98,20 +79,14 @@
   <name>SERVO-DRIVER:elevator-trim</name>
   <debug>false</debug>
   <feedback-if-disabled>true</feedback-if-disabled>
-  <enable>
-	 <condition>
-     <and>
-       <equals>
-         <property>/autopilot/internal/CMDB</property>
-         <value>true</value>
-       </equals>
-       <equals>
-         <property>/autopilot/internal/VNAV</property>
-         <value>true</value>
-       </equals>
-     </and>
-   </condition>
-  </enable>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <property>/autopilot/internal/VNAV-VS</property>
+        </and>
+      </condition>
+    </enable>
   <input>/autopilot/internal/elevator-trim-servo-b</input>
   <output>
    <prop>/fdm/jsbsim/fcs/stabilizer/stab-target</prop>
