@@ -1,10 +1,17 @@
+##
+
 var TRIM_RATE = 0.01;
 
 var elevatorTrim = func {
-	  var ap_a_on = getprop("/autopilot/internal/CMDA");
+	var ap_a_on = getprop("/autopilot/internal/CMDA");
 	var ap_b_on = getprop("/autopilot/internal/CMDB");
 	var stab_pos = num( getprop("/fdm/jsbsim/fcs/stabilizer-pos-unit") );
 	var flaps_pos = num( getprop("/fdm/jsbsim/fcs/flap-pos-norm") );
+
+	if (ap_a_on or ap_b_on) {
+		setprop("/autopilot/internal/CMDA", 0);
+		setprop("/autopilot/internal/CMDB", 0);
+	}
 
 	var trim_speed = 0.615;                                                    #Fastest with flaps extended and manual control
 	if (flaps_pos == 0 and !ap_a_on and !ap_b_on) trim_speed = trim_speed / 3; #With flaps retracted and AP off
