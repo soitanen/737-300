@@ -60,20 +60,84 @@
       <prop>/instrumentation/flightdirector/vbar-pitch</prop> <!--<prop>/autopilot/settings/target-pitch-deg</prop>-->
     </reference>
     <output>
-      <prop>/autopilot/internal/elevator-trim-servo-b</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
-      <Kp>0.12</Kp>      <!-- proportional gain -->
+      <Kp>-0.02</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10</Ti>       <!-- integrator time -->
       <Td>0.00007</Td>    <!-- derivator time -->
-      <u_min>0.25</u_min> <!-- minimum output clamp -->
-      <u_max>14</u_max>  <!-- maximum output clamp -->
+      <u_min>-1</u_min> <!-- minimum output clamp -->
+      <u_max>1</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
+
+<!--
+============================
+== STABILIZER Trim system ==
+============================
+-->
+ <logic>
+   <input>
+     <or>
+       <greater-than>
+         <property>/controls/flight/elevator</property>
+         <value>0.1</value>
+       </greater-than>
+       <less-than>
+         <property>/controls/flight/elevator</property>
+         <value>-0.1</value>
+       </less-than>
+     </or>
+   </input>
+   <output>/b733/helpers/elevator-cmd-gr-10</output>
+ </logic>
+
+ <filter>
+  <type>moving-average</type>
+  <samples>480</samples>
+  <input>/b733/helpers/elevator-cmd-gr-10</input>
+  <output>/b733/helpers/elevator-cmd-av-4</output> <!-- average for 4 seconds -->
+ </filter>
+
+ <logic>
+   <input>
+     <greater-than>
+       <property>/b733/helpers/elevator-cmd-av-4</property>
+       <value>0.75</value>
+     </greater-than>
+   </input>
+   <output>/b733/helpers/trim-feel-3-4</output>
+ </logic>
+
+<filter>
+  <name>Stabilizer position sample and hold</name>
+  <debug>false</debug>
+  <enable>
+   <condition>
+    <property>/autopilot/internal/CMDB</property>
+   </condition>
+  </enable>
+  <type>gain</type>
+  <gain>
+    <condition>
+      <property>/b733/helpers/trim-feel-3-4</property>
+    </condition>
+    <value>-100</value>
+  </gain>
+  <gain>1.0</gain>
+  <input>
+    <condition>
+      <property>/b733/helpers/trim-feel-3-4</property>
+    </condition>
+    <property>/controls/flight/elevator</property>
+  </input>
+  <input>/fdm/jsbsim/fcs/stabilizer-pos-unit</input>
+  <output>/autopilot/internal/stabilizer-target</output>
+ </filter>
 
 <filter>
   <name>SERVO-DRIVER:elevator-trim</name>
@@ -83,11 +147,10 @@
       <condition>
         <and>
           <property>/autopilot/internal/CMDB</property>
-          <property>/autopilot/internal/VNAV-VS</property>
         </and>
       </condition>
     </enable>
-  <input>/autopilot/internal/elevator-trim-servo-b</input>
+  <input>/autopilot/internal/stabilizer-target</input>
   <output>
    <prop>/fdm/jsbsim/fcs/stabilizer/stab-target</prop>
   </output>
@@ -102,7 +165,8 @@
     <value>0.205</value>
   </max-rate-of-change>
   <max-rate-of-change>0.1025</max-rate-of-change>
+  <min>0.25</min>
+  <max>14</max>
  </filter>
-
  
 </PropertyList>

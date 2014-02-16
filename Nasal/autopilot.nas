@@ -30,7 +30,11 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 			round_value = 100;
 		}
 		vs_fpm_current = math.round(vs_fpm_current, round_value);
-		setprop("/autopilot/settings/vertical-speed-fpm", vs_fpm_current);
+
+		vs_knob = vs_fpm_current / 50;
+		if (vs_fpm_current >  1000) vs_knob = vs_knob - (vs_fpm_current - 1000) / 100;
+		if (vs_fpm_current < -1000) vs_knob = vs_knob - (vs_fpm_current + 1000) / 100;
+		setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 		setprop("/autopilot/internal/VNAV-VS", 1);
 	}
 	

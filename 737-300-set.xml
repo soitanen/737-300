@@ -517,7 +517,7 @@
       <SPD-N1 type="bool">false</SPD-N1>
       <SPD-LVLCHG type="bool">false</SPD-LVLCHG>
       <SPD-IAS type="bool">true</SPD-IAS>
-      <SPD-MACH type="bool">false</SPD-MACH>
+      <SPD-MACH type="bool">false</SPD-MACH>s
     </internal>
 
   </autopilot>
