@@ -31,6 +31,9 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 		}
 		vs_fpm_current = math.round(vs_fpm_current, round_value);
 
+		if (vs_fpm_current < -7900) vs_fpm_current = -7900;
+		if (vs_fpm_current > 6000) vs_fpm_current = 6000;
+
 		vs_knob = vs_fpm_current / 50;
 		if (vs_fpm_current >  1000) vs_knob = vs_knob - (vs_fpm_current - 1000) / 100;
 		if (vs_fpm_current < -1000) vs_knob = vs_knob - (vs_fpm_current + 1000) / 100;
