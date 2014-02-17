@@ -482,17 +482,18 @@
 
   <autopilot>
     <settings>
-    <vertical-speed-knob type="int">0</vertical-speed-knob>
-    <target-altitude-ft type="double">3000</target-altitude-ft>
-    <target-speed-kt type="double">110</target-speed-kt>
-    <target-pitch-deg type="double">7</target-pitch-deg>
-    <target-speed-mach type="double">.65</target-speed-mach>       
+      <vertical-speed-knob type="int">0</vertical-speed-knob>
+      <target-altitude-ft type="double">3000</target-altitude-ft>
+      <target-speed-kt type="double">110</target-speed-kt>
+      <target-pitch-deg type="double">7</target-pitch-deg>
+      <target-speed-mach type="double">.65</target-speed-mach>       
       <heading-bug-deg type="double">0</heading-bug-deg>
       <true-heading-deg type="double">0</true-heading-deg>
    </settings>
 
     <switches>
       <VS-button type="bool">0</VS-button>
+      <LVLCHG-button type="bool">0</LVLCHG-button>
     </switches>
 
     <internal>
@@ -511,11 +512,12 @@
       <VNAV-VS type="bool">false</VNAV-VS>
       <VNAV-ALT type="bool">false</VNAV-ALT>
       <VNAV-GS type="bool">false</VNAV-GS>
+
+      <LVLCHG type="bool">false</LVLCHG>
             
       <SPD type="bool">false</SPD>
       <SPD-SPEED type="bool">false</SPD-SPEED>
       <SPD-N1 type="bool">false</SPD-N1>
-      <SPD-LVLCHG type="bool">false</SPD-LVLCHG>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
     </internal>

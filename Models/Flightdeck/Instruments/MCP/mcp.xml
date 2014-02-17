@@ -820,8 +820,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/SPD-LVLCHG</property>
+     <command>property-assign</command>
+     <property>/autopilot/switches/LVLCHG-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -829,7 +830,7 @@
  <animation>
    <type>rotate</type>
      <object-name>LVLCHG</object-name>
-       <property>/autopilot/internal/SPD-LVLCHG</property>
+       <property>/autopilot/internal/LVLCHG</property>
        <factor>-90</factor>
        <center>
          <x-m>-0.00281</x-m>
@@ -1012,20 +1013,6 @@
     <name>Toggle VS Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <!--<binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-     <value type="bool">0</value>
-   </binding>-->
    <binding>
      <command>property-assign</command>
      <property>/autopilot/switches/VS-button</property>

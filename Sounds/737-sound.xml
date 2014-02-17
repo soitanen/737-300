@@ -400,6 +400,18 @@
       <factor>1</factor>
     </volume>
   </trimming>
+
+  <alt-acq>
+    <name>alt-acq</name>
+    <mode>once</mode>
+    <path>Aircraft/737-300/Sounds/alt-acq.wav</path>
+    <condition>
+      <property>/b733/sound/alt-acq</property>
+    </condition>
+    <volume>
+      <factor>1</factor>
+    </volume>
+  </alt-acq>
 	
 	
 	<seatbelt-on>

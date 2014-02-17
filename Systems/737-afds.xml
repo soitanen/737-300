@@ -8,17 +8,57 @@
  <!-- Pitch Axis Modes                                                -->
  <!-- =============================================================== -->
 
+ <!-- LVLCHG mode -->
+  <pid-controller>
+    <name>LVLCHG mode</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/LVLCHG</property>
+      </condition>
+    </enable>
+    <input>
+      <prop>/instrumentation/airspeed-indicator/indicated-speed-kt</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-speed-kt</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop>
+    </output>
+    <config>
+      <Kp>-5.0</Kp>      <!-- proportional gain -->
+      <beta>1.0</beta>    <!-- input value weighing factor -->
+      <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+                          <!-- unfiltered derivative error -->
+      <Ti>10.0</Ti>       <!-- integrator time -->
+      <Td>0.0000</Td>    <!-- derivator time -->
+      <u_min>-130</u_min> <!-- minimum output clamp -->
+      <u_max>100</u_max>  <!-- maximum output clamp -->
+    </config>
+  </pid-controller>
 
- <!-- vertical speed hold, calculate pitch -->
+
+ <!-- VS mode -->
   <pid-controller>
     <name>VS hold</name>
     <debug>false</debug>
     <enable>
       <condition>
-        <property>/autopilot/internal/VNAV-VS</property>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
       </condition>
-    </enable>	
-    <input>
+    </enable>
+    <input> <!-- input from LVLCHG mode -->
+      <condition>
+        <property>/autopilot/internal/LVLCHG</property>
+      </condition>
+      <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop>
+    </input>
+    <input> <!-- input from VS mode -->
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
       <scale>0.01667</scale>
     </input>
@@ -49,7 +89,10 @@
       <condition>
         <and>
           <property>/autopilot/internal/CMDB</property>
-          <property>/autopilot/internal/VNAV-VS</property>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
         </and>
       </condition>
     </enable>	
