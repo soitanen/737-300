@@ -122,51 +122,33 @@
    </condition>
   </enable>
   <type>gain</type>
-  <gain>
-    <condition>
-      <property>/b733/helpers/trim-feel-3-4</property>
-    </condition>
-    <value>-100</value>
-  </gain>
   <gain>1.0</gain>
   <input>
     <condition>
+     <and>
       <property>/b733/helpers/trim-feel-3-4</property>
-    </condition>
-    <property>/controls/flight/elevator</property>
-  </input>
-  <input>/fdm/jsbsim/fcs/stabilizer-pos-unit</input>
-  <output>/autopilot/internal/stabilizer-target</output>
- </filter>
-
-<filter>
-  <name>SERVO-DRIVER:elevator-trim</name>
-  <debug>false</debug>
-  <feedback-if-disabled>true</feedback-if-disabled>
-    <enable>
-      <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-        </and>
-      </condition>
-    </enable>
-  <input>/autopilot/internal/stabilizer-target</input>
-  <output>
-   <prop>/fdm/jsbsim/fcs/stabilizer/stab-target</prop>
-  </output>
-  <type>noise-spike</type>
-  <max-rate-of-change>
-    <condition>
       <greater-than>
-        <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+        <property>/controls/flight/elevator</property>
         <value>0</value>
       </greater-than>
+     </and>
     </condition>
-    <value>0.205</value>
-  </max-rate-of-change>
-  <max-rate-of-change>0.1025</max-rate-of-change>
-  <min>0.25</min>
-  <max>14</max>
+    <value>0.25</value>
+  </input>
+  <input>
+    <condition>
+     <and>
+      <property>/b733/helpers/trim-feel-3-4</property>
+      <less-than>
+        <property>/controls/flight/elevator</property>
+        <value>0</value>
+      </less-than>
+     </and>
+    </condition>
+    <value>14</value>
+  </input>
+  <input>/fdm/jsbsim/fcs/stabilizer-pos-unit</input>
+  <output>/fdm/jsbsim/fcs/stabilizer/stab-target</output>
  </filter>
  
 </PropertyList>
