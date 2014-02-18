@@ -391,10 +391,7 @@
     <mode>once</mode>
     <path>Aircraft/737-300/Sounds/trim.wav</path>
     <condition>
-      <greater-than>
         <property>/b733/sound/stab-trim</property>
-        <value>0.01</value>
-      </greater-than>
     </condition>
     <volume>
       <factor>1</factor>
