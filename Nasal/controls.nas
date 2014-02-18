@@ -56,6 +56,13 @@ setlistener( "/autopilot/internal/CMDB", elev_trim_rate, 0, 0);
 setlistener( "/fdm/jsbsim/fcs/flap-pos-norm", elev_trim_rate, 0, 0);
 elev_trim_rate();
 
+var stop_stab_move = func {
+	var ap_a_on = getprop("/autopilot/internal/CMDA");
+	var ap_b_on = getprop("/autopilot/internal/CMDB");
+	if (!ap_a_on and !ap_b_on) setprop( "fdm/jsbsim/fcs/stabilizer/stab-target", getprop("/fdm/jsbsim/fcs/stabilizer-pos-unit") );
+}
+setlistener( "/autopilot/internal/CMDA", stop_stab_move, 0, 0);
+setlistener( "/autopilot/internal/CMDB", stop_stab_move, 0, 0);
 ############################################
 #### SPOILERS
 ############################################
@@ -66,6 +73,7 @@ var spoilers_control = func {
     setprop( "/controls/flight/speedbrake", 0.00 );
     if (getprop("/sim/messages/copilot") == "Spoilers DOWN!") { } else {
     if (getprop("sim/co-pilot")) setprop ("/sim/messages/copilot", "Spoilers DOWN!");}
+    setprop("b733/sound/spoiler-auto", 0);
   }
   if (lever_pos == 1) {
     setprop( "/controls/flight/speedbrake", 0.00 );
@@ -134,11 +142,17 @@ var landing_check = func{
 	var ab_used = getprop("/fdm/jsbsim/fcs/autobrake/autobrake-used");
 
 	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) { #normal landing
-		if (lever_pos == 1) setprop("b733/controls/flight/spoilers-lever-pos", 6);
+		if (lever_pos == 1) {
+			setprop("b733/controls/flight/spoilers-lever-pos", 6);
+			setprop("b733/sound/spoiler-auto", 1);
+		}
 		if (ab_pos > 0 and !ab_used) autobrake_apply();
 	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == -1) { #Rejected take-off
 		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593; 
-		if (lever_pos == 0) setprop("b733/controls/flight/spoilers-lever-pos", 6);
+		if (lever_pos == 0) {
+			setprop("b733/controls/flight/spoilers-lever-pos", 6);
+			setprop("b733/sound/spoiler-auto", 1);
+		}
 
 		if (!ab_used and GROUNDSPEED > 84) {
 			autobrake_apply();

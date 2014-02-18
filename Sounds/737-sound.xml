@@ -412,6 +412,18 @@
       <factor>1</factor>
     </volume>
   </alt-acq>
+
+  <spoiler-auto>
+    <name>Spoilers-auto</name>
+    <mode>once</mode>
+    <path>Aircraft/737-300/Sounds/spoiler-auto.wav</path>
+    <condition>
+      <property>/b733/sound/spoiler-auto</property>
+    </condition>
+    <volume>
+      <factor>1</factor>
+    </volume>
+  </spoiler-auto>
 	
 	
 	<seatbelt-on>

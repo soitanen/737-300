@@ -1285,6 +1285,9 @@
       <main-gear-spin type="bool">false</main-gear-spin>
       <was-in-air type="bool">false</was-in-air>
     </sensors>
+    <sound>
+      <spoiler-auto type="bool">0</spoiler-auto>
+    </sound>
     <ap-hide-helper type="bool">0</ap-hide-helper>
   </b733>
 

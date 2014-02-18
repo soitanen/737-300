@@ -6,7 +6,7 @@
   <debug>false</debug>
   <feedback-if-disabled>true</feedback-if-disabled>
   <type>noise-spike</type>
-  <max-rate-of-change>5</max-rate-of-change>
+  <max-rate-of-change>3</max-rate-of-change>
   <input>/fdm/jsbsim/instrumentation/slip-skid-indicator/slip-skid-deg</input>
   <output>
     <prop>instrumentation/slip-skid-indicator/slip-skid-deg-filtered</prop>
@@ -52,6 +52,10 @@
        <less-than>
          <property>/b733/helpers/alt-diff-ft</property>
          <value>900</value>
+       </less-than>
+       <less-than>
+         <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+         <value>0.75</value>
        </less-than>
      </and>
    </input>
