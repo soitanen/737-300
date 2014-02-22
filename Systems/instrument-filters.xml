@@ -64,7 +64,7 @@
 
 <filter n="10005">
   <type>gain</type>
-  <gain>-4235</gain> <!-- How many revolutions TRIM WHEEL made by 17 unit of stabilizer? Currently set to 200 turns-->
+  <gain>-3430</gain> <!-- 162 turns from 17 to 0. Measured from real aircraft. -->
   <input>
     <property>/fdm/jsbsim/fcs/stabilizer-pos-unit</property>
   </input>
