@@ -40,6 +40,7 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 		if (vs_fpm_current < -1000) vs_knob = vs_knob - (vs_fpm_current + 1000) / 100;
 		setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 		setprop("/autopilot/internal/VNAV-VS", 1);
+		setprop("/autopilot/internal/pitch-mode", "V/S");
 	}
 }
 }
@@ -58,6 +59,7 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 	} else {
 		setprop("/autopilot/internal/SPD-SPEED", 0);
 		setprop("/autopilot/internal/LVLCHG", 1);
+		setprop("/autopilot/internal/pitch-mode", "MCP SPD");
 
 		alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 		alt_target = getprop("/autopilot/settings/target-altitude-ft");
@@ -74,3 +76,34 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 }
 }
 setlistener( "/autopilot/switches/LVLCHG-button", lvlchg_button_press, 0, 0);
+
+var alt_acq_engage = func {
+	alt_diff = getprop("/b733/helpers/alt-diff-ft");
+
+	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV")) {
+		if (alt_diff < 300) {
+			setprop("/autopilot/internal/VNAV-VS", 0);
+			setprop("/autopilot/internal/LVLCHG", 0);
+
+			setprop("/autopilot/internal/VNAV-ALT-ACQ", 1);
+			setprop("/autopilot/internal/pitch-mode", "ALT ACQ");
+		}
+	}
+	if (getprop("/autopilot/internal/VNAV-ALT-ACQ")) {
+		if (alt_diff < 25) {
+			alt_hold_engage();
+		}
+	}
+}
+setlistener( "/b733/helpers/alt-diff-ft", alt_acq_engage, 0, 0);
+
+var alt_hold_engage = func {
+	alt_current = math.round(getprop("/autopilot/settings/target-altitude-ft"), 100);
+	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
+	setprop("/autopilot/internal/VNAV-VS", 0);
+	setprop("/autopilot/internal/VNAV", 0);
+	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/settings/target-alt-hold-ft", alt_current);
+	setprop("/autopilot/internal/VNAV-ALT", 1);
+	setprop("/autopilot/internal/pitch-mode", "ALT HOLD");
+}

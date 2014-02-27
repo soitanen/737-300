@@ -27,7 +27,7 @@
       <prop>/autopilot/settings/target-speed-kt</prop>
     </reference>
     <output>
-      <prop>/controls/flight/elevator</prop> <!-- <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop> -->
+      <prop>/controls/flight/elevator3</prop> <!-- <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop> -->
     </output>
     <config>
       <Kp>0.007</Kp>      <!-- proportional gain -->
@@ -42,20 +42,72 @@
     </config>
   </pid-controller>
 
+ <!-- ALT ACQ -->
+
+  <pi-simple-controller>
+    <name>Altitude Acquire</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/instrumentation/altimeter/indicated-altitude-ft</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-altitude-ft</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </output>
+    <config>
+      <Kp>0.15</Kp>          <!-- proportional gain -->
+      <Ki>0.0</Ki>          <!-- integral gain -->
+      <u_min>-16.7</u_min> <!-- minimum output clamp -->
+      <u_max>16.7</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
+
+ <!-- ALT HOLD -->
+
+  <pi-simple-controller>
+    <name>Altitude Hold</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/VNAV-ALT</property>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/instrumentation/altimeter/indicated-altitude-ft</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-alt-hold-ft</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </output>
+    <config>
+      <Kp>0.15</Kp>          <!-- proportional gain -->
+      <Ki>0.0</Ki>          <!-- integral gain -->
+      <u_min>-16.7</u_min> <!-- minimum output clamp -->
+      <u_max>16.7</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
 
  <!-- VS mode -->
-  <pid-controller>
+  <pi-simple-controller>
     <name>VS hold</name>
     <debug>false</debug>
     <enable>
       <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <!--<property>/autopilot/internal/LVLCHG</property>-->
-          </or>
-        </and>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
       </condition>
     </enable>
     <input> <!-- input from LVLCHG mode -->
@@ -63,6 +115,15 @@
         <property>/autopilot/internal/LVLCHG</property>
       </condition>
       <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop>
+    </input>
+    <input> <!-- input from ALT ACQ or ALT HOLD mode -->
+      <condition>
+        <or>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+        </or>
+      </condition>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </input>
     <input> <!-- input from VS mode -->
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
@@ -72,20 +133,52 @@
       <prop>/velocities/vertical-speed-fps</prop>
     </reference>
     <output>
-      <prop>/controls/flight/elevator</prop> <!-- <prop>/instrumentation/flightdirector/vbar-pitch</prop> -->
+      <prop>/autopilot/settings/target-pitch-deg-vs</prop> <!-- <prop>/instrumentation/flightdirector/vbar-pitch</prop> -->
     </output>
     <config>
-      <Kp>0.006</Kp>      <!-- proportional gain -->
-      <beta>1.0</beta>    <!-- input value weighing factor -->
-      <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
-                          <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.0001</Td>    <!-- derivator time -->
-      <u_min>-1</u_min> <!-- minimum output clamp -->
-      <u_max>1</u_max>  <!-- maximum output clamp -->
+      <Kp>-0.001</Kp>          <!-- proportional gain -->
+      <Ki>-0.01</Ki>          <!-- integral gain -->
+      <u_min>-7</u_min> <!-- minimum output clamp -->
+      <u_max>7</u_max>   <!-- maximum output clamp -->
     </config>
-  </pid-controller>
+  </pi-simple-controller>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
+        </and>
+      </condition>
+    </enable>	
+    <input>
+      <expression>
+        <sum>
+          <product>
+            <property>/autopilot/settings/vertical-speed-fpm</property>
+            <value>0.003</value>
+          </product>
+          <product>
+            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+            <value>-0.06</value>
+          </product>
+          <value>18.5</value>
+          <property>/autopilot/settings/target-pitch-deg-vs</property>
+        </sum>
+      </expression> 
+    </input>
+  <output>
+    <prop>/autopilot/settings/target-pitch-deg</prop>
+  </output>
+</filter>
 
  <!-- pitch hold -->
   <pid-controller>
@@ -97,6 +190,8 @@
           <property>/autopilot/internal/CMDB</property>
           <or>
             <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
             <property>/autopilot/internal/LVLCHG</property>
           </or>
         </and>
@@ -123,6 +218,117 @@
       <u_max>1</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
+
+  <pi-simple-controller>
+    <name>Pitch comparator</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
+        </and>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/orientation/pitch-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-pitch-deg</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-accel</prop>
+    </output>
+    <config>
+      <Kp>0.1</Kp>          <!-- proportional gain -->
+      <Ki>0.0</Ki>          <!-- integral gain -->
+      <u_min>-0.3</u_min> <!-- minimum output clamp -->
+      <u_max>0.4</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
+
+  <pi-simple-controller>
+    <name>Acceleration comparator</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
+        </and>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/autopilot/internal/target-accel</prop>
+    </input>
+    <reference>
+      <expression>
+        <sum>
+          <property>/accelerations/n-z-cg-fps_sec</property>
+          <value>1</value>
+        </sum>
+      </expression> 
+    </reference>
+    <output>
+      <prop>/autopilot/internal/elevator</prop>
+    </output>
+    <config>
+      <Kp>0.65</Kp>          <!-- proportional gain -->
+      <Ki>0.05</Ki>          <!-- integral gain -->
+      <u_min>-1</u_min> <!-- minimum output clamp -->
+      <u_max>1</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
+
+<filter>
+  <type>gain</type>
+  <gain>0.1</gain>
+  <input>
+    <property>/orientation/pitch-rate-degps</property>
+  </input>
+  <output>
+    <prop>/autopilot/internal/elevator-damp</prop>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
+        </and>
+      </condition>
+    </enable>	
+    <input>
+      <expression>
+        <sum>
+          <property>/autopilot/internal/elevator-damp</property>
+          <property>/autopilot/internal/elevator</property>
+        </sum>
+      </expression> 
+    </input>
+  <output>
+    <prop>/controls/flight/elevator</prop>
+  </output>
+</filter>
 
 <!--
 ============================

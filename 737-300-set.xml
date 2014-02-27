@@ -511,6 +511,7 @@
       <VNAV type="bool">false</VNAV>
       <VNAV-VS type="bool">false</VNAV-VS>
       <VNAV-ALT type="bool">false</VNAV-ALT>
+      <VNAV-ALT-ACQ type="bool">false</VNAV-ALT-ACQ>
       <VNAV-GS type="bool">false</VNAV-GS>
 
       <LVLCHG type="bool">false</LVLCHG>
