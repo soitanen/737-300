@@ -521,6 +521,8 @@
       <SPD-N1 type="bool">false</SPD-N1>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
+
+      <pitch-mode type="string"></pitch-mode>
     </internal>
 
   </autopilot>

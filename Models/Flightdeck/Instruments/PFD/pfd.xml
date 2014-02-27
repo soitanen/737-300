@@ -215,7 +215,7 @@
  <animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
-   <property>/instrumentation/flightdirector/vbar-pitch</property>
+   <property>/autopilot/settings/target-pitch-deg</property>
 <factor>0.0014</factor>
 <offset-m>0.002</offset-m>
 <axis>

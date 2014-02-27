@@ -1,6 +1,7 @@
 ##
 
 var adjust_vs_factor = func {
+if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 	var vs_knob = getprop("/autopilot/settings/vertical-speed-knob");
 	vs = vs_knob * 50;
 
@@ -9,8 +10,11 @@ var adjust_vs_factor = func {
 
 	setprop ("/autopilot/settings/vertical-speed-fpm", vs);
 }
+}
 
+setprop("/autopilot/internal/VNAV-VS", 1);
 adjust_vs_factor(); # first run to create properties
+setprop("/autopilot/internal/VNAV-VS", 0);
 setlistener( "/autopilot/settings/vertical-speed-knob", adjust_vs_factor, 0, 0);
 
 var vs_button_press = func {
@@ -38,9 +42,9 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 		vs_knob = vs_fpm_current / 50;
 		if (vs_fpm_current >  1000) vs_knob = vs_knob - (vs_fpm_current - 1000) / 100;
 		if (vs_fpm_current < -1000) vs_knob = vs_knob - (vs_fpm_current + 1000) / 100;
-		setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 		setprop("/autopilot/internal/VNAV-VS", 1);
 		setprop("/autopilot/internal/pitch-mode", "V/S");
+		setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 	}
 }
 }
