@@ -1307,10 +1307,14 @@
 
     <comm>
       <volume type="double">0.7</volume>
+      <power-btn type="bool">1</power-btn>	
+      <power-good type="bool">1</power-good>
     </comm>
   
     <comm n="1">
       <volume type="double">0.7</volume>
+      <power-btn type="bool">1</power-btn>	
+      <power-good type="bool">1</power-good>
     </comm>
 
     <nav>
