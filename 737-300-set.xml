@@ -1291,6 +1291,7 @@
     <sound>
       <spoiler-auto type="bool">0</spoiler-auto>
       <stab-trim type="bool">0</stab-trim>
+      <sound-pack type="int">0</sound-pack>
     </sound>
     <ap-hide-helper type="bool">0</ap-hide-helper>
   </b733>

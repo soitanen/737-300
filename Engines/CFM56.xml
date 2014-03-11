@@ -15,13 +15,13 @@
 
 <turbine_engine name="CFM56">
   <milthrust> 20000.0 </milthrust>
-  <bypassratio>     1.0 </bypassratio>
+  <bypassratio>     6.0 </bypassratio>
   <tsfc>            0.657 </tsfc>
   <bleed>           0.03 </bleed>
-  <idlen1>         30.0 </idlen1>
-  <idlen2>         60.0 </idlen2>
-  <maxn1>         100.0 </maxn1>
-  <maxn2>         100.0 </maxn2>
+  <idlen1>         22.0 </idlen1>
+  <idlen2>         61.0 </idlen2>
+  <maxn1>         106.0 </maxn1>
+  <maxn2>         105.0 </maxn2>
   <augmented>         0 </augmented>
   <injected>          0 </injected>
 
