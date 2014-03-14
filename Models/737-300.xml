@@ -93,7 +93,7 @@
 <!--    <object-name>Cone</object-name> -->
     <object-name>Blades</object-name>
     <property>/engines/engine[0]/n1</property>
-    <factor>10</factor>
+    <factor>51.75</factor>
     <center>
       <x-m>2.363</x-m>
       <y-m>-4.861</y-m>
@@ -111,7 +111,7 @@
 <!--    <object-name>Cone.001</object-name> -->
     <object-name>Blades.001</object-name>
     <property>/engines/engine[1]/n1</property>
-    <factor>10</factor>
+    <factor>51.75</factor>
     <center>
       <x-m>2.363</x-m>
       <y-m>4.925</y-m>
