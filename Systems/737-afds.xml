@@ -14,10 +14,7 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </and>
+        <property>/autopilot/internal/LVLCHG</property>
       </condition>
     </enable>
     <input>
@@ -27,18 +24,18 @@
       <prop>/autopilot/settings/target-speed-kt</prop>
     </reference>
     <output>
-      <prop>/controls/flight/elevator3</prop> <!-- <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop> -->
+      <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>0.007</Kp>      <!-- proportional gain -->
+      <Kp>-50</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-1</u_min> <!-- minimum output clamp -->
-      <u_max>1</u_max>  <!-- maximum output clamp -->
+      <Ti>20.0</Ti>       <!-- integrator time -->
+      <Td>0.001</Td>    <!-- derivator time -->
+      <u_min>-7800</u_min> <!-- minimum output clamp -->
+      <u_max>6000</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -64,8 +61,8 @@
     <config>
       <Kp>9</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
-      <u_min>-1000</u_min> <!-- minimum output clamp -->
-      <u_max>1000</u_max>   <!-- maximum output clamp -->
+      <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
+      <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
@@ -80,7 +77,7 @@
       </condition>
     </enable>	
     <input>
-      <prop>/instrumentation/altimeter/indicated-altitude-ft</prop>
+      <prop>/instrumentation/altimeter/pressure-alt-ft</prop>
     </input>
     <reference>
       <prop>/autopilot/settings/target-alt-hold-ft</prop>
@@ -91,48 +88,12 @@
     <config>
       <Kp>9</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
-      <u_min>-1000</u_min> <!-- minimum output clamp -->
-      <u_max>1000</u_max>   <!-- maximum output clamp -->
+      <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
+      <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
- <!-- VS mode -->
-  <pi-simple-controller>
-    <name>VS hold</name>
-    <debug>false</debug>
-    <enable>
-      <condition>
-        <or>
-          <property>/autopilot/internal/VNAV-VS</property>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </or>
-      </condition>
-    </enable>
-    <input> <!-- input from LVLCHG mode -->
-      <condition>
-        <property>/autopilot/internal/LVLCHG</property>
-      </condition>
-      <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop>
-    </input>
-    <input> <!-- input from VS or ALT ACQ or ALT HOLD mode -->
-      <prop>/autopilot/settings/vertical-speed-fpm</prop>
-      <scale>0.01667</scale>
-    </input>
-    <reference>
-      <prop>/velocities/vertical-speed-fps</prop>
-    </reference>
-    <output>
-      <prop>/autopilot/settings/target-pitch-deg-vs</prop> <!-- <prop>/instrumentation/flightdirector/vbar-pitch</prop> -->
-    </output>
-    <config>
-      <Kp>-0.000001</Kp>          <!-- proportional gain -->
-      <Ki>-0.001</Ki>          <!-- integral gain -->
-      <u_min>-7</u_min> <!-- minimum output clamp -->
-      <u_max>7</u_max>   <!-- maximum output clamp -->
-    </config>
-  </pi-simple-controller>
+ <!-- VS hold for any mode -->
 
 <filter>
   <type>gain</type>
@@ -163,7 +124,6 @@
             </asin>
             <value>57.2957795131</value>
           </product>
-          <property>/autopilot/settings/target-pitch-deg-vs</property>
         </sum>
       </expression> 
     </input>
@@ -192,7 +152,7 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </reference>
     <output>
-      <prop>/autopilot/internal/target-accel</prop>
+      <prop>/autopilot/settings/target-accel-pitch</prop>
     </output>
     <config>
       <Kp>0.1</Kp>          <!-- proportional gain -->
@@ -201,6 +161,41 @@
       <u_max>0.2</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+      <condition>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
+      </condition>
+    </enable>	
+    <input>
+      <expression>
+        <sum>
+          <property>/autopilot/settings/target-accel-pitch</property>
+          <div>
+            <value>1</value>
+            <cos>
+              <div>
+                <property>/orientation/roll-deg</property>
+                <value>57.2957795131</value>
+              </div>
+            </cos>
+          </div>
+          <value>-1</value>
+        </sum>
+      </expression> 
+    </input>
+  <output>
+    <prop>/autopilot/settings/target-accel</prop>
+  </output>
+</filter>
 
   <pi-simple-controller>
     <name>Acceleration comparator</name>
@@ -216,17 +211,17 @@
       </condition>
     </enable>	
     <input>
-      <prop>/autopilot/internal/current-accel</prop>
+      <prop>/autopilot/settings/current-accel</prop>
     </input>
     <reference>
-      <prop>/autopilot/internal/target-accel</prop>
+      <prop>/autopilot/settings/target-accel</prop>
     </reference>
     <output>
       <prop>/autopilot/internal/elevator</prop>
     </output>
     <config>
-      <Kp>-0.8</Kp>          <!-- proportional gain -->
-      <Ki>-0.1</Ki>          <!-- integral gain -->
+      <Kp>-0.9</Kp>          <!-- proportional gain -->
+      <Ki>-0.3</Ki>          <!-- integral gain -->
       <u_min>-1</u_min> <!-- minimum output clamp -->
       <u_max>1</u_max>   <!-- maximum output clamp -->
     </config>
@@ -287,7 +282,7 @@
     </expression>
   </input>
   <output>
-    <prop>/autopilot/internal/current-accel</prop>
+    <prop>/autopilot/settings/current-accel</prop>
   </output>
 </filter>
 

@@ -82,19 +82,31 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 setlistener( "/autopilot/switches/LVLCHG-button", lvlchg_button_press, 0, 0);
 
 var alt_acq_engage = func {
-	alt_diff = getprop("/b733/helpers/alt-diff-ft");
-
 	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV")) {
-		if (alt_diff < 300) {
+		alt_diff = getprop("/b733/helpers/alt-diff-ft");
+		current_vs = getprop("/autopilot/settings/vertical-speed-fpm");
+		possible_engage_alt =  math.abs(current_vs * 0.15);
+
+
+		if (alt_diff < 300 or alt_diff < possible_engage_alt) {
 			setprop("/autopilot/internal/VNAV-VS", 0);
 			setprop("/autopilot/internal/LVLCHG", 0);
 
 			setprop("/autopilot/internal/VNAV-ALT-ACQ", 1);
+			setprop("/autopilot/internal/SPD-SPEED", 1);
 			setprop("/autopilot/internal/pitch-mode", "ALT ACQ");
+			setprop("/autopilot/internal/throttle-mode", "MCP SPD");
+			if (current_vs > 0) {
+				setprop("/autopilot/internal/max-vs-fpm", current_vs);
+				setprop("/autopilot/internal/min-vs-fpm", -300);
+			} else {
+				setprop("/autopilot/internal/max-vs-fpm", 300);
+				setprop("/autopilot/internal/min-vs-fpm", current_vs);
+			}
 		}
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT-ACQ")) {
-		if (alt_diff < 25) {
+		if (getprop("/b733/helpers/alt-diff-ft") < 5) {
 			alt_hold_engage();
 		}
 	}
@@ -102,12 +114,14 @@ var alt_acq_engage = func {
 setlistener( "/b733/helpers/alt-diff-ft", alt_acq_engage, 0, 0);
 
 var alt_hold_engage = func {
-	alt_current = math.round(getprop("/autopilot/settings/target-altitude-ft"), 100);
+	alt_current = getprop("/instrumentation/altimeter/pressure-alt-ft");
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/VNAV-VS", 0);
 	setprop("/autopilot/internal/VNAV", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/settings/target-alt-hold-ft", alt_current);
 	setprop("/autopilot/internal/VNAV-ALT", 1);
+	setprop("/autopilot/internal/SPD-SPEED", 1);
 	setprop("/autopilot/internal/pitch-mode", "ALT HOLD");
+	setprop("/autopilot/internal/throttle-mode", "MCP SPD");
 }
