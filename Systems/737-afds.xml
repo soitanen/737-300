@@ -116,16 +116,7 @@
       </condition>
       <prop>/autopilot/settings/vertical-speed-lvlchg-fps</prop>
     </input>
-    <!--<input>--> <!-- input from ALT ACQ or ALT HOLD mode -->
-      <!--<condition>
-        <or>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-        </or>
-      </condition>
-      <prop>/autopilot/internal/target-climb-rate-fps</prop>
-    </input> -->
-    <input> <!-- input from VS mode -->
+    <input> <!-- input from VS or ALT ACQ or ALT HOLD mode -->
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
       <scale>0.01667</scale>
     </input>
@@ -136,8 +127,8 @@
       <prop>/autopilot/settings/target-pitch-deg-vs</prop> <!-- <prop>/instrumentation/flightdirector/vbar-pitch</prop> -->
     </output>
     <config>
-      <Kp>-0.001</Kp>          <!-- proportional gain -->
-      <Ki>-0.01</Ki>          <!-- integral gain -->
+      <Kp>-0.000001</Kp>          <!-- proportional gain -->
+      <Ki>-0.001</Ki>          <!-- integral gain -->
       <u_min>-7</u_min> <!-- minimum output clamp -->
       <u_max>7</u_max>   <!-- maximum output clamp -->
     </config>
@@ -148,29 +139,30 @@
   <gain>1</gain>
   <enable>
       <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-            <property>/autopilot/internal/VNAV-ALT</property>
-            <property>/autopilot/internal/LVLCHG</property>
-          </or>
-        </and>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
       </condition>
     </enable>	
     <input>
       <expression>
         <sum>
+          <property>/orientation/alpha-deg</property>
           <product>
-            <property>/autopilot/settings/vertical-speed-fpm</property>
-            <value>0.003</value>
+            <asin>
+              <div>
+                <property>/autopilot/settings/vertical-speed-fpm</property>
+                <product>
+                  <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+                  <value>101.0696354508</value>
+                </product>
+              </div>
+            </asin>
+            <value>57.2957795131</value>
           </product>
-          <product>
-            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-            <value>-0.06</value>
-          </product>
-          <value>18.5</value>
           <property>/autopilot/settings/target-pitch-deg-vs</property>
         </sum>
       </expression> 
@@ -185,15 +177,12 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-            <property>/autopilot/internal/VNAV-ALT</property>
-            <property>/autopilot/internal/LVLCHG</property>
-          </or>
-        </and>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
       </condition>
     </enable>	
     <input>
@@ -208,8 +197,8 @@
     <config>
       <Kp>0.1</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
-      <u_min>-0.3</u_min> <!-- minimum output clamp -->
-      <u_max>0.4</u_max>   <!-- maximum output clamp -->
+      <u_min>-0.2</u_min> <!-- minimum output clamp -->
+      <u_max>0.2</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
@@ -218,34 +207,26 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <and>
-          <property>/autopilot/internal/CMDB</property>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-            <property>/autopilot/internal/VNAV-ALT</property>
-            <property>/autopilot/internal/LVLCHG</property>
-          </or>
-        </and>
+        <or>
+          <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+          <property>/autopilot/internal/VNAV-ALT</property>
+          <property>/autopilot/internal/LVLCHG</property>
+        </or>
       </condition>
     </enable>	
     <input>
-      <prop>/autopilot/internal/target-accel</prop>
+      <prop>/autopilot/internal/current-accel</prop>
     </input>
     <reference>
-      <expression>
-        <sum>
-          <property>/accelerations/n-z-cg-fps_sec</property>
-          <value>1</value>
-        </sum>
-      </expression> 
+      <prop>/autopilot/internal/target-accel</prop>
     </reference>
     <output>
       <prop>/autopilot/internal/elevator</prop>
     </output>
     <config>
-      <Kp>0.65</Kp>          <!-- proportional gain -->
-      <Ki>0.05</Ki>          <!-- integral gain -->
+      <Kp>-0.8</Kp>          <!-- proportional gain -->
+      <Ki>-0.1</Ki>          <!-- integral gain -->
       <u_min>-1</u_min> <!-- minimum output clamp -->
       <u_max>1</u_max>   <!-- maximum output clamp -->
     </config>
@@ -288,6 +269,25 @@
     </input>
   <output>
     <prop>/controls/flight/elevator</prop>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <expression>
+      <product>
+        <sum>
+          <property>/accelerations/n-z-cg-fps_sec</property>
+          <value>1</value>
+        </sum>
+        <value>-1</value>
+      </product>
+    </expression>
+  </input>
+  <output>
+    <prop>/autopilot/internal/current-accel</prop>
   </output>
 </filter>
 
