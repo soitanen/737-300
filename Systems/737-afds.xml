@@ -1,8 +1,162 @@
 <?xml version="1.0"?>
 
 <PropertyList>
+ <!-- =============================================================== -->
+ <!-- Roll Axis Modes                                                 -->
+ <!-- =============================================================== -->
 
+   <filter>
+    <name>heading bug error computer/normalizer</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/LNAV-HDG</property>
+      </condition>
+    </enable>	
+    <type>gain</type>
+    <input>
+      <property>autopilot/settings/heading-bug-deg</property>
+      <offset>
+        <property>orientation/heading-magnetic-deg</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/heading-bug-error-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
 
+  <filter>
+    <name>nav1 heading error computer/normalizer</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/LNAV-NAV1</property>
+      </condition>
+    </enable>
+    <type>gain</type>
+    <input>
+      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
+      <offset>
+        <property>orientation/heading-deg</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/heading-bug-error-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
+
+  <pi-simple-controller>
+    <name>Calculator for target bank in HDG mode</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <or>
+          <property>/autopilot/internal/LNAV-HDG</property>
+          <property>/autopilot/internal/LNAV-NAV1</property>
+        </or>
+      </condition>
+    </enable>	
+    <input>
+      <prop>autopilot/internal/heading-bug-error-deg</prop>
+    </input>
+    <reference>
+      <value>0</value>
+    </reference>
+    <output>
+      <prop>/autopilot/settings/target-bank</prop>
+    </output>
+    <config>
+      <Kp>-1.5</Kp>          <!-- proportional gain -->
+      <Ki>0.0</Ki>          <!-- integral gain -->
+      <u_min>/autopilot/settings/maximum-bank-neg</u_min> <!-- minimum output clamp -->
+      <u_max>/autopilot/settings/maximum-bank</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
+
+  <pi-simple-controller>
+    <name>Roll rate calculator</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <or>
+          <property>/autopilot/internal/LNAV-HDG</property>
+          <property>/autopilot/internal/LNAV-NAV1</property>
+        </or>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-bank</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/settings/target-roll-rate</prop>
+    </output>
+    <config>
+      <Kp>0.3</Kp>          <!-- proportional gain -->
+      <Ki>0.0</Ki>          <!-- integral gain -->
+      <u_min>-4</u_min> <!-- minimum output clamp -->
+      <u_max>4</u_max>   <!-- maximum output clamp -->
+    </config>
+  </pi-simple-controller>
+
+  <pi-simple-controller>
+    <name>Roll rate comparator</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/LNAV-HDG</property>
+            <property>/autopilot/internal/LNAV-NAV1</property>
+          </or>
+        </and>
+      </condition>
+    </enable>	
+    <input>
+      <prop>/orientation/roll-rate-degps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-roll-rate</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/aileron</prop>
+    </output>
+    <config>
+      <Kp>0.01</Kp>          <!-- proportional gain -->
+      <Ki>0.1</Ki>          <!-- integral gain -->
+      <u_min>                <!-- minimum output clamp with flaps NOT up -->
+        <condition>
+          <greater-than>
+            <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+            <value>0.124</value>
+          </greater-than>
+        </condition>
+        <value>-0.27777</value>
+      </u_min>
+      <u_max>                <!-- maximum output clamp with flaps NOT up -->
+        <condition>
+          <greater-than>
+            <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+            <value>0.124</value>
+          </greater-than>
+        </condition>
+        <value>0.27777</value>
+      </u_max>
+      <u_min>-0.188888</u_min> <!-- minimum output clamp with flaps up -->
+      <u_max>0.188888</u_max>   <!-- maximum output clamp with flaps up -->
+    </config>
+  </pi-simple-controller>
   
  <!-- =============================================================== -->
  <!-- Pitch Axis Modes                                                -->
@@ -59,7 +213,7 @@
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>9</Kp>          <!-- proportional gain -->
+      <Kp>6</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->
@@ -86,12 +240,30 @@
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>9</Kp>          <!-- proportional gain -->
+      <Kp>6</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
+
+ <!-- GLIDESLOPE mode -->
+
+<filter>
+  <type>gain</type>
+  <gain>60</gain>
+  <enable>
+    <condition>
+      <property>/autopilot/internal/VNAV-GS</property>
+    </condition>
+  </enable>	
+  <input>
+    <property>/instrumentation/nav/gs-rate-of-climb</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/vertical-speed-fpm</prop>
+  </output>
+</filter>
 
  <!-- VS hold for any mode -->
 
@@ -102,6 +274,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-GS</property>
           <property>/autopilot/internal/VNAV-ALT-ACQ</property>
           <property>/autopilot/internal/VNAV-ALT</property>
           <property>/autopilot/internal/LVLCHG</property>
@@ -139,6 +312,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-GS</property>
           <property>/autopilot/internal/VNAV-ALT-ACQ</property>
           <property>/autopilot/internal/VNAV-ALT</property>
           <property>/autopilot/internal/LVLCHG</property>
@@ -169,6 +343,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-GS</property>
           <property>/autopilot/internal/VNAV-ALT-ACQ</property>
           <property>/autopilot/internal/VNAV-ALT</property>
           <property>/autopilot/internal/LVLCHG</property>
@@ -204,6 +379,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/VNAV-VS</property>
+          <property>/autopilot/internal/VNAV-GS</property>
           <property>/autopilot/internal/VNAV-ALT-ACQ</property>
           <property>/autopilot/internal/VNAV-ALT</property>
           <property>/autopilot/internal/LVLCHG</property>
@@ -247,6 +423,7 @@
           <property>/autopilot/internal/CMDB</property>
           <or>
             <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-GS</property>
             <property>/autopilot/internal/VNAV-ALT-ACQ</property>
             <property>/autopilot/internal/VNAV-ALT</property>
             <property>/autopilot/internal/LVLCHG</property>
@@ -267,6 +444,7 @@
   </output>
 </filter>
 
+<!-- helper which calculates current acceleration -->
 <filter>
   <type>gain</type>
   <gain>1</gain>
@@ -361,5 +539,45 @@
   <input>/fdm/jsbsim/fcs/stabilizer-pos-unit</input>
   <output>/fdm/jsbsim/fcs/stabilizer/stab-target</output>
  </filter>
+
+ <!-- =============================================================== -->
+ <!-- Just helpers                                                    -->
+ <!-- =============================================================== -->
  
+<!-- helper which calculates negative value for maximum bank -->
+<filter>
+  <type>gain</type>
+  <gain>-1</gain>
+  <input>
+    <condition>
+     <and>
+      <property>/autopilot/internal/LNAV-NAV</property>
+      <less-than>
+        <property>/controls/flight/elevator</property>
+        <value>0</value>
+      </less-than>
+     </and>
+    </condition>
+    <value>8</value>
+  </input>
+  <input>
+    <property>/autopilot/settings/maximum-bank-limit</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/maximum-bank-neg</prop>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <property>/autopilot/settings/maximum-bank-limit</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/maximum-bank</prop>
+  </output>
+</filter>
+
+
 </PropertyList>

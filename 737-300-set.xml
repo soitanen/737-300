@@ -489,6 +489,9 @@
       <target-speed-mach type="double">.65</target-speed-mach>       
       <heading-bug-deg type="double">0</heading-bug-deg>
       <true-heading-deg type="double">0</true-heading-deg>
+      <target-roll-rate type="double">0</target-roll-rate>
+      <target-bank type="double">0</target-bank>
+      <maximum-bank-limit type="double">30</maximum-bank-limit>
    </settings>
 
     <switches>
@@ -523,6 +526,7 @@
       <SPD-MACH type="bool">false</SPD-MACH>
 
       <pitch-mode type="string"></pitch-mode>
+      <throttle-mode type="string"></throttle-mode>
     </internal>
 
   </autopilot>
