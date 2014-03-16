@@ -296,10 +296,10 @@
       <electrical>
         <path>Aircraft/Generic/generic-electrical.xml</path>
       </electrical>
-      <autopilot>
+<!--      <autopilot>
         <path>Aircraft/737-300/Systems/737-autopilot.xml</path>
-      </autopilot>
-      <autopilot n="102">
+      </autopilot>-->
+      <autopilot>
         <path>Aircraft/737-300/Systems/737-afds.xml</path>
       </autopilot>
       <path>Aircraft/737-300/Systems/systems.xml</path>
@@ -492,6 +492,8 @@
       <target-roll-rate type="double">0</target-roll-rate>
       <target-bank type="double">0</target-bank>
       <maximum-bank-limit type="double">30</maximum-bank-limit>
+      <min-lvlchg-vs type="double">-7800</min-lvlchg-vs>
+      <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
    </settings>
 
     <switches>

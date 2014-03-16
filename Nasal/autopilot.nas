@@ -1,5 +1,7 @@
 ##
 
+##########################################################################
+# Rotating VS knob
 var adjust_vs_factor = func {
 if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 	var vs_knob = getprop("/autopilot/settings/vertical-speed-knob");
@@ -17,6 +19,8 @@ adjust_vs_factor(); # first run to create properties
 setprop("/autopilot/internal/VNAV-VS", 0);
 setlistener( "/autopilot/settings/vertical-speed-knob", adjust_vs_factor, 0, 0);
 
+##########################################################################
+# VS button
 var vs_button_press = func {
 if (getprop("/autopilot/switches/VS-button") == 1) {
 	setprop("/autopilot/switches/VS-button", 0);
@@ -50,6 +54,8 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 }
 setlistener( "/autopilot/switches/VS-button", vs_button_press, 0, 0);
 
+##########################################################################
+# LVL CHG button
 var lvlchg_button_press = func {
 if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 	setprop("/autopilot/switches/LVLCHG-button", 0);
@@ -70,9 +76,13 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 		if (alt < alt_target) {
 			setprop("/controls/engines/engine[0]/throttle", 0.9); ## REPLACE IT WITH N1 MODE ENGAGE!!!
 			setprop("/controls/engines/engine[1]/throttle", 0.9); ## REPLACE IT WITH N1 MODE ENGAGE!!!
+			setprop("/autopilot/settings/min-lvlchg-vs", 0);
+			setprop("/autopilot/settings/max-lvlchg-vs", 6000);
 		} else {
 			setprop("/controls/engines/engine[0]/throttle", 0); ## REPLACE IT WITH RETARD MODE ENGAGE!!!
 			setprop("/controls/engines/engine[1]/throttle", 0); ## REPLACE IT WITH RETARD MODE ENGAGE!!!
+			setprop("/autopilot/settings/min-lvlchg-vs", -7800);
+			setprop("/autopilot/settings/max-lvlchg-vs", 0);
 		}
 	}
 	
@@ -81,6 +91,8 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 }
 setlistener( "/autopilot/switches/LVLCHG-button", lvlchg_button_press, 0, 0);
 
+##########################################################################
+# Engaging ALT ACQ mode
 var alt_acq_engage = func {
 	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV")) {
 		alt_diff = getprop("/b733/helpers/alt-diff-ft");
@@ -113,6 +125,8 @@ var alt_acq_engage = func {
 }
 setlistener( "/b733/helpers/alt-diff-ft", alt_acq_engage, 0, 0);
 
+##########################################################################
+# Engaging ALT HOLD mode
 var alt_hold_engage = func {
 	alt_current = getprop("/instrumentation/altimeter/pressure-alt-ft");
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);

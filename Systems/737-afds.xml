@@ -21,7 +21,7 @@
         <scale>-1.0</scale>
       </offset>
     </input>
-    <output>autopilot/internal/heading-bug-error-deg</output>
+    <output>/autopilot/internal/heading-bug-error-deg</output>
     <period>
       <min>-180</min>
       <max>180</max>
@@ -32,20 +32,53 @@
   <filter>
     <name>nav1 heading error computer/normalizer</name>
     <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <expression>
+        <sum>
+          <product>
+            <property>/autopilot/internal/drift-angle-deg</property>
+            <value>-1</value>
+          </product>
+          <product>
+            <property>/instrumentation/nav[0]/crosstrack-error-m</property>
+            <value>0.03</value>
+          </product>
+          <product>
+            <property>autopilot/internal/nav1-crosstrack-rate-mps</property>
+            <value>0.45</value>
+          </product>
+        </sum>
+      </expression>
+    </input>
+    <output>/autopilot/internal/target-heading-shift-nav1</output>
+      <min>-30</min>
+      <max>30</max>
+    <gain>1.0</gain>
+  </filter>
+
+   <filter>
+    <name>heading bug error computer/normalizer</name>
+    <debug>false</debug>
     <enable>
       <condition>
         <property>/autopilot/internal/LNAV-NAV1</property>
       </condition>
-    </enable>
+    </enable>	
     <type>gain</type>
     <input>
-      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
-      <offset>
-        <property>orientation/heading-deg</property>
-        <scale>-1.0</scale>
-      </offset>
+      <expression>
+        <sum>
+          <property>/instrumentation/nav[0]/radials/target-radial-deg</property>
+          <property>autopilot/internal/target-heading-shift-nav1</property>
+          <product>
+            <property>orientation/heading-deg</property>
+            <value>-1</value>
+          </product>
+        </sum>
+      </expression>
     </input>
-    <output>autopilot/internal/heading-bug-error-deg</output>
+    <output>/autopilot/internal/heading-bug-error-deg</output>
     <period>
       <min>-180</min>
       <max>180</max>
@@ -181,15 +214,15 @@
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>-50</Kp>      <!-- proportional gain -->
+      <Kp>-60</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>20.0</Ti>       <!-- integrator time -->
-      <Td>0.001</Td>    <!-- derivator time -->
-      <u_min>-7800</u_min> <!-- minimum output clamp -->
-      <u_max>6000</u_max>  <!-- maximum output clamp -->
+      <Ti>10.0</Ti>       <!-- integrator time -->
+      <Td>1.0</Td>    <!-- derivator time -->
+      <u_min>/autopilot/settings/min-lvlchg-vs</u_min> <!-- minimum output clamp -->
+      <u_max>/autopilot/settings/max-lvlchg-vs</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -541,6 +574,94 @@
  </filter>
 
  <!-- =============================================================== -->
+ <!-- Autothrottle                                                    -->
+ <!-- =============================================================== -->
+
+  <pid-controller>
+    <name>IAS Auto Throttle</name>
+    <debug>false</debug>
+      <enable>
+       <condition>
+        <and>
+          <property>/autopilot/internal/SPD</property>
+          <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/SPD-IAS</property>
+        </and>
+      </condition>
+     </enable>	
+    <input>
+      <prop>/instrumentation/airspeed-indicator/indicated-speed-kt</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-speed-kt</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/at-throttle</prop>
+    </output>
+    <config>
+      <Kp>0.1</Kp>        <!-- proportional gain -->
+      <beta>1.0</beta>    <!-- input value weighing factor -->
+      <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+                          <!-- unfiltered derivative error -->
+      <Ti>10.0</Ti>       <!-- integrator time -->
+      <Td>0.00001</Td>    <!-- derivator time -->
+      <u_min>0.0</u_min>  <!-- minimum output clamp -->
+      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+    </config>
+  </pid-controller>
+
+<filter>
+  <name>SERVO-DRIVER:autothrottle</name>	
+  <debug>false</debug>
+  <feedback-if-disabled>true</feedback-if-disabled>
+  <enable>
+    <condition>
+        <and>
+          <equals>
+            <property>/autopilot/internal/SPD</property>
+            <value>true</value>
+          </equals>
+          <or>
+            <equals>
+              <property>/autopilot/internal/SPD-N1</property>
+              <value>true</value>
+            </equals>
+            <equals>
+              <property>/autopilot/internal/SPD-SPEED</property>
+              <value>true</value>
+            </equals>
+            <equals>
+              <property>/autopilot/internal/SPD-LVLCHG</property>
+              <value>true</value>
+            </equals>
+          </or>
+          <equals>
+            <property>/autopilot/internal/SPD-IAS</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+  </enable>
+  <type>noise-spike</type>
+  <max-rate-of-change>
+    <condition>
+      <less-than>
+        <property>/autopilot/internal/at-throttle</property>
+        <property>/controls/engines/engine[0]/throttle</property>
+      </less-than>
+    </condition>
+    <value>0.0468</value>
+  </max-rate-of-change>
+  <max-rate-of-change>.0932</max-rate-of-change>
+  <input>/autopilot/internal/at-throttle</input>
+    <output>
+      <prop>/controls/engines/engine[0]/throttle</prop>
+      <prop>/controls/engines/engine[1]/throttle</prop>
+    </output>
+</filter>
+
+ <!-- =============================================================== -->
  <!-- Just helpers                                                    -->
  <!-- =============================================================== -->
  
@@ -579,5 +700,50 @@
   </output>
 </filter>
 
+<!-- drift angle calculator -->
+   <filter>
+    <name>drift angle</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>/orientation/track-magnetic-deg</property>
+      <offset>
+        <property>orientation/heading-magnetic-deg</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/drift-angle-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
+
+<!-- calculate derivate for crosstrack error -->
+
+  <predict-simple>
+    <name>z value in 1 second</name>
+    <debug type="bool">false</debug>
+    <seconds>1</seconds>
+    <filter-gain>0</filter-gain>
+    <input>instrumentation/nav[0]/crosstrack-error-m</input>
+    <output>autopilot/internal/lookahead-1-sec-nav1-crosstrack-m</output>
+  </predict-simple>
+
+  <filter>
+    <name>z derivate</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>autopilot/internal/lookahead-1-sec-nav1-crosstrack-m</property>
+      <offset>
+        <property>instrumentation/nav[0]/crosstrack-error-m</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/nav1-crosstrack-rate-mps</output>
+    <gain>1.0</gain>
+  </filter>
 
 </PropertyList>
