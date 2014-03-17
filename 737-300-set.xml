@@ -499,6 +499,9 @@
     <switches>
       <VS-button type="bool">0</VS-button>
       <LVLCHG-button type="bool">0</LVLCHG-button>
+      <CO-button type="bool">0</CO-button>
+      <N1-button type="bool">0</N1-button>
+      <SPEED-button type="bool">0</SPEED-button>
     </switches>
 
     <internal>

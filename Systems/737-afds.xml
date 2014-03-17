@@ -5,6 +5,7 @@
  <!-- Roll Axis Modes                                                 -->
  <!-- =============================================================== -->
 
+<!-- HDG SEL mode -->
    <filter>
     <name>heading bug error computer/normalizer</name>
     <debug>false</debug>
@@ -29,11 +30,33 @@
     <gain>1.0</gain>
   </filter>
 
+<!-- VOR/LOC mode -->
   <filter>
     <name>nav1 heading error computer/normalizer</name>
     <debug>false</debug>
     <type>gain</type>
-    <input>
+    <input> <!-- this is for LOCALIZER CAPTURE -->
+      <condition>
+        <property>/instrumentation/nav[0]/nav-loc</property>
+      </condition>
+      <expression>
+        <sum>
+          <product>
+            <property>/autopilot/internal/drift-angle-deg</property>
+            <value>-1</value>
+          </product>
+          <product>
+            <property>/instrumentation/nav[0]/crosstrack-error-m</property>
+            <value>0.06</value>
+          </product>
+          <product>
+            <property>autopilot/internal/nav1-crosstrack-rate-mps</property>
+            <value>0.2</value>
+          </product>
+        </sum>
+      </expression>
+    </input>
+    <input> <!-- this is for other modes (VOR, LNAV) -->
       <expression>
         <sum>
           <product>
@@ -168,26 +191,26 @@
     <config>
       <Kp>0.01</Kp>          <!-- proportional gain -->
       <Ki>0.1</Ki>          <!-- integral gain -->
-      <u_min>                <!-- minimum output clamp with flaps NOT up -->
+      <u_min>                <!-- minimum output clamp with flaps NOT up (25 degrees of steering wheel) -->
         <condition>
           <greater-than>
             <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
             <value>0.124</value>
           </greater-than>
         </condition>
-        <value>-0.27777</value>
+        <value>-0.285714286</value>
       </u_min>
-      <u_max>                <!-- maximum output clamp with flaps NOT up -->
+      <u_max>                <!-- maximum output clamp with flaps NOT up (25 degrees of steering wheel) -->
         <condition>
           <greater-than>
             <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
             <value>0.124</value>
           </greater-than>
         </condition>
-        <value>0.27777</value>
+        <value>0.285714286</value>
       </u_max>
-      <u_min>-0.188888</u_min> <!-- minimum output clamp with flaps up -->
-      <u_max>0.188888</u_max>   <!-- maximum output clamp with flaps up -->
+      <u_min>-0.194285714</u_min> <!-- minimum output clamp with flaps up (17 degrees of steering wheel) -->
+      <u_max>0.194285714</u_max>   <!-- maximum output clamp with flaps up (17 degrees of steering wheel) -->
     </config>
   </pi-simple-controller>
   

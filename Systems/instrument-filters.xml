@@ -53,10 +53,13 @@
          <property>/b733/helpers/alt-diff-ft</property>
          <value>900</value>
        </less-than>
-       <less-than>
-         <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
-         <value>0.75</value>
-       </less-than>
+       <or>
+         <less-than>
+           <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+           <value>0.75</value>
+         </less-than>
+         <property>/autopilot/internal/VNAV-GS</property>
+       </or>
      </and>
    </input>
    <output>/b733/sound/alt-acq</output>

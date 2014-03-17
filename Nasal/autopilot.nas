@@ -92,6 +92,37 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 setlistener( "/autopilot/switches/LVLCHG-button", lvlchg_button_press, 0, 0);
 
 ##########################################################################
+# Changeover button
+var changeover_button_press = func {
+if (getprop("/autopilot/switches/CO-button") == 1) {
+	setprop("/autopilot/switches/CO-button", 0);
+
+}
+}
+setlistener( "/autopilot/switches/CO-button", changeover_button_press, 0, 0);
+
+##########################################################################
+# N1 button
+var n1_button_press = func {
+if (getprop("/autopilot/switches/N1-button") == 1) {
+	setprop("/autopilot/switches/N1-button", 0);
+
+}
+}
+setlistener( "/autopilot/switches/N1-button", n1_button_press, 0, 0);
+
+##########################################################################
+# SPEED button
+var speed_button_press = func {
+if (getprop("/autopilot/switches/SPEED-button") == 1) {
+	setprop("/autopilot/switches/SPEED-button", 0);
+
+	speed_engage();
+}
+}
+setlistener( "/autopilot/switches/SPEED-button", speed_button_press, 0, 0);
+
+##########################################################################
 # Engaging ALT ACQ mode
 var alt_acq_engage = func {
 	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV")) {
@@ -105,9 +136,8 @@ var alt_acq_engage = func {
 			setprop("/autopilot/internal/LVLCHG", 0);
 
 			setprop("/autopilot/internal/VNAV-ALT-ACQ", 1);
-			setprop("/autopilot/internal/SPD-SPEED", 1);
 			setprop("/autopilot/internal/pitch-mode", "ALT ACQ");
-			setprop("/autopilot/internal/throttle-mode", "MCP SPD");
+			speed_engage();
 			if (current_vs > 0) {
 				setprop("/autopilot/internal/max-vs-fpm", current_vs);
 				setprop("/autopilot/internal/min-vs-fpm", -300);
@@ -135,7 +165,14 @@ var alt_hold_engage = func {
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/settings/target-alt-hold-ft", alt_current);
 	setprop("/autopilot/internal/VNAV-ALT", 1);
-	setprop("/autopilot/internal/SPD-SPEED", 1);
 	setprop("/autopilot/internal/pitch-mode", "ALT HOLD");
+	speed_engage();
+}
+
+##########################################################################
+# Engaging ALT HOLD mode
+var speed_engage = func {
+	setprop("/autopilot/internal/SPD-N1", 0);
+	setprop("/autopilot/internal/SPD-SPEED", 1);
 	setprop("/autopilot/internal/throttle-mode", "MCP SPD");
 }
