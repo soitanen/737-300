@@ -566,7 +566,7 @@
 <!-- VERTICAL NAV                                                   -->
 <!-- =============================================================  --> 
 
-<!-- Toggle VNAV -->
+<!-- VNAV button -->
  <animation>
   <type>pick</type>
   <visible>true</visible>
@@ -576,8 +576,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/VNAV</property>
+     <command>property-assign</command>
+     <property>/autopilot/switches/VNAV-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -835,18 +836,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-     <value type="bool">0</value>
+     <property>/autopilot/switches/ALTHLD-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -854,7 +846,7 @@
  <animation>
    <type>rotate</type>
      <object-name>ALTHLD</object-name>
-       <property>/autopilot/internal/VNAV-ALT</property>
+       <property>/autopilot/internal/VNAV-ALT-light</property>
        <factor>-90</factor>
        <center>
          <x-m>-0.00281</x-m>
@@ -976,17 +968,8 @@
    <repeatable>false</repeatable>
    <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-GS</property>
+     <property>/autopilot/switches/APP-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1022,28 +1005,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-     <value type="bool">0</value>
+     <property>/autopilot/switches/LNAV-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1073,28 +1037,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-     <value type="bool">0</value>
+     <property>/autopilot/switches/HDG-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1125,28 +1070,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-     <value type="bool">0</value>
+     <property>/autopilot/switches/VORLOC-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1394,13 +1320,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/CMDA</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/CMDB</property>
-     <value>false</value>
+     <property>/autopilot/switches/CMDA-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1431,13 +1353,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/CMDB</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/CMDA</property>
-     <value>false</value>
+     <property>/autopilot/switches/CMDB-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1468,13 +1386,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/CWSA</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/CWSB</property>
-     <value>false</value>
+     <property>/autopilot/switches/CWSA-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1504,13 +1418,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/CWSB</property>
-   </binding>
-   <binding>
      <command>property-assign</command>
-     <property>/autopilot/internal/CWSA</property>
-     <value>false</value>
+     <property>/autopilot/switches/CWSB-button</property>
+     <value type="bool">1</value>
    </binding>
   </action>
  </animation>
@@ -1541,14 +1451,9 @@
    <button>0</button>
    <repeatable>false</repeatable>
    <binding>
-    <command>property-assign</command>
-    <property>/autopilot/internal/CMDA</property>
-    <value type="bool">0</value>
-   </binding>
-   <binding>
-    <command>property-assign</command>
-    <property>/autopilot/internal/CMDB</property>
-    <value type="bool">0</value>
+     <command>property-assign</command>
+     <property>/autopilot/switches/APDSNG-button</property>
+     <value type="bool">1</value>
    </binding>   
   </action>    
   </animation>

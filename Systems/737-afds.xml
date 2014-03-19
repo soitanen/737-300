@@ -75,8 +75,8 @@
       </expression>
     </input>
     <output>/autopilot/internal/target-heading-shift-nav1</output>
-      <min>-30</min>
-      <max>30</max>
+      <min>-90</min>
+      <max>90</max>
     <gain>1.0</gain>
   </filter>
 
@@ -85,7 +85,7 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <property>/autopilot/internal/LNAV-NAV1</property>
+        <property>/autopilot/internal/LNAV-NAV</property>
       </condition>
     </enable>	
     <type>gain</type>
@@ -116,7 +116,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/LNAV-HDG</property>
-          <property>/autopilot/internal/LNAV-NAV1</property>
+          <property>/autopilot/internal/LNAV-NAV</property>
         </or>
       </condition>
     </enable>	
@@ -144,7 +144,7 @@
       <condition>
         <or>
           <property>/autopilot/internal/LNAV-HDG</property>
-          <property>/autopilot/internal/LNAV-NAV1</property>
+          <property>/autopilot/internal/LNAV-NAV</property>
         </or>
       </condition>
     </enable>	
@@ -174,7 +174,7 @@
           <property>/autopilot/internal/CMDB</property>
           <or>
             <property>/autopilot/internal/LNAV-HDG</property>
-            <property>/autopilot/internal/LNAV-NAV1</property>
+            <property>/autopilot/internal/LNAV-NAV</property>
           </or>
         </and>
       </condition>
@@ -269,7 +269,7 @@
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>6</Kp>          <!-- proportional gain -->
+      <Kp>7.5</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->
@@ -296,7 +296,7 @@
       <prop>/autopilot/settings/vertical-speed-fpm</prop>
     </output>
     <config>
-      <Kp>6</Kp>          <!-- proportional gain -->
+      <Kp>7.5</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>/autopilot/internal/min-vs-fpm</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/internal/max-vs-fpm</u_max>   <!-- maximum output clamp -->

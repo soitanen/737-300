@@ -494,14 +494,30 @@
       <maximum-bank-limit type="double">30</maximum-bank-limit>
       <min-lvlchg-vs type="double">-7800</min-lvlchg-vs>
       <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
+      <alt-acq-target-alt type="double">0</alt-acq-target-alt>
    </settings>
 
     <switches>
-      <VS-button type="bool">0</VS-button>
+      <!-- throttle buttons -->
       <LVLCHG-button type="bool">0</LVLCHG-button>
       <CO-button type="bool">0</CO-button>
       <N1-button type="bool">0</N1-button>
       <SPEED-button type="bool">0</SPEED-button>
+      <!-- vertical navigation buttons -->
+      <VNAV-button type="bool">0</VNAV-button>
+      <VS-button type="bool">0</VS-button>
+      <ALTHLD-button type="bool">0</ALTHLD-button>
+      <APP-button type="bool">0</APP-button>
+      <!-- lateral navigation buttons -->
+      <LNAV-button type="bool">0</LNAV-button>
+      <HDG-button type="bool">0</HDG-button>
+      <VORLOC-button type="bool">0</VORLOC-button>
+      <!-- autopilot engage buttons -->
+      <CMDA-button type="bool">0</CMDA-button>
+      <CMDB-button type="bool">0</CMDB-button>
+      <CWSA-button type="bool">0</CWSA-button>
+      <CWSB-button type="bool">0</CWSB-button>
+      <APDSNG-button type="bool">0</APDSNG-button>
     </switches>
 
     <internal>
@@ -510,17 +526,18 @@
       <ATArm type="bool">false</ATArm>
       <IAS-SEL type="bool">true</IAS-SEL>
       <LNAV type="bool">true</LNAV>
-      <LNAV-LVL type="bool">false</LNAV-LVL>
-      <LNAV-NAV1 type="bool">false</LNAV-NAV1>
-      <LNAV-NAV2 type="bool">false</LNAV-NAV2>
+      <LNAV-NAV type="bool">false</LNAV-NAV>
+      <LNAV-NAV-armed type="bool">false</LNAV-NAV-armed>
       <LNAV-HDG type="bool">false</LNAV-HDG>
-      <LNAV-FMS type="bool">false></LNAV-FMS>
 
       <VNAV type="bool">false</VNAV>
       <VNAV-VS type="bool">false</VNAV-VS>
+      <VNAV-VS-ARMED type="bool">false</VNAV-VS-ARMED>
       <VNAV-ALT type="bool">false</VNAV-ALT>
       <VNAV-ALT-ACQ type="bool">false</VNAV-ALT-ACQ>
+      <VNAV-ALT-light type="bool">false</VNAV-ALT-light>
       <VNAV-GS type="bool">false</VNAV-GS>
+      <VNAV-GS-armed type="bool">false</VNAV-GS-armed>
 
       <LVLCHG type="bool">false</LVLCHG>
             
@@ -529,10 +546,22 @@
       <SPD-N1 type="bool">false</SPD-N1>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
+    </internal>
 
+    <display>
+      <roll-mode type="string"></roll-mode>
       <pitch-mode type="string"></pitch-mode>
       <throttle-mode type="string"></throttle-mode>
-    </internal>
+      <roll-mode-armed type="string"></roll-mode-armed>
+      <pitch-mode-armed type="string"></pitch-mode-armed>
+      <throttle-mode-armed type="string"></throttle-mode-armed>
+      <roll-mode-last-change type="double">0</roll-mode-last-change>
+      <pitch-mode-last-change type="double">0</pitch-mode-last-change>
+      <throttle-mode-last-change type="double">0</throttle-mode-last-change>
+      <roll-mode-rectangle type="bool">0</roll-mode-rectangle>
+      <pitch-mode-rectangle type="bool">0</pitch-mode-rectangle>
+      <throttle-mode-rectangle type="bool">0</throttle-mode-rectangle>
+    </display>
 
   </autopilot>
 
