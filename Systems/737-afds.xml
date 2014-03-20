@@ -171,7 +171,10 @@
     <enable>
       <condition>
         <and>
-          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/CMDA</property>
+            <property>/autopilot/internal/CMDB</property>
+          </or>
           <or>
             <property>/autopilot/internal/LNAV-HDG</property>
             <property>/autopilot/internal/LNAV-NAV</property>
@@ -476,7 +479,10 @@
   <enable>
       <condition>
         <and>
-          <property>/autopilot/internal/CMDB</property>
+          <or>
+            <property>/autopilot/internal/CMDA</property>
+            <property>/autopilot/internal/CMDB</property>
+          </or>
           <or>
             <property>/autopilot/internal/VNAV-VS</property>
             <property>/autopilot/internal/VNAV-GS</property>
@@ -562,9 +568,21 @@
   <name>Stabilizer position sample and hold</name>
   <debug>false</debug>
   <enable>
-   <condition>
-    <property>/autopilot/internal/CMDB</property>
-   </condition>
+      <condition>
+        <and>
+          <or>
+            <property>/autopilot/internal/CMDA</property>
+            <property>/autopilot/internal/CMDB</property>
+          </or>
+          <or>
+            <property>/autopilot/internal/VNAV-VS</property>
+            <property>/autopilot/internal/VNAV-GS</property>
+            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+            <property>/autopilot/internal/VNAV-ALT</property>
+            <property>/autopilot/internal/LVLCHG</property>
+          </or>
+        </and>
+      </condition>
   </enable>
   <type>gain</type>
   <gain>1.0</gain>
@@ -608,7 +626,6 @@
         <and>
           <property>/autopilot/internal/SPD</property>
           <property>/autopilot/internal/SPD-SPEED</property>
-          <property>/autopilot/internal/SPD-IAS</property>
         </and>
       </condition>
      </enable>	
@@ -641,28 +658,11 @@
   <enable>
     <condition>
         <and>
-          <equals>
-            <property>/autopilot/internal/SPD</property>
-            <value>true</value>
-          </equals>
+          <property>/autopilot/internal/SPD</property>
           <or>
-            <equals>
-              <property>/autopilot/internal/SPD-N1</property>
-              <value>true</value>
-            </equals>
-            <equals>
-              <property>/autopilot/internal/SPD-SPEED</property>
-              <value>true</value>
-            </equals>
-            <equals>
-              <property>/autopilot/internal/SPD-LVLCHG</property>
-              <value>true</value>
-            </equals>
+            <property>/autopilot/internal/SPD-N1</property>
+            <property>/autopilot/internal/SPD-SPEED</property>
           </or>
-          <equals>
-            <property>/autopilot/internal/SPD-IAS</property>
-            <value>true</value>
-          </equals>
         </and>
       </condition>
   </enable>
@@ -682,6 +682,32 @@
       <prop>/controls/engines/engine[0]/throttle</prop>
       <prop>/controls/engines/engine[1]/throttle</prop>
     </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+    <condition>
+      <property>/autopilot/internal/SPD-MACH</property>
+    </condition>
+  </enable>	
+  <input>
+    <expression>
+      <div>
+        <product>
+          <property>/autopilot/settings/target-speed-mach</property>
+          <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+          <property>/fdm/jsbsim/atmosphere/a-fps</property>
+          <value>0.5924838012959</value>
+        </product>
+        <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+      </div>
+    </expression> 
+  </input>
+  <output>
+    <prop>/autopilot/settings/target-speed-kt</prop>
+  </output>
 </filter>
 
  <!-- =============================================================== -->
@@ -766,6 +792,32 @@
       </offset>
     </input>
     <output>autopilot/internal/nav1-crosstrack-rate-mps</output>
+    <gain>1.0</gain>
+  </filter>
+
+<!-- calculate real vertical speed -->
+
+  <predict-simple>
+    <name>alt change in 60 second</name>
+    <debug type="bool">false</debug>
+    <seconds>60</seconds>
+    <filter-gain>0</filter-gain>
+    <input>/position/altitude-ft</input>
+    <output>/autopilot/internal/lookahead-60-sec-altitude-ft</output>
+  </predict-simple>
+
+  <filter>
+    <name>VS fpm</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>/autopilot/internal/lookahead-60-sec-altitude-ft</property>
+      <offset>
+        <property>/position/altitude-ft</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/current-vertical-speed-fpm</output>
     <gain>1.0</gain>
   </filter>
 

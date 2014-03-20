@@ -211,80 +211,7 @@
    </axis>
  </animation>
 
-<!-- Speed Decrease --> 
- 
-  <animation>
-    <type>pick</type>
-    <visible>false</visible>
-    <object-name>speeddecrease</object-name>
-    <action>
-      <name>airspeed adjust (decrease)</name>
-        <button>0</button>
-        <repeatable>true</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/autopilot/settings/target-speed-kt</property>
-          <step>-1.0</step>
-          <min>0</min>   
-          <max>350</max>    
-        </binding>
-    </action>
-  </animation>
- 
- <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>machdecrease</object-name>
-<action>
-  <name>airspeed adjust (decrease)</name>
-  <button>0</button>
-      <repeatable>true</repeatable>
-    <binding>
-  <command>property-adjust</command>
-  <property>/autopilot/settings/target-speed-mach</property>
-   <step>-0.01</step>
-   <min>0.0</min>   
-   <max>0.82</max>    
-  </binding>
- </action>
- </animation>
-
-
-  <animation>
-    <type>pick</type>
-    <visible>false</visible>
-    <object-name>speedincrease</object-name>
-    <action>
-      <name>airspeed adjust (increase)</name>
-      <button>0</button>
-      <repeatable>true</repeatable>
-      <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/target-speed-kt</property>
-        <step>1.0</step>
-        <min>0</min>
-        <max>350</max>    
-      </binding>
-    </action>
-  </animation>
- 
- <animation>
-  <type>pick</type>
-  <visible>false</visible>
-  <object-name>machincrease</object-name>
- <action>
-  <name>airspeed adjust (increase)</name>
-  <button>0</button>
-      <repeatable>true</repeatable>
-    <binding>
-  <command>property-adjust</command>
-  <property>/autopilot/settings/target-speed-mach</property>
-   <step>0.01</step>
-   <min>0.0</min>
-   <max>0.82</max>    
-  </binding>
- </action>
- </animation>
+<!-- Speed knob control --> 
 
   <animation>
     <type>pick</type>
@@ -295,23 +222,13 @@
       <button>3</button>
       <repeatable>false</repeatable>
       <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/target-speed-kt</property>
-        <step>1.0</step>
-        <min>0</min>
-        <max>350</max>    
-      </binding>
-      <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/target-speed-mach</property>
-        <step>0.01</step>
-        <min>0.0</min>
-        <max>0.82</max>    
+        <command>nasal</command>
+        <script>
+         autopilot737.speed_increase();
+        </script>   
       </binding>
     </action>
   </animation>
-
-
 
   <animation>
     <type>pick</type>
@@ -322,18 +239,10 @@
       <button>4</button>
       <repeatable>false</repeatable>
       <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/target-speed-kt</property>
-        <step>-1.0</step>
-        <min>0</min>
-        <max>350</max>    
-      </binding>
-      <binding>
-        <command>property-adjust</command>
-        <property>/autopilot/settings/target-speed-mach</property>
-        <step>-0.01</step>
-        <min>0.0</min>
-        <max>0.82</max>    
+        <command>nasal</command>
+        <script>
+         autopilot737.speed_decrease();
+        </script>   
       </binding>
     </action>
   </animation>
@@ -977,7 +886,7 @@
  <animation>
    <type>rotate</type>
      <object-name>APP</object-name>
-       <property>/autopilot/internal/VNAV-GS</property>
+       <property>/autopilot/internal/VNAV-GS-armed</property>
        <factor>-90</factor>
        <center>
          <x-m>-0.00281</x-m>
@@ -1080,7 +989,7 @@
  <animation>
    <type>rotate</type>
      <object-name>VORLOC</object-name>
-       <property>/autopilot/internal/LNAV-NAV1</property>
+       <property>/autopilot/internal/LNAV-NAV-light</property>
        <factor>-90</factor>
        <center>
          <x-m>-0.00281</x-m>

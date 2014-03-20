@@ -15,7 +15,7 @@ if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 if (getprop("/autopilot/internal/VNAV-VS-ARMED")) {
 	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
-	setprop("/autopilot/display/pitch-armed-mode", "");
+	setprop("/autopilot/display/pitch-mode-armed", "");
 	settimer(func {setprop("/autopilot/switches/VS-button", 1);}, 0.05);
 }
 }
@@ -74,8 +74,9 @@ var mcp_alt_change = func {
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT") and diff_hld > 100) {
 		setprop("/autopilot/internal/VNAV-VS-ARMED", 1);
-		setprop("/autopilot/display/pitch-armed-mode", "V/S");
+		setprop("/autopilot/display/pitch-mode-armed", "V/S");
 	}
+	setprop("/b733/sound/mcp-last-change", getprop("/sim/time/elapsed-sec"));
 }
 setlistener( "/autopilot/settings/target-altitude-ft", mcp_alt_change, 0, 0);
 
@@ -125,10 +126,61 @@ var changeover_button_press = func {
 if (getprop("/autopilot/switches/CO-button") == 1) {
 	setprop("/autopilot/switches/CO-button", 0);
 
+	a = getprop("/fdm/jsbsim/atmosphere/a-fps");
+	ias = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
+	if ( ias == nil ) ias = 0.001;
+	if ( ias < 1 ) ias = 100;
+	tas = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
+	if ( tas == nil ) tas = 0.001;
+	if ( tas == 0 ) tas = 0.001;
+
+	if (getprop("/autopilot/internal/SPD-IAS")) {
+		target_ias = getprop("/autopilot/settings/target-speed-kt");
+		target_mach = math.round((target_ias * tas/ias) / ( a * 0.5924838012959), 0.01);
+		setprop("/autopilot/settings/target-speed-mach", target_mach);
+
+		setprop("/autopilot/internal/SPD-IAS", 0);
+		setprop("/autopilot/internal/SPD-MACH", 1);
+	} else {
+		target_mach = getprop("/autopilot/settings/target-speed-mach");
+		target_ias = math.round((target_mach * ias * a * 0.5924838012959) / tas, 1);
+		setprop("/autopilot/settings/target-speed-kt", target_ias);
+
+		setprop("/autopilot/internal/SPD-MACH", 0);
+		setprop("/autopilot/internal/SPD-IAS", 1);
+	}
 }
 }
 setlistener( "/autopilot/switches/CO-button", changeover_button_press, 0, 0);
 
+##########################################################################
+# SPEED knob behaviour
+var speed_increase = func {
+	if (getprop("/autopilot/internal/SPD-IAS")) {
+		target_ias = getprop("/autopilot/settings/target-speed-kt");
+		target_ias = target_ias + 1;
+		if (target_ias > 350) target_ias = 350;
+		setprop("/autopilot/settings/target-speed-kt", target_ias);
+	} else {
+		target_mach = getprop("/autopilot/settings/target-speed-mach");
+		target_mach = target_mach + 0.01;
+		if (target_mach > 0.82) target_mach = 0.82;
+		setprop("/autopilot/settings/target-speed-mach", target_mach);
+	}
+}
+var speed_decrease = func {
+	if (getprop("/autopilot/internal/SPD-IAS")) {
+		target_ias = getprop("/autopilot/settings/target-speed-kt");
+		target_ias = target_ias - 1;
+		if (target_ias < 0) target_ias = 0;
+		setprop("/autopilot/settings/target-speed-kt", target_ias);
+	} else {
+		target_mach = getprop("/autopilot/settings/target-speed-mach");
+		target_mach = target_mach - 0.01;
+		if (target_mach < 0) target_mach = 0;
+		setprop("/autopilot/settings/target-speed-mach", target_mach);
+	}
+}
 ##########################################################################
 # N1 button
 var n1_button_press = func {

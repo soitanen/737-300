@@ -28,14 +28,9 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>needle</object-name>
-		<!--<property>/velocities/vertical-speed-fps</property>
-		<factor>60</factor>-->
 		<expression>
 		<table>
-			<product>
-				<property>/velocities/vertical-speed-fps</property>
-				<value>60</value>
-			</product>
+			<property>/autopilot/internal/current-vertical-speed-fpm</property>
 			<entry><ind>-6000</ind><dep>170</dep></entry>
 			<entry><ind>-4000</ind><dep>140</dep></entry>
 			<entry><ind>-2000</ind><dep>100</dep></entry>

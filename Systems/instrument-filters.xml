@@ -42,6 +42,20 @@
   </output>
 </filter>
 
+<filter> <!-- how many time past from last MCP ALT change -->
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <property>/sim/time/elapsed-sec</property>
+  </input>
+  <reference>
+    <property>/b733/sound/mcp-last-change</property>
+  </reference>
+  <output>
+    <property>/b733/sound/mcp-period</property>
+  </output>
+</filter>
+
  <logic n="10004">
    <input>
      <and>
@@ -53,11 +67,15 @@
          <property>/b733/helpers/alt-diff-ft</property>
          <value>900</value>
        </less-than>
+       <greater-than>
+         <property>/b733/sound/mcp-period</property>
+         <value>3</value>
+       </greater-than>
        <or>
-         <less-than>
+         <greater-than>
            <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
-           <value>0.75</value>
-         </less-than>
+           <value>0.749</value>
+         </greater-than>
          <property>/autopilot/internal/VNAV-GS</property>
        </or>
      </and>
@@ -109,6 +127,25 @@
      </and>
    </input>
    <output>/b733/sound/stab-trim</output>
+ </logic>
+
+<!-- VOR/LOC lamp on MCP -->
+ <logic>
+   <input>
+     <and>
+       <or>
+         <property>/autopilot/internal/LNAV-NAV-armed</property>
+         <property>/autopilot/internal/LNAV-NAV</property>
+       </or>
+       <not>
+         <property>/autopilot/internal/VNAV-GS-armed</property>
+       </not>
+       <not>
+         <property>/autopilot/internal/VNAV-GS</property>
+       </not>
+     </and>
+   </input>
+   <output>/autopilot/internal/LNAV-NAV-light</output>
  </logic>
 
 <!-- ############################################################################# -->

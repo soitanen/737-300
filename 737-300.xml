@@ -397,7 +397,7 @@
             <location unit="IN">
                 <x>  540 </x>
                 <y> -193 </y>
-                <z>  -40 </z>
+                <z>  -54 </z>
             </location>
             <orient unit="DEG">
                 <roll>  0 </roll>
@@ -409,7 +409,7 @@
                 <location unit="IN">
                     <x>  540 </x>
                     <y> -193 </y>
-                    <z>  -40 </z>
+                    <z>  -54 </z>
                 </location>
                 <orient unit="DEG">
                     <roll>  0 </roll>
@@ -422,7 +422,7 @@
             <location unit="IN">
                 <x> 540 </x>
                 <y> 193 </y>
-                <z> -40 </z>
+                <z> -54 </z>
             </location>
             <orient unit="DEG">
                 <roll>  0 </roll>
@@ -434,7 +434,7 @@
                 <location unit="IN">
                     <x> 540 </x>
                     <y> 193 </y>
-                    <z> -40 </z>
+                    <z> -54 </z>
                 </location>
                 <orient unit="DEG">
                     <roll>  0 </roll>
