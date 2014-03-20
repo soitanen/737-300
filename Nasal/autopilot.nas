@@ -35,7 +35,7 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
 
-	var vs_fpm_current = getprop("/velocities/vertical-speed-fps") * 60;
+	var vs_fpm_current = getprop("/autopilot/internal/current-vertical-speed-fpm");
 
 	if (vs_fpm_current < 1000 and vs_fpm_current > -1000) {
 		round_value = 50;
@@ -103,8 +103,8 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 		alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 		alt_target = getprop("/autopilot/settings/target-altitude-ft");
 		if (alt < alt_target) {
-			setprop("/controls/engines/engine[0]/throttle", 0.9); ## REPLACE IT WITH N1 MODE ENGAGE!!!
-			setprop("/controls/engines/engine[1]/throttle", 0.9); ## REPLACE IT WITH N1 MODE ENGAGE!!!
+			interpolate("/controls/engines/engine[0]/throttle", 0.9, 3); ## REPLACE IT WITH N1 MODE ENGAGE!!!
+			interpolate("/controls/engines/engine[1]/throttle", 0.9, 3); ## REPLACE IT WITH N1 MODE ENGAGE!!!
 			setprop("/autopilot/settings/min-lvlchg-vs", 0);
 			setprop("/autopilot/settings/max-lvlchg-vs", 6000);
 		} else {
