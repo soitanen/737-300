@@ -71,13 +71,15 @@
          <property>/b733/sound/mcp-period</property>
          <value>3</value>
        </greater-than>
-       <or>
-         <greater-than>
-           <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
-           <value>0.749</value>
-         </greater-than>
-         <property>/autopilot/internal/VNAV-GS</property>
-       </or>
+       <not>
+         <or>
+           <greater-than>
+             <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+             <value>0.749</value>
+           </greater-than>
+           <property>/autopilot/internal/VNAV-GS</property>
+         </or>
+       </not>
      </and>
    </input>
    <output>/b733/sound/alt-acq</output>
