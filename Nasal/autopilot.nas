@@ -28,8 +28,7 @@ setlistener( "/autopilot/settings/vertical-speed-knob", adjust_vs_factor, 0, 0);
 ##########################################################################
 # VS button
 var vs_button_press = func {
-if (getprop("/autopilot/switches/VS-button") == 1) {
-	setprop("/autopilot/switches/VS-button", 0);
+
 	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
@@ -59,8 +58,6 @@ if (getprop("/autopilot/switches/VS-button") == 1) {
 
 	setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 }
-}
-setlistener( "/autopilot/switches/VS-button", vs_button_press, 0, 0);
 
 ##########################################################################
 # MCP ALT change while in ALT ACQ
@@ -83,8 +80,7 @@ setlistener( "/autopilot/settings/target-altitude-ft", mcp_alt_change, 0, 0);
 ##########################################################################
 # LVL CHG button
 var lvlchg_button_press = func {
-if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
-	setprop("/autopilot/switches/LVLCHG-button", 0);
+
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
 	setprop("/autopilot/internal/VNAV-VS", 0);
@@ -114,17 +110,11 @@ if (getprop("/autopilot/switches/LVLCHG-button") == 1) {
 			setprop("/autopilot/settings/max-lvlchg-vs", 0);
 		}
 	}
-	
-
 }
-}
-setlistener( "/autopilot/switches/LVLCHG-button", lvlchg_button_press, 0, 0);
 
 ##########################################################################
 # Changeover button
 var changeover_button_press = func {
-if (getprop("/autopilot/switches/CO-button") == 1) {
-	setprop("/autopilot/switches/CO-button", 0);
 
 	a = getprop("/fdm/jsbsim/atmosphere/a-fps");
 	ias = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
@@ -150,8 +140,6 @@ if (getprop("/autopilot/switches/CO-button") == 1) {
 		setprop("/autopilot/internal/SPD-IAS", 1);
 	}
 }
-}
-setlistener( "/autopilot/switches/CO-button", changeover_button_press, 0, 0);
 
 ##########################################################################
 # SPEED knob behaviour
@@ -184,39 +172,26 @@ var speed_decrease = func {
 ##########################################################################
 # N1 button
 var n1_button_press = func {
-if (getprop("/autopilot/switches/N1-button") == 1) {
-	setprop("/autopilot/switches/N1-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/N1-button", n1_button_press, 0, 0);
 
 ##########################################################################
 # SPEED button
 var speed_button_press = func {
-if (getprop("/autopilot/switches/SPEED-button") == 1) {
-	setprop("/autopilot/switches/SPEED-button", 0);
 
 	speed_engage();
 }
-}
-setlistener( "/autopilot/switches/SPEED-button", speed_button_press, 0, 0);
 
 ##########################################################################
 # VNAV button
 var vnav_button_press = func {
-if (getprop("/autopilot/switches/VNAV-button") == 1) {
-	setprop("/autopilot/switches/VNAV-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/VNAV-button", vnav_button_press, 0, 0);
 
 ##########################################################################
 # ALT HOLD button
 var althld_button_press = func {
-if (getprop("/autopilot/switches/ALTHLD-button") == 1) {
-	setprop("/autopilot/switches/ALTHLD-button", 0);
+
 	GS = getprop("/autopilot/internal/VNAV-GS");
 
 	if (!GS) {
@@ -226,8 +201,6 @@ if (getprop("/autopilot/switches/ALTHLD-button") == 1) {
 		alt_hold_engage();
 	}
 }
-}
-setlistener( "/autopilot/switches/ALTHLD-button", althld_button_press, 0, 0);
 
 ##########################################################################
 # ALT HOLD button light switch
@@ -249,8 +222,6 @@ setlistener( "/autopilot/internal/VNAV-ALT", alt_hold_light, 0, 0);
 ##########################################################################
 # APP button
 var app_button_press = func {
-if (getprop("/autopilot/switches/APP-button") == 1) {
-	setprop("/autopilot/switches/APP-button", 0);
 
 	GS  = getprop("/autopilot/internal/VNAV-GS");
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
@@ -263,38 +234,26 @@ if (getprop("/autopilot/switches/APP-button") == 1) {
 		}
 	}
 }
-}
-setlistener( "/autopilot/switches/APP-button", app_button_press, 0, 0);
 
 ##########################################################################
 # LNAV button
 var lnav_button_press = func {
-if (getprop("/autopilot/switches/LNAV-button") == 1) {
-	setprop("/autopilot/switches/LNAV-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/LNAV-button", lnav_button_press, 0, 0);
 
 ##########################################################################
 # HDG button
 var hdg_button_press = func {
-if (getprop("/autopilot/switches/HDG-button") == 1) {
-	setprop("/autopilot/switches/HDG-button", 0);
 
 	GS  = getprop("/autopilot/internal/VNAV-GS");
 	if (!GS) {
 		hdg_mode_engage();
 	}
 }
-}
-setlistener( "/autopilot/switches/HDG-button", hdg_button_press, 0, 0);
 
 ##########################################################################
 # VORLOC button
 var vorloc_button_press = func {
-if (getprop("/autopilot/switches/VORLOC-button") == 1) {
-	setprop("/autopilot/switches/VORLOC-button", 0);
 
 	GS  = getprop("/autopilot/internal/VNAV-GS");
 	if (!GS) {
@@ -302,14 +261,10 @@ if (getprop("/autopilot/switches/VORLOC-button") == 1) {
 		setprop("/autopilot/display/roll-mode-armed", "VOR/LOC");
 	}
 }
-}
-setlistener( "/autopilot/switches/VORLOC-button", vorloc_button_press, 0, 0);
 
 ##########################################################################
 # CMDA button
 var cmda_button_press = func {
-if (getprop("/autopilot/switches/CMDA-button") == 1) {
-	setprop("/autopilot/switches/CMDA-button", 0);
 
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
@@ -318,14 +273,10 @@ if (getprop("/autopilot/switches/CMDA-button") == 1) {
 		setprop("/autopilot/internal/CMDB", 0);
 	}
 }
-}
-setlistener( "/autopilot/switches/CMDA-button", cmda_button_press, 0, 0);
 
 ##########################################################################
 # CMDB button
 var cmdb_button_press = func {
-if (getprop("/autopilot/switches/CMDB-button") == 1) {
-	setprop("/autopilot/switches/CMDB-button", 0);
 
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
@@ -334,38 +285,24 @@ if (getprop("/autopilot/switches/CMDB-button") == 1) {
 		setprop("/autopilot/internal/CMDB", 1);
 	}
 }
-}
-setlistener( "/autopilot/switches/CMDB-button", cmdb_button_press, 0, 0);
 
 ##########################################################################
 # CWSA button
 var cwsa_button_press = func {
-if (getprop("/autopilot/switches/CWSA-button") == 1) {
-	setprop("/autopilot/switches/CWSA-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/CWSA-button", cwsa_button_press, 0, 0);
 
 ##########################################################################
 # CWSB button
 var cwsb_button_press = func {
-if (getprop("/autopilot/switches/CWSB-button") == 1) {
-	setprop("/autopilot/switches/CWSB-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/CWSB-button", cwsb_button_press, 0, 0);
 
 ##########################################################################
 # APDSNG button
 var apdsng_button_press = func {
-if (getprop("/autopilot/switches/APDSNG-button") == 1) {
-	setprop("/autopilot/switches/APDSNG-button", 0);
 
 }
-}
-setlistener( "/autopilot/switches/APDSNG-button", apdsng_button_press, 0, 0);
 
 ##########################################################################
 ##########################################################################
@@ -446,11 +383,13 @@ var hdg_mode_engage = func {
 ##########################################################################
 # Armed VOR/LOC mode behaviour
 var vorloc_armed = func {
-if (getprop("/autopilot/internal/LNAV-NAV-armed")){
+if (getprop("/autopilot/internal/LNAV-NAV-armed")) {
+
 	deflection = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm");
 	course = getprop("/instrumentation/nav[0]/radials/target-radial-deg");
 	delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav1");
 	delta_current_heading = geo.normdeg180(getprop("/orientation/heading-deg") - course);
+
 	if((deflection < 0.2 and deflection > -0.2) or (deflection < 0.99 and deflection > -0.99 and math.abs(delta_target_heading) < math.abs(delta_current_heading))){
 		vorloc_mode_engage();
 	}
@@ -464,7 +403,7 @@ setlistener( "/autopilot/internal/LNAV-NAV-armed", vorloc_armed, 0, 0);
 ##########################################################################
 # Armed GS mode behaviour
 var app_armed = func {
-if (getprop("/autopilot/internal/VNAV-GS-armed")){
+if (getprop("/autopilot/internal/VNAV-GS-armed")) {
 	deflection = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
 	in_range = getprop("/instrumentation/nav[0]/gs-in-range");
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
@@ -507,6 +446,25 @@ var gs_engage = func {
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
 
 	speed_engage();
+}
+
+##########################################################################
+# Engaging TOGA	mode
+var toga_engage = func {
+	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
+	setprop("/autopilot/internal/VNAV-VS", 0);
+	setprop("/autopilot/internal/VNAV", 0);
+	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/internal/VNAV-ALT", 0);
+	setprop("/autopilot/internal/VNAV-GS", 0);
+	setprop("/autopilot/internal/TOGA", 1);
+
+	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/pitch-mode", "TO/GA");
+	setprop("/autopilot/display/pitch-mode-armed", "");
+	setprop("/autopilot/internal/VNAV-GS-armed", 0);
+
 }
 
 ##########################################################################

@@ -186,13 +186,14 @@
   <object-name>IAS-SEL</object-name>
   <action>
     <name>CHANGEOVER button</name>
-   <button>0</button>
-   <repeatable>false</repeatable> 
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/CO-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <button>0</button>
+    <repeatable>false</repeatable> 
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.changeover_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -258,11 +259,12 @@
     <name>Toggle N1</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/N1-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.n1_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -290,11 +292,12 @@
     <name>Toggle SPEED</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/SPEED-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.speed_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -322,11 +325,12 @@
     <name>Toggle LVLCHG</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/LVLCHG-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.lvlchg_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -484,11 +488,12 @@
     <name>Toggle VNAV</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/VNAV-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.vnav_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
  
@@ -517,11 +522,12 @@
     <name>Toggle VS Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/VS-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.vs_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -562,7 +568,7 @@
 
 <!-- Vertical Speed Adjust Down -->
 
-  <animation>
+  <!--<animation>
   <type>pick</type>
   <visible>false</visible>
   <object-name>vsdown</object-name> 
@@ -577,7 +583,7 @@
         <min>-7900</min>
     </binding>
   </action>
-  </animation>
+  </animation> -->
 
 
 <!-- Show VS Setting in VS Mode -->  
@@ -744,11 +750,12 @@
     <name>Toggle ALT Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/ALTHLD-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.althld_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -862,9 +869,6 @@
     </action>
   </animation>
 
-
-<!-- The APP button is a fake button which only serves to activate Vertical G/S Mode -->  
-  
 <!-- APP button -->
  
  <animation>
@@ -875,11 +879,12 @@
     <name>Toggle APP (G/S) Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/APP-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.app_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -913,11 +918,12 @@
     <name>Toggle LNAV</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/LNAV-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.lnav_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -945,11 +951,12 @@
     <name>Toggle Heading Bug Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/HDG-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.hdg_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -978,11 +985,12 @@
     <name>Toggle VOR/LOC Mode</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/VORLOC-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.vorloc_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -1228,11 +1236,12 @@
     <name>Toggle CMDA</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/CMDA-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.cmda_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -1261,11 +1270,12 @@
     <name>Toggle CMDB</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/CMDB-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.cmdb_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -1294,11 +1304,12 @@
     <name>Toggle CWSA</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/CWSA-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.cwsa_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -1326,11 +1337,12 @@
     <name>Toggle CWSB</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/CWSB-button</property>
-     <value type="bool">1</value>
-   </binding>
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.cwsb_button_press();
+      </script>   
+    </binding>
   </action>
  </animation>
 
@@ -1359,11 +1371,12 @@
   <name>AP disengage</name>
    <button>0</button>
    <repeatable>false</repeatable>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/switches/APDSNG-button</property>
-     <value type="bool">1</value>
-   </binding>   
+    <binding>
+      <command>nasal</command>
+      <script>
+        autopilot737.apdsng_button_press();
+      </script>   
+    </binding>
   </action>    
   </animation>
 
