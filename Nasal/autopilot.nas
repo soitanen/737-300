@@ -127,6 +127,8 @@ var changeover_button_press = func {
 	if (getprop("/autopilot/internal/SPD-IAS")) {
 		target_ias = getprop("/autopilot/settings/target-speed-kt");
 		target_mach = math.round((target_ias * tas/ias) / ( a * 0.5924838012959), 0.01);
+		if (target_mach > 0.89) target_mach = 0.89;
+		if (target_mach < 0.60) target_mach = 0.60;
 		setprop("/autopilot/settings/target-speed-mach", target_mach);
 
 		setprop("/autopilot/internal/SPD-IAS", 0);
@@ -134,6 +136,8 @@ var changeover_button_press = func {
 	} else {
 		target_mach = getprop("/autopilot/settings/target-speed-mach");
 		target_ias = math.round((target_mach * ias * a * 0.5924838012959) / tas, 1);
+		if (target_ias > 399) target_ias = 399;
+		if (target_ias < 110) target_ias = 110;
 		setprop("/autopilot/settings/target-speed-kt", target_ias);
 
 		setprop("/autopilot/internal/SPD-MACH", 0);
@@ -147,12 +151,12 @@ var speed_increase = func {
 	if (getprop("/autopilot/internal/SPD-IAS")) {
 		target_ias = getprop("/autopilot/settings/target-speed-kt");
 		target_ias = target_ias + 1;
-		if (target_ias > 350) target_ias = 350;
+		if (target_ias > 399) target_ias = 399;
 		setprop("/autopilot/settings/target-speed-kt", target_ias);
 	} else {
 		target_mach = getprop("/autopilot/settings/target-speed-mach");
 		target_mach = target_mach + 0.01;
-		if (target_mach > 0.82) target_mach = 0.82;
+		if (target_mach > 0.89) target_mach = 0.89;
 		setprop("/autopilot/settings/target-speed-mach", target_mach);
 	}
 }
@@ -160,12 +164,12 @@ var speed_decrease = func {
 	if (getprop("/autopilot/internal/SPD-IAS")) {
 		target_ias = getprop("/autopilot/settings/target-speed-kt");
 		target_ias = target_ias - 1;
-		if (target_ias < 0) target_ias = 0;
+		if (target_ias < 110) target_ias = 110;
 		setprop("/autopilot/settings/target-speed-kt", target_ias);
 	} else {
 		target_mach = getprop("/autopilot/settings/target-speed-mach");
 		target_mach = target_mach - 0.01;
-		if (target_mach < 0) target_mach = 0;
+		if (target_mach < 0.60) target_mach = 0.60;
 		setprop("/autopilot/settings/target-speed-mach", target_mach);
 	}
 }
