@@ -60,6 +60,7 @@
    <object-name>speedincrease</object-name>
    <object-name>machdecrease</object-name>
    <object-name>machincrease</object-name>
+   <object-name>vsdown</object-name>
    
    <condition>
     <property>/b733/ap-hide-helper</property>
@@ -214,40 +215,46 @@
 
 <!-- Speed knob control --> 
 
-  <animation>
-    <type>pick</type>
-    <visible>true</visible>
-    <object-name>cylinder</object-name>
+    <animation>
+        <type>knob</type>
+        <object-name>cylinder</object-name>
+        <property>/autopilot/settings/speed-bug</property>
+        <factor>-5</factor>
+      <center>
+        <x-m>0.0</x-m>
+        <y-m>-0.115</y-m>
+        <z-m>0.029</z-m>
+      </center>
+      <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    <drag-scale>2</drag-scale>
     <action>
-      <name>airspeed adjust (increase)</name>
-      <button>3</button>
-      <repeatable>false</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/speed-bug</property>
+        <factor>1</factor>
+      </binding>
+    </action>
+    <increase>
       <binding>
         <command>nasal</command>
         <script>
          autopilot737.speed_increase();
         </script>   
       </binding>
-    </action>
-  </animation>
-
-  <animation>
-    <type>pick</type>
-    <visible>true</visible>
-    <object-name>cylinder</object-name>
-    <action>
-      <name>airspeed adjust (decrease)</name>
-      <button>4</button>
-      <repeatable>false</repeatable>
+    </increase>
+    <decrease>
       <binding>
         <command>nasal</command>
         <script>
          autopilot737.speed_decrease();
         </script>   
       </binding>
-    </action>
-  </animation>
-
+    </decrease>
+    </animation>
 
 <!-- N1 button -->
  
@@ -454,26 +461,6 @@
    <z>0</z>
   </axis>
  </animation>
-
-
-<!-- Rotate Speed Knob -->
-
-  <animation>
-    <type>rotate</type>
-    <object-name>cylinder</object-name>
-      <property>/autopilot/settings/target-speed-kt</property>
-      <factor>-5</factor>
-      <center>
-        <x-m>0.0</x-m>
-        <y-m>-0.115</y-m>
-        <z-m>0.029</z-m>
-      </center>
-      <axis>
-        <x>1</x>
-        <y>0</y>
-        <z>0</z>
-      </axis>
-  </animation>
 
 <!-- =============================================================  -->
 <!-- VERTICAL NAV                                                   -->
