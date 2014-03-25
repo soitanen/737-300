@@ -158,7 +158,7 @@
       <prop>/autopilot/settings/target-roll-rate</prop>
     </output>
     <config>
-      <Kp>0.3</Kp>          <!-- proportional gain -->
+      <Kp>0.5</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>
         <condition>
