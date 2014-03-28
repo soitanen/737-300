@@ -242,7 +242,23 @@ var app_button_press = func {
 ##########################################################################
 # LNAV button
 var lnav_button_press = func {
+	route_active = getprop("/autopilot/route-manager/active");
+	GS = getprop("/autopilot/internal/VNAV-GS");
+	crosstrack = getprop("/instrumentation/gps/wp/wp[1]/course-error-nm");
 
+	if (!GS and route_active) {
+		if (math.abs(crosstrack) < 3) {
+			setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+			setprop("/autopilot/display/roll-mode-armed", "");
+
+			setprop("/autopilot/internal/LNAV-NAV", 0);
+			setprop("/autopilot/internal/LNAV-HDG", 0);
+			setprop("/autopilot/internal/LNAV", 1);
+
+			setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+			setprop("/autopilot/display/roll-mode", "LNAV");
+		}
+	}
 }
 
 ##########################################################################
@@ -471,6 +487,41 @@ var toga_engage = func {
 
 }
 
+##########################################################################
+# Calculating turn anticipation distance
+var turn_anticipate = func {
+if (getprop("/autopilot/internal/LNAV")){
+	gnds_mps = getprop("/instrumentation/gps/indicated-ground-speed-kt") * 0.5144444444444;
+	current_course = getprop("/instrumentation/gps/wp/leg-true-course-deg");
+	wp_fly_to = getprop("/autopilot/route-manager/current-wp");
+	if (wp_fly_to < 0) wp_fly_to = 0;
+	next_course = getprop("/autopilot/route-manager/route/wp["~wp_fly_to~"]/leg-bearing-true-deg");
+	max_bank_limit = getprop("/autopilot/settings/maximum-bank-limit");
+
+	delta_angle = math.abs(geo.normdeg180(current_course - next_course));
+	max_bank = delta_angle * 1.5;
+	if (max_bank > max_bank_limit) max_bank = max_bank_limit;
+	radius = (gnds_mps * gnds_mps) / (9.81 * math.tan(max_bank/57.2957795131));
+	time = 0.64 * gnds_mps * delta_angle / (360 * math.tan(max_bank/57.2957795131));
+	delta_angle_rad = (180 - delta_angle) / 114.5915590262;
+	R = radius/math.sin(delta_angle_rad);
+	turn_dist = math.cos(delta_angle_rad) * R * 1.5 / 1852;
+
+	setprop("/instrumentation/gps/config/over-flight-distance-nm", turn_dist);
+	if (getprop("/sim/time/elapsed-sec")-getprop("/autopilot/internal/wp-change-time") > 60) {
+		setprop("/autopilot/internal/wp-change-check-period", time);
+	}
+
+	settimer(turn_anticipate, 5);
+}
+}
+setlistener("/autopilot/internal/LNAV", turn_anticipate, 0, 0);
+
+var wp_change = func {
+	setprop("/autopilot/internal/wp-change-time", getprop("/sim/time/elapsed-sec"));
+
+}
+setlistener("/autopilot/route-manager/current-wp", wp_change, 0, 0);
 ##########################################################################
 ##########################################################################
 # Rectangles for mode change

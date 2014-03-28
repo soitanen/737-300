@@ -497,35 +497,12 @@
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
    </settings>
 
-    <switches>
-      <!-- throttle buttons -->
-      <LVLCHG-button type="bool">0</LVLCHG-button>
-      <CO-button type="bool">0</CO-button>
-      <N1-button type="bool">0</N1-button>
-      <SPEED-button type="bool">0</SPEED-button>
-      <!-- vertical navigation buttons -->
-      <VNAV-button type="bool">0</VNAV-button>
-      <VS-button type="bool">0</VS-button>
-      <ALTHLD-button type="bool">0</ALTHLD-button>
-      <APP-button type="bool">0</APP-button>
-      <!-- lateral navigation buttons -->
-      <LNAV-button type="bool">0</LNAV-button>
-      <HDG-button type="bool">0</HDG-button>
-      <VORLOC-button type="bool">0</VORLOC-button>
-      <!-- autopilot engage buttons -->
-      <CMDA-button type="bool">0</CMDA-button>
-      <CMDB-button type="bool">0</CMDB-button>
-      <CWSA-button type="bool">0</CWSA-button>
-      <CWSB-button type="bool">0</CWSB-button>
-      <APDSNG-button type="bool">0</APDSNG-button>
-    </switches>
-
     <internal>
       <CMDA type="bool">false</CMDA>
       <CMDB type="bool">false</CMDB>
       <ATArm type="bool">false</ATArm>
       <IAS-SEL type="bool">true</IAS-SEL>
-      <LNAV type="bool">true</LNAV>
+      <LNAV type="bool">false</LNAV>
       <LNAV-NAV type="bool">false</LNAV-NAV>
       <LNAV-NAV-armed type="bool">false</LNAV-NAV-armed>
       <LNAV-HDG type="bool">false</LNAV-HDG>
@@ -547,6 +524,8 @@
       <SPD-N1 type="bool">false</SPD-N1>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
+
+      <wp-change-check-period type="double">10</wp-change-check-period>
     </internal>
 
     <display>
@@ -1389,6 +1368,12 @@
       <fd-on>1</fd-on>
       <vbar-pitch type="double">0</vbar-pitch>
     </flightdirector>
+
+    <gps>
+      <config>
+        <over-flight-distance-nm type="double">1</over-flight-distance-nm>
+      </config>
+    </gps>
 
     <transponder>
       <id-code>1200</id-code>

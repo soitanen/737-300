@@ -917,7 +917,7 @@
  <animation>
    <type>rotate</type>
      <object-name>LNAV</object-name>
-       <property>/autopilot/internal/LNAV-FMS</property>
+       <property>/autopilot/internal/LNAV</property>
        <factor>-90</factor>
        <center>
          <x-m>-0.00281</x-m>

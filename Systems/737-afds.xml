@@ -109,6 +109,91 @@
     <gain>1.0</gain>
   </filter>
 
+<!-- LNAV mode -->
+  <filter>
+    <name>fms heading error computer/normalizer</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/LNAV</property>
+      </condition>
+    </enable>
+    <input> <!-- this is for LNAV -->
+      <expression>
+        <sum>
+          <product>
+            <property>/autopilot/internal/drift-angle-deg</property>
+            <value>-1</value>
+          </product>
+          <product>
+            <property>/autopilot/internal/fms-crosstrack-error-m</property>
+            <value>0.03</value>
+          </product>
+          <product>
+            <property>/autopilot/internal/fms-crosstrack-rate-mps</property>
+            <value>0.45</value>
+          </product>
+        </sum>
+      </expression>
+    </input>
+    <output>/autopilot/internal/target-heading-shift-fms</output>
+      <min>-60</min>
+      <max>60</max>
+    <gain>1.0</gain>
+  </filter>
+
+
+
+   <filter>
+    <name>heading bug error computer/normalizer</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/LNAV</property>
+      </condition>
+    </enable>	
+    <type>gain</type>
+    <input>
+      <condition>
+        <property>/autopilot/internal/wp-crosstrack-hold</property>
+      </condition>
+      <expression>
+        <sum>
+          <property>/instrumentation/gps/wp/leg-true-course-deg</property>
+          <property>autopilot/internal/target-heading-shift-fms</property>
+          <product>
+            <property>orientation/heading-deg</property>
+            <value>-1</value>
+          </product>
+        </sum>
+      </expression>
+    </input>
+    <input>
+      <expression>
+        <sum>
+          <property>/autopilot/route-manager/wp/true-bearing-deg</property>
+          <product>
+            <property>/autopilot/internal/drift-angle-deg</property>
+            <value>-1</value>
+          </product>
+          <product>
+            <property>orientation/heading-deg</property>
+            <value>-1</value>
+          </product>
+        </sum>
+      </expression>
+    </input>
+    <output>/autopilot/internal/heading-bug-error-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
+
+<!-- ###### Target bank calculator -->
+
   <pi-simple-controller>
     <name>Calculator for target bank in HDG mode</name>
     <debug>false</debug>
@@ -117,6 +202,7 @@
         <or>
           <property>/autopilot/internal/LNAV-HDG</property>
           <property>/autopilot/internal/LNAV-NAV</property>
+          <property>/autopilot/internal/LNAV</property>
         </or>
       </condition>
     </enable>	
@@ -145,6 +231,7 @@
         <or>
           <property>/autopilot/internal/LNAV-HDG</property>
           <property>/autopilot/internal/LNAV-NAV</property>
+          <property>/autopilot/internal/LNAV</property>
         </or>
       </condition>
     </enable>	
@@ -222,6 +309,7 @@
           <or>
             <property>/autopilot/internal/LNAV-HDG</property>
             <property>/autopilot/internal/LNAV-NAV</property>
+          <property>/autopilot/internal/LNAV</property>
           </or>
         </and>
       </condition>
@@ -929,6 +1017,90 @@
     <output>autopilot/internal/nav1-crosstrack-rate-mps</output>
     <gain>1.0</gain>
   </filter>
+
+<!-- calculate derivate for crosstrack error for LNAV and crosstarck-error in meters -->
+
+  <filter>
+    <name>z derivate FMS</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/route-manager/active</property>
+      </condition>
+    </enable>
+    <type>gain</type>
+    <input>
+      <property>/instrumentation/gps/wp/wp[1]/course-error-nm</property>
+    </input>
+    <output>/autopilot/internal/fms-crosstrack-error-m</output>
+    <gain>1852</gain>
+  </filter>
+
+  <predict-simple>
+    <name>z-fms value in 1 second</name>
+    <debug type="bool">false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/route-manager/active</property>
+      </condition>
+    </enable>
+    <seconds>1</seconds>
+    <filter-gain>0</filter-gain>
+    <input>/autopilot/internal/fms-crosstrack-error-m</input>
+    <output>/autopilot/internal/lookahead-1-sec-fms-crosstrack-m</output>
+  </predict-simple>
+
+  <filter>
+    <name>z-fms derivate</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/route-manager/active</property>
+      </condition>
+    </enable>
+    <type>gain</type>
+    <input>
+      <property>/autopilot/internal/lookahead-1-sec-fms-crosstrack-m</property>
+      <offset>
+        <property>/autopilot/internal/fms-crosstrack-error-m</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/fms-crosstrack-rate-mps</output>
+    <gain>1.0</gain>
+  </filter>
+
+<!-- calculate 15 sec period from WP change -->
+
+  <filter>
+    <name>15 sec period</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/route-manager/active</property>
+      </condition>
+    </enable>
+    <type>gain</type>
+    <input>
+      <property>/autopilot/internal/wp-change-time</property>
+      <offset>
+        <property>/sim/time/elapsed-sec</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>/autopilot/internal/wp-change-period</output>
+    <gain>-1</gain>
+  </filter>
+
+ <logic>
+   <input>
+     <greater-than>
+       <property>/autopilot/internal/wp-change-period</property>
+       <property>/autopilot/internal/wp-change-check-period</property>
+     </greater-than>
+   </input>
+   <output>/autopilot/internal/wp-crosstrack-hold</output>
+ </logic>
 
 <!-- calculate real vertical speed -->
 
