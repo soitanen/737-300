@@ -13,10 +13,7 @@ if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 	setprop ("/autopilot/settings/vertical-speed-fpm", vs);
 }
 if (getprop("/autopilot/internal/VNAV-VS-ARMED")) {
-	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
-	setprop("/autopilot/internal/VNAV-ALT", 0);
-	setprop("/autopilot/display/pitch-mode-armed", "");
-	settimer(func {setprop("/autopilot/switches/VS-button", 1);}, 0.05);
+	settimer(func {vs_button_press();}, 0.05);
 }
 }
 
@@ -33,6 +30,7 @@ var vs_button_press = func {
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/display/pitch-mode-armed", "");
 
 	var vs_fpm_current = getprop("/autopilot/internal/current-vertical-speed-fpm");
 
@@ -502,7 +500,7 @@ if (getprop("/autopilot/internal/LNAV")){
 	max_bank = delta_angle * 1.5;
 	if (max_bank > max_bank_limit) max_bank = max_bank_limit;
 	radius = (gnds_mps * gnds_mps) / (9.81 * math.tan(max_bank/57.2957795131));
-	time = 0.64 * gnds_mps * delta_angle / (360 * math.tan(max_bank/57.2957795131));
+	time = 0.64 * gnds_mps * delta_angle * 0.7 / (360 * math.tan(max_bank/57.2957795131));
 	delta_angle_rad = (180 - delta_angle) / 114.5915590262;
 	R = radius/math.sin(delta_angle_rad);
 	turn_dist = math.cos(delta_angle_rad) * R * 1.5 / 1852;
