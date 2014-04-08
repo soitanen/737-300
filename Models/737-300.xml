@@ -804,8 +804,8 @@
   <animation>
     <type>rotate</type>
     <object-name>rudder</object-name>
-    <property>controls/flight/rudder</property>
-    <factor>15</factor>
+    <property>fdm/jsbsim/fcs/rudder-pos-norm</property>
+    <factor>-25</factor>
     <offset-deg>0</offset-deg>
     <center>
       <x-m>21.422</x-m>

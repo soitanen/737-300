@@ -13,7 +13,7 @@ if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 	setprop ("/autopilot/settings/vertical-speed-fpm", vs);
 }
 if (getprop("/autopilot/internal/VNAV-VS-ARMED")) {
-	settimer(func {vs_button_press();}, 0.05);
+	settimer(vs_button_press, 0.05);
 }
 }
 
@@ -217,7 +217,7 @@ var alt_hold_light = func {
 		setprop("/autopilot/internal/VNAV-ALT-light", 0);
 	}
 
-	if (alt_hld) settimer(alt_hold_light,0.5);
+	if (alt_hld) settimer(alt_hold_light, 0.5);
 }
 setlistener( "/autopilot/internal/VNAV-ALT", alt_hold_light, 0, 0);
 
