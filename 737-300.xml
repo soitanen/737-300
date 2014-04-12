@@ -642,7 +642,7 @@
                     </setting>
                     <setting>
                         <position>1</position>
-                        <time>0.757575</time>
+                        <time>0.757575</time> <!-- from NTSB report flight UAL585. Rate is 66 deg/sec -->
                     </setting>
                 </traverse>
                 <output>fcs/rudder-sum</output>
@@ -915,6 +915,48 @@
             </test>
             <output>fcs/right-brake-cmd-norm</output>
           </switch>
+
+        </channel>
+
+        <channel name="Throttle">
+
+             <fcs_function name="fcs/throttle/throttle-cmd-norm[0]">
+                 <function>
+                     <product>
+                         <property>/autopilot/internal/servo-throttle[0]</property>
+			 <value>1</value>
+                     </product>
+                 </function>
+               <output>fcs/throttle-cmd-norm[0]</output>
+             </fcs_function>
+
+  <summer name="fcs/throttle/throttle-pos-norm[0]">
+    <input>fcs/throttle/throttle-cmd-norm[0]</input>
+      <clipto>
+        <min>0</min>
+        <max>1</max>
+      </clipto>
+    <output>fcs/throttle-pos-norm[0]</output>
+  </summer>
+
+             <fcs_function name="fcs/throttle/throttle-cmd-norm[1]">
+                 <function>
+                     <product>
+                         <property>/autopilot/internal/servo-throttle[1]</property>
+			 <value>1</value>
+                     </product>
+                 </function>
+               <output>fcs/throttle-cmd-norm[1]</output>
+             </fcs_function>
+
+  <summer name="fcs/throttle/throttle-pos-norm[1]">
+    <input>fcs/throttle/throttle-cmd-norm[1]</input>
+      <clipto>
+        <min>0</min>
+        <max>1</max>
+      </clipto>
+    <output>fcs/throttle-pos-norm[1]</output>
+  </summer>
 
         </channel>
 
@@ -1390,7 +1432,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.20</value>
+                    <value>-0.065</value> <!-- Data guessed from NTSB report about flight UAL585 -->
                 </product>
             </function>
         </axis>

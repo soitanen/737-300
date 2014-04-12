@@ -30,6 +30,7 @@ var vs_button_press = func {
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/display/pitch-mode-armed", "");
 
 	var vs_fpm_current = getprop("/autopilot/internal/current-vertical-speed-fpm");
@@ -81,6 +82,7 @@ var lvlchg_button_press = func {
 
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
+	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/VNAV-VS", 0);
 	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
 
@@ -335,6 +337,7 @@ var alt_acq_engage = func {
 		if (alt_diff < 300 or alt_diff < possible_engage_alt) {
 			setprop("/autopilot/internal/VNAV-VS", 0);
 			setprop("/autopilot/internal/LVLCHG", 0);
+			setprop("/autopilot/internal/TOGA", 0);
 
 			setprop("/autopilot/internal/VNAV-ALT-ACQ", 1);
 			setprop("/autopilot/settings/alt-acq-target-alt", getprop("/autopilot/settings/target-altitude-ft"));
@@ -368,6 +371,7 @@ var alt_hold_engage = func {
 	setprop("/autopilot/internal/VNAV-VS", 0);
 	setprop("/autopilot/internal/VNAV", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/settings/target-alt-hold-ft", alt_current);
 	setprop("/autopilot/internal/VNAV-ALT", 1);
 
@@ -456,6 +460,7 @@ var gs_engage = func {
 	setprop("/autopilot/internal/VNAV", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
+	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/VNAV-GS", 1);
 
 	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
@@ -476,6 +481,7 @@ var toga_engage = func {
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
 	setprop("/autopilot/internal/TOGA", 1);
+	setprop("/autopilot/internal/target-n1", 106);
 
 	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));

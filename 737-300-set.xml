@@ -1189,6 +1189,15 @@
           <max type="double">6</max>
         </binding>
       </key>
+
+      <key n="100">
+        <name>d</name>
+        <desc>Increase spoiler lever position</desc>
+        <binding>
+          <command>nasal</command>
+          <script>autopilot737.toga_engage();</script>
+        </binding>
+      </key>
    
     </keyboard>
   </input>

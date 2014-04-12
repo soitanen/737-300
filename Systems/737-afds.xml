@@ -353,6 +353,66 @@
  <!-- Pitch Axis Modes                                                -->
  <!-- =============================================================== -->
 
+ <!-- TOGA mode -->
+
+ <filter>
+  <name>VS translate</name>
+  <debug>false</debug>
+  <enable>
+   <condition>
+    <not>
+      <or>
+        <and>
+          <property>/autopilot/internal/PITCH-ACTIVE</property>
+          <not><property>/autopilot/internal/TOGA</property></not>
+        </and>
+        <and>
+          <property>/autopilot/internal/TOGA</property>
+          <property>/autopilot/logic/toga-pitch</property>
+        </and>
+      </or>
+    </not>
+   </condition>
+  </enable>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <input>autopilot/internal/current-vertical-speed-fpm</input>
+  <output>/autopilot/settings/vertical-speed-fpm</output>
+ </filter>
+
+  <pid-controller>
+    <name>TOGA mode</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/TOGA</property>
+          <property>/autopilot/logic/toga-pitch</property>
+        </and>
+      </condition>
+    </enable>
+    <input>
+      <prop>/instrumentation/airspeed-indicator/indicated-speed-kt</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-speed-kt</prop>
+      <offset>20</offset>
+    </reference>
+    <output>
+      <prop>/autopilot/settings/vertical-speed-fpm</prop>
+    </output>
+    <config>
+      <Kp>-180</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>0</u_min>
+      <u_max>6000</u_max>
+    </config>
+  </pid-controller>
+
  <!-- LVLCHG mode -->
   <pid-controller>
     <name>LVLCHG mode</name>
@@ -463,15 +523,35 @@
   <gain>1</gain>
   <enable>
       <condition>
-        <or>
-          <property>/autopilot/internal/VNAV-VS</property>
-          <property>/autopilot/internal/VNAV-GS</property>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </or>
+        <property>/autopilot/internal/PITCH-ACTIVE</property>
       </condition>
-    </enable>	
+    </enable>
+    <input>
+      <condition>
+        <and>
+          <property>/autopilot/internal/TOGA</property>
+          <not><property>/autopilot/logic/toga-pitch</property></not>
+          <greater-than>
+            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+            <value>60</value>
+          </greater-than>
+        </and>
+      </condition>
+      <value>15</value>
+    </input>	
+    <input>
+      <condition>
+        <and>
+          <property>/autopilot/internal/TOGA</property>
+          <not><property>/autopilot/logic/toga-pitch</property></not>
+          <less-than>
+            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+            <value>60</value>
+          </less-than>
+        </and>
+      </condition>
+      <value>-10</value>
+    </input>
     <input>
       <expression>
         <sum>
@@ -501,13 +581,7 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <or>
-          <property>/autopilot/internal/VNAV-VS</property>
-          <property>/autopilot/internal/VNAV-GS</property>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </or>
+        <property>/autopilot/internal/PITCH-ACTIVE</property>
       </condition>
     </enable>	
     <input>
@@ -532,13 +606,7 @@
   <gain>1</gain>
   <enable>
       <condition>
-        <or>
-          <property>/autopilot/internal/VNAV-VS</property>
-          <property>/autopilot/internal/VNAV-GS</property>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </or>
+        <property>/autopilot/internal/PITCH-ACTIVE</property>
       </condition>
     </enable>	
     <input>
@@ -568,13 +636,7 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <or>
-          <property>/autopilot/internal/VNAV-VS</property>
-          <property>/autopilot/internal/VNAV-GS</property>
-          <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-          <property>/autopilot/internal/VNAV-ALT</property>
-          <property>/autopilot/internal/LVLCHG</property>
-        </or>
+        <property>/autopilot/internal/PITCH-ACTIVE</property>
       </condition>
     </enable>	
     <input>
@@ -615,13 +677,7 @@
             <property>/autopilot/internal/CMDA</property>
             <property>/autopilot/internal/CMDB</property>
           </or>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <property>/autopilot/internal/VNAV-GS</property>
-            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-            <property>/autopilot/internal/VNAV-ALT</property>
-            <property>/autopilot/internal/LVLCHG</property>
-          </or>
+          <property>/autopilot/internal/PITCH-ACTIVE</property>
         </and>
       </condition>
     </enable>	
@@ -706,13 +762,7 @@
             <property>/autopilot/internal/CMDA</property>
             <property>/autopilot/internal/CMDB</property>
           </or>
-          <or>
-            <property>/autopilot/internal/VNAV-VS</property>
-            <property>/autopilot/internal/VNAV-GS</property>
-            <property>/autopilot/internal/VNAV-ALT-ACQ</property>
-            <property>/autopilot/internal/VNAV-ALT</property>
-            <property>/autopilot/internal/LVLCHG</property>
-          </or>
+          <property>/autopilot/internal/PITCH-ACTIVE</property>
         </and>
       </condition>
   </enable>
@@ -783,7 +833,7 @@
     </config>
   </pid-controller>
 
-<filter> <!-- N1 setting from any mode -->
+<filter> <!-- throttle setting from any mode (from TARGET N1) -->
   <type>gain</type>
   <gain>1</gain>
   <enable>
@@ -793,6 +843,7 @@
           <or>
             <property>/autopilot/internal/SPD-N1</property>
             <property>/autopilot/internal/SPD-SPEED</property>
+            <property>/autopilot/internal/TOGA</property>
           </or>
         </and>
       </condition>
@@ -815,35 +866,80 @@
 
 <filter>
   <name>SERVO-DRIVER:autothrottle</name>	
-  <debug>false</debug>
-  <feedback-if-disabled>true</feedback-if-disabled>
-  <enable>
+  <type>noise-spike</type>
+  <max-rate-of-change>
     <condition>
+      <and>
+        <property>/autopilot/internal/toga-20-sec</property>
+        <greater-than-equals>
+          <property>/autopilot/internal/at-throttle</property>
+          <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
+        </greater-than-equals>
+        <property>/autopilot/internal/SPD</property>
+        <or>
+          <property>/autopilot/internal/SPD-N1</property>
+          <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/TOGA</property>
+        </or>
+      </and>
+    </condition>
+    <value>.233</value>
+  </max-rate-of-change>
+  <max-rate-of-change>
+    <condition>
+      <and>
+        <less-than>
+          <property>/autopilot/internal/at-throttle</property>
+          <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
+        </less-than>
+        <property>/autopilot/internal/SPD</property>
+        <or>
+          <property>/autopilot/internal/SPD-N1</property>
+          <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/TOGA</property>
+        </or>
+      </and>
+    </condition>
+    <value>0.0468</value>
+  </max-rate-of-change>
+  <max-rate-of-change>
+    <condition>
+      <and>
+        <greater-than-equals>
+          <property>/autopilot/internal/at-throttle</property>
+          <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
+        </greater-than-equals>
+        <property>/autopilot/internal/SPD</property>
+        <or>
+          <property>/autopilot/internal/SPD-N1</property>
+          <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/TOGA</property>
+        </or>
+      </and>
+    </condition>
+    <value>.0932</value>
+  </max-rate-of-change>
+  <max-rate-of-change>10</max-rate-of-change>
+  <input>
+    <condition>
+      <not>
         <and>
           <property>/autopilot/internal/SPD</property>
           <or>
             <property>/autopilot/internal/SPD-N1</property>
             <property>/autopilot/internal/SPD-SPEED</property>
+            <property>/autopilot/internal/TOGA</property>
           </or>
         </and>
-      </condition>
-  </enable>
-  <type>noise-spike</type>
-  <max-rate-of-change>
-    <condition>
-      <less-than>
-        <property>/autopilot/internal/at-throttle</property>
-        <property>/controls/engines/engine[0]/throttle</property>
-      </less-than>
+      </not>
     </condition>
-    <value>0.0468</value>
-  </max-rate-of-change>
-  <max-rate-of-change>.0932</max-rate-of-change>
+    <prop>/controls/engines/engine[0]/throttle</prop>
+  </input>
   <input>/autopilot/internal/at-throttle</input>
-    <output>
-      <prop>/controls/engines/engine[0]/throttle</prop>
-      <prop>/controls/engines/engine[1]/throttle</prop>
-    </output>
+  <output>
+    <prop>/autopilot/internal/servo-throttle[0]</prop>
+    <prop>/autopilot/internal/servo-throttle[1]</prop>
+  </output>
 </filter>
 
 <filter>
@@ -1102,6 +1198,39 @@
    <output>/autopilot/internal/wp-crosstrack-hold</output>
  </logic>
 
+
+<!-- calculate 20 sec period from TOGA button -->
+
+  <filter>
+    <name>20 sec period from TOGA</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/TOGA</property>
+      </condition>
+    </enable>
+    <type>gain</type>
+    <input>
+      <property>/autopilot/display/toga-mode-last-change</property>
+      <offset>
+        <property>/sim/time/elapsed-sec</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>/autopilot/internal/toga-period</output>
+    <gain>-1</gain>
+  </filter>
+
+ <logic>
+   <input>
+     <less-than>
+       <property>/autopilot/internal/toga-period</property>
+       <value>20</value>
+     </less-than>
+   </input>
+   <output>/autopilot/internal/toga-20-sec</output>
+ </logic>
+
 <!-- calculate real vertical speed -->
 
   <predict-simple>
@@ -1127,5 +1256,64 @@
     <output>autopilot/internal/current-vertical-speed-fpm</output>
     <gain>1.0</gain>
   </filter>
+
+<!-- Any of pitch mode active -->
+
+ <logic>
+   <input>
+     <or>
+       <property>/autopilot/internal/VNAV-VS</property>
+       <property>/autopilot/internal/VNAV-GS</property>
+       <property>/autopilot/internal/VNAV-ALT-ACQ</property>
+       <property>/autopilot/internal/VNAV-ALT</property>
+       <property>/autopilot/internal/LVLCHG</property>
+       <property>/autopilot/internal/TOGA</property>
+     </or>
+   </input>
+   <output>/autopilot/internal/PITCH-ACTIVE</output>
+ </logic>
+
+<!-- Activation logic for pitch in TOGA -->
+
+  <filter>
+    <type>gain</type>
+    <input>
+      <property>/autopilot/settings/target-speed-kt</property>
+      <offset>18</offset>
+    </input>
+    <output>/autopilot/settings/target-speed-kt-plus-20</output>
+    <gain>1</gain>
+  </filter>
+
+ <logic>
+   <input>
+     <greater-than>
+       <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+       <property>/autopilot/settings/target-speed-kt-plus-20</property>
+     </greater-than>
+   </input>
+   <output>/autopilot/logic/v2-plus-20</output>
+ </logic>
+
+ <logic>
+   <input>
+     <less-than>
+       <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+       <property>/autopilot/settings/target-speed-kt</property>
+     </less-than>
+   </input>
+   <output>/autopilot/logic/v2-minus</output>
+ </logic>
+
+ <flipflop>
+   <type>RS</type> <!-- or SR -->
+   <S>
+     <property>/autopilot/logic/v2-plus-20</property>
+   </S>
+   <R>
+     <property>/autopilot/logic/v2-minus</property>
+   </R>
+   <output>/autopilot/logic/toga-pitch</output>
+ </flipflop>
 
 </PropertyList>

@@ -118,7 +118,7 @@
 <animation>
  <type>rotate</type>
  <object-name>LEFTTHROTTLE</object-name>
- <property>controls/engines/engine[0]/throttle</property>
+ <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
  <factor>53</factor>
  <offset-deg>-22</offset-deg>
  <center>
@@ -136,7 +136,7 @@
 <animation>
  <type>rotate</type>
  <object-name>RIGHTTHROTTLE</object-name>
- <property>controls/engines/engine[1]/throttle</property>
+ <property>/fdm/jsbsim/fcs/throttle-pos-norm[1]</property>
  <factor>53</factor>
  <offset-deg>-22</offset-deg>
  <center>
