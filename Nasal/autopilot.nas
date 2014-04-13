@@ -102,8 +102,7 @@ var lvlchg_button_press = func {
 		alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 		alt_target = getprop("/autopilot/settings/target-altitude-ft");
 		if (alt < alt_target) {
-			interpolate("/controls/engines/engine[0]/throttle", 0.9, 3); ## REPLACE IT WITH N1 MODE ENGAGE!!!
-			interpolate("/controls/engines/engine[1]/throttle", 0.9, 3); ## REPLACE IT WITH N1 MODE ENGAGE!!!
+			n1_engage();
 			setprop("/autopilot/settings/min-lvlchg-vs", 0);
 			setprop("/autopilot/settings/max-lvlchg-vs", 6000);
 		} else {
@@ -179,14 +178,47 @@ var speed_decrease = func {
 ##########################################################################
 # N1 button
 var n1_button_press = func {
+	if (getprop("/autopilot/internal/SPD-N1")) {
+		setprop("/autopilot/internal/SPD-N1", 0);
+	} else {
+		n1_engage();
+	}
+}
+
+var n1_engage = func {
+	if (getprop("/autopilot/internal/TOGA")) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+	}
+
+	setprop("/autopilot/internal/SPD-SPEED", 0);
+	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/SPD-N1", 1);
+	setprop("/autopilot/internal/target-n1", 95);
+
+	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/throttle-mode", "N1");
+}
+##########################################################################
+# SPEED button
+var speed_button_press = func {
+	if (getprop("/autopilot/internal/SPD-SPEED")) {
+		setprop("/autopilot/internal/SPD-SPEED", 0);
+	} else {
+		speed_engage();
+	}
 
 }
 
 ##########################################################################
-# SPEED button
-var speed_button_press = func {
+# Engaging SPEED mode
+var speed_engage = func {
+	setprop("/autopilot/internal/SPD-N1", 0);
+	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/SPD-SPEED", 1);
 
-	speed_engage();
+	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/throttle-mode", "MCP SPD");
 }
 
 ##########################################################################
@@ -392,15 +424,6 @@ var alt_hold_engage = func {
 	speed_engage();
 }
 
-##########################################################################
-# Engaging SPEED mode
-var speed_engage = func {
-	setprop("/autopilot/internal/SPD-N1", 0);
-	setprop("/autopilot/internal/SPD-SPEED", 1);
-
-	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
-	setprop("/autopilot/display/throttle-mode", "MCP SPD");
-}
 
 ##########################################################################
 # Engaging HDG SEL mode
@@ -491,6 +514,8 @@ var toga_engage = func {
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
+	setprop("/autopilot/internal/SPD-N1", 0);
+	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/TOGA", 1);
 	setprop("/autopilot/internal/target-n1", 106);
 
