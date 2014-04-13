@@ -66,11 +66,14 @@ var mcp_alt_change = func {
 	diff_hld = math.abs(getprop("/instrumentation/altimeter/indicated-altitude-ft") - mcp_alt);
 
 	if (getprop("/autopilot/internal/VNAV-ALT-ACQ") and diff_acq > 100) {
-		setprop("/autopilot/switches/VS-button", 1);
+		vs_button_press();
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT") and diff_hld > 100) {
 		setprop("/autopilot/internal/VNAV-VS-ARMED", 1);
 		setprop("/autopilot/display/pitch-mode-armed", "V/S");
+	} else {
+		setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
+		setprop("/autopilot/display/pitch-mode-armed", "");
 	}
 	setprop("/b733/sound/mcp-last-change", getprop("/sim/time/elapsed-sec"));
 }
@@ -291,6 +294,10 @@ var cmda_button_press = func {
 	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
 		setprop("/autopilot/internal/CMDA", 1);
 		setprop("/autopilot/internal/CMDB", 0);
+		if (getprop("/autopilot/internal/TOGA")) {
+			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+		}
 	}
 }
 
@@ -303,6 +310,10 @@ var cmdb_button_press = func {
 	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
 		setprop("/autopilot/internal/CMDA", 0);
 		setprop("/autopilot/internal/CMDB", 1);
+		if (getprop("/autopilot/internal/TOGA")) {
+			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+		}
 	}
 }
 
