@@ -64,18 +64,6 @@
     </offsets>
   </model>
 
-	 <!-- Shadow, adapted by BR-NVS -->
- <model>
-  <name>shadowOSG</name>
-  <path>Aircraft/737-300/Models/Shadow/shadow.xml</path>
-  <offsets>
-    <x-m>0.0</x-m>
-    <y-m>0.0</y-m>
-    <z-m>-1.1</z-m>
-    <pitch-deg>-1</pitch-deg>
-  </offsets>
-</model>
-
   <!-- Services by PR-GEO -->
 
   <model>
