@@ -458,7 +458,7 @@
       <prop>/instrumentation/altimeter/indicated-altitude-ft</prop>
     </input>
     <reference>
-      <prop>/autopilot/settings/target-altitude-ft</prop>
+      <prop>/autopilot/settings/target-altitude-mcp-ft</prop>
     </reference>
     <output>
       <prop>/autopilot/settings/vertical-speed-fpm</prop>

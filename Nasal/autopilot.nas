@@ -62,7 +62,7 @@ var vs_button_press = func {
 ##########################################################################
 # MCP ALT change while in ALT ACQ
 var mcp_alt_change = func {
-	mcp_alt = getprop("/autopilot/settings/target-altitude-ft");
+	mcp_alt = getprop("/autopilot/settings/target-altitude-mcp-ft");
 	diff_acq = math.abs(getprop("/autopilot/settings/alt-acq-target-alt") - mcp_alt);
 	diff_hld = math.abs(getprop("/instrumentation/altimeter/indicated-altitude-ft") - mcp_alt);
 
@@ -78,7 +78,7 @@ var mcp_alt_change = func {
 	}
 	setprop("/b733/sound/mcp-last-change", getprop("/sim/time/elapsed-sec"));
 }
-setlistener( "/autopilot/settings/target-altitude-ft", mcp_alt_change, 0, 0);
+setlistener( "/autopilot/settings/target-altitude-mcp-ft", mcp_alt_change, 0, 0);
 
 ##########################################################################
 # LVL CHG button
@@ -101,7 +101,7 @@ var lvlchg_button_press = func {
 		setprop("/autopilot/display/pitch-mode", "MCP SPD");
 
 		alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-		alt_target = getprop("/autopilot/settings/target-altitude-ft");
+		alt_target = getprop("/autopilot/settings/target-altitude-mcp-ft");
 		if (alt < alt_target) {
 			n1_engage();
 			setprop("/autopilot/settings/min-lvlchg-vs", 0);
@@ -274,7 +274,7 @@ var althld_button_press = func {
 ##########################################################################
 # ALT HOLD button light switch
 var alt_hold_light = func {
-	mcp_alt = getprop("/autopilot/settings/target-altitude-ft");
+	mcp_alt = getprop("/autopilot/settings/target-altitude-mcp-ft");
 	diff_hld = math.abs(getprop("/instrumentation/altimeter/indicated-altitude-ft") - mcp_alt);
 	alt_hld = getprop("/autopilot/internal/VNAV-ALT");
 
@@ -413,7 +413,7 @@ var alt_acq_engage = func {
 			setprop("/autopilot/internal/TOGA", 0);
 
 			setprop("/autopilot/internal/VNAV-ALT-ACQ", 1);
-			setprop("/autopilot/settings/alt-acq-target-alt", getprop("/autopilot/settings/target-altitude-ft"));
+			setprop("/autopilot/settings/alt-acq-target-alt", getprop("/autopilot/settings/target-altitude-mcp-ft"));
 
 			setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
 			setprop("/autopilot/display/pitch-mode", "ALT ACQ");

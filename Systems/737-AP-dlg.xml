@@ -9,7 +9,7 @@
     <!--
       /autopilot/settings/heading-bug-deg
       /autopilot/settings/target-agl-ft
-      /autopilot/settings/target-altitude-ft
+      /autopilot/settings/target-altitude-mcp-ft
       /autopilot/settings/target-aoa-deg
       /autopilot/settings/target-pitch-deg
       /autopilot/settings/target-speed-kt
@@ -92,7 +92,7 @@
       #
       var apset = props.globals.getNode("/autopilot/settings", 1);
       foreach (var p; ["heading-bug-deg", "true-heading-deg", "vertical-speed-fpm",
-                       "target-pitch-deg", "target-aoa-deg", "target-altitude-ft",
+                       "target-pitch-deg", "target-aoa-deg", "target-altitude-mcp-ft",
                        "target-agl-ft", "target-speed-kt", "target-speed-mach"]) {
 
           if ((var n = apset.getNode(p)) == nil or n.getType() == "NONE") {
@@ -971,7 +971,7 @@
                   <legend>&lt;&lt;</legend>
                   <binding>
                       <command>property-adjust</command>
-                      <property>autopilot/settings/target-altitude-ft</property>
+                      <property>autopilot/settings/target-altitude-mcp-ft</property>
                       <step type="double">-1000.0</step>
                       <min>0</min>
                       <max>45000</max>
@@ -989,7 +989,7 @@
                   <legend>&lt;</legend>
                   <binding>
                       <command>property-adjust</command>
-                      <property>autopilot/settings/target-altitude-ft</property>
+                      <property>autopilot/settings/target-altitude-mcp-ft</property>
                       <step type="double">-100.0</step>
                       <min>0</min>
                       <max>45000</max>
@@ -1003,7 +1003,7 @@
                     <row>3</row>
                     <col>4</col>
 										<pref-width>55</pref-width>
-                    <property>/autopilot/settings/target-altitude-ft</property>
+                    <property>/autopilot/settings/target-altitude-mcp-ft</property>
                     <live>true</live>
                     <binding>
                         <command>dialog-apply</command>
@@ -1017,7 +1017,7 @@
                   <legend>&gt;</legend>
                   <binding>
                       <command>property-adjust</command>
-                      <property>autopilot/settings/target-altitude-ft</property>
+                      <property>autopilot/settings/target-altitude-mcp-ft</property>
                       <step type="double">100.0</step>
                       <min>0</min>
                       <max>45000</max>
@@ -1035,7 +1035,7 @@
                   <legend>&gt;&gt;</legend>
                   <binding>
                       <command>property-adjust</command>
-                      <property>autopilot/settings/target-altitude-ft</property>
+                      <property>autopilot/settings/target-altitude-mcp-ft</property>
                       <step type="double">1000.0</step>
                       <min>0</min>
                       <max>45000</max>

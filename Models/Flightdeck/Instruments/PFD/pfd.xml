@@ -594,7 +594,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apalt1</object-name>
-  <property>/autopilot/settings/target-altitude-ft</property>
+  <property>/autopilot/settings/target-altitude-mcp-ft</property>
   <factor>0.10</factor>
   <step>1.0</step>
   <axis>
@@ -607,7 +607,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apalt2</object-name>
-  <property>/autopilot/settings/target-altitude-ft</property>
+  <property>/autopilot/settings/target-altitude-mcp-ft</property>
   <factor>0.01</factor>
   <step>10</step>
   <axis>
@@ -620,7 +620,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apalt3</object-name>
-  <property>/autopilot/settings/target-altitude-ft</property>
+  <property>/autopilot/settings/target-altitude-mcp-ft</property>
   <factor>0.001</factor>
   <step>100</step>
   <axis>
@@ -633,7 +633,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apalt4</object-name>
-  <property>/autopilot/settings/target-altitude-ft</property>
+  <property>/autopilot/settings/target-altitude-mcp-ft</property>
   <factor>0.0001</factor>
   <step>1000</step>
   <axis>
@@ -646,7 +646,7 @@
  <animation>
   <type>textranslate</type>
   <object-name>apalt5</object-name>
-  <property>/autopilot/settings/target-altitude-ft</property>
+  <property>/autopilot/settings/target-altitude-mcp-ft</property>
   <factor>0.00001</factor>
   <step>10000</step>
   <axis>

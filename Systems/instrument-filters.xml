@@ -32,7 +32,7 @@
       <abs>
         <dif>
           <property>/instrumentation/altimeter/indicated-altitude-ft</property>
-          <property>/autopilot/settings/target-altitude-ft</property>
+          <property>/autopilot/settings/target-altitude-mcp-ft</property>
         </dif>
       </abs>
     </expression> 

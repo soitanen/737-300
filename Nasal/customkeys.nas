@@ -21,7 +21,7 @@ var incElevator = func {
             elevator.setValue(1.0);
         }
     } elsif (auto.getValue() == "altitude-hold") {
-        var node = props.globals.getNode("/autopilot/settings/target-altitude-ft", 1);
+        var node = props.globals.getNode("/autopilot/settings/target-altitude-mcp-ft", 1);
         if (node.getValue() == nil) {
             node.setValue(0.0);
         }
