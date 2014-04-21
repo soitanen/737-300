@@ -478,6 +478,8 @@
       </default>
     </menubar>
 
+  <checklists include="b737-checklists.xml"/>
+
   </sim>
 
   <autopilot>

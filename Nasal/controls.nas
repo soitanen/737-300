@@ -148,7 +148,8 @@ var landing_check = func{
 		}
 		if (ab_pos > 0 and !ab_used) autobrake_apply();
 	} elsif (air_ground == "ground" and !was_ia and spin_up and throttle_1 < 0.05 and throttle_2 < 0.05 and ab_pos == -1) { #Rejected take-off
-		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593; 
+		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593;
+		setprop("/autopilot/internal/SPD", 0);
 		if (lever_pos == 0) {
 			setprop("b733/controls/flight/spoilers-lever-pos", 6);
 			setprop("b733/sound/spoiler-auto", 1);

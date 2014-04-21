@@ -56,6 +56,7 @@ var vs_button_press = func {
 	speed_engage();
 
 	setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
+	settimer(adjust_vs_factor, 0.1);
 }
 
 ##########################################################################
