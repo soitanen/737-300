@@ -843,6 +843,7 @@
           <or>
             <property>/autopilot/internal/SPD-N1</property>
             <property>/autopilot/internal/SPD-SPEED</property>
+            <property>/autopilot/internal/SPD-RETARD</property>
             <property>/autopilot/internal/TOGA</property>
           </or>
         </and>
@@ -879,6 +880,7 @@
         <or>
           <property>/autopilot/internal/SPD-N1</property>
           <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/SPD-RETARD</property>
           <property>/autopilot/internal/TOGA</property>
         </or>
       </and>
@@ -896,6 +898,7 @@
         <or>
           <property>/autopilot/internal/SPD-N1</property>
           <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/SPD-RETARD</property>
           <property>/autopilot/internal/TOGA</property>
         </or>
       </and>
@@ -913,6 +916,7 @@
         <or>
           <property>/autopilot/internal/SPD-N1</property>
           <property>/autopilot/internal/SPD-SPEED</property>
+          <property>/autopilot/internal/SPD-RETARD</property>
           <property>/autopilot/internal/TOGA</property>
         </or>
       </and>
@@ -928,6 +932,7 @@
           <or>
             <property>/autopilot/internal/SPD-N1</property>
             <property>/autopilot/internal/SPD-SPEED</property>
+            <property>/autopilot/internal/SPD-RETARD</property>
             <property>/autopilot/internal/TOGA</property>
           </or>
         </and>

@@ -107,8 +107,7 @@ var lvlchg_button_press = func {
 			setprop("/autopilot/settings/min-lvlchg-vs", 0);
 			setprop("/autopilot/settings/max-lvlchg-vs", 6000);
 		} else {
-			setprop("/controls/engines/engine[0]/throttle", 0); ## REPLACE IT WITH RETARD MODE ENGAGE!!!
-			setprop("/controls/engines/engine[1]/throttle", 0); ## REPLACE IT WITH RETARD MODE ENGAGE!!!
+			retard_engage();
 			setprop("/autopilot/settings/min-lvlchg-vs", -7800);
 			setprop("/autopilot/settings/max-lvlchg-vs", 0);
 		}
@@ -194,6 +193,7 @@ var n1_engage = func {
 
 	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/SPD-RETARD", 0);
 	setprop("/autopilot/internal/SPD-N1", 1);
 	setprop("/autopilot/internal/target-n1", 95);
 
@@ -216,11 +216,40 @@ var speed_button_press = func {
 var speed_engage = func {
 	setprop("/autopilot/internal/SPD-N1", 0);
 	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/SPD-RETARD", 0);
 	setprop("/autopilot/internal/SPD-SPEED", 1);
 
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/throttle-mode", "MCP SPD");
 }
+
+##########################################################################
+# Engaging RETARD mode
+var retard_engage = func {
+	setprop("/autopilot/internal/SPD-N1", 0);
+	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/SPD-SPEED", 0);
+	setprop("/autopilot/internal/SPD-RETARD", 1);
+
+	setprop("/autopilot/internal/target-n1", 22);
+
+	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/throttle-mode", "RETARD");
+}
+
+var retard_check = func {
+	retard = getprop("/autopilot/internal/SPD-RETARD");
+	if (retard) {
+		if (getprop("/autopilot/internal/servo-throttle[0]") < 0.01) {
+			setprop("/autopilot/internal/SPD-RETARD", 0);
+
+			setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+			setprop("/autopilot/display/throttle-mode", "ARM");
+		}
+		settimer(retard_check, 0.2);
+	}
+}
+setlistener( "/autopilot/internal/SPD-RETARD", retard_check, 0, 0);
 
 ##########################################################################
 # VNAV button

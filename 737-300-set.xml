@@ -524,6 +524,7 @@
       <SPD type="bool">false</SPD>
       <SPD-SPEED type="bool">false</SPD-SPEED>
       <SPD-N1 type="bool">false</SPD-N1>
+      <SPD-RETARD type="bool">false</SPD-RETARD>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
 
