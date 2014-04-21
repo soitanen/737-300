@@ -516,6 +516,35 @@
   </output>
 </filter>
 
+ <!-- FLARE mode -->
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+    <condition>
+      <property>/autopilot/internal/VNAV-FLARE</property>
+    </condition>
+  </enable>	
+  <input>
+    <expression>
+      <sum>
+        <product>
+          <sum>
+            <property>/position/altitude-agl-ft</property>
+            <value>-6.5</value>
+          </sum>
+          <value>-6</value>
+        </product>
+        <value>-200</value>
+      </sum>
+    </expression>
+  </input>
+  <output>
+    <prop>/autopilot/settings/vertical-speed-fpm</prop>
+  </output>
+</filter>
+
  <!-- VS hold for any mode -->
 
 <filter>
@@ -840,12 +869,7 @@
        <condition>
         <and>
           <property>/autopilot/internal/SPD</property>
-          <or>
-            <property>/autopilot/internal/SPD-N1</property>
-            <property>/autopilot/internal/SPD-SPEED</property>
-            <property>/autopilot/internal/SPD-RETARD</property>
-            <property>/autopilot/internal/TOGA</property>
-          </or>
+          <property>/autopilot/internal/THROTTLE-ACTIVE</property>
         </and>
       </condition>
   </enable>	
@@ -877,12 +901,7 @@
           <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
         </greater-than-equals>
         <property>/autopilot/internal/SPD</property>
-        <or>
-          <property>/autopilot/internal/SPD-N1</property>
-          <property>/autopilot/internal/SPD-SPEED</property>
-          <property>/autopilot/internal/SPD-RETARD</property>
-          <property>/autopilot/internal/TOGA</property>
-        </or>
+        <property>/autopilot/internal/THROTTLE-ACTIVE</property>
       </and>
     </condition>
     <value>.233</value>
@@ -895,12 +914,7 @@
           <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
         </less-than>
         <property>/autopilot/internal/SPD</property>
-        <or>
-          <property>/autopilot/internal/SPD-N1</property>
-          <property>/autopilot/internal/SPD-SPEED</property>
-          <property>/autopilot/internal/SPD-RETARD</property>
-          <property>/autopilot/internal/TOGA</property>
-        </or>
+        <property>/autopilot/internal/THROTTLE-ACTIVE</property>
       </and>
     </condition>
     <value>0.0468</value>
@@ -913,12 +927,7 @@
           <property>/fdm/jsbsim/fcs/throttle-pos-norm[0]</property>
         </greater-than-equals>
         <property>/autopilot/internal/SPD</property>
-        <or>
-          <property>/autopilot/internal/SPD-N1</property>
-          <property>/autopilot/internal/SPD-SPEED</property>
-          <property>/autopilot/internal/SPD-RETARD</property>
-          <property>/autopilot/internal/TOGA</property>
-        </or>
+        <property>/autopilot/internal/THROTTLE-ACTIVE</property>
       </and>
     </condition>
     <value>.0932</value>
@@ -929,12 +938,7 @@
       <not>
         <and>
           <property>/autopilot/internal/SPD</property>
-          <or>
-            <property>/autopilot/internal/SPD-N1</property>
-            <property>/autopilot/internal/SPD-SPEED</property>
-            <property>/autopilot/internal/SPD-RETARD</property>
-            <property>/autopilot/internal/TOGA</property>
-          </or>
+          <property>/autopilot/internal/THROTTLE-ACTIVE</property>
         </and>
       </not>
     </condition>
@@ -1269,6 +1273,7 @@
      <or>
        <property>/autopilot/internal/VNAV-VS</property>
        <property>/autopilot/internal/VNAV-GS</property>
+       <property>/autopilot/internal/VNAV-FLARE</property>
        <property>/autopilot/internal/VNAV-ALT-ACQ</property>
        <property>/autopilot/internal/VNAV-ALT</property>
        <property>/autopilot/internal/LVLCHG</property>
@@ -1276,6 +1281,20 @@
      </or>
    </input>
    <output>/autopilot/internal/PITCH-ACTIVE</output>
+ </logic>
+
+<!-- Any of throttle mode active -->
+
+ <logic>
+   <input>
+     <or>
+       <property>/autopilot/internal/SPD-N1</property>
+       <property>/autopilot/internal/SPD-SPEED</property>
+       <property>/autopilot/internal/SPD-RETARD</property>
+       <property>/autopilot/internal/TOGA</property>
+     </or>
+   </input>
+   <output>/autopilot/internal/THROTTLE-ACTIVE</output>
  </logic>
 
 <!-- Activation logic for pitch in TOGA -->
@@ -1320,5 +1339,104 @@
    </R>
    <output>/autopilot/logic/toga-pitch</output>
  </flipflop>
+
+ <!-- RETARD logic at 27 feet -->
+
+ <logic>
+    <enable>
+      <condition>
+        <property>/autopilot/internal/SPD</property>
+      </condition>
+    </enable>
+   <input>
+     <and>
+       <or>
+         <property>/autopilot/internal/SPD-N1</property>
+         <property>/autopilot/internal/SPD-SPEED</property>
+       </or>
+       <!--<not><property>/autopilot/internal/TOGA</property></not>-->
+       <less-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>33.5</value>
+       </less-than>
+     </and>
+   </input>
+   <output>/autopilot/logic/retard-27ft</output>
+ </logic>
+
+ <!-- FLARE arm logic at 1500-800 feet -->
+
+ <logic>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDA</property>
+          <property>/autopilot/internal/CMDB</property>
+          <not><property>/autopilot/internal/VNAV-FLARE-armed</property></not>
+        </and>
+      </condition>
+    </enable>
+   <input>
+     <and>
+       <property>/autopilot/internal/VNAV-GS</property>
+       <less-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>1506.5</value>
+       </less-than>
+     </and>
+   </input>
+   <output>/autopilot/logic/flare-arm</output>
+ </logic>
+
+ <!-- FLARE logic at 50 feet -->
+
+ <logic>
+    <enable>
+      <condition>
+        <and>
+          <property>/autopilot/internal/CMDA</property>
+          <property>/autopilot/internal/CMDB</property>
+        </and>
+      </condition>
+    </enable>
+   <input>
+     <and>
+       <property>/autopilot/internal/VNAV-FLARE-armed</property>
+       <less-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>56.5</value>
+       </less-than>
+     </and>
+   </input>
+   <output>/autopilot/logic/flare-50ft</output>
+ </logic>
+
+ <!-- AP disengage logic at 350 feet -->
+
+ <logic>
+    <enable>
+      <condition>
+        <or>
+          <property>/autopilot/internal/CMDA</property>
+          <property>/autopilot/internal/CMDB</property>
+        </or>
+      </condition>
+    </enable>
+   <input>
+     <and>
+       <not>
+         <or>
+           <property>/autopilot/internal/VNAV-FLARE-armed</property>
+           <property>/autopilot/internal/VNAV-FLARE</property>
+         </or>
+       </not>
+       <less-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>356.5</value>
+       </less-than>
+     </and>
+   </input>
+   <output>/autopilot/logic/ap-disengage-350ft</output>
+ </logic>
 
 </PropertyList>

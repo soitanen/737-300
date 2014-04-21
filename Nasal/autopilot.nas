@@ -251,6 +251,14 @@ var retard_check = func {
 }
 setlistener( "/autopilot/internal/SPD-RETARD", retard_check, 0, 0);
 
+var retard_27ft_check = func {
+	retard_cmd = getprop("/autopilot/logic/retard-27ft");
+	if (retard_cmd) {
+		retard_engage();
+	}
+}
+setlistener("/autopilot/logic/retard-27ft", retard_27ft_check, 0, 0);
+
 ##########################################################################
 # VNAV button
 var vnav_button_press = func {
@@ -350,12 +358,16 @@ var vorloc_button_press = func {
 ##########################################################################
 # CMDA button
 var cmda_button_press = func {
-
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
+	GS  = getprop("/autopilot/internal/VNAV-GS");
+	alt_agl = getprop("/position/altitude-agl-ft") - 6.5;
+
 	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
 		setprop("/autopilot/internal/CMDA", 1);
-		setprop("/autopilot/internal/CMDB", 0);
+		if (!GS and alt_agl < 800) {
+			setprop("/autopilot/internal/CMDB", 0);
+		}
 		if (getprop("/autopilot/internal/TOGA")) {
 			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
 			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
@@ -366,12 +378,16 @@ var cmda_button_press = func {
 ##########################################################################
 # CMDB button
 var cmdb_button_press = func {
-
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
+	GS  = getprop("/autopilot/internal/VNAV-GS");
+	alt_agl = getprop("/position/altitude-agl-ft") - 6.5;
+
 	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
-		setprop("/autopilot/internal/CMDA", 0);
 		setprop("/autopilot/internal/CMDB", 1);
+		if (!GS and alt_agl < 800) {
+			setprop("/autopilot/internal/CMDA", 0);
+		}
 		if (getprop("/autopilot/internal/TOGA")) {
 			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
 			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
@@ -394,9 +410,36 @@ var cwsb_button_press = func {
 ##########################################################################
 # APDSNG button
 var apdsng_button_press = func {
-
+	if (getprop("/b733/sound/apdisco")) {
+		setprop("/b733/sound/apdisco", 0);
+	} else {
+		cmda = getprop("/autopilot/internal/CMDA");
+		cmdb = getprop("/autopilot/internal/CMDB");
+		if (cmda or cmdb) {
+			ap_disengage();
+			settimer(func {setprop("/b733/sound/apdisco", 0);}, 3.7);
+		}
+	}
 }
 
+##########################################################################
+# Automatic AP disengage at 350 ft if no FLARE armed
+var apdsng = func {
+	apdsng = getprop("/autopilot/logic/ap-disengage-350ft");
+	if (apdsng) {
+		ap_disengage();
+	}
+}
+setlistener("/autopilot/logic/ap-disengage-350ft", apdsng, 0, 0);
+
+##########################################################################
+# AUTOPILOT DISENGAGE FUNCTION
+var ap_disengage = func {
+	setprop("/autopilot/internal/CMDA", 0);
+	setprop("/autopilot/internal/CMDB", 0);
+
+	setprop("/b733/sound/apdisco", 1);
+}
 ##########################################################################
 ##########################################################################
 # Engaging ALT ACQ mode
@@ -454,6 +497,39 @@ var alt_hold_engage = func {
 	speed_engage();
 }
 
+##########################################################################
+# Arming FLARE mode
+var flare_arm = func {
+	flare_arm = getprop("/autopilot/logic/flare-arm");
+	if (flare_arm) {
+		setprop("/autopilot/display/pitch-mode-armed", "FLARE");
+		setprop("/autopilot/internal/VNAV-VS-armed", 0);
+		setprop("/autopilot/internal/VNAV-FLARE-armed", 1);
+	}
+}
+setlistener("/autopilot/logic/flare-arm", flare_arm, 0, 0);
+
+##########################################################################
+# Engaging FLARE mode
+var flare_50ft_check = func {
+	flare_cmd = getprop("/autopilot/logic/flare-50ft");
+	if (flare_cmd) {
+		setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
+		setprop("/autopilot/internal/VNAV-VS", 0);
+		setprop("/autopilot/internal/VNAV", 0);
+		setprop("/autopilot/internal/LVLCHG", 0);
+		setprop("/autopilot/internal/TOGA", 0);
+		setprop("/autopilot/internal/VNAV-ALT", 0);
+		setprop("/autopilot/internal/VNAV-GS", 0);
+		setprop("/autopilot/internal/VNAV-FLARE", 1);
+
+		setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/pitch-mode", "FLARE");
+		setprop("/autopilot/display/pitch-mode-armed", "");
+		setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
+	}
+}
+setlistener("/autopilot/logic/flare-50ft", flare_50ft_check, 0, 0);
 
 ##########################################################################
 # Engaging HDG SEL mode
@@ -575,7 +651,9 @@ if (getprop("/autopilot/internal/LNAV")){
 	time = 0.64 * gnds_mps * delta_angle * 0.7 / (360 * math.tan(max_bank/57.2957795131));
 	delta_angle_rad = (180 - delta_angle) / 114.5915590262;
 	R = radius/math.sin(delta_angle_rad);
-	turn_dist = math.cos(delta_angle_rad) * R * 1.5 / 1852;
+	dist_coeff = delta_angle * -0.011111 + 2;
+	if (dist_coeff < 1) dist_coeff = 1;
+	turn_dist = math.cos(delta_angle_rad) * R * dist_coeff / 1852;
 
 	setprop("/instrumentation/gps/config/over-flight-distance-nm", turn_dist);
 	if (getprop("/sim/time/elapsed-sec")-getprop("/autopilot/internal/wp-change-time") > 60) {

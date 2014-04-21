@@ -517,6 +517,8 @@
       <VNAV-ALT-light type="bool">false</VNAV-ALT-light>
       <VNAV-GS type="bool">false</VNAV-GS>
       <VNAV-GS-armed type="bool">false</VNAV-GS-armed>
+      <VNAV-FLARE type="bool">false</VNAV-FLARE>
+      <VNAV-FLARE-armed type="bool">false</VNAV-FLARE-armed>
 
       <LVLCHG type="bool">false</LVLCHG>
       <TOGA type="bool">false</TOGA>
@@ -1319,6 +1321,7 @@
       <was-in-air type="bool">false</was-in-air>
     </sensors>
     <sound>
+      <apdisco type="bool">0</apdisco>
       <spoiler-auto type="bool">0</spoiler-auto>
       <stab-trim type="bool">0</stab-trim>
       <sound-pack type="int">2</sound-pack>

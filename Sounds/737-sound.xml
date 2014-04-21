@@ -1873,6 +1873,18 @@
       <factor>1</factor>
     </volume>
   </spoiler-auto>
+
+  <ap-disconnect>
+    <name>AP Disconnect</name>
+    <mode>looped</mode>
+    <path>Aircraft/737-300/Sounds/Apdisco.wav</path>
+    <condition>
+      <property>/b733/sound/apdisco</property>
+    </condition>
+    <volume>
+      <factor>1</factor>
+    </volume>
+  </ap-disconnect>
 	
 	
 	<seatbelt-on>
