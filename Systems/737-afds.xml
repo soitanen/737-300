@@ -1354,11 +1354,14 @@
          <property>/autopilot/internal/SPD-N1</property>
          <property>/autopilot/internal/SPD-SPEED</property>
        </or>
-       <!--<not><property>/autopilot/internal/TOGA</property></not>-->
        <less-than>
          <property>/position/altitude-agl-ft</property>
          <value>33.5</value>
        </less-than>
+       <greater-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>6</value>
+       </greater-than>
      </and>
    </input>
    <output>/autopilot/logic/retard-27ft</output>
@@ -1383,6 +1386,10 @@
          <property>/position/altitude-agl-ft</property>
          <value>1506.5</value>
        </less-than>
+       <greater-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>6</value>
+       </greater-than>
      </and>
    </input>
    <output>/autopilot/logic/flare-arm</output>
@@ -1406,6 +1413,10 @@
          <property>/position/altitude-agl-ft</property>
          <value>56.5</value>
        </less-than>
+       <greater-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>6</value>
+       </greater-than>
      </and>
    </input>
    <output>/autopilot/logic/flare-50ft</output>
@@ -1434,6 +1445,10 @@
          <property>/position/altitude-agl-ft</property>
          <value>356.5</value>
        </less-than>
+       <greater-than>
+         <property>/position/altitude-agl-ft</property>
+         <value>6</value>
+       </greater-than>
      </and>
    </input>
    <output>/autopilot/logic/ap-disengage-350ft</output>

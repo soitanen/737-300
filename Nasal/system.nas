@@ -56,7 +56,7 @@ init_controls = func {
     setprop("/instrumentation/efis/fixed-vs",0.0);
     setprop("/instrumentation/efis/alt-mode",0.0);
     setprop("/controls/engines/reverser-position",0.0);
-    setprop("/environment/turbulence/use-cloud-turbulence","true");
+    #setprop("/environment/turbulence/use-cloud-turbulence","true");
     setprop("/sim/current-view/field-of-view",60.0);
     setprop("/controls/gear/brake-parking",1.0);
     setprop("/instrumentation/annunciator/master-caution",0.0);
