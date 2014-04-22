@@ -296,11 +296,14 @@
       <electrical>
         <path>Aircraft/Generic/generic-electrical.xml</path>
       </electrical>
-<!--      <autopilot>
-        <path>Aircraft/737-300/Systems/737-autopilot.xml</path>
-      </autopilot>-->
       <autopilot>
         <path>Aircraft/737-300/Systems/737-afds.xml</path>
+      </autopilot>
+      <autopilot>
+        <path>Aircraft/737-300/Systems/737-fcc-a.xml</path>
+      </autopilot>
+      <autopilot>
+        <path>Aircraft/737-300/Systems/737-fcc-b.xml</path>
       </autopilot>
       <path>Aircraft/737-300/Systems/systems.xml</path>
       <property-rule n="101">
@@ -496,6 +499,7 @@
       <maximum-bank-limit type="double">30</maximum-bank-limit>
       <min-lvlchg-vs type="double">-7800</min-lvlchg-vs>
       <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
+      <max-n1 type="double">95</max-n1>
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
    </settings>
 
@@ -511,7 +515,7 @@
 
       <VNAV type="bool">false</VNAV>
       <VNAV-VS type="bool">false</VNAV-VS>
-      <VNAV-VS-ARMED type="bool">false</VNAV-VS-ARMED>
+      <VNAV-VS-armed type="bool">false</VNAV-VS-armed>
       <VNAV-ALT type="bool">false</VNAV-ALT>
       <VNAV-ALT-ACQ type="bool">false</VNAV-ALT-ACQ>
       <VNAV-ALT-light type="bool">false</VNAV-ALT-light>
@@ -529,6 +533,9 @@
       <SPD-RETARD type="bool">false</SPD-RETARD>
       <SPD-IAS type="bool">true</SPD-IAS>
       <SPD-MACH type="bool">false</SPD-MACH>
+
+      <FCC-A-master type="bool">false</FCC-A-master>
+      <FCC-B-master type="bool">false</FCC-B-master>
 
       <wp-change-check-period type="double">10</wp-change-check-period>
     </internal>
@@ -620,159 +627,27 @@
   <input>
     <keyboard>
 
- <key n="1">
-  <name>Ctrl-A</name>
-  <desc>Toggle autopilot altitude lock</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
+    <key n="4">
+      <name>ctrl+D</name>
+      <desc>Autopilot disconnect</desc>
+      <binding>
+        <command>nasal</command>
+        <script>
+	  autopilot737.apdsng_button_press();
+	</script>
+      </binding>
+    </key>
 
-  <key n="7">
-  <name>Ctrl-G</name>
-  <desc>Toggle autopilot glide slope lock</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
-
- <key n="8">
-  <name>Ctrl-H</name>
-  <desc>Toggle autopilot heading lock</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
- 
- <key n="14">
-  <name>Ctrl-N</name>
-  <desc>Toggle autopilot nav1 lock</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
-
- <key n="16">
-  <name>Ctrl-P</name>
-  <desc>Toggle VS hold</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/VNAV-VS</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-ALT</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/VNAV-GS</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
-
-  <key n="19">
-  <name>Ctrl-S</name>
-  <desc>Toggle SPEED Button</desc>
-   <binding>
-    <command>property-toggle</command>
-    <property>/autopilot/internal/SPD-SPEED</property>
-   </binding>
- </key>
-
- <key n="23">
-  <name>Ctrl-W</name>
-  <desc>Toggle autopilot wing leveler</desc>
-   <binding>
-     <command>property-toggle</command>
-     <property>/autopilot/internal/LNAV-LVL</property>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV1</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-HDG</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-NAV2</property>
-     <value type="bool">0</value>
-   </binding>
-   <binding>
-     <command>property-assign</command>
-     <property>/autopilot/internal/LNAV-FMS</property>
-     <value type="bool">0</value>
-   </binding>
- </key>
-
+    <key n="68">
+      <name>D</name>
+      <desc>Autothrottle off</desc>
+      <binding>
+        <command>nasal</command>
+        <script>
+	  setprop("/autopilot/internal/SPD", 0);
+	</script>
+      </binding>
+    </key>
 
     <key n="267">
         <name>F11</name>
@@ -786,11 +661,7 @@
         <binding>
           <command>nasal</command>
         <script>
-          setprop("/autopilot/internal/CMDA", 0);
-         setprop("/autopilot/internal/CMDA", 0);
-              if (getprop("sim/co-pilot")) {
-         setprop ("/sim/messages/copilot", "AutoPilot DISENGAGED");
-              }
+          autopilot737.apdsng_button_press();
         </script>
         </binding>
         </mod-ctrl>
@@ -1319,6 +1190,7 @@
       <air-ground type="string">ground</air-ground>
       <main-gear-spin type="bool">false</main-gear-spin>
       <was-in-air type="bool">false</was-in-air>
+      <lift-off-time type="double">0</lift-off-time>
     </sensors>
     <sound>
       <apdisco type="bool">0</apdisco>
@@ -1328,6 +1200,27 @@
     </sound>
     <ap-hide-helper type="bool">0</ap-hide-helper>
   </b733>
+
+<systems>
+  <pitot n="1">
+    <serviceable type="bool">true</serviceable>
+  </pitot>
+  <pitot n="2">
+    <serviceable type="bool">true</serviceable>
+  </pitot>
+  <pitot n="3">
+    <serviceable type="bool">true</serviceable>
+  </pitot>
+  <static n="1">
+    <serviceable type="bool">true</serviceable>
+  </static>
+  <static n="2">
+    <serviceable type="bool">true</serviceable>
+  </static>
+  <static n="3">
+    <serviceable type="bool">true</serviceable>
+  </static>
+</systems>
 
   <instrumentation>
 
@@ -1380,8 +1273,8 @@
       
 
     <flightdirector>
-      <fd-on>1</fd-on>
-      <vbar-pitch type="double">0</vbar-pitch>
+      <fd-left-on>0</fd-left-on>
+      <fd-right-on>0</fd-right-on>
     </flightdirector>
 
     <gps>
@@ -1398,6 +1291,22 @@
       <speed-bug-pushed type="bool">true</speed-bug-pushed>
       <speed-bug type="int">182</speed-bug>
     </airspeed-indicator>  
+
+    <airspeed-indicator n="1">
+      <serviceable type="bool">true</serviceable>
+    </airspeed-indicator>
+
+    <airspeed-indicator n="2">
+      <serviceable type="bool">true</serviceable>
+    </airspeed-indicator>
+
+    <altimeter n="1">
+      <serviceable type="bool">true</serviceable>
+    </altimeter>
+
+    <altimeter n="2">
+      <serviceable type="bool">true</serviceable>
+    </altimeter>
 
     <mk-viii>                         <!-- http://wiki.flightgear.org/index.php/GPWS -->
 
@@ -1422,6 +1331,11 @@
           <decision-height-ncd> true </decision-height-ncd>
           <decision-height> 200 </decision-height>
         </arinc429>
+        <rs-232>
+          <present-status>
+            <landing-flaps type="double">0.5</landing-flaps>
+          </present-status>
+        </rs-232>
       </inputs>
 
       <speaker>                        <!-- Speaker Configuration -->

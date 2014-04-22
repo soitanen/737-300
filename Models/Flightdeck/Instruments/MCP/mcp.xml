@@ -1379,7 +1379,7 @@
    <repeatable>false</repeatable> 
    <binding>
     <command>property-toggle</command>
-    <property>/instrumentation/flightdirector/fd-on</property>
+    <property>/instrumentation/flightdirector/fd-left-on</property>
 		<step>1</step>
 		<min>0></min>
 		<max>1</max>
@@ -1391,7 +1391,7 @@
  <animation>
    <type>rotate</type>
    <object-name>cap-fd</object-name>
-   <property>/instrumentation/flightdirector/fd-on</property>
+   <property>/instrumentation/flightdirector/fd-left-on</property>
    <factor>-30</factor>
 	 <offset-deg>30</offset-deg>
    <center>
@@ -1415,7 +1415,7 @@
    <repeatable>false</repeatable> 
    <binding>
     <command>property-toggle</command>
-    <property>/instrumentation/flightdirector/fd-on</property>
+    <property>/instrumentation/flightdirector/fd-right-on</property>
 		<step>1</step>
 		<min>0></min>
 		<max>1</max>
@@ -1427,7 +1427,7 @@
  <animation>
    <type>rotate</type>
    <object-name>cop-fd</object-name>
-   <property>/instrumentation/flightdirector/fd-on</property>
+   <property>/instrumentation/flightdirector/fd-right-on</property>
    <factor>-30</factor>
 	 <offset-deg>30</offset-deg>
    <center>

@@ -1,4 +1,4 @@
-# Controls systems that depend on the air-ground sensor
+## Controls systems that depend on the air-ground sensor
 # (also called "squat-switch") position.  This assumes
 # the airplane always starts on the ground (just like the
 # real airplane).
@@ -48,11 +48,14 @@ var was_in_air = func{
 	var was_ia = getprop("/b733/sensors/was-in-air");
 	var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593; 
 
-	if (air_ground == "air" and !was_ia) setprop("/b733/sensors/was-in-air", "true");
+	if (air_ground == "air" and !was_ia) {
+		setprop("/b733/sensors/was-in-air", "true");
+		setprop("/b733/sensors/lift-off-time", getprop("/sim/time/elapsed-sec"));
+	}
 	if (air_ground == "air" and was_ia) setprop("/b733/sensors/was-in-air", "true");
 	if (air_ground == "ground" and !was_ia) setprop("/b733/sensors/was-in-air", "false");
 	if (air_ground == "ground" and was_ia) {
-		if (GROUNDSPEED < 60){
+		if (GROUNDSPEED < 30){
 			setprop("/b733/sensors/was-in-air", "false");
 			copilot.copilot.init();
 		} else {
@@ -61,4 +64,16 @@ var was_in_air = func{
 	}
 }
 setlistener( "/b733/sensors/air-ground", was_in_air, 0, 0);
+
+var lift_off = func {
+	var wow_nose = getprop("/gear/gear/wow");
+	var wow_left = getprop("/gear/gear[1]/wow");
+	var wow_right = getprop("/gear/gear[2]/wow");
+	var was_ia = getprop("/b733/sensors/was-in-air");
+
+	if (!wow_nose and !wow_right and !wow_left and was_ia) {
+		setprop("/b733/sensors/lift-off-time", getprop("/sim/time/elapsed-sec"));
+	}
+}
+
   

@@ -9,8 +9,7 @@ var elevatorTrim = func {
 	var flaps_pos = num( getprop("/fdm/jsbsim/fcs/flap-pos-norm") );
 
 	if (ap_a_on or ap_b_on) {
-		setprop("/autopilot/internal/CMDA", 0);
-		setprop("/autopilot/internal/CMDB", 0);
+		autopilot737.ap_disengage();
 	}
 
 	setprop("fdm/jsbsim/fcs/stabilizer/stab-target", arg[0] * -17);

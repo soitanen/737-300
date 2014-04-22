@@ -178,14 +178,4 @@ This file selects the instrumentation modules that should be available.
         <number>1</number>
     </KT-70>
 
-<!--    <KR-87>
-        <name>kr-87</name>
-        <number>0</number>
-    </KR-87> -->
-
-    <mk-viii>
-        <name>mk-viii</name>
-        <number>0</number>
-    </mk-viii>
-
 </PropertyList>

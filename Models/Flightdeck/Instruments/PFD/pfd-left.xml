@@ -68,8 +68,22 @@
    <type>select</type>
    <object-name>FDbars</object-name>
    <condition>
-   <property>/instrumentation/flightdirector/fd-on</property>
-   <value>1</value>
+     <and>
+       <property>/instrumentation/flightdirector/fd-left-on</property>
+       <or>
+         <property>/autopilot/internal/TOGA</property>
+         <and>
+           <greater-than>
+             <property>/position/altitude-agl-ft</property>
+             <value>56.5</value>
+           </greater-than>
+           <or>
+             <property>/autopilot/internal/PITCH-ACTIVE</property>
+             <property>/autopilot/internal/THROTTLE-ACTIVE</property>
+           </or>
+         </and>
+       </or>
+     </and>
    </condition>
  </animation>
  

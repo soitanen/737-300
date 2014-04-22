@@ -12,7 +12,7 @@ if (getprop("/autopilot/internal/VNAV-VS") == 1) {
 
 	setprop ("/autopilot/settings/vertical-speed-fpm", vs);
 }
-if (getprop("/autopilot/internal/VNAV-VS-ARMED")) {
+if (getprop("/autopilot/internal/VNAV-VS-armed")) {
 	settimer(vs_button_press, 0.05);
 }
 }
@@ -25,8 +25,14 @@ setlistener( "/autopilot/settings/vertical-speed-knob", adjust_vs_factor, 0, 0);
 ##########################################################################
 # VS button
 var vs_button_press = func {
+GS  = getprop("/autopilot/internal/VNAV-GS");
+if (!GS) {
+	if (getprop("/autopilot/internal/TOGA")) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+	}
 
-	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
+	setprop("/autopilot/internal/VNAV-VS-armed", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
@@ -58,6 +64,7 @@ var vs_button_press = func {
 	setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 	settimer(adjust_vs_factor, 0.1);
 }
+}
 
 ##########################################################################
 # MCP ALT change while in ALT ACQ
@@ -70,11 +77,21 @@ var mcp_alt_change = func {
 		vs_button_press();
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT") and diff_hld > 100) {
-		setprop("/autopilot/internal/VNAV-VS-ARMED", 1);
-		setprop("/autopilot/display/pitch-mode-armed", "V/S");
+		setprop("/autopilot/internal/VNAV-VS-armed", 1);
+		current_armed = getprop("/autopilot/display/pitch-mode-armed");
+		if (current_armed == "G/S") {
+			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
+		} else {
+			setprop("/autopilot/display/pitch-mode-armed", "V/S");
+		}
 	} else {
-		setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
-		setprop("/autopilot/display/pitch-mode-armed", "");
+		setprop("/autopilot/internal/VNAV-VS-armed", 0);
+		current_armed = getprop("/autopilot/display/pitch-mode-armed");
+		if (current_armed == "G/S V/S") {
+			setprop("/autopilot/display/pitch-mode-armed", "G/S");
+		} else {
+			setprop("/autopilot/display/pitch-mode-armed", "");
+		}
 	}
 	setprop("/b733/sound/mcp-last-change", getprop("/sim/time/elapsed-sec"));
 }
@@ -84,11 +101,18 @@ setlistener( "/autopilot/settings/target-altitude-mcp-ft", mcp_alt_change, 0, 0)
 # LVL CHG button
 var lvlchg_button_press = func {
 
+	if (getprop("/autopilot/internal/TOGA")) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+	}
+
+GS = getprop("/autopilot/internal/VNAV-GS");
+
+if (!GS) {
 	setprop("/autopilot/internal/VNAV-ALT", 0);
-	setprop("/autopilot/internal/VNAV-GS", 0);
 	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/VNAV-VS", 0);
-	setprop("/autopilot/internal/VNAV-VS-ARMED", 0);
+	setprop("/autopilot/internal/VNAV-VS-armed", 0);
 
 	if (getprop("/autopilot/internal/LVLCHG") == 1) {
 		setprop("/autopilot/internal/LVLCHG", 0);
@@ -112,6 +136,7 @@ var lvlchg_button_press = func {
 			setprop("/autopilot/settings/max-lvlchg-vs", 0);
 		}
 	}
+}
 }
 
 ##########################################################################
@@ -178,24 +203,23 @@ var speed_decrease = func {
 ##########################################################################
 # N1 button
 var n1_button_press = func {
+GS = getprop("/autopilot/internal/VNAV-GS");
+
+if (!GS) {
 	if (getprop("/autopilot/internal/SPD-N1")) {
 		setprop("/autopilot/internal/SPD-N1", 0);
 	} else {
 		n1_engage();
 	}
 }
+}
 
 var n1_engage = func {
-	if (getprop("/autopilot/internal/TOGA")) {
-		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
-		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
-	}
-
 	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/SPD-RETARD", 0);
 	setprop("/autopilot/internal/SPD-N1", 1);
-	setprop("/autopilot/internal/target-n1", 95);
+	setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/max-n1"));
 
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/throttle-mode", "N1");
@@ -269,6 +293,11 @@ var vnav_button_press = func {
 # ALT HOLD button
 var althld_button_press = func {
 
+	if (getprop("/autopilot/internal/TOGA")) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+	}
+
 	GS = getprop("/autopilot/internal/VNAV-GS");
 
 	if (!GS) {
@@ -304,7 +333,13 @@ var app_button_press = func {
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
 	if (!GS) {
 		setprop("/autopilot/internal/VNAV-GS-armed", 1);
-		setprop("/autopilot/display/pitch-mode-armed", "GS");
+		current_armed = getprop("/autopilot/display/pitch-mode-armed");
+		if (current_armed == "V/S") {
+			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
+		} else {
+			setprop("/autopilot/display/pitch-mode-armed", "G/S");
+		}
+
 		if (!LOC) {
 			setprop("/autopilot/internal/LNAV-NAV-armed", 1);
 			setprop("/autopilot/display/roll-mode-armed", "VOR/LOC");
@@ -358,19 +393,27 @@ var vorloc_button_press = func {
 ##########################################################################
 # CMDA button
 var cmda_button_press = func {
+	cmdb  = getprop("/autopilot/internal/CMDB");
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
 	GS  = getprop("/autopilot/internal/VNAV-GS");
+	GS_arm  = getprop("/autopilot/internal/VNAV-GS-armed");
 	alt_agl = getprop("/position/altitude-agl-ft") - 6.5;
+	nav1 = getprop("/instrumentation/nav[0]/frequencies/selected-mhz");
+	nav2 = getprop("/instrumentation/nav[1]/frequencies/selected-mhz");
 
-	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+	if (cmdb and (GS or GS_arm) and alt_agl > 800 and nav1 == nav2) {
 		setprop("/autopilot/internal/CMDA", 1);
-		if (!GS and alt_agl < 800) {
-			setprop("/autopilot/internal/CMDB", 0);
-		}
+	} elsif (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+		setprop("/autopilot/internal/CMDA", 1);
+		setprop("/autopilot/internal/CMDB", 0);
+		setprop("/autopilot/internal/FCC-B-master", 0);
+		setprop("/autopilot/internal/FCC-A-master", 1);
 		if (getprop("/autopilot/internal/TOGA")) {
 			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
 			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+			setprop("/autopilot/internal/TOGA", 0);
+			lvlchg_button_press();
 		}
 	}
 }
@@ -378,19 +421,27 @@ var cmda_button_press = func {
 ##########################################################################
 # CMDB button
 var cmdb_button_press = func {
+	cmda  = getprop("/autopilot/internal/CMDA");
 	ailerons = getprop("/controls/flight/aileron");
 	elevator = getprop("/controls/flight/elevator");
 	GS  = getprop("/autopilot/internal/VNAV-GS");
+	GS_arm  = getprop("/autopilot/internal/VNAV-GS-armed");
 	alt_agl = getprop("/position/altitude-agl-ft") - 6.5;
+	nav1 = getprop("/instrumentation/nav[0]/frequencies/selected-mhz");
+	nav2 = getprop("/instrumentation/nav[1]/frequencies/selected-mhz");
 
-	if (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+	if (cmda and (GS or GS_arm) and alt_agl > 800 and nav1 == nav2) {
 		setprop("/autopilot/internal/CMDB", 1);
-		if (!GS and alt_agl < 800) {
-			setprop("/autopilot/internal/CMDA", 0);
-		}
+	} elsif (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+		setprop("/autopilot/internal/CMDB", 1);
+		setprop("/autopilot/internal/CMDA", 0);
+		setprop("/autopilot/internal/FCC-A-master", 0);
+		setprop("/autopilot/internal/FCC-B-master", 1);
 		if (getprop("/autopilot/internal/TOGA")) {
 			mcp_speed = getprop("/autopilot/settings/target-speed-kt");
 			setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+			setprop("/autopilot/internal/TOGA", 0);
+			lvlchg_button_press();
 		}
 	}
 }
@@ -423,6 +474,25 @@ var apdsng_button_press = func {
 }
 
 ##########################################################################
+# AT switch logic
+var at_arm_switch = func {
+	at_arm = getprop("/autopilot/internal/SPD");
+	if (!at_arm) {
+		setprop("/autopilot/internal/SPD-N1", 0);
+		setprop("/autopilot/internal/TOGA", 0);
+		setprop("/autopilot/internal/SPD-SPEED", 0);
+		setprop("/autopilot/internal/SPD-RETARD", 0);
+
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "");
+	} else {
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "ARM");
+	}
+}
+setlistener("/autopilot/internal/SPD", at_arm_switch, 0, 0);
+
+##########################################################################
 # Automatic AP disengage at 350 ft if no FLARE armed
 var apdsng = func {
 	apdsng = getprop("/autopilot/logic/ap-disengage-350ft");
@@ -440,17 +510,92 @@ var ap_disengage = func {
 
 	setprop("/b733/sound/apdisco", 1);
 }
+
+##########################################################################
+# Determining master FCC from FD switch
+var fd_switch_left = func {
+	fd_left = getprop("/instrumentation/flightdirector/fd-left-on");
+	fd_right = getprop("/instrumentation/flightdirector/fd-right-on");
+	fcc_a = getprop("/autopilot/internal/FCC-A-master");
+	fcc_b = getprop("/autopilot/internal/FCC-B-master");
+	cmda  = getprop("/autopilot/internal/CMDA");
+	cmdb  = getprop("/autopilot/internal/CMDB");
+
+	if (!cmda and !cmdb and !fcc_b and fd_left) {
+		setprop("/autopilot/internal/FCC-A-master", 1);
+	} elsif (!cmda and !cmdb and !fcc_b and !fd_left and !fd_right) {
+		setprop("/autopilot/internal/FCC-A-master", 0);
+		reset_pitch_roll_modes();
+	} elsif (!cmda and !cmdb and !fcc_b and !fd_left and fd_right) {
+		setprop("/autopilot/internal/FCC-A-master", 0);
+		setprop("/autopilot/internal/FCC-B-master", 1);
+	}
+}
+var fd_switch_right = func {
+	fd_left = getprop("/instrumentation/flightdirector/fd-left-on");
+	fd_right = getprop("/instrumentation/flightdirector/fd-right-on");
+	fcc_a = getprop("/autopilot/internal/FCC-A-master");
+	fcc_b = getprop("/autopilot/internal/FCC-B-master");
+	cmda  = getprop("/autopilot/internal/CMDA");
+	cmdb  = getprop("/autopilot/internal/CMDB");
+
+	if (!cmda and !cmdb and !fcc_a and fd_right) {
+		setprop("/autopilot/internal/FCC-B-master", 1);
+	} elsif (!cmda and !cmdb and !fcc_a and !fd_right and !fd_left) {
+		setprop("/autopilot/internal/FCC-B-master", 0);
+		reset_pitch_roll_modes();
+	} elsif (!cmda and !cmdb and !fcc_a and !fd_right and fd_left) {
+		setprop("/autopilot/internal/FCC-B-master", 0);
+		setprop("/autopilot/internal/FCC-A-master", 1);
+	}
+}
+
+setlistener("/instrumentation/flightdirector/fd-right-on", fd_switch_right, 0, 0);
+setlistener("/instrumentation/flightdirector/fd-left-on", fd_switch_left, 0, 0);
+
+var reset_pitch_roll_modes = func {
+	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
+	setprop("/autopilot/internal/VNAV-VS", 0);
+	setprop("/autopilot/internal/VNAV-VS-armed", 0);
+	setprop("/autopilot/internal/VNAV", 0);
+	setprop("/autopilot/internal/LVLCHG", 0);
+	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/VNAV-ALT", 0);
+	setprop("/autopilot/internal/VNAV-GS", 0);
+	setprop("/autopilot/internal/VNAV-GS-armed", 0);
+	setprop("/autopilot/internal/VNAV-FLARE", 0);
+	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
+
+	setprop("/autopilot/internal/LNAV", 0);
+	setprop("/autopilot/internal/LNAV-NAV", 0);
+	setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+	setprop("/autopilot/internal/LNAV-HDG", 0);
+
+	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/pitch-mode", "");
+	setprop("/autopilot/display/pitch-mode-armed", "");
+
+	setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/roll-mode", "");
+	setprop("/autopilot/display/roll-mode-armed", "");
+}
 ##########################################################################
 ##########################################################################
 # Engaging ALT ACQ mode
 var alt_acq_engage = func {
-	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV")) {
+	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV") or getprop("/autopilot/internal/TOGA")) {
 		alt_diff = getprop("/b733/helpers/alt-diff-ft");
 		current_vs = getprop("/autopilot/settings/vertical-speed-fpm");
 		possible_engage_alt =  math.abs(current_vs * 0.15);
 
 
 		if (alt_diff < 300 or alt_diff < possible_engage_alt) {
+
+			if (getprop("/autopilot/internal/TOGA")) {
+				mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+				setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+			}
+
 			setprop("/autopilot/internal/VNAV-VS", 0);
 			setprop("/autopilot/internal/LVLCHG", 0);
 			setprop("/autopilot/internal/TOGA", 0);
@@ -482,7 +627,17 @@ setlistener( "/b733/helpers/alt-diff-ft", alt_acq_engage, 0, 0);
 ##########################################################################
 # Engaging ALT HOLD mode
 var alt_hold_engage = func {
-	alt_current = getprop("/instrumentation/altimeter/pressure-alt-ft");
+
+	if (getprop("/autopilot/internal/TOGA")) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
+	}
+
+	if (getprop("/autopilot/internal/FCC-A-master")) {
+		alt_current = getprop("/instrumentation/altimeter[0]/pressure-alt-ft");
+	} else {
+		alt_current = getprop("/instrumentation/altimeter[1]/pressure-alt-ft");
+	}
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/VNAV-VS", 0);
 	setprop("/autopilot/internal/VNAV", 0);
@@ -532,6 +687,28 @@ var flare_50ft_check = func {
 setlistener("/autopilot/logic/flare-50ft", flare_50ft_check, 0, 0);
 
 ##########################################################################
+# THR HLD at FMA
+var thr_hld_84kts = func {
+	thr_hld = getprop("/autopilot/logic/thr-hld-84kts");
+	if (thr_hld) {
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "THR HLD");
+	}
+}
+setlistener("/autopilot/logic/thr-hld-84kts", thr_hld_84kts, 0, 0);
+
+##########################################################################
+# ARM at FMA after THR HLD
+var at_arm_toga = func {
+	arm = getprop("/autopilot/logic/at-arm-toga");
+	if (arm) {
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "ARM");
+	}
+}
+setlistener("/autopilot/logic/at-arm-toga", at_arm_toga, 0, 0);
+
+##########################################################################
 # Engaging HDG SEL mode
 var hdg_mode_engage = func {
 	setprop("/autopilot/internal/LNAV", 0);
@@ -547,9 +724,16 @@ var hdg_mode_engage = func {
 var vorloc_armed = func {
 if (getprop("/autopilot/internal/LNAV-NAV-armed")) {
 
-	deflection = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm");
-	course = getprop("/instrumentation/nav[0]/radials/target-radial-deg");
-	delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav1");
+	if (getprop("/autopilot/internal/FCC-A-master")) {
+		deflection = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm");
+		course = getprop("/instrumentation/nav[0]/radials/target-radial-deg");
+		delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav1");
+	} else {
+		deflection = getprop("/instrumentation/nav[1]/heading-needle-deflection-norm");
+		course = getprop("/instrumentation/nav[1]/radials/target-radial-deg");
+		delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav2");
+	}
+
 	delta_current_heading = geo.normdeg180(getprop("/orientation/heading-deg") - course);
 
 	if((deflection < 0.2 and deflection > -0.2) or (deflection < 0.99 and deflection > -0.99 and math.abs(delta_target_heading) < math.abs(delta_current_heading))){
@@ -566,8 +750,14 @@ setlistener( "/autopilot/internal/LNAV-NAV-armed", vorloc_armed, 0, 0);
 # Armed GS mode behaviour
 var app_armed = func {
 if (getprop("/autopilot/internal/VNAV-GS-armed")) {
-	deflection = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
-	in_range = getprop("/instrumentation/nav[0]/gs-in-range");
+
+	if (getprop("/autopilot/internal/FCC-A-master")) {
+		deflection = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
+		in_range = getprop("/instrumentation/nav[0]/gs-in-range");
+	} else {
+		deflection = getprop("/instrumentation/nav[1]/gs-needle-deflection-norm");
+		in_range = getprop("/instrumentation/nav[1]/gs-in-range");
+	}
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
 	if(deflection < 0.2 and deflection > -0.2 and LOC and in_range){
 		gs_engage();
@@ -604,7 +794,7 @@ var gs_engage = func {
 	setprop("/autopilot/internal/VNAV-GS", 1);
 
 	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
-	setprop("/autopilot/display/pitch-mode", "GS");
+	setprop("/autopilot/display/pitch-mode", "G/S");
 	setprop("/autopilot/display/pitch-mode-armed", "");
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
 
@@ -620,6 +810,7 @@ var toga_engage = func {
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
+	setprop("/autopilot/internal/VNAV-FLARE", 0);
 	setprop("/autopilot/internal/SPD-N1", 0);
 	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/TOGA", 1);
@@ -630,7 +821,9 @@ var toga_engage = func {
 	setprop("/autopilot/display/pitch-mode", "TO/GA");
 	setprop("/autopilot/display/pitch-mode-armed", "");
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
-
+	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
+	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/throttle-mode", "N1");
 }
 
 ##########################################################################
@@ -701,8 +894,9 @@ var throttle_mode_change = func {
 	last_change = getprop("/autopilot/display/throttle-mode-last-change");
 	current_time = getprop("/sim/time/elapsed-sec");
 	period = current_time - last_change;
+	at_arm = getprop("/autopilot/internal/SPD");
 
-	if (period <= 10) {
+	if (period <= 10 and at_arm) {
 		setprop("/autopilot/display/throttle-mode-rectangle", 1);
 		settimer(throttle_mode_change, 0.5);
 	} else {
