@@ -18,7 +18,7 @@
           <or>
             <property>/autopilot/internal/LNAV-HDG</property>
             <property>/autopilot/internal/LNAV-NAV</property>
-          <property>/autopilot/internal/LNAV</property>
+            <property>/autopilot/internal/LNAV</property>
           </or>
         </and>
       </condition>
@@ -28,13 +28,19 @@
     </input>
     <reference>
       <condition>
-        <property>/autopilot/internal/FCC-A-master</property>
+        <and>
+          <property>/autopilot/internal/FCC-A-master</property>
+          <not><property>/autopilot/internal/FCC-B-master</property></not>
+        </and>
       </condition>
       <prop>/autopilot/settings/fcca-target-roll-rate</prop>
     </reference>
     <reference>
       <condition>
-        <property>/autopilot/internal/FCC-B-master</property>
+        <and>
+          <property>/autopilot/internal/FCC-B-master</property>
+          <not><property>/autopilot/internal/FCC-A-master</property></not>
+        </and>
       </condition>
       <prop>/autopilot/settings/fccb-target-roll-rate</prop>
     </reference>
@@ -93,13 +99,19 @@
     </input>
     <reference>
       <condition>
-        <property>/autopilot/internal/FCC-A-master</property>
+        <and>
+          <property>/autopilot/internal/FCC-A-master</property>
+          <not><property>/autopilot/internal/FCC-B-master</property></not>
+        </and>
       </condition>
       <prop>/autopilot/settings/fcca-target-pitch-deg</prop>
     </reference>
     <reference>
       <condition>
-        <property>/autopilot/internal/FCC-B-master</property>
+        <and>
+          <property>/autopilot/internal/FCC-B-master</property>
+          <not><property>/autopilot/internal/FCC-A-master</property></not>
+        </and>
       </condition>
       <prop>/autopilot/settings/fccb-target-pitch-deg</prop>
     </reference>

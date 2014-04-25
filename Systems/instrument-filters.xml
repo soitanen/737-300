@@ -31,40 +31,59 @@
     <expression>
       <abs>
         <dif>
-          <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+          <property>/instrumentation/altimeter[0]/indicated-altitude-ft</property>
           <property>/autopilot/settings/target-altitude-mcp-ft</property>
         </dif>
       </abs>
     </expression> 
   </input>
   <output>
-    <prop>/b733/helpers/alt-diff-ft</prop>
+    <prop>/b733/helpers/alt-diff-ft[0]</prop>
   </output>
 </filter>
 
-<filter> <!-- how many time past from last MCP ALT change -->
+<filter n="10004">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <expression>
+      <abs>
+        <dif>
+          <property>/instrumentation/altimeter[1]/indicated-altitude-ft</property>
+          <property>/autopilot/settings/target-altitude-mcp-ft</property>
+        </dif>
+      </abs>
+    </expression> 
+  </input>
+  <output>
+    <prop>/b733/helpers/alt-diff-ft[1]</prop>
+  </output>
+</filter>
+
+<filter n="10005"> <!-- how many time past from last MCP ALT change -->
   <type>gain</type>
   <gain>1</gain>
   <input>
     <property>/sim/time/elapsed-sec</property>
+    <offset>
+      <property>/b733/sound/mcp-last-change</property>
+      <scale>-1</scale>
+    </offset>
   </input>
-  <reference>
-    <property>/b733/sound/mcp-last-change</property>
-  </reference>
   <output>
     <property>/b733/sound/mcp-period</property>
   </output>
 </filter>
 
- <logic n="10004">
+ <logic n="10006">
    <input>
      <and>
        <greater-than>
-         <property>/b733/helpers/alt-diff-ft</property>
+         <property>/b733/helpers/alt-diff-ft[0]</property>
          <value>300</value>
        </greater-than>
        <less-than>
-         <property>/b733/helpers/alt-diff-ft</property>
+         <property>/b733/helpers/alt-diff-ft[0]</property>
          <value>900</value>
        </less-than>
        <greater-than>
@@ -85,7 +104,7 @@
    <output>/b733/sound/alt-acq</output>
  </logic>
 
-<filter n="10005">
+<filter n="10007">
   <type>gain</type>
   <gain>-3430</gain> <!-- 162 turns from 17 to 0. Measured from real aircraft. -->
   <input>
@@ -96,7 +115,7 @@
   </output>
 </filter>
 
-<filter n="10006">
+<filter n="10008">
   <type>gain</type>
   <gain>1</gain>
   <input>
@@ -115,7 +134,7 @@
   </output>
 </filter>
 
- <logic n="10007">
+ <logic n="10009">
    <input>
      <and>
        <greater-than>
@@ -150,6 +169,89 @@
    <output>/autopilot/internal/LNAV-NAV-light</output>
  </logic>
 
+<!-- Calculating output for FLIGHT DIRECTORS -->
+
+<!-- ROLL -->
+<filter n="10010">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <condition>
+      <and>
+        <property>/autopilot/internal/FCC-B-master</property>
+        <not><property>/autopilot/internal/FCC-A-master</property></not>
+      </and>
+    </condition>
+    <prop>/autopilot/settings/fccb-target-bank</prop>
+  </input>
+  <input>
+    <prop>/autopilot/settings/fcca-target-bank</prop>
+  </input>
+  <output>
+    <prop>/instrumentation/flightdirector/fd-left-bank</prop>
+  </output>
+</filter>
+
+<filter n="10011">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <condition>
+      <and>
+        <property>/autopilot/internal/FCC-A-master</property>
+        <not><property>/autopilot/internal/FCC-B-master</property></not>
+      </and>
+    </condition>
+    <prop>/autopilot/settings/fcca-target-bank</prop>
+  </input>
+  <input>
+    <prop>/autopilot/settings/fccb-target-bank</prop>
+  </input>
+  <output>
+    <prop>/instrumentation/flightdirector/fd-right-bank</prop>
+  </output>
+</filter>
+
+<!-- PITCH -->
+<filter n="10012">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <condition>
+      <and>
+        <property>/autopilot/internal/FCC-B-master</property>
+        <not><property>/autopilot/internal/FCC-A-master</property></not>
+      </and>
+    </condition>
+    <prop>/autopilot/settings/fccb-target-pitch-deg</prop>
+  </input>
+  <input>
+    <prop>/autopilot/settings/fcca-target-pitch-deg</prop>
+  </input>
+  <output>
+    <prop>/instrumentation/flightdirector/fd-left-pitch</prop>
+  </output>
+</filter>
+
+<filter n="10013">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <condition>
+      <and>
+        <property>/autopilot/internal/FCC-A-master</property>
+        <not><property>/autopilot/internal/FCC-B-master</property></not>
+      </and>
+    </condition>
+    <prop>/autopilot/settings/fcca-target-pitch-deg</prop>
+  </input>
+  <input>
+    <prop>/autopilot/settings/fccb-target-pitch-deg</prop>
+  </input>
+  <output>
+    <prop>/instrumentation/flightdirector/fd-right-pitch</prop>
+  </output>
+</filter>
 <!-- ############################################################################# -->
 <!-- Calculating engine sound params                                               -->
 <!-- ############################################################################# -->

@@ -1,7 +1,7 @@
 <PropertyList>
   <sim>
     <description>Boeing 737-300</description>
-    <author>Original by David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d) - Current Version by e-pilot, Skyop, Soitanen (FDM)</author>
+    <author>Original by David Culp (FDM), Innis Cunningham(3d), Heiko Schulz (3D and Panel), Emmanuel Baranger(3d) - Current Version by e-pilot, Skyop, Soitanen</author>
     <status>Heavy Development</status>
     <rating>
        <FDM type="int">4</FDM>
@@ -325,10 +325,9 @@
         <text>
           Keys:
           Del            = Thrust Reverse
-          Up/Down    = Control Elevator / Adjust A/P Alt and V/S
-          PgUp/PgDn = Control Throttle / Adjust A/P IAS and Mach
-          Ctrl-P        = Toggle Vertical Speed Hold
-          Ctrl-F11     = AutoPilot Disengage
+          d          = TO/GA button         
+          Shift-D     = AutoThrottle Disengage
+          Ctrl-D     = AutoPilot Disengage
 
           Engine Start: 
           Apply electrical power with APU Gen switches 1 and 2 (overhead)
@@ -344,8 +343,9 @@
           Engine Shutdown: Lower throttles to idle. Lower Idle/Cutoff selector lever to
           CUTOFF position. Turn off fuel pumps. 
 
-          Take off precedure:  flaps  5, power up to 40% N1 till moving, then slowly
-          build up to 94-96% N1. Rotate at VR and hold 15 degrees pitch.
+          Take off precedure:  Set V2 on the MCP SPEED window. Set flaps  5, power up to 40% N1 till
+          moving, then press 'd' button.
+          Rotate at VR. Flightdirectors will show you required pitch.
 
 
             Takeoff  Flaps 5                   Landing      
@@ -490,17 +490,22 @@
       <vertical-speed-knob type="int">0</vertical-speed-knob>
       <target-altitude-mcp-ft type="double">3000</target-altitude-mcp-ft>
       <target-speed-kt type="double">110</target-speed-kt>
-      <target-pitch-deg type="double">0</target-pitch-deg>
       <target-speed-mach type="double">.65</target-speed-mach>       
       <heading-bug-deg type="double">0</heading-bug-deg>
       <true-heading-deg type="double">0</true-heading-deg>
-      <target-roll-rate type="double">0</target-roll-rate>
-      <target-bank type="double">0</target-bank>
       <maximum-bank-limit type="double">30</maximum-bank-limit>
       <min-lvlchg-vs type="double">-7800</min-lvlchg-vs>
       <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
       <max-n1 type="double">95</max-n1>
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
+
+      <fcca-target-roll-rate type="double">0</fcca-target-roll-rate>
+      <fcca-target-bank type="double">0</fcca-target-bank>
+      <fcca-target-pitch-deg type="double">0</fcca-target-pitch-deg>
+
+      <fccb-target-roll-rate type="double">0</fccb-target-roll-rate>
+      <fccb-target-bank type="double">0</fccb-target-bank>
+      <fccb-target-pitch-deg type="double">0</fccb-target-pitch-deg>
    </settings>
 
     <internal>
@@ -536,6 +541,7 @@
 
       <FCC-A-master type="bool">false</FCC-A-master>
       <FCC-B-master type="bool">false</FCC-B-master>
+      <FCC-added type="string"></FCC-added>
 
       <wp-change-check-period type="double">10</wp-change-check-period>
     </internal>
@@ -1197,8 +1203,10 @@
       <spoiler-auto type="bool">0</spoiler-auto>
       <stab-trim type="bool">0</stab-trim>
       <sound-pack type="int">2</sound-pack>
+      <mcp-last-change type="double">0</mcp-last-change>
     </sound>
     <ap-hide-helper type="bool">0</ap-hide-helper>
+    <at-helper type="bool">1</at-helper>
   </b733>
 
 <systems>
@@ -1540,6 +1548,10 @@
     <autopilot737>
       <file>Aircraft/737-300/Nasal/autopilot.nas</file>
     </autopilot737>
+
+    <help>
+      <file>Aircraft/737-300/Nasal/help.nas</file>
+    </help>
 
   </nasal>
 

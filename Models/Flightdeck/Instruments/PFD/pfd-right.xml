@@ -105,7 +105,7 @@
 <interpolation>
      <entry>
        <ind> -10.0</ind>
-       <dep>-0.0308</dep>
+       <dep>-0.0608</dep>
      </entry>
      <entry>
        <ind> 0.0</ind>
@@ -113,7 +113,7 @@
      </entry>
      <entry>
        <ind> 10.0</ind>
-       <dep>0.0308</dep>
+       <dep>0.0608</dep>
      </entry>
 </interpolation>
   <axis>
@@ -197,7 +197,7 @@
  <animation>
    <type>rotate</type>
    <object-name>FDbars</object-name>
-   <property>/autopilot/settings/target-bank</property>
+   <property>/instrumentation/flightdirector/fd-right-bank</property>
    <factor>-1</factor>
    <axis>
      <x>1.0</x>
@@ -230,7 +230,7 @@
  <animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
-   <property>/autopilot/settings/target-pitch-deg</property>
+   <property>/instrumentation/flightdirector/fd-right-pitch</property>
 <factor>0.0014</factor>
 <offset-m>0.002</offset-m>
 <axis>

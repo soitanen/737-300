@@ -78,16 +78,16 @@ var mcp_alt_change = func {
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT") and diff_hld > 100) {
 		setprop("/autopilot/internal/VNAV-VS-armed", 1);
-		current_armed = getprop("/autopilot/display/pitch-mode-armed");
-		if (current_armed == "G/S") {
+		gs_arm = getprop("/autopilot/internal/VNAV-GS-armed");
+		if (gs_arm) {
 			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
 		} else {
 			setprop("/autopilot/display/pitch-mode-armed", "V/S");
 		}
 	} else {
 		setprop("/autopilot/internal/VNAV-VS-armed", 0);
-		current_armed = getprop("/autopilot/display/pitch-mode-armed");
-		if (current_armed == "G/S V/S") {
+		gs_arm = getprop("/autopilot/internal/VNAV-GS-armed");
+		if (gs_arm) {
 			setprop("/autopilot/display/pitch-mode-armed", "G/S");
 		} else {
 			setprop("/autopilot/display/pitch-mode-armed", "");
@@ -333,8 +333,8 @@ var app_button_press = func {
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
 	if (!GS) {
 		setprop("/autopilot/internal/VNAV-GS-armed", 1);
-		current_armed = getprop("/autopilot/display/pitch-mode-armed");
-		if (current_armed == "V/S") {
+		vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
+		if (vs_arm) {
 			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
 		} else {
 			setprop("/autopilot/display/pitch-mode-armed", "G/S");
@@ -507,6 +507,28 @@ setlistener("/autopilot/logic/ap-disengage-350ft", apdsng, 0, 0);
 var ap_disengage = func {
 	setprop("/autopilot/internal/CMDA", 0);
 	setprop("/autopilot/internal/CMDB", 0);
+	fd_left = getprop("/instrumentation/flightdirector/fd-left-on");
+	fd_right = getprop("/instrumentation/flightdirector/fd-right-on");
+	added_fcc = getprop("/autopilot/internal/FCC-added");
+
+	if (added_fcc == "A") {
+		setprop("/autopilot/internal/FCC-added", "");
+		setprop("/autopilot/internal/FCC-A-master", 0);
+	} elsif (added_fcc == "B") {
+		setprop("/autopilot/internal/FCC-added", "");
+		setprop("/autopilot/internal/FCC-B-master", 0);
+	}
+
+	if (!fd_left and !fd_right) {
+		setprop("/autopilot/internal/FCC-A-master", 0);
+		setprop("/autopilot/internal/FCC-B-master", 0);
+	} elsif (fd_left and !fd_right) {
+		setprop("/autopilot/internal/FCC-A-master", 1);
+		setprop("/autopilot/internal/FCC-B-master", 0);
+	} elsif (!fd_left and fd_right) {
+		setprop("/autopilot/internal/FCC-A-master", 0);
+		setprop("/autopilot/internal/FCC-B-master", 1);
+	}
 
 	setprop("/b733/sound/apdisco", 1);
 }
@@ -583,9 +605,17 @@ var reset_pitch_roll_modes = func {
 ##########################################################################
 # Engaging ALT ACQ mode
 var alt_acq_engage = func {
+
+	fcc_a = getprop("/autopilot/internal/FCC-A-master");
+	fcc_b = getprop("/autopilot/internal/FCC-B-master");
+	if (fcc_a) {
+		alt_diff = getprop("/b733/helpers/alt-diff-ft[0]");
+	} else {
+		alt_diff = getprop("/b733/helpers/alt-diff-ft[1]");
+	}
+
 	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV") or getprop("/autopilot/internal/TOGA")) {
-		alt_diff = getprop("/b733/helpers/alt-diff-ft");
-		current_vs = getprop("/autopilot/settings/vertical-speed-fpm");
+		current_vs = getprop("/autopilot/internal/current-vertical-speed-fpm");
 		possible_engage_alt =  math.abs(current_vs * 0.15);
 
 
@@ -617,7 +647,7 @@ var alt_acq_engage = func {
 		}
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT-ACQ")) {
-		if (getprop("/b733/helpers/alt-diff-ft") < 5) {
+		if (alt_diff < 5) {
 			alt_hold_engage();
 		}
 	}
@@ -660,6 +690,17 @@ var flare_arm = func {
 		setprop("/autopilot/display/pitch-mode-armed", "FLARE");
 		setprop("/autopilot/internal/VNAV-VS-armed", 0);
 		setprop("/autopilot/internal/VNAV-FLARE-armed", 1);
+
+		fcc_a = getprop("/autopilot/internal/FCC-A-master");
+		fcc_b = getprop("/autopilot/internal/FCC-B-master");
+
+		if (fcc_a) {
+			setprop("/autopilot/internal/FCC-B-master", 1);
+			setprop("/autopilot/internal/FCC-added", "B");
+		} elsif (fcc_b) {
+			setprop("/autopilot/internal/FCC-A-master", 1);
+			setprop("/autopilot/internal/FCC-added", "A");
+		}
 	}
 }
 setlistener("/autopilot/logic/flare-arm", flare_arm, 0, 0);
