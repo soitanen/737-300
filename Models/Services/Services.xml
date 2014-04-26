@@ -179,7 +179,7 @@ George Luiz
 
   <model>
     <name>Fuel truck</name>
-    <path>Aircraft/737-300/Models/Services/Fuel/Fuel.xml</path>
+    <path>Aircraft/737-300/Models/Services/Fuel/fuel.xml</path>
     <condition>
       <and>
         <property>controls/switches/Fuel</property>
