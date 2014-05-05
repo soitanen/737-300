@@ -681,6 +681,50 @@
     <gain>1.0</gain>
   </filter>
 
+<!-- calculate derivate for heading needle NAV1 -->
+
+  <predict-simple>
+    <seconds>1</seconds>
+    <filter-gain>0</filter-gain>
+    <input>/instrumentation/nav[0]/heading-needle-deflection-norm</input>
+    <output>autopilot/internal/lookahead-1-sec-nav1-heading-needle</output>
+  </predict-simple>
+
+  <filter>
+    <type>gain</type>
+    <input>
+      <property>autopilot/internal/lookahead-1-sec-nav1-heading-needle</property>
+      <offset>
+        <property>/instrumentation/nav[0]/heading-needle-deflection-norm</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/nav1-heading-needle-rate</output>
+    <gain>1.0</gain>
+  </filter>
+
+<!-- calculate derivate for heading needle NAV2 -->
+
+  <predict-simple>
+    <seconds>1</seconds>
+    <filter-gain>0</filter-gain>
+    <input>/instrumentation/nav[1]/heading-needle-deflection-norm</input>
+    <output>autopilot/internal/lookahead-1-sec-nav2-heading-needle</output>
+  </predict-simple>
+
+  <filter>
+    <type>gain</type>
+    <input>
+      <property>autopilot/internal/lookahead-1-sec-nav2-heading-needle</property>
+      <offset>
+        <property>/instrumentation/nav[1]/heading-needle-deflection-norm</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/nav2-heading-needle-rate</output>
+    <gain>1.0</gain>
+  </filter>
+
 <!-- calculate derivate for glideslope error NAV1 -->
 
   <predict-simple>

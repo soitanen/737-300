@@ -46,12 +46,12 @@
             <value>-1</value>
           </product>
           <product>
-            <property>/instrumentation/nav[0]/crosstrack-error-m</property>
-            <value>0.06</value>
+            <property>/instrumentation/nav[0]/heading-needle-deflection-norm</property>
+            <value>30</value>
           </product>
           <product>
-            <property>autopilot/internal/nav1-crosstrack-rate-mps</property>
-            <value>0.2</value>
+            <property>autopilot/internal/nav1-heading-needle-rate</property>
+            <value>150</value>
           </product>
         </sum>
       </expression>
@@ -64,19 +64,19 @@
             <value>-1</value>
           </product>
           <product>
-            <property>/instrumentation/nav[0]/crosstrack-error-m</property>
-            <value>0.03</value>
+            <property>/instrumentation/nav[0]/heading-needle-deflection-norm</property>
+            <value>90</value>
           </product>
           <product>
-            <property>autopilot/internal/nav1-crosstrack-rate-mps</property>
-            <value>0.45</value>
+            <property>autopilot/internal/nav1-heading-needle-rate</property>
+            <value>150</value>
           </product>
         </sum>
       </expression>
     </input>
     <output>/autopilot/internal/target-heading-shift-nav1</output>
-      <min>-90</min>
-      <max>90</max>
+      <min>-30</min>
+      <max>30</max>
     <gain>1.0</gain>
   </filter>
 
