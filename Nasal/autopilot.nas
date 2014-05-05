@@ -25,8 +25,16 @@ setlistener( "/autopilot/settings/vertical-speed-knob", adjust_vs_factor, 0, 0);
 ##########################################################################
 # VS button
 var vs_button_press = func {
-GS  = getprop("/autopilot/internal/VNAV-GS");
+GS = getprop("/autopilot/internal/VNAV-GS");
+VS = getprop("/autopilot/internal/VNAV-VS");
 if (!GS) {
+
+if (VS) {
+	setprop("/autopilot/internal/VNAV-VS", 0);
+
+	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/pitch-mode", "");
+} else {
 	if (getprop("/autopilot/internal/TOGA")) {
 		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
 		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
@@ -63,6 +71,7 @@ if (!GS) {
 
 	setprop("/autopilot/settings/vertical-speed-knob", vs_knob);
 	settimer(adjust_vs_factor, 0.1);
+}
 }
 }
 
@@ -116,6 +125,9 @@ if (!GS) {
 
 	if (getprop("/autopilot/internal/LVLCHG") == 1) {
 		setprop("/autopilot/internal/LVLCHG", 0);
+
+		setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/pitch-mode", "");
 
 	} else {
 		setprop("/autopilot/internal/SPD-SPEED", 0);
@@ -208,6 +220,9 @@ GS = getprop("/autopilot/internal/VNAV-GS");
 if (!GS) {
 	if (getprop("/autopilot/internal/SPD-N1")) {
 		setprop("/autopilot/internal/SPD-N1", 0);
+
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "ARM");
 	} else {
 		n1_engage();
 	}
@@ -215,6 +230,8 @@ if (!GS) {
 }
 
 var n1_engage = func {
+AT_arm = getprop("/autopilot/internal/SPD");
+if (AT_arm) {
 	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/SPD-RETARD", 0);
@@ -224,11 +241,15 @@ var n1_engage = func {
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/throttle-mode", "N1");
 }
+}
 ##########################################################################
 # SPEED button
 var speed_button_press = func {
 	if (getprop("/autopilot/internal/SPD-SPEED")) {
 		setprop("/autopilot/internal/SPD-SPEED", 0);
+
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "ARM");
 	} else {
 		speed_engage();
 	}
@@ -238,6 +259,8 @@ var speed_button_press = func {
 ##########################################################################
 # Engaging SPEED mode
 var speed_engage = func {
+AT_arm = getprop("/autopilot/internal/SPD");
+if (AT_arm) {
 	setprop("/autopilot/internal/SPD-N1", 0);
 	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/SPD-RETARD", 0);
@@ -246,10 +269,13 @@ var speed_engage = func {
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/throttle-mode", "MCP SPD");
 }
+}
 
 ##########################################################################
 # Engaging RETARD mode
 var retard_engage = func {
+AT_arm = getprop("/autopilot/internal/SPD");
+if (AT_arm) {
 	setprop("/autopilot/internal/SPD-N1", 0);
 	setprop("/autopilot/internal/TOGA", 0);
 	setprop("/autopilot/internal/SPD-SPEED", 0);
@@ -259,6 +285,7 @@ var retard_engage = func {
 
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/throttle-mode", "RETARD");
+}
 }
 
 var retard_check = func {
@@ -301,10 +328,19 @@ var althld_button_press = func {
 	GS = getprop("/autopilot/internal/VNAV-GS");
 
 	if (!GS) {
-		setprop("/autopilot/internal/max-vs-fpm", 2000);
-		setprop("/autopilot/internal/min-vs-fpm", -2000);
+		alt_light = getprop("/autopilot/internal/VNAV-ALT-light");
 
-		alt_hold_engage();
+		if (alt_light) {
+			setprop("/autopilot/internal/VNAV-ALT", 0);
+
+			setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+			setprop("/autopilot/display/pitch-mode", "");
+		} else {
+			setprop("/autopilot/internal/max-vs-fpm", 2000);
+			setprop("/autopilot/internal/min-vs-fpm", -2000);
+
+			alt_hold_engage();
+		}
 	}
 }
 
@@ -332,17 +368,34 @@ var app_button_press = func {
 	GS  = getprop("/autopilot/internal/VNAV-GS");
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
 	if (!GS) {
-		setprop("/autopilot/internal/VNAV-GS-armed", 1);
-		vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
-		if (vs_arm) {
-			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
-		} else {
-			setprop("/autopilot/display/pitch-mode-armed", "G/S");
-		}
+		if (getprop("/autopilot/internal/VNAV-GS-armed")) {
 
-		if (!LOC) {
-			setprop("/autopilot/internal/LNAV-NAV-armed", 1);
-			setprop("/autopilot/display/roll-mode-armed", "VOR/LOC");
+			setprop("/autopilot/internal/VNAV-GS-armed", 0);
+			vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
+			if (vs_arm) {
+				setprop("/autopilot/display/pitch-mode-armed", "V/S");
+			} else {
+				setprop("/autopilot/display/pitch-mode-armed", "");
+			}
+
+			if (getprop("/autopilot/internal/LNAV-NAV-armed")) {
+				setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+				setprop("/autopilot/display/roll-mode-armed", "");
+			}
+
+		} else {
+			setprop("/autopilot/internal/VNAV-GS-armed", 1);
+			vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
+			if (vs_arm) {
+				setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
+			} else {
+				setprop("/autopilot/display/pitch-mode-armed", "G/S");
+			}
+
+			if (!LOC) {
+				setprop("/autopilot/internal/LNAV-NAV-armed", 1);
+				setprop("/autopilot/display/roll-mode-armed", "VOR/LOC");
+			}
 		}
 	}
 }
@@ -353,18 +406,26 @@ var lnav_button_press = func {
 	route_active = getprop("/autopilot/route-manager/active");
 	GS = getprop("/autopilot/internal/VNAV-GS");
 	crosstrack = getprop("/instrumentation/gps/wp/wp[1]/course-error-nm");
+	LNAV = getprop("/autopilot/internal/LNAV-NAV");
 
-	if (!GS and route_active) {
-		if (math.abs(crosstrack) < 3) {
-			setprop("/autopilot/internal/LNAV-NAV-armed", 0);
-			setprop("/autopilot/display/roll-mode-armed", "");
+	if (LNAV) {
+		setprop("/autopilot/internal/LNAV", 0);
 
-			setprop("/autopilot/internal/LNAV-NAV", 0);
-			setprop("/autopilot/internal/LNAV-HDG", 0);
-			setprop("/autopilot/internal/LNAV", 1);
+		setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/roll-mode", "");
+	} else {
+		if (!GS and route_active) {
+			if (math.abs(crosstrack) < 3) {
+				setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+				setprop("/autopilot/display/roll-mode-armed", "");
 
-			setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
-			setprop("/autopilot/display/roll-mode", "LNAV");
+				setprop("/autopilot/internal/LNAV-NAV", 0);
+				setprop("/autopilot/internal/LNAV-HDG", 0);
+				setprop("/autopilot/internal/LNAV", 1);
+
+				setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+				setprop("/autopilot/display/roll-mode", "LNAV");
+			}
 		}
 	}
 }
@@ -372,9 +433,15 @@ var lnav_button_press = func {
 ##########################################################################
 # HDG button
 var hdg_button_press = func {
-
 	GS  = getprop("/autopilot/internal/VNAV-GS");
-	if (!GS) {
+	HDG = getprop("/autopilot/internal/LNAV-HDG");
+
+	if (HDG) {
+		setprop("/autopilot/internal/LNAV-HDG", 0);
+
+		setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/roll-mode", "");
+	} elsif (!GS) {
 		hdg_mode_engage();
 	}
 }
@@ -382,9 +449,20 @@ var hdg_button_press = func {
 ##########################################################################
 # VORLOC button
 var vorloc_button_press = func {
-
 	GS  = getprop("/autopilot/internal/VNAV-GS");
-	if (!GS) {
+	vor_light = getprop("/autopilot/internal/LNAV-NAV-light");
+
+	if (vor_light) {
+		if (getprop("/autopilot/internal/LNAV-NAV-armed")){
+			setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+			setprop("/autopilot/display/roll-mode-armed", "");
+		} else {
+			setprop("/autopilot/internal/LNAV-NAV", 0);
+
+			setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+			setprop("/autopilot/display/roll-mode", "");
+		}
+	} elsif (!GS) {
 		setprop("/autopilot/internal/LNAV-NAV-armed", 1);
 		setprop("/autopilot/display/roll-mode-armed", "VOR/LOC");
 	}
@@ -769,15 +847,19 @@ if (getprop("/autopilot/internal/LNAV-NAV-armed")) {
 		deflection = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm");
 		course = getprop("/instrumentation/nav[0]/radials/target-radial-deg");
 		delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav1");
+		in_range = getprop("/instrumentation/nav[0]/in-range");
+		signal = getprop("/instrumentation/nav[0]/signal-quality-norm");
 	} else {
 		deflection = getprop("/instrumentation/nav[1]/heading-needle-deflection-norm");
 		course = getprop("/instrumentation/nav[1]/radials/target-radial-deg");
 		delta_target_heading = getprop("/autopilot/internal/target-heading-shift-nav2");
+		in_range = getprop("/instrumentation/nav[1]/in-range");
+		signal = getprop("/instrumentation/nav[1]/signal-quality-norm");
 	}
 
 	delta_current_heading = geo.normdeg180(getprop("/orientation/heading-deg") - course);
 
-	if((deflection < 0.2 and deflection > -0.2) or (deflection < 0.99 and deflection > -0.99 and math.abs(delta_target_heading) < math.abs(delta_current_heading))){
+	if(((deflection < 0.2 and deflection > -0.2) or (deflection < 0.99 and deflection > -0.99 and math.abs(delta_target_heading) < math.abs(delta_current_heading))) and in_range and signal > 0.99){
 		vorloc_mode_engage();
 	}
 
@@ -795,12 +877,14 @@ if (getprop("/autopilot/internal/VNAV-GS-armed")) {
 	if (getprop("/autopilot/internal/FCC-A-master")) {
 		deflection = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
 		in_range = getprop("/instrumentation/nav[0]/gs-in-range");
+		signal = getprop("/instrumentation/nav[0]/signal-quality-norm");
 	} else {
 		deflection = getprop("/instrumentation/nav[1]/gs-needle-deflection-norm");
 		in_range = getprop("/instrumentation/nav[1]/gs-in-range");
+		signal = getprop("/instrumentation/nav[1]/signal-quality-norm");
 	}
 	LOC = getprop("/autopilot/internal/LNAV-NAV");
-	if(deflection < 0.2 and deflection > -0.2 and LOC and in_range){
+	if(deflection < 0.2 and deflection > -0.2 and LOC and in_range and signal > 0.99){
 		gs_engage();
 	}
 
