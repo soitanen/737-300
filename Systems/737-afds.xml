@@ -629,58 +629,6 @@
     <gain>1.0</gain>
   </filter>
 
-<!-- calculate derivate for crosstrack error NAV1 -->
-
-  <predict-simple>
-    <name>z value in 1 second</name>
-    <debug type="bool">false</debug>
-    <seconds>1</seconds>
-    <filter-gain>0</filter-gain>
-    <input>instrumentation/nav[0]/crosstrack-error-m</input>
-    <output>autopilot/internal/lookahead-1-sec-nav1-crosstrack-m</output>
-  </predict-simple>
-
-  <filter>
-    <name>z derivate</name>
-    <debug>false</debug>
-    <type>gain</type>
-    <input>
-      <property>autopilot/internal/lookahead-1-sec-nav1-crosstrack-m</property>
-      <offset>
-        <property>instrumentation/nav[0]/crosstrack-error-m</property>
-        <scale>-1.0</scale>
-      </offset>
-    </input>
-    <output>autopilot/internal/nav1-crosstrack-rate-mps</output>
-    <gain>1.0</gain>
-  </filter>
-
-<!-- calculate derivate for crosstrack error NAV2 -->
-
-  <predict-simple>
-    <name>z value in 1 second</name>
-    <debug type="bool">false</debug>
-    <seconds>1</seconds>
-    <filter-gain>0</filter-gain>
-    <input>instrumentation/nav[1]/crosstrack-error-m</input>
-    <output>autopilot/internal/lookahead-1-sec-nav2-crosstrack-m</output>
-  </predict-simple>
-
-  <filter>
-    <name>z derivate</name>
-    <debug>false</debug>
-    <type>gain</type>
-    <input>
-      <property>autopilot/internal/lookahead-1-sec-nav2-crosstrack-m</property>
-      <offset>
-        <property>instrumentation/nav[1]/crosstrack-error-m</property>
-        <scale>-1.0</scale>
-      </offset>
-    </input>
-    <output>autopilot/internal/nav2-crosstrack-rate-mps</output>
-    <gain>1.0</gain>
-  </filter>
-
 <!-- calculate derivate for heading needle NAV1 -->
 
   <predict-simple>

@@ -45,7 +45,6 @@ if (VS) {
 	setprop("/autopilot/internal/VNAV-ALT-ACQ", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/internal/TOGA", 0);
-	setprop("/autopilot/display/pitch-mode-armed", "");
 
 	var vs_fpm_current = getprop("/autopilot/internal/current-vertical-speed-fpm");
 
@@ -87,20 +86,8 @@ var mcp_alt_change = func {
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT") and diff_hld > 100) {
 		setprop("/autopilot/internal/VNAV-VS-armed", 1);
-		gs_arm = getprop("/autopilot/internal/VNAV-GS-armed");
-		if (gs_arm) {
-			setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
-		} else {
-			setprop("/autopilot/display/pitch-mode-armed", "V/S");
-		}
 	} else {
 		setprop("/autopilot/internal/VNAV-VS-armed", 0);
-		gs_arm = getprop("/autopilot/internal/VNAV-GS-armed");
-		if (gs_arm) {
-			setprop("/autopilot/display/pitch-mode-armed", "G/S");
-		} else {
-			setprop("/autopilot/display/pitch-mode-armed", "");
-		}
 	}
 	setprop("/b733/sound/mcp-last-change", getprop("/sim/time/elapsed-sec"));
 }
@@ -371,12 +358,6 @@ var app_button_press = func {
 		if (getprop("/autopilot/internal/VNAV-GS-armed")) {
 
 			setprop("/autopilot/internal/VNAV-GS-armed", 0);
-			vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
-			if (vs_arm) {
-				setprop("/autopilot/display/pitch-mode-armed", "V/S");
-			} else {
-				setprop("/autopilot/display/pitch-mode-armed", "");
-			}
 
 			if (getprop("/autopilot/internal/LNAV-NAV-armed")) {
 				setprop("/autopilot/internal/LNAV-NAV-armed", 0);
@@ -385,12 +366,6 @@ var app_button_press = func {
 
 		} else {
 			setprop("/autopilot/internal/VNAV-GS-armed", 1);
-			vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
-			if (vs_arm) {
-				setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
-			} else {
-				setprop("/autopilot/display/pitch-mode-armed", "G/S");
-			}
 
 			if (!LOC) {
 				setprop("/autopilot/internal/LNAV-NAV-armed", 1);
@@ -416,20 +391,40 @@ var lnav_button_press = func {
 	} else {
 		if (!GS and route_active) {
 			if (math.abs(crosstrack) < 3) {
-				setprop("/autopilot/internal/LNAV-NAV-armed", 0);
-				setprop("/autopilot/display/roll-mode-armed", "");
+				lnav_engage();
+			} else {
+				course_true = getprop("/instrumentation/gps/wp/leg-true-course-deg");
+				bearing_true = getprop("/autopilot/route-manager/wp/true-bearing-deg");
+				track_true = getprop("/orientation/track-deg");
 
-				setprop("/autopilot/internal/LNAV-NAV", 0);
-				setprop("/autopilot/internal/LNAV-HDG", 0);
-				setprop("/autopilot/internal/LNAV", 1);
+				track_rel = geo.normdeg180(track_true - course_true);
+				bearing_rel = geo.normdeg180(bearing_true - course_true);
 
-				setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
-				setprop("/autopilot/display/roll-mode", "LNAV");
+				if (bearing_rel < 0) {
+					if (track_rel < bearing_rel and track_rel > -180) {
+						lnav_engage();
+					}
+				} else {
+					if (track_rel > bearing_rel and track_rel < 180) {
+						lnav_engage();
+					}
+				}
 			}
 		}
 	}
 }
 
+var lnav_engage = func {
+	setprop("/autopilot/internal/LNAV-NAV-armed", 0);
+	setprop("/autopilot/display/roll-mode-armed", "");
+
+	setprop("/autopilot/internal/LNAV-NAV", 0);
+	setprop("/autopilot/internal/LNAV-HDG", 0);
+	setprop("/autopilot/internal/LNAV", 1);
+
+	setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/roll-mode", "LNAV");
+}
 ##########################################################################
 # HDG button
 var hdg_button_press = func {
@@ -765,7 +760,6 @@ var alt_hold_engage = func {
 var flare_arm = func {
 	flare_arm = getprop("/autopilot/logic/flare-arm");
 	if (flare_arm) {
-		setprop("/autopilot/display/pitch-mode-armed", "FLARE");
 		setprop("/autopilot/internal/VNAV-VS-armed", 0);
 		setprop("/autopilot/internal/VNAV-FLARE-armed", 1);
 
@@ -799,7 +793,6 @@ var flare_50ft_check = func {
 
 		setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
 		setprop("/autopilot/display/pitch-mode", "FLARE");
-		setprop("/autopilot/display/pitch-mode-armed", "");
 		setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
 	}
 }
@@ -920,7 +913,6 @@ var gs_engage = func {
 
 	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/pitch-mode", "G/S");
-	setprop("/autopilot/display/pitch-mode-armed", "");
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
 
 	speed_engage();
@@ -944,7 +936,7 @@ var toga_engage = func {
 	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/pitch-mode", "TO/GA");
-	setprop("/autopilot/display/pitch-mode-armed", "");
+	setprop("/autopilot/internal/VNAV-VS-armed", 0);
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
 	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
 	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
@@ -1031,3 +1023,23 @@ var throttle_mode_change = func {
 setlistener( "/autopilot/display/roll-mode", roll_mode_change, 0, 0);
 setlistener( "/autopilot/display/pitch-mode", pitch_mode_change, 0, 0);
 setlistener( "/autopilot/display/throttle-mode", throttle_mode_change, 0, 0);
+
+var pitch_arm_change = func {
+	gs_arm = getprop("/autopilot/internal/VNAV-GS-armed");
+	vs_arm = getprop("/autopilot/internal/VNAV-VS-armed");
+	flare_arm = getprop("/autopilot/internal/VNAV-FLARE-armed");
+	if (gs_arm and vs_arm) {
+		setprop("/autopilot/display/pitch-mode-armed", "G/S V/S");
+	} elsif (!gs_arm and vs_arm) {
+		setprop("/autopilot/display/pitch-mode-armed", "V/S");
+	} elsif (gs_arm and !vs_arm) {
+		setprop("/autopilot/display/pitch-mode-armed", "G/S");
+	} elsif (flare_arm) {
+		setprop("/autopilot/display/pitch-mode-armed", "FLARE");
+	} else {
+		setprop("/autopilot/display/pitch-mode-armed", "");
+	}
+}
+setlistener( "/autopilot/internal/VNAV-GS-armed", pitch_arm_change, 0, 0);
+setlistener( "/autopilot/internal/VNAV-VS-armed", pitch_arm_change, 0, 0);
+setlistener( "/autopilot/internal/VNAV-FLARE-armed", pitch_arm_change, 0, 0);

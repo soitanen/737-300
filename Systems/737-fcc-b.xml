@@ -154,8 +154,8 @@
       </expression>
     </input>
     <output>/autopilot/internal/target-heading-shift-fms</output>
-      <min>-60</min>
-      <max>60</max>
+      <min>-30</min>
+      <max>30</max>
     <gain>1.0</gain>
   </filter>
 
