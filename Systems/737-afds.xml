@@ -366,6 +366,25 @@
     </config>
   </pid-controller>
 
+<filter> <!-- translate maximum N1 to target N1 -->
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+       <condition>
+        <and>
+          <property>/autopilot/internal/SPD</property>
+          <property>/autopilot/internal/SPD-N1</property>
+        </and>
+      </condition>
+  </enable>	
+  <input>
+    <property>/autopilot/settings/max-n1</property>
+  </input>
+  <output>
+    <prop>/autopilot/internal/target-n1</prop>
+  </output>
+</filter>
+
 <filter> <!-- throttle setting from any mode (from TARGET N1) -->
   <type>gain</type>
   <gain>1</gain>
@@ -872,6 +891,7 @@
        <property>/autopilot/internal/VNAV-ALT</property>
        <property>/autopilot/internal/LVLCHG</property>
        <property>/autopilot/internal/TOGA</property>
+       <property>/autopilot/internal/GA</property>
      </or>
    </input>
    <output>/autopilot/internal/PITCH-ACTIVE</output>
@@ -886,6 +906,7 @@
        <property>/autopilot/internal/SPD-SPEED</property>
        <property>/autopilot/internal/SPD-RETARD</property>
        <property>/autopilot/internal/TOGA</property>
+       <property>/autopilot/internal/GA</property>
      </or>
    </input>
    <output>/autopilot/internal/THROTTLE-ACTIVE</output>
@@ -1110,5 +1131,36 @@
    </input>
    <output>/autopilot/logic/at-arm-toga</output>
  </logic>
+
+<!-- TAT calculation -->
+
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <expression>
+      <sum>
+        <product>
+          <sum>
+            <property>/environment/temperature-degc</property>
+            <value>273.15</value>
+          </sum>
+          <sum>
+            <value>1</value>
+            <product>
+              <value>0.2</value>
+              <property>/velocities/mach</property>
+              <property>/velocities/mach</property>
+            </product>
+          </sum>
+        </product>
+        <value>-273.15</value>
+      </sum>
+    </expression>
+  </input>
+  <output>
+    <prop>/fdm/jsbsim/atmosphere/TAT-C</prop>
+  </output>
+</filter>
 
 </PropertyList>

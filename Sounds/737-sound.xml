@@ -1822,21 +1822,6 @@
     <factor>1</factor>
   </volume>
   </overspeed>
-  
-	<overalt>
-   <name>overalt</name>
-	 <mode>looped</mode>
-   <path>Aircraft/737-300/Sounds/overspeed.wav</path>
-  <condition>
-    <greater-than>
-      <property>/instrumentation/altimeter/indicated-altitude-ft</property>
-	    <value>37009</value>
-	  </greater-than>
-	</condition>
-  <volume>
-    <factor>1</factor>
-  </volume>
-  </overalt>
 
   <trimming>
     <name>trimming</name>

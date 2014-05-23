@@ -19,8 +19,9 @@ if (getprop("/b733/at-helper")) {
   speed = getprop("/autopilot/internal/SPD-SPEED");
   n1 = getprop("/autopilot/internal/SPD-N1");
   toga = getprop("/autopilot/internal/TOGA");
+  retard = getprop("/autopilot/internal/SPD-RETARD");
 
-  if (at and (speed or n1 or toga)) {
+  if (at and (speed or n1 or toga or retard)) {
    at_pos = getprop("/b733/helpers/at-pos-round");
    mt_pos = getprop("/b733/helpers/mt-pos-round");
 

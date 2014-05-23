@@ -497,6 +497,8 @@
       <min-lvlchg-vs type="double">-7800</min-lvlchg-vs>
       <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
       <max-n1 type="double">95</max-n1>
+      <to-n1 type="double">106</to-n1>
+      <reduced-ga-n1 type="double">100</reduced-ga-n1>
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
 
       <fcca-target-roll-rate type="double">0</fcca-target-roll-rate>
@@ -531,6 +533,7 @@
 
       <LVLCHG type="bool">false</LVLCHG>
       <TOGA type="bool">false</TOGA>
+      <GA type="bool">false</GA>
             
       <SPD type="bool">false</SPD>
       <SPD-SPEED type="bool">false</SPD-SPEED>
@@ -602,7 +605,7 @@
   <vne>350</vne>
   <max-positive-g>2.5</max-positive-g>
   <max-negative-g>-1</max-negative-g>
-  <max-altitude>37000</max-altitude>
+  <max-altitude>37050</max-altitude>
  </limits>
 
   <consumables>
@@ -1074,10 +1077,10 @@
 
       <key n="100">
         <name>d</name>
-        <desc>Increase spoiler lever position</desc>
+        <desc>TOGA button</desc>
         <binding>
           <command>nasal</command>
-          <script>autopilot737.toga_engage();</script>
+          <script>autopilot737.toga_button();</script>
         </binding>
       </key>
    
@@ -1161,6 +1164,9 @@
 
   <fdm>
     <jsbsim>
+      <atmosphere>
+        <TAT-C type="double">15</TAT-C>
+      </atmosphere>
       <fcs>
         <flap-lrs type="double">0</flap-lrs>
         <stabilizer-pos-unit type="double">3</stabilizer-pos-unit>

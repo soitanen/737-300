@@ -8,14 +8,14 @@
   Inputs:
     name:           CFM56
     type:           turbine
-    thrust:         20000 lb BASIC ENGINE FOR 737-300
+    thrust:         22000 lb MOST POPULAR (?) ENGINE FOR 737-300
     augmented?      no
     injected?       no
 -->
 
 <turbine_engine name="CFM56">
-  <milthrust> 20000.0 </milthrust>
-  <bypassratio>     6.0 </bypassratio>
+  <milthrust> 22000.0 </milthrust>
+  <bypassratio>     4.0 </bypassratio>
   <tsfc>            0.657 </tsfc>
   <bleed>           0.03 </bleed>
   <idlen1>         22.0 </idlen1>
@@ -28,15 +28,15 @@
   <function name="IdleThrust">
    <table>
     <independentVar lookup="row">velocities/mach</independentVar>
-    <independentVar lookup="column">atmosphere/density-altitude</independentVar>
+    <independentVar lookup="column">atmosphere/rho-slugs_ft3</independentVar>
     <tableData>
-         -10000     0     10000   20000   30000   40000   50000
-     0.0  0.0420  0.0436  0.0528  0.0694  0.0899  0.1183  0.1467
-     0.2  0.0500  0.0501  0.0335  0.0544  0.0797  0.1049  0.1342
-     0.4  0.0040  0.0047  0.0020  0.0272  0.0595  0.0891  0.1203
-     0.6  0.0     0.0     0.0     0.0     0.0276  0.0718  0.1073
-     0.8  0.0     0.0     0.0     0.0     0.0174  0.0468  0.0900
-     1.0  0.0     0.0     0.0     0.0     0.0     0.0422  0.0700
+	0.0003957363	0.0006047429	0.0008892757	0.0012664297	0.0017552648	0.0023768479	0.0031542928
+0	0.1467	0.1183	0.0899	0.0694	0.0528	0.0436	0.042
+0.2	0.1342	0.1049	0.0797	0.0544	0.0335	0.0501	0.05
+0.4	0.1203	0.0891	0.0595	0.0272	0.002	0.0047	0.004
+0.6	0.1073	0.0718	0.0276	0	0	0	0
+0.8	0.09	0.0468	0.0174	0	0	0	0
+1	0.07	0.0422	0	0	0	0	0
     </tableData>
    </table>
   </function>
@@ -44,17 +44,17 @@
   <function name="MilThrust">
    <table>
     <independentVar lookup="row">velocities/mach</independentVar>
-    <independentVar lookup="column">atmosphere/density-altitude</independentVar>
+    <independentVar lookup="column">atmosphere/rho-slugs_ft3</independentVar>
     <tableData>
-          -10000       0   10000   20000   30000   40000   50000
-     0.0   1.2600  1.0000  0.7400  0.5340  0.3720  0.2410  0.1490
-     0.2   1.1710  0.9340  0.6970  0.5060  0.3550  0.2310  0.1430
-     0.4   1.1500  0.9210  0.6920  0.5060  0.3570  0.2330  0.1450
-     0.6   1.1810  0.9510  0.7210  0.5320  0.3780  0.2480  0.1540
-     0.8   1.2580  1.0200  0.7820  0.5820  0.4170  0.2750  0.1700
-     1.0   1.3690  1.1200  0.8710  0.6510  0.4750  0.3150  0.1950
-     1.2   1.4850  1.2300  0.9750  0.7440  0.5450  0.3640  0.2250
-	   1.4   1.5941  1.3400  1.0860  0.8450  0.6280  0.4240  0.2630
+	0.0003957363	0.0006047429	0.0008892757	0.0012664297	0.0017552648	0.0023768479	0.0031542928
+0	0.149	0.241	0.372	0.534	0.74	1	1.26
+0.2	0.143	0.231	0.355	0.506	0.697	0.934	1.171
+0.4	0.145	0.233	0.357	0.506	0.692	0.921	1.15
+0.6	0.154	0.248	0.378	0.532	0.721	0.951	1.181
+0.8	0.17	0.275	0.417	0.582	0.782	1.02	1.258
+1	0.195	0.315	0.475	0.651	0.871	1.12	1.369
+1.2	0.225	0.364	0.545	0.744	0.975	1.23	1.485
+1.4	0.263	0.424	0.628	0.845	1.086	1.34	1.5941
     </tableData>
    </table>
   </function>
