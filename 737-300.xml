@@ -13,7 +13,7 @@
     </fileheader>
 
     <metrics>
-        <wingarea unit="FT2"> 1171.00 </wingarea>
+        <wingarea unit="FT2"> 1135.00 </wingarea>
         <wingspan unit="FT">    94.70 </wingspan>
         <chord unit="FT">       12.31 </chord>
         <htailarea unit="FT2"> 348.00 </htailarea>
@@ -1285,10 +1285,13 @@
                           <independentVar>aero/alpha-rad</independentVar>
 			
                           <tableData>
-                             -0.20    -0.68
-                              0.00	0.20
-                              0.23	1.20
-                              0.46	0.20
+                             -0.1745329252	-0.6835672394
+                              0.2617993878	1.3038508592
+			      0.2967059728	1.4
+			      0.3141592654	1.45
+			      0.3316125579	1.48
+			      0.3490658504	1.45
+                              0.46	1
                           </tableData>
                       </table>
                 </product>

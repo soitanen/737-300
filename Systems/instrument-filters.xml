@@ -252,6 +252,19 @@
     <prop>/instrumentation/flightdirector/fd-right-pitch</prop>
   </output>
 </filter>
+
+<!-- Transfer weight to kilogramms-->
+<filter n="10014">
+  <type>gain</type>
+  <gain>0.4536</gain>
+  <input>
+    <prop>/fdm/jsbsim/inertia/weight-lbs</prop>
+  </input>
+  <output>
+    <prop>/fdm/jsbsim/inertia/weight-kg</prop>
+  </output>
+</filter>
+
 <!-- ############################################################################# -->
 <!-- Calculating engine sound params                                               -->
 <!-- ############################################################################# -->
