@@ -1023,7 +1023,77 @@
 
   </channel>
 
+        <channel name="reverse-drag-left">
+          <fcs_function name="aero/function/left-engine-reverse-drag">
+                <function>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/engines/engine[0]/reverser-pos-norm</property>
+                  <table>
+                      <independentVar>propulsion/engine[0]/n1</independentVar>
+                      <tableData>
+                          22	0.022
+                          90	0.069
+                      </tableData>
+                  </table>
+               </product>
+                </function>
+                <output> external_reactions/reverse-drag-left/magnitude </output>
+            </fcs_function>
+        </channel>
+
+        <channel name="reverse-drag-right">
+          <fcs_function name="aero/function/right-engine-reverse-drag">
+                <function>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/engines/engine[1]/reverser-pos-norm</property>
+                  <table>
+                      <independentVar>propulsion/engine[1]/n1</independentVar>
+                      <tableData>
+                          22	0.022
+                          90	0.069
+                      </tableData>
+                  </table>
+               </product>
+                </function>
+                <output> external_reactions/reverse-drag-right/magnitude </output>
+            </fcs_function>
+        </channel>
+
     </flight_control>
+
+       <external_reactions>
+    
+        <force name="reverse-drag-left" frame="BODY">
+            <location unit="IN">
+            <x>  540  </x>
+            <y> -193 </y>
+            <z>  -54 </z>
+            </location>
+            <direction>
+            <x>   -1 </x>
+            <y>    0 </y>
+            <z>    0 </z>
+            </direction>
+        </force>
+
+        <force name="reverse-drag-right" frame="BODY">
+            <location unit="IN">
+            <x>  540  </x>
+            <y>  193 </y>
+            <z>  -54 </z>
+            </location>
+            <direction>
+            <x>   -1 </x>
+            <y>    0 </y>
+            <z>    0 </z>
+            </direction>
+        </force>
+    
+    </external_reactions>
 
     <aerodynamics>
 
@@ -1045,6 +1115,44 @@
 			30	92.2	93.2	93.5	94.2	94.6	94.7	95.7	96.6	96.6
 			40	92	92.2	93.6	93.3	93.6	94.7	95.7	96.6	96.6
 			50	90.9	91.1	92.5	93.3	93.6	94.7	95.7	96.6	96.6
+                </tableData>
+            </table>
+        </function>
+
+        <function name="/engines/engine[0]/reverse-thrust-lbs">
+            <description>Reverse thrust calculation</description>
+            <table>
+                <independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
+                <independentVar lookup="column">velocities/vtrue-kts</independentVar>
+                <tableData>
+				0		50		100		150
+			20	-178.708	-590.783	-1118.65	-2031.77
+			30	-444.947	-879.934	-1646.63	-2614
+			40	-741.936	-1362.52	-2252.83	-3437.6
+			50	-1039.37	-1886.22	-2985.17	-4263.13
+			60	-1399.4		-2503.74	-3764.42	-5224.55
+			70	-1791.48	-3121.25	-4560.77	-6197.11
+			80	-2210.91	-3749.68	-5357.11	-7194.32
+			90	-2664.33	-4419.46	-6153.45	-8191.53
+                </tableData>
+            </table>
+        </function>
+
+        <function name="/engines/engine[1]/reverse-thrust-lbs">
+            <description>Reverse thrust calculation</description>
+            <table>
+                <independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+                <independentVar lookup="column">velocities/vtrue-kts</independentVar>
+                <tableData>
+				0		50		100		150
+			20	-178.708	-590.783	-1118.65	-2031.77
+			30	-444.947	-879.934	-1646.63	-2614
+			40	-741.936	-1362.52	-2252.83	-3437.6
+			50	-1039.37	-1886.22	-2985.17	-4263.13
+			60	-1399.4		-2503.74	-3764.42	-5224.55
+			70	-1791.48	-3121.25	-4560.77	-6197.11
+			80	-2210.91	-3749.68	-5357.11	-7194.32
+			90	-2664.33	-4419.46	-6153.45	-8191.53
                 </tableData>
             </table>
         </function>
@@ -1101,7 +1209,7 @@
                       <independentVar>fcs/speedbrake-pos-norm</independentVar>
                       <tableData>
                           0.0000	1.0
-                          0.1000	0.85
+                          1.0000	0.85
                       </tableData>
                   </table>
             </product>
@@ -1114,7 +1222,7 @@
                       <independentVar>fcs/spoiler-pos-norm</independentVar>
                       <tableData>
                           0.0000	1.0
-                          0.1000	0.6
+                          1.0000	0.6
                       </tableData>
                   </table>
             </product>
@@ -1235,16 +1343,6 @@
                     <value>0.059</value>
                 </product>
             </function>
-
-            <function name="aero/coefficient/CDrv">
-              <description>Drag_due_to_reverse</description>
-                <product>
-                    <property>aero/qbar-psf</property>
-                 <property>metrics/Sw-sqft</property>
-                  <property>/engines/engine/reverser-pos-norm</property>
-                   <value>0.018</value>
-               </product>
-	    </function>
 
         </axis>
 
