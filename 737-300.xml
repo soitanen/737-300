@@ -1265,12 +1265,24 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                       <table>
-                          <independentVar>velocities/mach</independentVar>
+                          <independentVar>velocities/mach</independentVar> <!-- Data taken from book "Aerodynamic design of transport aircraft" -->
                           <tableData>
-                              0.00	0.0000
-                              0.79	0.0000
-                              1.10	0.0230
-                              1.80	0.0150
+				0.6	0
+				0.62	0.0001
+				0.64	0.0001
+				0.66	0.0002
+				0.68	0.0003
+				0.7	0.0005
+				0.72	0.0006
+				0.74	0.0009
+				0.76	0.0012
+				0.78	0.0022
+				0.8	0.0042
+				0.82	0.0065
+				0.84	0.0087
+				0.86	0.011
+				0.88	0.0132
+				0.9	0.0155
                           </tableData>
                       </table>
                 </product>
