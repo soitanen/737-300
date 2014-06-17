@@ -1255,7 +1255,13 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/cl-squared</property>
                     <property>aero/function/kCDge</property>
-                    <value>0.043</value>
+                    <table>
+                       <independentVar>fcs/flap-pos-norm</independentVar> <!-- Data taken from book, Oswald efficiency factor depends on flap setting -->
+                       <tableData>
+                          0	0.05365
+                          1	0.04679
+                       </tableData>
+                    </table>
                 </product>
             </function>
 
