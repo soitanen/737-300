@@ -1,3 +1,4 @@
+##
 setlistener("/sim/signals/fdm-initialized", func {
     copilot.init();
 });
@@ -11,7 +12,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 var copilot = {
 	init : func { 
-        me.UPDATE_INTERVAL = 1.73; 
+        me.UPDATE_INTERVAL = 0.5; 
         me.loopid = 0; 
 		# Initialize state variables.
 		me.Eightyannounced = 0;
@@ -64,7 +65,7 @@ if (grossweight < 77000) {
 	 V2 = 154;
 	 } elsif (grossweight >132000) {
 	 V1 = 154;
-	 VR = 15;
+	 VR = 155;
 	 V2 = 160;
 	 } 
 
@@ -73,9 +74,9 @@ if (grossweight < 77000) {
     setprop("/instrumentation/fmc/vspeeds/V2", V2);	 
 	 
     var airspeed = getprop("velocities/airspeed-kt");
-		var V1 = getprop("/instrumentation/fmc/vspeeds/V1");
-		var VR = getprop("/instrumentation/fmc/vspeeds/VR");
-		var V2 = getprop("/instrumentation/fmc/vspeeds/V2");
+		#var V1 = getprop("/instrumentation/fmc/vspeeds/V1");
+		#var VR = getprop("/instrumentation/fmc/vspeeds/VR");
+		#var V2 = getprop("/instrumentation/fmc/vspeeds/V2");
 				
         if ((airspeed > 79) and (me.Eightyannounced == 0)) {
             me.announce("80 Knots");
@@ -89,7 +90,7 @@ if (grossweight < 77000) {
         } elsif ((airspeed != nil) and (V2 != nil) and (airspeed > V2) and (me.V2announced == 0)) {
             me.announce("V2");
 			me.V2announced = 1;
-        } elsif ((me.V2announced == 1) and (me.PRannounced == 0) and (getprop("position/altitude-agl-ft") > 300) and (getprop("/velocities/vertical-speed-fps") > 10)) {
+        } elsif ((me.V2announced == 1) and (me.PRannounced == 0) and (getprop("/position/altitude-agl-ft") > 50) and (getprop("/velocities/vertical-speed-fps") > 5)) 	{
             me.announce("Positive Rate - Gear Up");
 			me.PRannounced = 1;
         } elsif ((V1 == nil) or (V2 == nil) or (VR == nil)){

@@ -1,3 +1,4 @@
+##
 
 var gearpos = func {
 
@@ -17,23 +18,18 @@ if (getprop("sim/co-pilot")) {
 # Calculate Recommended Landing Speeds		 
 
   var grossweight = getprop("fdm/jsbsim/inertia/weight-lbs") or 0.00;
-   var RLS = 0;
-   if (grossweight < 77000) { 
-	   RLS = 111;
-	 } elsif ((grossweight >77000) and (grossweight <88000)) {
-	   RLS = 119;
-	 } elsif ((grossweight >88000) and (grossweight <99000)) {
-	   RLS = 127;
-	 } elsif ((grossweight >99000) and (grossweight <110000)) {
-	   RLS = 134;
-	 } elsif ((grossweight >110000) and (grossweight <121000)) {
-	   RLS = 141;
-	 } elsif ((grossweight >121000) and (grossweight <132000)) {
-	   RLS = 147;
-	 } elsif (grossweight >132000) {
-	   RLS = 153;
-	 } 
-   setprop("/sim/messages/copilot", "Gross Weight " ~ grossweight ~" - Recommend " ~ RLS ~ " Kt Touchdown @ Flaps 30");
+   grossweight_kg = math.round(grossweight * 0.4536, 100);
+   grossweight = math.round(grossweight, 100);
+
+   vref15 = math.round(getprop("/instrumentation/fmc/v-ref-15"), 1);
+   vref30 = math.round(getprop("/instrumentation/fmc/v-ref-30"), 1);
+   vref40 = math.round(getprop("/instrumentation/fmc/v-ref-40"), 1);
+
+	if (grossweight > 114000) {
+		setprop("/sim/messages/copilot", "Gross Weight "~grossweight~" lb, "~grossweight_kg~" kg. EXCEED MAXIMUM LANDING WEIGHT!!!");
+	} else {
+	setprop("/sim/messages/copilot", "Gross Weight "~grossweight~" lb, "~grossweight_kg~" kg. Vref15 "~vref15~"; Vref30 "~vref30~"; Vref40 "~vref40~" kts");
+	}
   }
 
 }
