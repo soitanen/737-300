@@ -398,30 +398,6 @@
     </offsets>
   </model>
 
-
-  <!--TRIM-->
-  <model>
-    <name>Captains Trim</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/TRIM/trim.xml</path>
-    <offsets>
-      <x-m>-7.029</x-m>
-      <y-m>-0.670</y-m>
-      <z-m>0.670</z-m>
-      <pitch-deg>0</pitch-deg>
-    </offsets>
-  </model>
-  
-  <model>
-    <name>Co-Pilots Trim</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/TRIM/trim.xml</path>
-    <offsets>
-      <x-m>-7.029</x-m>
-      <y-m>0.654</y-m>
-      <z-m>0.700</z-m>
-      <pitch-deg>0</pitch-deg>
-    </offsets>
-  </model>
-
   <!--signal-->
   <model>
     <name>signal</name>
@@ -454,18 +430,6 @@
       <x-m>-7.029</x-m>
       <y-m>-0.296</y-m>
       <z-m>0.613</z-m>
-      <pitch-deg>0</pitch-deg>
-    </offsets>
-  </model>
-  
-	<!--FLAPPOS-CHEAT -->
-  <model>
-    <name>FLAPPOS-CHEAT</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/FLAP/flap.xml</path>
-    <offsets>
-      <x-m>-7.029</x-m>
-      <y-m>-0.263</y-m>
-      <z-m>0.701</z-m>
       <pitch-deg>0</pitch-deg>
     </offsets>
   </model>
