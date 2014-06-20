@@ -55,7 +55,7 @@
 		<object-name>switch.001</object-name>
 		<object-name>checklist</object-name>
  <property>controls/flight/aileron</property>
- <factor>80</factor>
+ <factor>90</factor>
  <center>
   <x-m> 0.000</x-m>
   <y-m>-0.000</y-m>
@@ -78,10 +78,9 @@
   <button>0</button>
     <binding>
    <command>nasal</command>
-				<script>
-				  setprop("/autopilot/internal/CMDA", 0);
-					setprop("/autopilot/internal/CMDB", 0);
-				</script>
+        <script>
+	  autopilot737.apdsng_button_press();
+	</script>
   </binding>
  </action>
  </animation>
