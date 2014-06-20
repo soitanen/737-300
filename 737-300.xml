@@ -15,7 +15,7 @@
     <metrics>
         <wingarea unit="FT2"> 1135.00 </wingarea>
         <wingspan unit="FT">    94.70 </wingspan>
-        <chord unit="FT">       12.31 </chord>
+        <chord unit="IN">      134.50 </chord>
         <htailarea unit="FT2"> 348.00 </htailarea>
         <htailarm unit="FT">    48.04 </htailarm>
         <vtailarea unit="FT2"> 297.00 </vtailarea>
@@ -1096,6 +1096,17 @@
     </external_reactions>
 
     <aerodynamics>
+
+        <function name="inertia/mac">
+            <description>MAC in percents</description>
+            <product>
+              <sum>
+                <property>inertia/cg-x-in</property>
+                <value>-575.6</value>
+              </sum>
+              <value>0.7434944</value>
+            </product>
+        </function>
 
         <function name="/autopilot/settings/max-n1">
             <description>Maximum N1 for CLIMB</description>
