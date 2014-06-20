@@ -164,12 +164,44 @@
   </output>
 </filter>
 
+<filter> <!-- Max authority calculation -->
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <prop>/instrumentation/airspeed-indicator[0]/indicated-speed-kt</prop>
+    <scale>-0.0003623188</scale>
+    <offset>0.182357143</offset>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-pos</prop>
+  </output>
+  <min>0.059</min>
+  <max>0.143</max>
+</filter>
+
+<filter> <!-- Max authority calculation negative -->
+  <type>gain</type>
+  <gain>-1</gain>
+  <input>
+    <prop>/autopilot/settings/max-authority-pos</prop>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-neg</prop>
+  </output>
+</filter>
+
   <pi-simple-controller>
     <name>Acceleration comparator</name>
     <debug>false</debug>
     <enable>
       <condition>
-        <property>/autopilot/internal/PITCH-ACTIVE</property>
+        <and>
+          <or>
+            <property>/autopilot/internal/CMDA</property>
+            <property>/autopilot/internal/CMDB</property>
+          </or>
+          <property>/autopilot/internal/PITCH-ACTIVE</property>
+        </and>
       </condition>
     </enable>	
     <input>
@@ -184,14 +216,14 @@
     <config>
       <Kp>-0.9</Kp>          <!-- proportional gain -->
       <Ki>-0.3</Ki>          <!-- integral gain -->
-      <u_min>-1</u_min> <!-- minimum output clamp -->
-      <u_max>1</u_max>   <!-- maximum output clamp -->
+      <u_min>/autopilot/settings/max-authority-neg</u_min> <!-- minimum output clamp -->
+      <u_max>/autopilot/settings/max-authority-pos</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
 <filter>
   <type>gain</type>
-  <gain>0.1</gain>
+  <gain>0.08</gain>
   <input>
     <property>/orientation/pitch-rate-degps</property>
   </input>
@@ -252,16 +284,75 @@
 == STABILIZER Trim system ==
 ============================
 -->
+<!-- 10% of authority calculation -->
+<filter>
+  <type>gain</type>
+  <gain>0.1</gain>
+  <input>
+    <property>/autopilot/settings/max-authority-pos</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-pos-ten-percent</prop>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>0.1</gain>
+  <input>
+    <property>/autopilot/settings/max-authority-neg</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-neg-ten-percent</prop>
+  </output>
+</filter>
+
+<!-- 2% of authority calculation -->
+
+<filter>
+  <type>gain</type>
+  <gain>0.04</gain>
+  <input>
+    <property>/autopilot/settings/max-authority-pos</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-pos-two-percent</prop>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>0.04</gain>
+  <input>
+    <property>/autopilot/settings/max-authority-neg</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/max-authority-neg-two-percent</prop>
+  </output>
+</filter>
+
+
  <logic>
+  <enable>
+      <condition>
+        <and>
+          <or>
+            <property>/autopilot/internal/CMDA</property>
+            <property>/autopilot/internal/CMDB</property>
+          </or>
+          <property>/autopilot/internal/PITCH-ACTIVE</property>
+        </and>
+      </condition>
+  </enable>
    <input>
      <or>
        <greater-than>
          <property>/controls/flight/elevator</property>
-         <value>0.1</value>
+         <property>/autopilot/settings/max-authority-pos-ten-percent</property>
        </greater-than>
        <less-than>
          <property>/controls/flight/elevator</property>
-         <value>-0.1</value>
+         <property>/autopilot/settings/max-authority-neg-ten-percent</property>
        </less-than>
      </or>
    </input>
@@ -307,7 +398,7 @@
       <property>/b733/helpers/trim-feel-3-4</property>
       <greater-than>
         <property>/controls/flight/elevator</property>
-        <value>0</value>
+        <property>/autopilot/settings/max-authority-pos-two-percent</property>
       </greater-than>
      </and>
     </condition>
@@ -319,7 +410,7 @@
       <property>/b733/helpers/trim-feel-3-4</property>
       <less-than>
         <property>/controls/flight/elevator</property>
-        <value>0</value>
+        <property>/autopilot/settings/max-authority-neg-two-percent</property>
       </less-than>
      </and>
     </condition>

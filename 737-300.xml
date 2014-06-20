@@ -1157,6 +1157,60 @@
             </table>
         </function>
 
+        <function name="/instrumentation/fmc/v-ref-15">
+            <description>Vref calculation for flaps 15</description>
+            <product>
+                  <table>
+                      <independentVar>inertia/weight-lbs</independentVar>
+                      <tableData>
+			77160	119
+			88183	128
+			99206	136
+			110229	144
+			121252	151
+			132275	158
+			143298	165
+                      </tableData>
+                  </table>
+            </product>
+        </function>
+
+        <function name="/instrumentation/fmc/v-ref-30">
+            <description>Vref calculation for flaps 30</description>
+            <product>
+                  <table>
+                      <independentVar>inertia/weight-lbs</independentVar>
+                      <tableData>
+			77160	111
+			88183	119
+			99206	127
+			110229	134
+			121252	141
+			132275	147
+			143298	154
+                      </tableData>
+                  </table>
+            </product>
+        </function>
+
+        <function name="/instrumentation/fmc/v-ref-40">
+            <description>Vref calculation for flaps 40</description>
+            <product>
+                  <table>
+                      <independentVar>inertia/weight-lbs</independentVar>
+                      <tableData>
+			77160	107
+			88183	115
+			99206	123
+			110229	131
+			121252	138
+			132275	146
+			143298	153
+                      </tableData>
+                  </table>
+            </product>
+        </function>
+
         <function name="aero/function/kCDge">
             <description>Change_in_drag_due_to_ground_effect</description>
             <product>

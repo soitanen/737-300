@@ -473,6 +473,7 @@ var cmda_button_press = func {
 	if (cmdb and (GS or GS_arm) and alt_agl > 800 and nav1 == nav2) {
 		setprop("/autopilot/internal/CMDA", 1);
 	} elsif (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+		setprop("/autopilot/internal/elevator", elevator);
 		setprop("/autopilot/internal/CMDA", 1);
 		setprop("/autopilot/internal/CMDB", 0);
 		setprop("/autopilot/internal/FCC-B-master", 0);
@@ -501,6 +502,7 @@ var cmdb_button_press = func {
 	if (cmda and (GS or GS_arm) and alt_agl > 800 and nav1 == nav2) {
 		setprop("/autopilot/internal/CMDB", 1);
 	} elsif (ailerons < 0.15 and ailerons > -0.15 and elevator < 0.15 and elevator > -0.15) {
+		setprop("/autopilot/internal/elevator", elevator);
 		setprop("/autopilot/internal/CMDB", 1);
 		setprop("/autopilot/internal/CMDA", 0);
 		setprop("/autopilot/internal/FCC-A-master", 0);

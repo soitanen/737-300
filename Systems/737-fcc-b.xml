@@ -571,7 +571,15 @@
     <input>
       <expression>
         <sum>
-          <property>/orientation/alpha-deg</property>
+          <product>
+            <property>/orientation/alpha-deg</property>
+            <cos>
+              <div>
+                <property>/orientation/roll-deg</property>
+                <value>57.2957795131</value>
+              </div>
+            </cos>
+          </product>
           <product>
             <asin>
               <div>
@@ -590,6 +598,8 @@
   <output>
     <prop>/autopilot/settings/fccb-target-pitch-deg</prop>
   </output>
+  <min>-10</min>
+  <max> 20</max>
 </filter>
 
 </PropertyList>
