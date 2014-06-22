@@ -214,7 +214,7 @@
       <prop>/autopilot/internal/elevator</prop>
     </output>
     <config>
-      <Kp>-0.9</Kp>          <!-- proportional gain -->
+      <Kp>-1.8</Kp>          <!-- proportional gain -->
       <Ki>-0.3</Ki>          <!-- integral gain -->
       <u_min>/autopilot/settings/max-authority-neg</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/settings/max-authority-pos</u_max>   <!-- maximum output clamp -->
@@ -287,7 +287,7 @@
 <!-- 10% of authority calculation -->
 <filter>
   <type>gain</type>
-  <gain>0.1</gain>
+  <gain>0.15</gain>
   <input>
     <property>/autopilot/settings/max-authority-pos</property>
   </input>
@@ -298,7 +298,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.1</gain>
+  <gain>0.15</gain>
   <input>
     <property>/autopilot/settings/max-authority-neg</property>
   </input>
@@ -311,7 +311,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.04</gain>
+  <gain>0.06</gain>
   <input>
     <property>/autopilot/settings/max-authority-pos</property>
   </input>
@@ -322,7 +322,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.04</gain>
+  <gain>0.06</gain>
   <input>
     <property>/autopilot/settings/max-authority-neg</property>
   </input>

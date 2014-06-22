@@ -1097,7 +1097,7 @@
 
     <aerodynamics>
 
-        <function name="inertia/mac">
+        <function name="/instrumentation/fmc/cg">
             <description>MAC in percents</description>
             <product>
               <sum>
