@@ -711,6 +711,9 @@
               fcs/flap-lrs == 1
               velocities/vc-kts LE 153
             </test>
+            <test value="0">
+              fcs/flap-cmd-norm LT 1
+            </test>
           </switch>
 
           <switch name="fcs/flap-cmd-norm-lrs">
