@@ -1391,11 +1391,15 @@
       <display>IDENT</display>
       <ident>
         <model>737-300</model>
-        <engines>CFM56-3C-1</engines>
+        <engines>CFM56-3B-2</engines>
       </ident>
       <input type="string"/>
       <serviceable type="bool">true</serviceable>
     </cdu>
+
+    <fmc>
+      <to-flap type="double">5</to-flap>
+    </fmc>
 
   </instrumentation>
 
@@ -1528,7 +1532,7 @@
     </lights>
 
     <cdu>
-      <file>Aircraft/737-300/Models/Flightdeck/Instruments/CDU/cdu.nas</file>
+      <file>Aircraft/Instruments-3d/cdu/boeing.nas</file>
     </cdu>
 
     <instruments>
