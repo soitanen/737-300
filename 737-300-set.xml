@@ -253,19 +253,19 @@
     <flaps>
       <setting>0.000</setting>
       <!-- flaps up -->
-      <setting>0.125</setting>
+      <setting>0.025</setting>
       <!-- flaps 1  -->
-      <setting>0.250</setting>
+      <setting>0.050</setting>
       <!-- flaps 2  -->
-      <setting>0.375</setting>
+      <setting>0.125</setting>
       <!-- flaps 5  -->
-      <setting>0.500</setting>
+      <setting>0.250</setting>
       <!-- flaps 10 -->
-      <setting>0.625</setting>
+      <setting>0.375</setting>
       <!-- flaps 15 -->
-      <setting>0.750</setting>
+      <setting>0.625</setting>
       <!-- flaps 25 -->
-      <setting>0.875</setting>
+      <setting>0.750</setting>
       <!-- flaps 30 -->
       <setting>1.000</setting>
       <!-- flaps 40 -->

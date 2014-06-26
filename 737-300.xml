@@ -731,19 +731,23 @@
                         <time>0</time>
                     </setting>
                     <setting>
-                        <position>0.125</position>
+                        <position>0.025</position>
                         <time>5</time>
                     </setting>
                     <setting>
-                        <position>0.25</position>
+                        <position>0.050</position>
                         <time>4</time>
                     </setting>
                     <setting>
-                        <position>0.375</position>
+                        <position>0.125</position>
                         <time>3</time>
                     </setting>
                     <setting>
-                        <position>0.5</position>
+                        <position>0.25</position>
+                        <time>2</time>
+                    </setting>
+                    <setting>
+                        <position>0.375</position>
                         <time>2</time>
                     </setting>
                     <setting>
@@ -751,11 +755,7 @@
                         <time>2</time>
                     </setting>
                     <setting>
-                        <position>0.75</position>
-                        <time>2</time>
-                    </setting>
-                    <setting>
-                        <position>0.875</position>
+                        <position>0.750</position>
                         <time>2</time>
                     </setting>
                     <setting>
@@ -1109,6 +1109,19 @@
               </sum>
               <value>0.7434944</value>
             </product>
+        </function>
+
+        <function name="/instrumentation/fmc/stab-trim-units">
+            <description>Maximum N1 for CLIMB</description>
+            <table>
+                <independentVar lookup="row">/instrumentation/fmc/to-flap</independentVar>
+                <independentVar lookup="column">/instrumentation/fmc/cg</independentVar>
+                <tableData>
+				6	10	14	18	22	26	30
+			5	6.25	5.75	5.25	4.75	4.25	3.75	3
+			15	5.75	5	4.5	3.75	3	2.5	1.75
+                </tableData>
+            </table>
         </function>
 
         <function name="/autopilot/settings/max-n1">
@@ -1469,13 +1482,17 @@
                           <independentVar>aero/alpha-rad</independentVar>
 			
                           <tableData>
-                             -0.1745329252	-0.6835672394
-                              0.2617993878	1.3038508592
-			      0.2967059728	1.4
-			      0.3141592654	1.45
-			      0.3316125579	1.48
-			      0.3490658504	1.45
-                              0.46	1
+                             -0.1745329252	-0.776
+                              0.2268928028	1.223
+			      0.2443460953	1.3
+			      0.2617993878	1.35
+			      0.2792526803	1.42
+			      0.2967059728	1.46
+			      0.3141592654	1.48
+			      0.3316125579	1.47
+			      0.3490658504	1.42
+			      0.3665191429	1.33
+                              0.46		1
                           </tableData>
                       </table>
                 </product>
@@ -1486,11 +1503,20 @@
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>fcs/flap-pos-norm</property>
                     <property>aero/function/kCLge</property>
                     <property>aero/function/kCLsb</property>
                     <property>aero/function/kCLsp</property>
-                    <value>0.9</value>
+                    <table>
+                      <independentVar>fcs/flap-pos-norm</independentVar>
+                      <tableData>
+			0	0
+			0.025	0.08
+			0.125	0.22
+			0.375	0.45
+			0.750	0.82
+			1	1.04
+                      </tableData>
+                    </table>
                 </product>
             </function>
 
