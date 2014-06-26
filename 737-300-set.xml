@@ -570,31 +570,31 @@
   <limits>
    <max-flap-extension-speed>
     <speed>230</speed>
-   <flaps>0.125</flaps>
+   <flaps>0.025</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>230</speed>
-   <flaps>0.250</flaps>
+   <flaps>0.050</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>225</speed>
-   <flaps>0.375</flaps>
+   <flaps>0125</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>210</speed>
-   <flaps>0.500</flaps>
+   <flaps>0.250</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>195</speed>
-   <flaps>0.625</flaps>
+   <flaps>0.375</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>190</speed>
-   <flaps>0.750</flaps>
+   <flaps>0.625</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>185</speed>
-   <flaps>0.875</flaps>
+   <flaps>0.750</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>158</speed>
@@ -602,7 +602,7 @@
   </max-flap-extension-speed> 
   
   <max-gear-extension-speed>270</max-gear-extension-speed>  
-  <vne>350</vne>
+  <vne>340</vne>
   <max-positive-g>2.5</max-positive-g>
   <max-negative-g>-1</max-negative-g>
   <max-altitude>37050</max-altitude>
@@ -611,13 +611,13 @@
   <consumables>
     <fuel>
       <tank n="0">
-        <level-gal_us archive="y">1000</level-gal_us>
+        <level-lbs archive="y">10200</level-lbs>
       </tank>
       <tank n="1">
-        <level-gal_us archive="y">1000</level-gal_us>
+        <level-lbs archive="y">10200</level-lbs>
       </tank>
       <tank n="2">
-        <level-gal_us archive="y">1667</level-gal_us>
+        <level-lbs archive="y">2700</level-lbs>
       </tank>
     </fuel>
   </consumables>

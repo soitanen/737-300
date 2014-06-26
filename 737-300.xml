@@ -475,7 +475,7 @@
                 <z> -18 </z>
             </location>
             <capacity unit="LBS"> 10200 </capacity>
-            <contents unit="LBS"> 6300 </contents>
+            <contents unit="LBS"> 10200 </contents>
             <temperature> 59.0 </temperature> <!-- Fuel temp in degrees F -->
         </tank>
         <tank type="FUEL"><!-- Right wing tank -->
@@ -485,7 +485,7 @@
                 <z> -18 </z>
             </location>
             <capacity unit="LBS"> 10200 </capacity>
-            <contents unit="LBS"> 6300 </contents>
+            <contents unit="LBS"> 10200 </contents>
         </tank>
         <tank type="FUEL"><!-- Center tank -->
             <location unit="IN">
@@ -494,7 +494,7 @@
                 <z> -18 </z>
             </location>
             <capacity unit="LBS"> 15000 </capacity>
-            <contents unit="LBS"> 10500 </contents>
+            <contents unit="LBS"> 2700 </contents>
         </tank>
         <tank type="FUEL"><!-- Feed pipe for left engine -->
             <location unit="IN">
@@ -1522,12 +1522,18 @@
 
             <function name="aero/coefficient/CLde">
                 <description>Lift_due_to_Elevator_Deflection</description>
-                <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <property>fcs/elevator-pos-rad</property>
-                    <value>0.1</value>
-                </product>
+                <quotient>
+                    <property>-aero/coefficient/Cmde</property>
+                    <property>metrics/lh-ft</property>
+                </quotient>
+            </function>
+
+            <function name="aero/coefficient/CLdstab">
+                <description>Lift_due_to_Stabilizer_Deflection</description>
+                <quotient>
+                    <property>-aero/coefficient/Cmdstab</property>
+                    <property>metrics/lh-ft</property>
+                </quotient>
             </function>
 
         </axis>
@@ -1634,7 +1640,7 @@
                     <sum>
                       <product>
                         <property>fcs/stabilizer-pos-unit</property>
-                        <value>0.100831</value>
+                        <value>0.103612</value>
                       </product>
                       <value>-0.3067</value>
                     </sum>
