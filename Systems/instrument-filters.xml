@@ -162,7 +162,10 @@
          <property>/autopilot/internal/VNAV-GS-armed</property>
        </not>
        <not>
-         <property>/autopilot/internal/VNAV-GS</property>
+         <or>
+           <property>/autopilot/internal/VNAV-GS</property>
+           <property>/autopilot/internal/VNAV-FLARE</property>
+         </or>
        </not>
      </and>
    </input>
