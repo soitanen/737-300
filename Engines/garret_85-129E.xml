@@ -6,7 +6,7 @@
 <turbine_engine name="Garret-85-129E">
   <milthrust> 100 </milthrust>
   <bypassratio>     3.0 </bypassratio>
-  <tsfc>            5.2 </tsfc>
+  <tsfc>            3.6 </tsfc> <!-- 360 lbs per hour at sea level, 250 lbs at FL100-->
   <bleed>           0.05</bleed>
   <idlen1>        30.0 </idlen1>
   <idlen2>        25.0 </idlen2>
