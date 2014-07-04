@@ -57,7 +57,7 @@
     </output>
     <config>
       <Kp>0.01</Kp>          <!-- proportional gain -->
-      <Ki>0.1</Ki>          <!-- integral gain -->
+      <Ki>0.16</Ki>          <!-- integral gain -->
       <u_min>                <!-- minimum output clamp with flaps NOT up (25 degrees of steering wheel) -->
         <condition>
           <greater-than>

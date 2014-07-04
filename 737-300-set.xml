@@ -1185,6 +1185,7 @@
       </fcs>
       <metrics>
         <aerorp-mac type="double">0.30</aerorp-mac>
+        <roll type="double">0.2</roll>
       </metrics>
     </jsbsim>
   </fdm>

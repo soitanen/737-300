@@ -647,6 +647,7 @@ setlistener("/instrumentation/flightdirector/fd-left-on", fd_switch_left, 0, 0);
 
 var reset_pitch_roll_modes = func {
 	reset_pitch_mode();
+	reset_roll_mode();
 
 	setprop("/autopilot/internal/VNAV-VS-armed", 0);
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
