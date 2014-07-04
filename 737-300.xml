@@ -1202,6 +1202,34 @@
             </table>
         </function>
 
+        <function name="/autopilot/settings/to-n1">
+            <description>Maximum N1 for TAKEOFF</description>
+            <table>
+                <independentVar lookup="row">/environment/temperature-degc</independentVar>
+                <independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
+                <tableData>
+				-1000	0	1000	2000	3000	4000	5000	6000	7000	8000
+			-50	81.7	82.5	82.9	83.2	83.7	84.3	84.7	85.2	85.6	86
+			-40	83.5	84.3	84.7	85.1	85.5	86.2	86.6	87.1	87.4	87.9
+			-30	85.2	86	86.5	86.9	87.3	88	88.4	88.9	89.3	89.7
+			-20	87	87.8	88.3	88.7	89.1	89.8	90.2	90.7	91.1	91.6
+			-10	88.7	89.6	90	90.4	90.8	91.5	92	92.5	92.9	93.4
+			0	90.3	91.2	91.7	92.1	92.6	93.3	93.7	94.2	94.7	95.1
+			5	91.2	92.1	92.5	92.9	93.4	94.1	94.6	95.1	95.5	96
+			10	92	92.9	93.4	93.8	94.2	95	95.4	95.9	96.4	96.8
+			15	92.8	93.7	94.2	94.6	95.1	95.8	96.3	96.8	97.2	97.5
+			20	93.6	94.5	95	95.4	95.9	96.6	97.1	97.1	97	96.9
+			25	94.4	95.3	95.8	96.2	96.5	96.7	96.6	96.6	96.5	96.4
+			30	95.2	96.1	96.1	96	96	96.3	96.2	96.1	96	96
+			35	95.2	95.6	95.6	95.6	95.5	95.7	95.7	95.7	95.6	95.5
+			40	94.6	95.2	95.2	95.1	95	95.1	95.1	95.2	95.1	94.9
+			45	94.2	94.7	94.7	94.6	94.6	94.6	94.7	94.4	94.2	94.9
+			50	93.8	94.3	94.3	94.3	93.9	93.6	94.7	94.4	94.2	94.9
+			55	93.2	93.8	93.8	93.8	93.9	93.6	94.7	94.4	94.2	94.9
+                </tableData>
+            </table>
+        </function>
+
         <function name="/engines/engine[0]/reverse-thrust-lbs">
             <description>Reverse thrust calculation</description>
             <table>
@@ -1637,11 +1665,15 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
+                    <!--<property>metrics/roll</property>-->
                       <table>
-                          <independentVar>fcs/flap-pos-norm</independentVar> <!-- Calculated from flight test data -->
+			<independentVar lookup="row">fcs/flap-pos-norm</independentVar> <!-- Calculated from flight test data -->
+			<independentVar lookup="column">velocities/mach</independentVar>
                           <tableData>
-                              0.0	0.12
-                              1.0	0.35
+                                        0.25    0.85
+                              0.0	0.17    0.11
+                              0.375	0.11    0.06
+                              1.0	0.35    0.18
                           </tableData>
                       </table>
                 </product>
