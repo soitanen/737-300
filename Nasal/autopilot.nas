@@ -665,6 +665,7 @@ var reset_pitch_mode = func {
 	setprop("/autopilot/internal/VNAV", 0);
 	setprop("/autopilot/internal/LVLCHG", 0);
 	setprop("/autopilot/internal/TOGA", 0);
+	setprop("/autopilot/internal/GA", 0);
 	setprop("/autopilot/internal/VNAV-ALT", 0);
 	setprop("/autopilot/internal/VNAV-GS", 0);
 	setprop("/autopilot/internal/VNAV-FLARE", 0);
@@ -696,7 +697,7 @@ var alt_acq_engage = func {
 		alt = getprop("/instrumentation/altimeter[1]/indicated-altitude-ft");
 	}
 
-	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV") or getprop("/autopilot/internal/TOGA")) {
+	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV") or getprop("/autopilot/internal/TOGA") or getprop("/autopilot/internal/GA")) {
 		current_vs = getprop("/autopilot/internal/current-vertical-speed-fpm");
 		possible_engage_alt =  math.abs(current_vs * 0.15);
 
@@ -922,11 +923,15 @@ var toga_button = func {
 	was_ia = getprop("/b733/sensors/was-in-air");
 	if (!was_ia) {
 		toga_engage();
+	} else {
+		alt_agl = getprop("/position/altitude-agl-ft") - 6.5;
+		toga = getprop("/autopilot/internal/TOGA");
+		if (!toga and alt_agl < 2000) { ga_engage(); }
 	}
 }
 
 ##########################################################################
-# Engaging TOGA	mode
+# Engaging TOGA mode
 var toga_engage = func {
 	reset_pitch_mode();
 	reset_roll_mode();
@@ -950,6 +955,78 @@ var toga_engage = func {
 	setprop("/autopilot/settings/fccb-target-bank", 0);
 }
 
+##########################################################################
+# Engaging Go-Around mode
+var ga_engage = func{
+	ga = getprop("/autopilot/internal/GA");
+	track = getprop("/orientation/track-deg");
+	setprop("/autopilot/settings/ga-track-deg", track);
+
+	reset_pitch_mode();
+	reset_roll_mode();
+
+	setprop("/autopilot/internal/VNAV-VS-armed", 0);
+	setprop("/autopilot/internal/VNAV-GS-armed", 0);
+	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
+	setprop("/autopilot/display/pitch-mode-armed", "");
+
+	setprop("/autopilot/internal/SPD-N1", 0);
+	setprop("/autopilot/internal/SPD-SPEED", 0);
+	setprop("/autopilot/internal/SPD-RETARD", 0);
+
+	setprop("/autopilot/internal/GA", 1);
+	if (ga) {
+		setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/ga-n1"));
+	} else {
+		setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/ga-n1") - getprop("/autopilot/settings/reduced-ga-n1-delta"));
+	}
+
+	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/pitch-mode", "TO/GA");
+
+	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+	setprop("/autopilot/display/throttle-mode", "GA");
+
+	setprop("/autopilot/display/roll-mode", "");
+
+	cmda  = getprop("/autopilot/internal/CMDA");
+	cmdb  = getprop("/autopilot/internal/CMDB");
+	if (cmda and !cmdb) {
+		ap_disengage();
+	} elsif (!cmda and cmdb) {
+		ap_disengage();
+	}
+
+	if (getprop("sim/co-pilot") and getprop("/sim/messages/copilot")!="Go Around") {
+		setprop("/sim/messages/copilot", "Go Around");
+	}
+}
+var ga_speed_round = func {
+	ga = getprop("/autopilot/internal/GA");
+	if (!ga) {
+		mcp_speed = getprop("/autopilot/settings/target-speed-kt");
+		mcp_speed = math.round(mcp_speed, 1);
+		setprop("/autopilot/settings/target-speed-kt", mcp_speed);
+
+		cmda  = getprop("/autopilot/internal/CMDA");
+		cmdb  = getprop("/autopilot/internal/CMDB");
+		if (cmda and cmdb) {
+			added_fcc = getprop("/autopilot/internal/FCC-added");
+
+			if (added_fcc == "A") {
+				setprop("/autopilot/internal/FCC-added", "");
+				setprop("/autopilot/internal/FCC-A-master", 0);
+				setprop("/autopilot/internal/CMDA", 0);
+			} elsif (added_fcc == "B") {
+				setprop("/autopilot/internal/FCC-added", "");
+				setprop("/autopilot/internal/FCC-B-master", 0);
+				setprop("/autopilot/internal/CMDB", 0);
+			}
+		}
+	}
+}
+setlistener("/autopilot/internal/GA", ga_speed_round, 0, 0);
 ##########################################################################
 # Calculating turn anticipation distance
 var turn_anticipate = func {

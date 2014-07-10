@@ -498,7 +498,7 @@
       <max-lvlchg-vs type="double">6000</max-lvlchg-vs>
       <max-n1 type="double">95</max-n1>
       <to-n1 type="double">106</to-n1>
-      <reduced-ga-n1 type="double">100</reduced-ga-n1>
+      <reduced-ga-n1-delta type="double">10</reduced-ga-n1-delta>
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
       <alt-hold-delta type="double">0</alt-hold-delta>
 
@@ -1338,7 +1338,7 @@
         <category-5>   0 </category-5>  <!-- AUDIO_MENU_SELECT -->
         <category-6>   1 </category-6>  <!-- TERRAIN_DISPLAY_SELECT -->
         <category-7> 124 </category-7>  <!-- OPTIONS_SELECT_GROUP_1 -->
-        <category-8>   2 </category-8>  <!-- RADIO_ALTITUDE_INPUT_SELECT -->
+        <category-8>   4 </category-8>  <!-- RADIO_ALTITUDE_INPUT_SELECT -->
         <category-9>   3 </category-9>  <!-- NAVIGATION_INPUT_SELECT -->
         <category-10>  6 </category-10> <!-- ATTITUDE_INPUT_SELECT -->
         <category-13>  7 </category-13> <!-- INPUT_OUTPUT_DISCRETE_TYPE_SELECT -->
@@ -1405,6 +1405,15 @@
     <fmc>
       <to-flap type="double">5</to-flap>
     </fmc>
+
+  <radar-altimeter>
+    <serviceable type="bool">true</serviceable>
+    <antenna>
+      <x-offset-m type="double">-16</x-offset-m>
+      <y-offset-m type="double">0</y-offset-m>
+      <z-offset-m type="double">2.41</z-offset-m>
+    </antenna>
+  </radar-altimeter>
 
   </instrumentation>
 

@@ -20,9 +20,6 @@
    <object-name>aphdg1</object-name>
    <object-name>aphdg2</object-name>
    <object-name>aphdg3</object-name>
-   <object-name>apspd1</object-name>
-   <object-name>apspd2</object-name>
-   <object-name>apspd3</object-name>
    <object-name>apvs1</object-name>
    <object-name>apvs2</object-name>
    <object-name>apvs3</object-name>
@@ -43,6 +40,26 @@
       <property>controls/electric/apugen2</property>
       <property>engines/engine[0]/running</property>
     </or>
+   </condition>
+ </animation>
+
+ <animation>
+   <type>select</type>
+   <object-name>apspd1</object-name>
+   <object-name>apspd2</object-name>
+   <object-name>apspd3</object-name>
+   
+   <condition>
+     <and>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+       <not><property>/autopilot/internal/GA</property></not>
+     </and>
    </condition>
  </animation>
 

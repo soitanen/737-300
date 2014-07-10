@@ -26,8 +26,6 @@ Currently main focus of development is FDM.
 
 TODO list:
 Short perspective:
-- make TOGA button workable for Go-Around
-- calculate max GA N1
 - check coordinates of passanger and cargo payload places
 - make correct thrust for different altitudes and speed
 Medium perspective:

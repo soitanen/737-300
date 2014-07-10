@@ -19,6 +19,7 @@
             <property>/autopilot/internal/LNAV-HDG</property>
             <property>/autopilot/internal/LNAV-NAV</property>
             <property>/autopilot/internal/LNAV</property>
+            <property>/autopilot/internal/GA</property>
           </or>
         </and>
       </condition>
@@ -287,7 +288,7 @@
 <!-- 10% of authority calculation -->
 <filter>
   <type>gain</type>
-  <gain>0.15</gain>
+  <gain>0.30</gain>
   <input>
     <property>/autopilot/settings/max-authority-pos</property>
   </input>
@@ -298,7 +299,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.15</gain>
+  <gain>0.30</gain>
   <input>
     <property>/autopilot/settings/max-authority-neg</property>
   </input>
@@ -311,7 +312,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.06</gain>
+  <gain>0.12</gain>
   <input>
     <property>/autopilot/settings/max-authority-pos</property>
   </input>
@@ -322,7 +323,7 @@
 
 <filter>
   <type>gain</type>
-  <gain>0.06</gain>
+  <gain>0.12</gain>
   <input>
     <property>/autopilot/settings/max-authority-neg</property>
   </input>
@@ -1222,6 +1223,7 @@
          <or>
            <property>/autopilot/internal/VNAV-FLARE-armed</property>
            <property>/autopilot/internal/VNAV-FLARE</property>
+           <property>/autopilot/internal/GA</property>
          </or>
        </not>
        <less-than>
@@ -1302,6 +1304,23 @@
    </input>
    <output>/autopilot/logic/at-arm-toga</output>
  </logic>
+
+<!-- Translate flap retraction speed into target speed in GA mode -->
+<filter>
+  <type>gain</type>
+  <gain>1</gain>
+  <enable>
+     <condition>
+       <property>/autopilot/internal/GA</property>
+     </condition>
+  </enable>	
+  <input>
+    <property>/b733/flaps-min-retr-speed</property>
+  </input>
+  <output>
+    <prop>/autopilot/settings/target-speed-kt</prop>
+  </output>
+</filter>
 
 <!-- debug section -->
 
