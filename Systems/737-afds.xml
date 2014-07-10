@@ -1303,37 +1303,6 @@
    <output>/autopilot/logic/at-arm-toga</output>
  </logic>
 
-<!-- TAT calculation -->
-
-<filter>
-  <type>gain</type>
-  <gain>1</gain>
-  <input>
-    <expression>
-      <sum>
-        <product>
-          <sum>
-            <property>/environment/temperature-degc</property>
-            <value>273.15</value>
-          </sum>
-          <sum>
-            <value>1</value>
-            <product>
-              <value>0.2</value>
-              <property>/velocities/mach</property>
-              <property>/velocities/mach</property>
-            </product>
-          </sum>
-        </product>
-        <value>-273.15</value>
-      </sum>
-    </expression>
-  </input>
-  <output>
-    <prop>/fdm/jsbsim/atmosphere/TAT-C</prop>
-  </output>
-</filter>
-
 <!-- debug section -->
 
   <pi-simple-controller>

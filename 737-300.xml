@@ -23,7 +23,7 @@
         <location name="AERORP" unit="IN">
             <x> 575.6 </x>
             <y>   0 </y>
-            <z>  -35 </z>
+            <z>  -5 </z>
         </location>
         <location name="EYEPOINT" unit="IN">
             <x>  80 </x>
@@ -38,30 +38,30 @@
     </metrics>
 
     <mass_balance>
-        <ixx unit="SLUG*FT2">    562000 </ixx>
-        <iyy unit="SLUG*FT2"> 1.473e+06 </iyy>
-        <izz unit="SLUG*FT2"> 1.894e+06 </izz>
+        <ixx unit="SLUG*FT2">    320000 </ixx>
+        <iyy unit="SLUG*FT2">   1450000 </iyy>
+        <izz unit="SLUG*FT2">   1670000 </izz>
         <ixy unit="SLUG*FT2">         0 </ixy>
-        <ixz unit="SLUG*FT2">      8000 </ixz>
+        <ixz unit="SLUG*FT2">     50000 </ixz>
         <iyz unit="SLUG*FT2">         0 </iyz>
-        <emptywt unit="LBS">      75135 </emptywt> <!-- Based on real aircraft data. 2 pilots and 5 cabin crew. (minus 1000 lbs for balancing in sim)-->
+        <emptywt unit="LBS">      76135 </emptywt> <!-- Based on real aircraft data. 2 pilots and 5 cabin crew -->
         <location name="CG" unit="IN">
             <x> 598.351 </x> <!-- From real trimsheet -->
             <y>   0 </y>
-            <z> -40 </z>
+            <z>  -5 </z>
         </location>
     
     
-    <pointmass name="Fuel_balancer">
-            <weight unit="LBS"> 1000.0 </weight>
+    <pointmass name="Reserved 1">
+            <weight unit="LBS"> 0.0 </weight>
             <location name="POINTMASS" unit="IN">
             <x> 598.351 </x>
             <y>   0 </y>
             <z> -40 </z>
             </location>
         </pointmass>
-        <pointmass name="Co Pilot">
-            <weight unit="LBS"> 000.0 </weight>
+        <pointmass name="Reserved 2">
+            <weight unit="LBS"> 0.0 </weight>
             <location name="POINTMASS" unit="IN">
               <x> 598.351 </x>
                 <y> 0 </y>
@@ -392,6 +392,8 @@
             <retractable>0</retractable>
         </contact>	
     </ground_reactions>
+
+
     <propulsion>
         <engine file="CFM56">
             <location unit="IN">
@@ -413,8 +415,8 @@
                 </location>
                 <orient unit="DEG">
                     <roll>  0 </roll>
-                    <pitch> -5 </pitch>
-                    <yaw>   0 </yaw>
+                    <pitch> 0 </pitch>
+                    <yaw>   1.8 </yaw>
                 </orient>
             </thruster>
         </engine>
@@ -438,8 +440,8 @@
                 </location>
                 <orient unit="DEG">
                     <roll>  0 </roll>
-                    <pitch> -5 </pitch>
-                    <yaw>   0 </yaw>
+                    <pitch> 0 </pitch>
+                    <yaw>  -1.8 </yaw>
                 </orient>
             </thruster>
         </engine>
@@ -468,28 +470,40 @@
                 </orient>
             </thruster>
         </engine>
+
+
         <tank type="FUEL"><!-- Left wing tank -->
             <location unit="IN">
-                <x> 592.289</x>
-                <y> -80 </y>
-                <z> -18 </z>
+                <x> 599.61</x>
+                <y> -130 </y>
+                <z> 20 </z>
             </location>
+            <drain_location unit="IN">
+                <x> 547.4138</x>
+                <y> -80 </y>
+                <z> -7 </z>
+            </drain_location>
             <capacity unit="LBS"> 10043 </capacity>
             <contents unit="LBS"> 10043 </contents>
-            <temperature> 59.0 </temperature> <!-- Fuel temp in degrees F -->
+            <temperature> 40 </temperature> <!-- Fuel temp in degrees F -->
         </tank>
         <tank type="FUEL"><!-- Right wing tank -->
             <location unit="IN">
-                <x> 592.289 </x>
-                <y>  80 </y>
-                <z> -18 </z>
+                <x> 599.61 </x>
+                <y>  130 </y>
+                <z> 20 </z>
             </location>
+            <drain_location unit="IN">
+                <x> 547.4138</x>
+                <y> 80 </y>
+                <z> -7 </z>
+            </drain_location>
             <capacity unit="LBS"> 10043 </capacity>
             <contents unit="LBS"> 10043 </contents>
         </tank>
         <tank type="FUEL"><!-- Center tank -->
             <location unit="IN">
-                <x> 566.472 </x>
+                <x> 553.2137 </x>
                 <y>   0 </y>
                 <z> -18 </z>
             </location>
@@ -1066,56 +1080,6 @@
             </fcs_function>
         </channel>
 
-        <channel name="Fuel Load Weight Shift">
-
-          <fcs_function name="aero/function/weight-shift-fuel">
-                <function>
-                  <table>
-                      <independentVar>propulsion/total-fuel-lbs</independentVar>
-                      <tableData>
-				0	598.35
-				1102	579.88
-				2205	567.6
-				3307	555.33
-				4409	546.16
-				5511	540.08
-				6614	534.01
-				7716	527.95
-				8818	524.97
-				9921	521.99
-				11023	519.01
-				12125	519.11
-				13228	522.27
-				14330	522.36
-				15432	531.65
-				16534	553.16
-				17637	583.84
-				18739	620.62
-				19841	663.48
-				20086	676.39
-				20944	670.51
-				22046	662.09
-				23148	659.79
-				24250	645.29
-				25353	639.97
-				26455	656.02
-				27557	623.27
-				28660	617.98
-				29762	609.66
-				30864	601.36
-				31966	596.11
-				33069	587.82
-				34171	576.51
-				35273	562.16
-				35582	557.53
-                      </tableData>
-                  </table>
-                </function>
-                <output> inertia/pointmass-location-X-inches[0] </output>
-            </fcs_function>
-
-        </channel>
-
     </flight_control>
 
        <external_reactions>
@@ -1183,7 +1147,7 @@
         <function name="/autopilot/settings/max-n1">
             <description>Maximum N1 for CLIMB</description>
             <table>
-                <independentVar lookup="row">atmosphere/TAT-C</independentVar>
+                <independentVar lookup="row">propulsion/tat-c</independentVar>
                 <independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
                 <tableData>
 				0	5000	10000	15000	20000	25000	30000	35000	37000
@@ -1519,12 +1483,13 @@
             </function>
 
             <function name="aero/coefficient/CDde">
-                <description>Drag_due_to_Elevator_Deflection</description>
+                <description>Drag_due_to_Elevator_and_Stabilizer_Deflection</description>
                 <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <property>fcs/elevator-pos-norm</property>
-                    <value>0.059</value>
+                   <sum>
+                     <abs><property>aero/coefficient/CLde</property></abs>
+                     <abs><property>aero/coefficient/CLdstab</property></abs>
+                   </sum>
+                   <value>0.08333</value>
                 </product>
             </function>
 

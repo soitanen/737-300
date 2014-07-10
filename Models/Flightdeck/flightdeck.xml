@@ -239,7 +239,7 @@
   <!--ALT-->
    <model>
     <name>Captains ALT</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ALT/alt.xml</path>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ALT/alt-cp.xml</path>
     <offsets>
       <x-m>-7.029</x-m>
       <y-m>-0.339</y-m>
@@ -250,7 +250,7 @@
   
    <model>
     <name>Co-Pilots ALT</name>
-    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ALT/alt.xml</path>
+    <path>Aircraft/737-300/Models/Flightdeck/Instruments/ALT/alt-fo.xml</path>
     <offsets>
       <x-m>-7.029</x-m>
       <y-m>0.571</y-m>

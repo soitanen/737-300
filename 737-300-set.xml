@@ -500,6 +500,7 @@
       <to-n1 type="double">106</to-n1>
       <reduced-ga-n1 type="double">100</reduced-ga-n1>
       <alt-acq-target-alt type="double">0</alt-acq-target-alt>
+      <alt-hold-delta type="double">0</alt-hold-delta>
 
       <fcca-target-roll-rate type="double">0</fcca-target-roll-rate>
       <fcca-target-bank type="double">0</fcca-target-bank>

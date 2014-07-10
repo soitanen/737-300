@@ -268,6 +268,32 @@
   </output>
 </filter>
 
+<!-- For altimeter tooltips -->
+<filter n="10015">
+   <type>gain</type>
+   <input>
+     <property>/instrumentation/altimeter[0]/setting-hpa</property>
+   </input>
+   <gain>1</gain>
+   <output>/b733/instrumentation/altimeter[0]/setting-hpa</output>
+</filter>
+<filter n="10016">
+   <type>gain</type>
+   <input>
+     <property>/instrumentation/altimeter[1]/setting-hpa</property>
+   </input>
+   <gain>1</gain>
+   <output>/b733/instrumentation/altimeter[1]/setting-hpa</output>
+</filter>
+<filter n="10017">
+   <type>gain</type>
+   <input>
+     <property>/instrumentation/altimeter[2]/setting-hpa</property>
+   </input>
+   <gain>1</gain>
+   <output>/b733/instrumentation/altimeter[2]/setting-hpa</output>
+</filter>
+
 <!-- ############################################################################# -->
 <!-- Calculating engine sound params                                               -->
 <!-- ############################################################################# -->

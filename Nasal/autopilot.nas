@@ -690,8 +690,10 @@ var alt_acq_engage = func {
 	fcc_b = getprop("/autopilot/internal/FCC-B-master");
 	if (fcc_a) {
 		alt_diff = getprop("/b733/helpers/alt-diff-ft[0]");
+		alt = getprop("/instrumentation/altimeter[0]/indicated-altitude-ft");
 	} else {
 		alt_diff = getprop("/b733/helpers/alt-diff-ft[1]");
+		alt = getprop("/instrumentation/altimeter[1]/indicated-altitude-ft");
 	}
 
 	if (getprop("/autopilot/internal/VNAV-VS") or getprop("/autopilot/internal/LVLCHG") or getprop("/autopilot/internal/VNAV") or getprop("/autopilot/internal/TOGA")) {
@@ -725,7 +727,9 @@ var alt_acq_engage = func {
 		}
 	}
 	if (getprop("/autopilot/internal/VNAV-ALT-ACQ")) {
-		if (alt_diff < 5) {
+		if (alt_diff < 35) {
+			delta = getprop("/autopilot/settings/target-altitude-mcp-ft") - alt;
+			setprop("/autopilot/settings/alt-hold-delta", delta);
 			alt_hold_engage();
 		}
 	}
@@ -741,10 +745,13 @@ var alt_hold_engage = func {
 		setprop("/autopilot/settings/target-speed-kt", mcp_speed + 20);
 	}
 
+	delta = getprop("/autopilot/settings/alt-hold-delta");
+	setprop("/autopilot/settings/alt-hold-delta", 0);
+
 	if (getprop("/autopilot/internal/FCC-A-master")) {
-		alt_current = getprop("/instrumentation/altimeter[0]/pressure-alt-ft");
+		alt_current = getprop("/instrumentation/altimeter[0]/pressure-alt-ft") + delta;
 	} else {
-		alt_current = getprop("/instrumentation/altimeter[1]/pressure-alt-ft");
+		alt_current = getprop("/instrumentation/altimeter[1]/pressure-alt-ft") + delta;
 	}
 	reset_pitch_mode();
 	setprop("/autopilot/settings/target-alt-hold-ft", alt_current);
