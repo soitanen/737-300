@@ -990,12 +990,14 @@ var ga_engage = func{
 
 	setprop("/autopilot/display/roll-mode", "");
 
-	cmda  = getprop("/autopilot/internal/CMDA");
-	cmdb  = getprop("/autopilot/internal/CMDB");
-	if (cmda and !cmdb) {
-		ap_disengage();
-	} elsif (!cmda and cmdb) {
-		ap_disengage();
+	if (!ga) {
+		cmda  = getprop("/autopilot/internal/CMDA");
+		cmdb  = getprop("/autopilot/internal/CMDB");
+		if (cmda and !cmdb) {
+			ap_disengage();
+		} elsif (!cmda and cmdb) {
+			ap_disengage();
+		}
 	}
 
 	if (getprop("sim/co-pilot") and getprop("/sim/messages/copilot")!="Go Around") {
