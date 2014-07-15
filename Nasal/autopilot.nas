@@ -678,7 +678,7 @@ var reset_roll_mode = func {
 	setprop("/autopilot/internal/LNAV", 0);
 	setprop("/autopilot/internal/LNAV-NAV", 0);
 	setprop("/autopilot/internal/LNAV-HDG", 0);
-	setprop("/autopilot/internal/GA", 0);
+	setprop("/autopilot/internal/GA-ROLL", 0);
 
 	setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/roll-mode", "");
@@ -827,8 +827,7 @@ setlistener("/autopilot/logic/at-arm-toga", at_arm_toga, 0, 0);
 ##########################################################################
 # Engaging HDG SEL mode
 var hdg_mode_engage = func {
-	setprop("/autopilot/internal/LNAV", 0);
-	setprop("/autopilot/internal/LNAV-NAV", 0);
+	reset_roll_mode();
 	setprop("/autopilot/internal/LNAV-HDG", 1);
 
 	setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
@@ -976,6 +975,7 @@ var ga_engage = func{
 	reset_roll_mode();
 
 	setprop("/autopilot/internal/GA", 1);
+	setprop("/autopilot/internal/GA-ROLL", 1);
 	if (ga) {
 		setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/ga-n1"));
 	} else {

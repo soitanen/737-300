@@ -535,6 +535,7 @@
       <LVLCHG type="bool">false</LVLCHG>
       <TOGA type="bool">false</TOGA>
       <GA type="bool">false</GA>
+      <GA-ROLL type="bool">false</GA-ROLL>
             
       <SPD type="bool">false</SPD>
       <SPD-SPEED type="bool">false</SPD-SPEED>
@@ -1195,6 +1196,7 @@
     <controls>
       <flight>
         <spoilers-lever-pos type="double">0</spoilers-lever-pos>
+        <yaw-damper type="bool">1</yaw-damper>
       </flight>
       <ehsi n="0">
         <mode-selector type="double">3</mode-selector>

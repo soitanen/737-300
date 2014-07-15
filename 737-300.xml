@@ -645,7 +645,7 @@
           <c1>0.4</c1>
         </washout_filter>
         
-        <pure_gain name="Yaw Damper Final">
+        <pure_gain name="Yaw Damper">
           <input>fcs/yaw-damper-wf</input>
           <gain>4</gain>
           <clipto>
@@ -653,6 +653,13 @@
             <max>0.12</max>
           </clipto>
         </pure_gain>
+
+          <switch name="Yaw Damper Final">
+            <default value="0"/>
+            <test value="fcs/yaw-damper">
+              /b733/controls/flight/yaw-damper == 1
+            </test>
+          </switch>
 
             <summer name="Rudder Sum Cmd">
                 <input>fcs/rudder-command-sum</input>

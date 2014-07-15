@@ -19,7 +19,7 @@
             <property>/autopilot/internal/LNAV-HDG</property>
             <property>/autopilot/internal/LNAV-NAV</property>
             <property>/autopilot/internal/LNAV</property>
-            <property>/autopilot/internal/GA</property>
+            <property>/autopilot/internal/GA-ROLL</property>
           </or>
         </and>
       </condition>

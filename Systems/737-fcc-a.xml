@@ -36,7 +36,7 @@
     <debug>false</debug>
     <enable>
       <condition>
-        <property>/autopilot/internal/GA</property>
+        <property>/autopilot/internal/GA-ROLL</property>
       </condition>
     </enable>	
     <type>gain</type>
@@ -244,7 +244,7 @@
           <property>/autopilot/internal/LNAV-HDG</property>
           <property>/autopilot/internal/LNAV-NAV</property>
           <property>/autopilot/internal/LNAV</property>
-          <property>/autopilot/internal/GA</property>
+          <property>/autopilot/internal/GA-ROLL</property>
         </or>
       </condition>
     </enable>	
@@ -274,7 +274,7 @@
           <property>/autopilot/internal/LNAV-HDG</property>
           <property>/autopilot/internal/LNAV-NAV</property>
           <property>/autopilot/internal/LNAV</property>
-          <property>/autopilot/internal/GA</property>
+          <property>/autopilot/internal/GA-ROLL</property>
         </or>
       </condition>
     </enable>	
