@@ -1232,7 +1232,7 @@
        </less-than>
        <greater-than>
          <property>/position/altitude-agl-ft</property>
-         <value>6</value>
+         <value>0.1</value>
        </greater-than>
      </and>
    </input>

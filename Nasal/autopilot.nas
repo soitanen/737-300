@@ -568,6 +568,7 @@ var apdsng = func {
 	apdsng = getprop("/autopilot/logic/ap-disengage-350ft");
 	if (apdsng) {
 		ap_disengage();
+		setprop("/autopilot/logic/ap-disengage-350ft", 0);
 	}
 }
 setlistener("/autopilot/logic/ap-disengage-350ft", apdsng, 0, 0);
@@ -959,39 +960,43 @@ var toga_engage = func {
 # Engaging Go-Around mode
 var ga_engage = func{
 	ga = getprop("/autopilot/internal/GA");
-	track = getprop("/orientation/track-deg");
-	setprop("/autopilot/settings/ga-track-deg", track);
 
-	setprop("/autopilot/internal/VNAV-VS-armed", 0);
-	setprop("/autopilot/internal/VNAV-GS-armed", 0);
-	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
-	setprop("/autopilot/display/pitch-mode-armed", "");
-
-	setprop("/autopilot/internal/SPD-N1", 0);
-	setprop("/autopilot/internal/SPD-SPEED", 0);
-	setprop("/autopilot/internal/SPD-RETARD", 0);
-
-	reset_pitch_mode();
-	reset_roll_mode();
-
-	setprop("/autopilot/internal/GA", 1);
-	setprop("/autopilot/internal/GA-ROLL", 1);
 	if (ga) {
 		setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/ga-n1"));
+
+		if (getprop("sim/co-pilot")) {
+			setprop("/sim/messages/copilot", "Maximum Go Around thrust!");
+		}
 	} else {
+		track = getprop("/orientation/track-deg");
+		setprop("/autopilot/settings/ga-track-deg", track);
+
+		setprop("/autopilot/internal/VNAV-VS-armed", 0);
+		setprop("/autopilot/internal/VNAV-GS-armed", 0);
+		setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
+		setprop("/autopilot/display/pitch-mode-armed", "");
+
+		setprop("/autopilot/internal/SPD-N1", 0);
+		setprop("/autopilot/internal/SPD-SPEED", 0);
+		setprop("/autopilot/internal/SPD-RETARD", 0);
+
+		reset_pitch_mode();
+		reset_roll_mode();
+
+		setprop("/autopilot/internal/GA", 1);
+		setprop("/autopilot/internal/GA-ROLL", 1);
+
 		setprop("/autopilot/internal/target-n1", getprop("/autopilot/settings/ga-n1") - getprop("/autopilot/settings/reduced-ga-n1-delta"));
-	}
 
-	setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
-	setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));
-	setprop("/autopilot/display/pitch-mode", "TO/GA");
+		setprop("/autopilot/display/pitch-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/toga-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/pitch-mode", "TO/GA");
 
-	setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
-	setprop("/autopilot/display/throttle-mode", "GA");
+		setprop("/autopilot/display/throttle-mode-last-change", getprop("/sim/time/elapsed-sec"));
+		setprop("/autopilot/display/throttle-mode", "GA");
 
-	setprop("/autopilot/display/roll-mode", "");
+		setprop("/autopilot/display/roll-mode", "");
 
-	if (!ga) {
 		cmda  = getprop("/autopilot/internal/CMDA");
 		cmdb  = getprop("/autopilot/internal/CMDB");
 		if (cmda and !cmdb) {
@@ -999,10 +1004,10 @@ var ga_engage = func{
 		} elsif (!cmda and cmdb) {
 			ap_disengage();
 		}
-	}
 
-	if (getprop("sim/co-pilot") and getprop("/sim/messages/copilot")!="Go Around") {
-		setprop("/sim/messages/copilot", "Go Around");
+		if (getprop("sim/co-pilot") and getprop("/sim/messages/copilot")!="Go Around") {
+			setprop("/sim/messages/copilot", "Go Around");
+		}
 	}
 }
 var ga_speed_round = func {
