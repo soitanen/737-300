@@ -639,29 +639,20 @@
                 </clipto>
             </summer>
 
-            <scheduled_gain name="Yaw Damper">
-                <input>velocities/r-aero-rad_sec</input>
-                <table>
-                  <independentVar>velocities/mach</independentVar>
-                    <tableData>
-                        0.00	0.0
-                        0.10	0.0
-                        0.11	1.0
-                    </tableData>
-                </table>
-            </scheduled_gain>
-
-            <scheduled_gain name="Yaw Damper Final">
-                <input>fcs/yaw-damper</input>
-                <table>
-                  <independentVar>velocities/mach</independentVar>
-                    <tableData>
-                        0.00	0.0
-                        0.10	0.0
-                        0.11	1.0
-                    </tableData>
-                </table>
-            </scheduled_gain>
+	<!--Yaw damper-->        
+        <washout_filter name="Yaw Damper WF">
+          <input>velocities/r-aero-rad_sec</input>
+          <c1>0.4</c1>
+        </washout_filter>
+        
+        <pure_gain name="Yaw Damper Final">
+          <input>fcs/yaw-damper-wf</input>
+          <gain>4</gain>
+          <clipto>
+            <min>-0.12</min>
+            <max>0.12</max>
+          </clipto>
+        </pure_gain>
 
             <summer name="Rudder Sum Cmd">
                 <input>fcs/rudder-command-sum</input>

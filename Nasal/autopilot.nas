@@ -678,6 +678,7 @@ var reset_roll_mode = func {
 	setprop("/autopilot/internal/LNAV", 0);
 	setprop("/autopilot/internal/LNAV-NAV", 0);
 	setprop("/autopilot/internal/LNAV-HDG", 0);
+	setprop("/autopilot/internal/GA", 0);
 
 	setprop("/autopilot/display/roll-mode-last-change", getprop("/sim/time/elapsed-sec"));
 	setprop("/autopilot/display/roll-mode", "");
@@ -962,9 +963,6 @@ var ga_engage = func{
 	track = getprop("/orientation/track-deg");
 	setprop("/autopilot/settings/ga-track-deg", track);
 
-	reset_pitch_mode();
-	reset_roll_mode();
-
 	setprop("/autopilot/internal/VNAV-VS-armed", 0);
 	setprop("/autopilot/internal/VNAV-GS-armed", 0);
 	setprop("/autopilot/internal/VNAV-FLARE-armed", 0);
@@ -973,6 +971,9 @@ var ga_engage = func{
 	setprop("/autopilot/internal/SPD-N1", 0);
 	setprop("/autopilot/internal/SPD-SPEED", 0);
 	setprop("/autopilot/internal/SPD-RETARD", 0);
+
+	reset_pitch_mode();
+	reset_roll_mode();
 
 	setprop("/autopilot/internal/GA", 1);
 	if (ga) {
