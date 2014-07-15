@@ -1210,6 +1210,8 @@
       <main-gear-spin type="bool">false</main-gear-spin>
       <was-in-air type="bool">false</was-in-air>
       <lift-off-time type="double">0</lift-off-time>
+      <landing-time type="double">0</landing-time>
+      <landing type="bool">true</landing>
     </sensors>
     <sound>
       <apdisco type="bool">0</apdisco>

@@ -134,19 +134,22 @@ var landing_check = func{
 	var air_ground = getprop("/b733/sensors/air-ground");
 	var spin_up = getprop("/b733/sensors/main-gear-spin");
 	var was_ia = getprop("/b733/sensors/was-in-air");
+	var landing = getprop("/b733/sensors/landing");
 	var lever_pos = num( getprop("b733/controls/flight/spoilers-lever-pos") );
 	var throttle_1 = getprop("/autopilot/internal/servo-throttle[0]");
 	var throttle_2 = getprop("/autopilot/internal/servo-throttle[1]");
 	var ab_pos = getprop("/controls/gear/autobrakes");
 	var ab_used = getprop("/fdm/jsbsim/fcs/autobrake/autobrake-used");
 
-	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05) { #normal landing
+	if ((air_ground == "ground" or spin_up) and was_ia and throttle_1 < 0.05 and throttle_2 < 0.05 and !landing) { #normal landing
 		if (lever_pos == 1) {
 			setprop("b733/controls/flight/spoilers-lever-pos", 6);
 			setprop("b733/sound/spoiler-auto", 1);
 		}
 		if (ab_pos > 0 and !ab_used) autobrake_apply();
+		setprop("/b733/sensors/landing-time", getprop("/fdm/jsbsim/sim-time-sec"));
 		settimer(func {setprop("/autopilot/internal/SPD", 0);},2);
+		setprop("/b733/sensors/landing", 1);
 	} elsif (air_ground == "ground" and !was_ia and spin_up and getprop("/controls/engines/engine[0]/throttle") < 0.05 and getprop("/controls/engines/engine[1]/throttle") < 0.05 and ab_pos == -1) { #Rejected take-off
 		var GROUNDSPEED = getprop("/velocities/uBody-fps") * 0.593;
 		setprop("/autopilot/internal/SPD", 0);

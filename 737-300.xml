@@ -960,6 +960,21 @@
 
         <channel name="Throttle">
 
+          <summer name="fcs/throttle/after-landing-time">
+            <input> sim-time-sec </input>
+            <input>-/b733/sensors/landing-time </input>
+          </summer>
+
+          <switch name="fcs/throttle/high-idle">
+            <default value="0.119"/>
+            <test value="0">
+              fcs/throttle/after-landing-time GT 4
+              /gear/gear[0]/wow == 1
+              /gear/gear[1]/wow == 1
+              /gear/gear[2]/wow == 1
+            </test>
+          </switch>
+
              <fcs_function name="fcs/throttle/throttle-cmd-norm[0]">
                  <function>
                      <product>
@@ -973,7 +988,7 @@
   <summer name="fcs/throttle/throttle-pos-norm[0]">
     <input>fcs/throttle/throttle-cmd-norm[0]</input>
       <clipto>
-        <min>0</min>
+        <min>fcs/throttle/high-idle</min>
         <max>1</max>
       </clipto>
     <output>fcs/throttle-pos-norm[0]</output>
@@ -992,7 +1007,7 @@
   <summer name="fcs/throttle/throttle-pos-norm[1]">
     <input>fcs/throttle/throttle-cmd-norm[1]</input>
       <clipto>
-        <min>0</min>
+        <min>fcs/throttle/high-idle</min>
         <max>1</max>
       </clipto>
     <output>fcs/throttle-pos-norm[1]</output>

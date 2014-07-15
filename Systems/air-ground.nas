@@ -51,6 +51,7 @@ var was_in_air = func{
 	if (air_ground == "air" and !was_ia) {
 		setprop("/b733/sensors/was-in-air", "true");
 		setprop("/b733/sensors/lift-off-time", getprop("/sim/time/elapsed-sec"));
+		setprop("/b733/sensors/landing", 0);
 	}
 	if (air_ground == "air" and was_ia) setprop("/b733/sensors/was-in-air", "true");
 	if (air_ground == "ground" and !was_ia) setprop("/b733/sensors/was-in-air", "false");
@@ -73,6 +74,7 @@ var lift_off = func {
 
 	if (!wow_nose and !wow_right and !wow_left and was_ia) {
 		setprop("/b733/sensors/lift-off-time", getprop("/sim/time/elapsed-sec"));
+		setprop("/b733/sensors/landing", 0);
 	}
 }
 
