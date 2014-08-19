@@ -13,15 +13,15 @@
     </fileheader>
 
     <metrics>
-        <wingarea unit="FT2">  980.00 </wingarea>
+        <wingarea unit="FT2">  980.00 </wingarea> <!-- boeing value for all calculations-->
         <wingspan unit="FT">    94.75 </wingspan>
-        <chord unit="IN">      134.50 </chord>
-        <htailarea unit="FT2"> 348.00 </htailarea>
-        <htailarm unit="FT">    48.04 </htailarm>
-        <vtailarea unit="FT2"> 297.00 </vtailarea>
+        <chord unit="IN">      134.46 </chord>
+        <htailarea unit="FT2"> 338.00 </htailarea>
+        <htailarm unit="IN">   528.535</htailarm> <!-- calculated from AMM (between 25% wing MAC and 25% stab chord) -->
+        <vtailarea unit="FT2"> 224.35 </vtailarea>
         <vtailarm unit="FT">    44.50 </vtailarm>
-        <location name="AERORP" unit="IN">
-            <x> 575.6 </x>
+        <location name="AERORP" unit="IN"> <!-- placed at 0% MAC (shifted in aerodynamic section) -->
+            <x> 575.6 </x> <!-- BODY STA 625.6 -->
             <y>   0 </y>
             <z>  -5 </z>
         </location>
@@ -69,40 +69,40 @@
             </location>
         </pointmass>
 
-	 <pointmass name="Cabin Zone 0a">
-            <weight unit="LBS"> 2000 </weight>
+	 <pointmass name="Cabin Zone 0a"> <!-- Business class -->
+            <weight unit="LBS"> 1324 </weight>
             <location name="POINTMASS" unit="IN">
-              <x> 252 </x>
+              <x> 299.95 </x>
                 <y> 0 </y>
                 <z> 27.5 </z>
             </location>
         </pointmass>
-	<pointmass name="Cabin Zone 0b">
-            <weight unit="LBS"> 2400 </weight>
+	<pointmass name="Cabin Zone 0b"> <!-- Tourist class -->
+            <weight unit="LBS"> 6951 </weight>
             <location name="POINTMASS" unit="IN">
-              <x> 430 </x>
+              <x> 473.235 </x>
                 <y> 0 </y>
                 <z> 27.5 </z>
             </location>
         </pointmass>
-	<pointmass name="Cabin Zone 0c">
-            <weight unit="LBS"> 3400 </weight>
+	<pointmass name="Cabin Zone 0c"> <!-- Economy class -->
+            <weight unit="LBS"> 11916 </weight>
             <location name="POINTMASS" unit="IN">
-              <x> 610 </x>
+              <x> 778.95 </x>
                 <y> 0 </y>
                <z> 27.5 </z>
             </location>
         </pointmass>
-	<pointmass name="Cabin Zone 0d">
-            <weight unit="LBS"> 3000 </weight>
+	<pointmass name="Reserved 3">
+            <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
               <x> 790 </x>
                 <y> 0 </y>
                 <z> 27.5 </z>
             </location>
         </pointmass>
-	<pointmass name="Cabin Zone 0e">
-            <weight unit="LBS"> 1800</weight>
+	<pointmass name="Reserved 4">
+            <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
               <x> 975 </x>
                 <y> 0 </y>
@@ -540,14 +540,48 @@
 
         <channel name="Pitch">
 
-            <summer name="Pitch Trim Sum">
-                <input>fcs/elevator-cmd-norm</input>
-                <!--<input>fcs/pitch-trim-cmd-norm</input>-->
-                <clipto>
-                    <min>-1</min>
-                    <max> 1</max>
-                </clipto>
-            </summer>
+          <fcs_function name="fcs/elevator-stab-shift">
+            <function>
+		<table>
+		<independentVar>fcs/stabilizer-pos-unit</independentVar>
+		<tableData>
+			0	0.2591
+			1	0.2332
+			2	0.2077
+			3	0.1818
+			4	0.1559
+			5	0.13
+			6	0.1041
+			7	0.0782
+			8	0.0523
+			9	0.0264
+			10	0
+			11	-0.029
+			12	-0.0575
+			13	-0.0865
+			14	-0.1155
+			15	-0.1445
+			16	-0.1735
+			17	-0.2025
+		</tableData>
+		</table>
+            </function>
+          </fcs_function>
+
+          <fcs_function name="Pitch Trim Sum">
+            <function>
+              <sum>
+                <property>fcs/elevator-cmd-norm</property>
+                <product>
+                  <property>fcs/elevator-stab-shift</property>
+                  <difference>
+                    <value>1</value>
+                    <abs><property>fcs/elevator-cmd-norm</property></abs>
+                  </difference>
+                </product>
+              </sum>
+            </function>
+          </fcs_function>
 
             <aerosurface_scale name="Elevator Control">
                 <input>fcs/pitch-trim-sum</input>
@@ -1093,6 +1127,42 @@
             </fcs_function>
         </channel>
 
+        <channel name="stabilizer-force">
+          <fcs_function name="aero/function/stabilizer-force">
+                <function>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <sum>
+                      <product>
+                        <property>fcs/stabilizer-pos-unit</property>
+                        <value>0.030897</value>
+                      </product>
+                      <value>-0.092691</value>
+                    </sum>
+                </product>
+                </function>
+                <output> external_reactions/stabilizer-force/magnitude </output>
+            </fcs_function>
+        </channel>
+
+        <channel name="elevator-force">
+          <fcs_function name="aero/function/elevator-force">
+                <function>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <product>
+                      <property>fcs/elevator-pos-rad</property>
+                      <value>57.2957795131</value>
+                      <value>-0.01</value>
+                    </product>
+                </product>
+                </function>
+                <output> external_reactions/elevator-force/magnitude </output>
+            </fcs_function>
+        </channel>
+
     </flight_control>
 
        <external_reactions>
@@ -1123,6 +1193,32 @@
             </direction>
         </force>
 
+        <force name="stabilizer-force" frame="BODY">
+            <location unit="IN">
+            <x>  1137.75  </x>
+            <y>  0 </y>
+            <z>  54 </z>
+            </location>
+            <direction>
+            <x>    0 </x>
+            <y>    0 </y>
+            <z>    1 </z>
+            </direction>
+        </force>
+
+        <force name="elevator-force" frame="BODY">
+            <location unit="IN">
+            <x>  1137.75  </x>
+            <y>  0 </y>
+            <z>  54 </z>
+            </location>
+            <direction>
+            <x>    0 </x>
+            <y>    0 </y>
+            <z>    1 </z>
+            </direction>
+        </force>
+
 <force name="pushback" frame="BODY">
    <location unit="IN">
     <x>  158 </x>
@@ -1141,9 +1237,9 @@
     <aerodynamics>
 
         <aero_ref_pt_shift_x>
-                 <function name="aero/function/aero-ref-shift">
-                   <property>metrics/aerorp-mac</property>
-                </function>
+          <function name="aero/function/aero-ref-shift">
+            <value>0.25</value> <!-- 25% MAC = 609.215 in -->
+          </function>
         </aero_ref_pt_shift_x>
 
         <function name="/instrumentation/fmc/cg">
@@ -1158,7 +1254,7 @@
         </function>
 
         <function name="/instrumentation/fmc/stab-trim-units">
-            <description>Maximum N1 for CLIMB</description>
+            <description>Stab position for take-off</description>
             <table>
                 <independentVar lookup="row">/instrumentation/fmc/to-flap</independentVar>
                 <independentVar lookup="column">/instrumentation/fmc/cg</independentVar>
@@ -1471,24 +1567,24 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                       <table>
-                          <independentVar>velocities/mach</independentVar> <!-- Data taken from book "Aerodynamic design of transport aircraft" -->
+                          <independentVar>velocities/mach</independentVar> <!-- Data taken from book "Aerodynamic design of transport aircraft", but recalculated to match QRH -->
                           <tableData>
-				0.6	0
-				0.62	0.0001
+				0	0
+				0.62	0
 				0.64	0.0001
 				0.66	0.0002
-				0.68	0.0003
-				0.7	0.0005
-				0.72	0.0006
-				0.74	0.0009
-				0.76	0.0012
-				0.78	0.0022
-				0.8	0.0042
-				0.82	0.0065
-				0.84	0.0087
-				0.86	0.011
-				0.88	0.0132
-				0.9	0.0155
+				0.68	0.0006
+				0.7	0.001
+				0.72	0.0025
+				0.74	0.0041
+				0.76	0.01
+				0.78	0.02
+				0.8	0.042
+				0.82	0.065
+				0.84	0.087
+				0.86	0.11
+				0.88	0.132
+				0.9	0.155
                           </tableData>
                       </table>
                 </product>
@@ -1520,7 +1616,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/speedbrake-pos-norm</property>
-                    <value>0.03</value>
+                    <value>0.0178</value> <!-- Calculated from FCTM -->
                 </product>
             </function>
 
@@ -1556,8 +1652,8 @@
                 <description>Drag_due_to_Elevator_and_Stabilizer_Deflection</description>
                 <product>
                    <sum>
-                     <abs><property>aero/coefficient/CLde</property></abs>
-                     <abs><property>aero/coefficient/CLdstab</property></abs>
+                     <abs><property>aero/function/elevator-force</property></abs>
+                     <abs><property>aero/function/stabilizer-force</property></abs>
                    </sum>
                    <value>0.08333</value>
                 </product>
@@ -1636,22 +1732,6 @@
                       </tableData>
                     </table>
                 </product>
-            </function>
-
-            <function name="aero/coefficient/CLde">
-                <description>Lift_due_to_Elevator_Deflection</description>
-                <quotient>
-                    <property>-aero/coefficient/Cmde</property>
-                    <property>metrics/lh-ft</property>
-                </quotient>
-            </function>
-
-            <function name="aero/coefficient/CLdstab">
-                <description>Lift_due_to_Stabilizer_Deflection</description>
-                <quotient>
-                    <property>-aero/coefficient/Cmdstab</property>
-                    <property>metrics/lh-ft</property>
-                </quotient>
             </function>
 
         </axis>
@@ -1737,7 +1817,7 @@
                     <value>-0.8436</value> <!-- Data taken from datcom comparison. Original here was -0.6 -->
                 </product>
             </function>
-            <function name="aero/coefficient/Cmde">
+            <!--<function name="aero/coefficient/Cmde">
                 <description>Pitch_moment_due_to_elevator</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1752,22 +1832,8 @@
                           </tableData>
                       </table>
                 </product>
-            </function>
-            <function name="aero/coefficient/Cmdstab">
-                <description>Pitch_moment_due_to_stabilizer</description> <!-- Calculated from test about parking stability due to headwind -->
-                <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <property>metrics/cbarw-ft</property>
-                    <sum>
-                      <product>
-                        <property>fcs/stabilizer-pos-unit</property>
-                        <value>0.116628</value>
-                      </product>
-                      <value>-0.3067</value>
-                    </sum>
-                </product>
-            </function>
+            </function>-->
+
             <function name="aero/coefficient/Cmq">
                 <description>Pitch_moment_due_to_pitch_rate</description>
                 <product>
@@ -1779,6 +1845,7 @@
                     <value>-11.0</value> <!-- Data taken from datcom comparison. Original here was -27 -->
                 </product>
             </function>
+
             <function name="aero/coefficient/Cmadot">
                 <description>Pitch_moment_due_to_alpha_rate</description>
                 <product>
@@ -1838,23 +1905,6 @@
         </axis>
     </aerodynamics>
     
-    
-<external_reactions>
-
-        <force name="pushback" frame="BODY">
-        <location unit="IN">
-                <x> -158 </x>
-                <y> 0 </y>
-                <z> 75 </z>
-        </location>
-        <direction>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </direction>
-        </force>
-
- </external_reactions>
 <!--
     <output name="B737_datalog.csv" rate="20" type="CSV">
         <property> aero/qbar-psf </property>
