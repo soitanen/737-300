@@ -813,6 +813,44 @@
             </kinematic>
 
         </channel>
+
+        <channel name="Slats">
+
+          <switch name="fcs/slats-cmd">
+            <default value="fcs/slats-cmd"/>
+            <test value="0">
+              fcs/flap-pos-norm LT 0.025
+            </test>
+            <test value="0.67">
+              fcs/flap-pos-norm GE 0.025
+              fcs/flap-pos-norm LT 0.25
+            </test>
+            <test value="1">
+              fcs/flap-pos-norm GE 0.25
+            </test>
+          </switch>
+
+            <kinematic name="Slats Control">
+                <input>fcs/slats-cmd</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>0.67</position>
+                        <time>5</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>3</time>
+                    </setting>
+                </traverse>
+                <output>fcs/slats-pos</output>
+            </kinematic>
+
+        </channel>
+
         <channel name="Landing Gear">
 
             <kinematic name="Gear Control">

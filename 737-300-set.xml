@@ -1171,6 +1171,8 @@
       </atmosphere>
       <fcs>
         <flap-lrs type="double">0</flap-lrs>
+        <slats-cmd type="double">0</slats-cmd>
+        <slats-pos type="double">0</slats-pos>
         <stabilizer-pos-unit type="double">3</stabilizer-pos-unit>
         <brake-left-cmd type="double">0</brake-left-cmd>
         <brake-right-cmd type="double">0</brake-right-cmd>
