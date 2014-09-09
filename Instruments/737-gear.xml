@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <name>Gear Indicators</name>
+ <w-base>79</w-base>
+ <h-base>33</h-base>
+
+ <layers>
+
+  <layer>
+   <name>Lights-off</name>
+   <type>texture</type>
+    <texture>
+     <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.87109</y1>
+     <x2>0.30468</x2>
+     <y2>1.0</y2>
+    </texture>
+     <w>79</w>
+     <h>33</h>
+   </layer>
+
+  <layer>
+   <name>Lights-on</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/gear/gear[0]/position-norm</property>
+       <value>1.0</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.70703</y1>
+     <x2>0.30468</x2>
+     <y2>0.83594</y2>
+    </texture>
+     <w>79</w>
+     <h>33</h>
+   </layer>
+
+ </layers>
+</PropertyList>

@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+
+<!--
+Engine data display 
+David Culp, Mar 2003, davidculp2@attbi.com, based on:
+_______________________________________________________________________________
+-->
+
+<PropertyList>
+
+ <name>Aero data</name>
+ 
+  <w-base>128</w-base>
+  <h-base>256</h-base>
+   
+   <layers>
+
+    <layer>
+     <name>background</name>
+     <texture>   
+     <path>Aircraft/737-300/Instruments/Textures/737-engines.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>1.0</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>128</w>
+     <h>256</h>
+    </layer>
+<!--
+  <layer>
+    <name>TAT</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/fdm/jsbsim/velocities/tat-r</property>
+      <scale>0.555556</scale>
+      <offset>-273.15</offset>
+      <format>%5.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>0</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>120</offset>
+     </transformation>
+    </transformations>
+  </layer>
+-->
+  <layer>
+    <name>Engine[0] N1</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/n1</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>-58</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>86</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[1] N1</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[1]/n1</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>14</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>86</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[0] EGT</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/egt-degf</property>
+      <offset>-17.77777777</offset>
+      <scale>0.55555556</scale>
+      <format>%6.0f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>-58</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>40</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[1] EGT</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[1]/egt-degf</property>
+      <offset>-17.77777777</offset>
+      <scale>0.55555556</scale>
+      <format>%6.0f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>14</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>40</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[0] N2</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/n2</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+     <offset>-58</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-9</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[1] N2</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[1]/n2</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+     <offset>14</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-9</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[0] Fuel Flow</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/fuel-flow_pph</property>
+      <scale>0.001</scale>
+      <format>%6.2f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>-58</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-56</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Engine[1] Fuel Flow</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>0.8</red>
+     <green>1.0</green>
+     <blue>0.8</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[1]/fuel-flow_pph</property>
+      <scale>0.001</scale>
+      <format>%6.2f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>14</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-56</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  </layers>
+</PropertyList>
+
+
+

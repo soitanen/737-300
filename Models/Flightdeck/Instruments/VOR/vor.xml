@@ -1,0 +1,22 @@
+<PropertyList>
+
+ <path>vor.ac</path>
+ 
+<animation>
+   <type>select</type>
+  <object-name>Plane</object-name>
+  <object-name>face</object-name>
+   <condition>
+   <equals>
+    <property>sim/current-view/view-number</property>
+    <value>0</value>
+   </equals>
+  </condition>
+ </animation>
+ 
+  
+
+  
+
+ 
+ </PropertyList>
