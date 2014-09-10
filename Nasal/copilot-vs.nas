@@ -3,11 +3,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     copilot.init();
 });
 
-# var V1 = props.globals.initNode("/instrumentation/fmc/vspeeds/V1",140,"DOUBLE");
-# var V2 = props.globals.initNode("/instrumentation/fmc/vspeeds/V2",150,"DOUBLE");
-# var VR = props.globals.initNode("/instrumentation/fmc/vspeeds/VR",170,"DOUBLE");
-
-
 # Copilot V-Speed announcements
 
 var copilot = {

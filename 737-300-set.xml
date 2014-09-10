@@ -1408,11 +1408,11 @@
     <fmc>
       <to-flap type="double">5</to-flap>
       <derated-to>
-        <zone-22k type="int">1</zone-22k>
-        <zone-20k type="int">1</zone-20k>
+        <zone type="int">1</zone>
         <assumed-temp-degc type="double">15</assumed-temp-degc>
         <method-assumed type="bool">0</method-assumed>
         <method-derate-20k type="bool">0</method-derate-20k>
+        <runway-elevation-ft type="double">0</runway-elevation-ft>
       </derated-to>
     </fmc>
 
@@ -1506,7 +1506,7 @@
     </reversethrust>
 
     <airground>
-      <file>Aircraft/737-300/Systems/air-ground.nas</file>
+      <file>Aircraft/737-300/Nasal/air-ground.nas</file>
     </airground>
    
     <tyresmoke>

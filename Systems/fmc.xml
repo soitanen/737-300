@@ -206,7 +206,7 @@
             <description>V1 speed for 22K rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-22k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
@@ -247,7 +247,7 @@
             <description>VR speed for 22K rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-22k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
@@ -288,7 +288,7 @@
             <description>V2 speed for 22K rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-22k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
@@ -329,7 +329,7 @@
             <description>V1 speed for 20k rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-20k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
@@ -370,7 +370,7 @@
             <description>VR speed for 20k rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-20k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
@@ -411,7 +411,7 @@
             <description>V2 speed for 20K rated</description>
                   <table>
                       <independentVar lookup="row">inertia/weight-lbs</independentVar>
-                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone-20k</independentVar>
+                      <independentVar lookup="column">/instrumentation/fmc/derated-to/zone</independentVar>
                       <independentVar lookup="table">/instrumentation/fmc/to-flap</independentVar>
                       <tableData breakPoint="1">
 				1	2	3	4
