@@ -237,7 +237,7 @@
     <object-name>tyreln</object-name>
     <object-name>Cube</object-name>
     <object-name>tlighthalo</object-name>
-    <property>gear/gear[0]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-nose-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -246,10 +246,6 @@
       <entry>
         <ind>0.25</ind>
         <dep>110.0</dep>
-      </entry>
-      <entry>
-        <ind>0.75</ind>
-        <dep>0.0</dep>
       </entry>
       <entry>
         <ind>1.0</ind>
@@ -273,7 +269,7 @@
   <animation>
     <type>rotate</type>
     <object-name>rhngdoor</object-name>
-    <property>gear/gear[0]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-nose-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -305,7 +301,7 @@
   <animation>
     <type>rotate</type>
     <object-name>lhngdoor</object-name>
-    <property>gear/gear[0]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-nose-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -348,7 +344,7 @@
     <object-name>mglhtyrelh</object-name>
     <object-name>lhgdmid</object-name>
     <object-name>geardoor</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -383,7 +379,7 @@
     <type>rotate</type>
     <object-name>sidestrutl</object-name>
     <object-name>sidestrutu</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -417,7 +413,7 @@
   <animation>
     <type>rotate</type>
     <object-name>sidestrutu</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -451,7 +447,7 @@
   <animation>
     <type>rotate</type>
     <object-name>lhmgdouter</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <factor>110</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -480,7 +476,7 @@
     <object-name>mgrhtyrelh</object-name>
     <object-name>rhgdmid</object-name>
     <object-name>rhgeardoor</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -515,7 +511,7 @@
     <type>rotate</type>
     <object-name>rhsidestrutl</object-name>
     <object-name>rhsidestrutu</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -549,7 +545,7 @@
   <animation>
     <type>rotate</type>
     <object-name>rhsidestrutu</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <interpolation>
       <entry>
         <ind>0.0</ind>
@@ -583,7 +579,7 @@
   <animation>
     <type>rotate</type>
     <object-name>rhmgdouter</object-name>
-    <property>gear/gear[2]/position-norm</property>
+    <property>/fdm/jsbsim/gear/gear-left-pos-norm</property>
     <factor>-110</factor>
     <offset-deg>0</offset-deg>
     <center>
@@ -841,15 +837,7 @@
         <dep>0.0</dep>
       </entry>
       <entry>
-        <ind>0.25</ind>
-        <dep>0.2</dep>
-      </entry>
-      <entry>
-        <ind>0.75</ind>
-        <dep>0.2</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
+        <ind>0.05</ind>
         <dep>0.2</dep>
       </entry>
     </interpolation>

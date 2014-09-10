@@ -169,7 +169,7 @@
                 <y>   0 </y>
                   <z> -97.6 </z>
             </location>
-            <static_friction>  0.80 </static_friction>
+            <static_friction>  0.50 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">240000 </spring_coeff>
@@ -194,7 +194,7 @@
                 <y> -100 </y>
               <z>  -108.6 </z>
             </location>
-            <static_friction>  0.80 </static_friction>
+            <static_friction>  0.50 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 120000 </spring_coeff>
@@ -219,7 +219,7 @@
                 <y> 100 </y>
                 <z>  -108.6 </z>
             </location>
-            <static_friction>  0.80 </static_friction>
+            <static_friction>  0.50 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 120000 </spring_coeff>
@@ -500,6 +500,7 @@
             </drain_location>
             <capacity unit="LBS"> 10043 </capacity>
             <contents unit="LBS"> 10043 </contents>
+            <temperature> 40 </temperature> <!-- Fuel temp in degrees F -->
         </tank>
         <tank type="FUEL"><!-- Center tank -->
             <location unit="IN">
@@ -509,6 +510,7 @@
             </location>
             <capacity unit="LBS"> 15497 </capacity>
             <contents unit="LBS"> 2700 </contents>
+            <temperature> 40 </temperature> <!-- Fuel temp in degrees F -->
         </tank>
         <tank type="FUEL"><!-- Feed pipe for left engine -->
             <location unit="IN">
@@ -533,6 +535,7 @@
    <system file="pushback"/>
    <system file="steering"/>
    <system file="fuel"/>
+   <system file="fmc"/>
 
     <flight_control name="FCS: 737">
 
@@ -821,7 +824,7 @@
             <test value="0">
               fcs/flap-pos-norm LT 0.025
             </test>
-            <test value="0.67">
+            <test value="0.63">
               fcs/flap-pos-norm GE 0.025
               fcs/flap-pos-norm LT 0.25
             </test>
@@ -838,7 +841,7 @@
                         <time>0</time>
                     </setting>
                     <setting>
-                        <position>0.67</position>
+                        <position>0.63</position>
                         <time>5</time>
                     </setting>
                     <setting>
@@ -853,7 +856,7 @@
 
         <channel name="Landing Gear">
 
-            <kinematic name="Gear Control">
+            <kinematic name="Gear Nose Control">
                 <input>gear/gear-cmd-norm</input>
                 <traverse>
                     <setting>
@@ -865,8 +868,49 @@
                         <time>5</time>
                     </setting>
                 </traverse>
-                <output>gear/gear-pos-norm</output>
+                <output>gear/gear-nose-pos-norm</output>
             </kinematic>
+
+            <kinematic name="Gear Left Control">
+                <input>gear/gear-cmd-norm</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>7</time>
+                    </setting>
+                </traverse>
+                <output>gear/gear-left-pos-norm</output>
+            </kinematic>
+
+            <kinematic name="Gear Right Control">
+                <input>gear/gear-cmd-norm</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>7</time>
+                    </setting>
+                </traverse>
+                <output>gear/gear-right-pos-norm</output>
+            </kinematic>
+
+            <fcs_function name="Gear Control">
+                <function>
+                    <avg>
+                        <property>gear/gear-nose-pos-norm</property>
+                        <property>gear/gear-left-pos-norm</property>
+                        <property>gear/gear-right-pos-norm</property>
+                    </avg>
+                </function>
+                <output>gear/gear-pos-norm</output>
+            </fcs_function>
 
         </channel>
         <channel name="Flight Spoilers">
@@ -1280,124 +1324,6 @@
           </function>
         </aero_ref_pt_shift_x>
 
-        <function name="/instrumentation/fmc/cg">
-            <description>MAC in percents</description>
-            <product>
-              <sum>
-                <property>inertia/cg-x-in</property>
-                <value>-575.6</value>
-              </sum>
-              <value>0.7434944</value>
-            </product>
-        </function>
-
-        <function name="/instrumentation/fmc/stab-trim-units">
-            <description>Stab position for take-off</description>
-            <table>
-                <independentVar lookup="row">/instrumentation/fmc/to-flap</independentVar>
-                <independentVar lookup="column">/instrumentation/fmc/cg</independentVar>
-                <tableData>
-				6	10	14	18	22	26	30
-			5	6.25	5.75	5.25	4.75	4.25	3.75	3
-			15	5.75	5	4.5	3.75	3	2.5	1.75
-                </tableData>
-            </table>
-        </function>
-
-        <function name="/autopilot/settings/max-n1">
-            <description>Maximum N1 for CLIMB</description>
-            <table>
-                <independentVar lookup="row">propulsion/tat-c</independentVar>
-                <independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
-                <tableData>
-				0	5000	10000	15000	20000	25000	30000	35000	37000
-			-50	79.1	81	82.7	84.5	86.3	88.3	90.2	92.9	93.5
-			-40	80.8	82.8	84.5	86.3	88.2	90.2	92.2	95	95.6
-			-30	82.5	84.5	86.3	88.2	90.1	92.1	94.1	97	97.6
-			-20	84.2	86.3	88.1	90	91.9	94	96	99	99.3
-			-10	85.9	87.9	89.8	91.7	93.7	95.9	97.9	98.4	98.4
-			0	87.5	89.6	91.5	93.4	95.5	97.2	97.5	97.5	97.5
-			10	89.1	91.2	93.1	95.1	96.1	96.4	96.6	96.6	96.6
-			20	90.6	92.8	94.3	95	95.4	95.6	95.7	96.6	96.6
-			30	92.2	93.2	93.5	94.2	94.6	94.7	95.7	96.6	96.6
-			40	92	92.2	93.6	93.3	93.6	94.7	95.7	96.6	96.6
-			50	90.9	91.1	92.5	93.3	93.6	94.7	95.7	96.6	96.6
-                </tableData>
-            </table>
-        </function>
-
-        <function name="/autopilot/settings/to-n1">
-            <description>Maximum N1 for TAKEOFF</description>
-            <table>
-                <independentVar lookup="row">/environment/temperature-degc</independentVar>
-                <independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
-                <tableData>
-				-1000	0	1000	2000	3000	4000	5000	6000	7000	8000
-			-50	81.7	82.5	82.9	83.2	83.7	84.3	84.7	85.2	85.6	86
-			-40	83.5	84.3	84.7	85.1	85.5	86.2	86.6	87.1	87.4	87.9
-			-30	85.2	86	86.5	86.9	87.3	88	88.4	88.9	89.3	89.7
-			-20	87	87.8	88.3	88.7	89.1	89.8	90.2	90.7	91.1	91.6
-			-10	88.7	89.6	90	90.4	90.8	91.5	92	92.5	92.9	93.4
-			0	90.3	91.2	91.7	92.1	92.6	93.3	93.7	94.2	94.7	95.1
-			5	91.2	92.1	92.5	92.9	93.4	94.1	94.6	95.1	95.5	96
-			10	92	92.9	93.4	93.8	94.2	95	95.4	95.9	96.4	96.8
-			15	92.8	93.7	94.2	94.6	95.1	95.8	96.3	96.8	97.2	97.5
-			20	93.6	94.5	95	95.4	95.9	96.6	97.1	97.1	97	96.9
-			25	94.4	95.3	95.8	96.2	96.5	96.7	96.6	96.6	96.5	96.4
-			30	95.2	96.1	96.1	96	96	96.3	96.2	96.1	96	96
-			35	95.2	95.6	95.6	95.6	95.5	95.7	95.7	95.7	95.6	95.5
-			40	94.6	95.2	95.2	95.1	95	95.1	95.1	95.2	95.1	94.9
-			45	94.2	94.7	94.7	94.6	94.6	94.6	94.7	94.4	94.2	94.9
-			50	93.8	94.3	94.3	94.3	93.9	93.6	94.7	94.4	94.2	94.9
-			55	93.2	93.8	93.8	93.8	93.9	93.6	94.7	94.4	94.2	94.9
-                </tableData>
-            </table>
-        </function>
-
-        <function name="/autopilot/settings/ga-n1">
-            <description>Maximum N1 for Go-Around</description>
-            <table>
-                <independentVar lookup="row">/environment/temperature-degc</independentVar>
-                <independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
-                <tableData>
-				-1000	0	1000	2000	3000	4000	5000	6000	7000	8000
-			-50	81.5	82.4	82.8	83.2	83.7	84.3	84.7	85.2	85.6	86
-			-40	83.3	84.2	84.7	85.1	85.5	86.2	86.6	87.1	87.5	87.9
-			-30	85.1	86	86.5	86.9	87.3	88	88.5	89	89.4	89.8
-			-20	86.8	87.8	88.2	88.6	89.1	89.8	90.3	90.8	91.2	91.6
-			-10	88.5	89.5	90	90.4	90.8	91.5	92	92.5	93	93.4
-			0	90.3	91.2	91.7	92.1	92.6	93.3	93.7	94.3	94.7	95.2
-			5	91.1	92	92.5	92.9	93.4	94.1	94.6	95.1	95.6	96.1
-			10	91.9	92.8	93.3	93.7	94.2	95	95.4	96	96.4	96.9
-			15	92.7	93.7	94.1	94.6	95.1	95.8	96.3	96.8	97.3	97.5
-			20	93.5	94.5	95	95.4	95.9	96.6	97.1	97.2	97	96.9
-			25	94.3	95.3	95.8	96.2	96.5	96.7	96.7	96.6	96.5	96.5
-			30	95.1	96.1	96.1	96	96	96.3	96.2	96.2	96.1	96
-			35	95.1	95.5	95.6	95.5	95.5	95.7	95.7	95.7	95.6	95.6
-			40	94.5	95.1	95.1	95.1	95	95.1	95.1	95.2	95.1	95
-			45	94.1	94.7	94.6	94.6	94.6	94.6	94.7	94.8	94.6	94.6
-			50	93.7	94.2	94.2	94.2	94.2	94.2	94.2	94.2	94.2	94.2
-			55	93.1	93.9	93.9	93.9	93.9	93.9	93.9	93.9	93.9	93.9
-                </tableData>
-            </table>
-        </function>
-
-        <function name="/b733/flaps-min-retr-speed">
-            <description>Minimum flaps retraction speed (F on speedtape)</description>
-            <table>
-                <independentVar lookup="row">fcs/flap-pos-norm</independentVar>
-                <independentVar lookup="column">inertia/weight-lbs</independentVar>
-                <tableData>
-				117000	138500
-			0	210	230
-			0.025	190	210
-			0.125	170	190
-			0.25	160	180
-			0.375	150	170
-                </tableData>
-            </table>
-        </function>
-
         <function name="/engines/engine[0]/reverse-thrust-lbs">
             <description>Reverse thrust calculation</description>
             <table>
@@ -1434,60 +1360,6 @@
 			90	-2664.33	-4419.46	-6153.45	-8191.53
                 </tableData>
             </table>
-        </function>
-
-        <function name="/instrumentation/fmc/v-ref-15">
-            <description>Vref calculation for flaps 15</description>
-            <product>
-                  <table>
-                      <independentVar>inertia/weight-lbs</independentVar>
-                      <tableData>
-			77160	119
-			88183	128
-			99206	136
-			110229	144
-			121252	151
-			132275	158
-			143298	165
-                      </tableData>
-                  </table>
-            </product>
-        </function>
-
-        <function name="/instrumentation/fmc/v-ref-30">
-            <description>Vref calculation for flaps 30</description>
-            <product>
-                  <table>
-                      <independentVar>inertia/weight-lbs</independentVar>
-                      <tableData>
-			77160	111
-			88183	119
-			99206	127
-			110229	134
-			121252	141
-			132275	147
-			143298	154
-                      </tableData>
-                  </table>
-            </product>
-        </function>
-
-        <function name="/instrumentation/fmc/v-ref-40">
-            <description>Vref calculation for flaps 40</description>
-            <product>
-                  <table>
-                      <independentVar>inertia/weight-lbs</independentVar>
-                      <tableData>
-			77160	107
-			88183	115
-			99206	123
-			110229	131
-			121252	138
-			132275	146
-			143298	153
-                      </tableData>
-                  </table>
-            </product>
         </function>
 
         <function name="aero/function/kCDge">

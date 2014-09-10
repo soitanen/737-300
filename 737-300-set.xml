@@ -580,7 +580,7 @@
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>225</speed>
-   <flaps>0125</flaps>
+   <flaps>0.125</flaps>
   </max-flap-extension-speed> 
    <max-flap-extension-speed>    
     <speed>210</speed>
@@ -1104,7 +1104,7 @@
     <gear>
       <brake-parking type="bool">0</brake-parking>
       <autobrakes type="int">0</autobrakes>
-      <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
+      <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, -1=RTO -->
     </gear>
 
     <flight>
@@ -1166,9 +1166,6 @@
 
   <fdm>
     <jsbsim>
-      <atmosphere>
-        <TAT-C type="double">15</TAT-C>
-      </atmosphere>
       <fcs>
         <flap-lrs type="double">0</flap-lrs>
         <slats-cmd type="double">0</slats-cmd>
@@ -1410,6 +1407,13 @@
 
     <fmc>
       <to-flap type="double">5</to-flap>
+      <derated-to>
+        <zone-22k type="int">1</zone-22k>
+        <zone-20k type="int">1</zone-20k>
+        <assumed-temp-degc type="double">15</assumed-temp-degc>
+        <method-assumed type="bool">0</method-assumed>
+        <method-derate-20k type="bool">0</method-derate-20k>
+      </derated-to>
     </fmc>
 
   <radar-altimeter>
@@ -1566,6 +1570,10 @@
     <help>
       <file>Aircraft/737-300/Nasal/help.nas</file>
     </help>
+
+    <fmc737>
+      <file>Aircraft/737-300/Nasal/fmc.nas</file>
+    </fmc737>
 
   </nasal>
 
