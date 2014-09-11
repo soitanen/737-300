@@ -257,7 +257,6 @@ var recalcConditions = func {
 	}
 	if (temperature < 4) {temperature = 4;}
 	if (temperature > 71.9) {temperature = 71.9;}
-	if (elevation == nil) {elevation = 0;}
 	if (elevation < 0) {elevation = 0;}
 	if (derate_20k) {
 		var searchZone = zone_20k;
@@ -273,3 +272,4 @@ var recalcConditions = func {
 setlistener("/instrumentation/fmc/derated-to/assumed-temp-degc", recalcConditions, 0, 0 );
 setlistener("/instrumentation/fmc/derated-to/method-derate-20k", recalcConditions, 0, 0 );
 setlistener("/instrumentation/fmc/derated-to/method-assumed", recalcConditions, 0, 0 );
+setlistener("/sim/signals/fdm-initialized", recalcConditions, 0, 0 );
