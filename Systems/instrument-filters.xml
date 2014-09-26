@@ -294,6 +294,33 @@
    <output>/b733/instrumentation/altimeter[2]/setting-hpa</output>
 </filter>
 
+<!-- Predicted drag-->
+<filter n="10018">
+  <type>gain</type>
+  <gain>1</gain>
+  <input>
+    <expression>
+      <div>
+        <product>
+          <property>/fdm/jsbsim/forces/fwx-aero-lbs</property>
+          <property>/autopilot/settings/target-speed-kt</property>
+          <property>/autopilot/settings/target-speed-kt</property>
+        </product>
+        <sum>
+          <product>
+            <property>/instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
+            <property>/instrumentation/airspeed-indicator[0]/indicated-speed-kt</property>
+          </product>
+          <value>0.0000001</value>
+        </sum>
+      </div>
+    </expression>
+  </input>
+  <output>
+    <prop>/autopilot/helpers/predicted-drag-lbs</prop>
+  </output>
+</filter>
+
 <!-- ############################################################################# -->
 <!-- Calculating engine sound params                                               -->
 <!-- ############################################################################# -->
