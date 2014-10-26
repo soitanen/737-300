@@ -44,10 +44,10 @@ var elev_trim_rate = func {
 	var ap_b_on = getprop("/autopilot/internal/CMDB");
 	var flaps_pos = num( getprop("/fdm/jsbsim/fcs/flap-pos-norm") );
 
-	var trim_speed = 0.615;                                                    #Fastest with flaps extended and manual control
-	if (flaps_pos == 0 and !ap_a_on and !ap_b_on) trim_speed = trim_speed / 3; #With flaps retracted and AP off
-	if (flaps_pos > 0 and (ap_a_on or ap_b_on)) trim_speed = trim_speed / 3;   #With flaps extended and AP on
-	if (flaps_pos == 0 and (ap_a_on or ap_b_on)) trim_speed = trim_speed / 6;  #With flaps retracted and AP on
+	var trim_speed = 0.6;                                                    #Fastest with flaps extended and manual control
+	if (flaps_pos == 0 and !ap_a_on and !ap_b_on) trim_speed = 0.2; #With flaps retracted and AP off
+	if (flaps_pos > 0 and (ap_a_on or ap_b_on)) trim_speed = 0.18;   #With flaps extended and AP on
+	if (flaps_pos == 0 and (ap_a_on or ap_b_on)) trim_speed = 0.09;  #With flaps retracted and AP on
 	setprop("fdm/jsbsim/fcs/stabilizer/trim-rate", trim_speed);
 }
 setlistener( "/autopilot/internal/CMDA", elev_trim_rate, 0, 0);
