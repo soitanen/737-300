@@ -1692,28 +1692,70 @@
    </volume>
   </rumble>
 
-  <gear>
-   <name>gear</name>
-   <mode>in-transit</mode>
-   <path>Sounds/gear.wav</path>
-   <property>/gear/gear[0]/position-norm</property>
-   <pitch>
-    <internal>dt_play</internal>
-    <offset>1.0</offset>
-    <factor>-0.001</factor>
-   </pitch>
-  </gear>
+<gear>
+  <name>gear up</name>
+  <path>Aircraft/737-300/Sounds/gear-up.wav</path>
+  <condition>
+    <less-than>
+      <property>gear/gear[0]/position-norm</property>
+      <value>0.99</value>
+    </less-than>
+  </condition>
+  <mode>once</mode>
+  <position>
+    <x>2</x>
+    <y>0</y>
+    <z>-2.5</z>
+  </position>
+</gear> 
 
-  <gear>
-   <name>gear-lock</name>
-   <path>Sounds/gear-lck.wav</path>
-   <condition>
-    <equals>
-     <property>/gear/gear[0]/position-norm</property>
-     <value>0</value>
-    </equals>
-   </condition>
-  </gear>
+<gear>
+  <name>gear down</name>
+  <path>Aircraft/737-300/Sounds/gear-down.wav</path>
+  <condition>
+    <greater-than>
+      <property>gear/gear[1]/position-norm</property>
+      <value>0.01</value>
+    </greater-than>
+  </condition>
+  <mode>once</mode>
+  <position>
+    <x>2</x>
+    <y>0</y>
+    <z>-2.5</z>
+  </position>
+</gear> 
+
+  <!--<wind>
+   <name>wind-gear</name>
+   <mode>looped</mode>
+   <path>Aircraft/737-300/Sounds/gear_wind.wav</path>
+  <condition>
+    <greater-than>
+      <property>gear/gear[1]/position-norm</property>
+      <value>0.98</value>
+    </greater-than>
+  </condition>
+   <property>/velocities/airspeed-kt</property>
+   <volume>
+    <property>/position/altitude-ft</property>
+    <factor>-0.000010</factor>
+    <offset>1.0</offset>
+    <min>0.1</min>
+    <max>1.0</max>
+   </volume>
+   <volume>
+     <property>/velocities/airspeed-kt</property>
+     <factor>0.0010</factor>
+     <min>0.03</min>
+     <max>0.25</max>
+   </volume>
+   <pitch>
+    <property>/velocities/airspeed-kt</property>
+    <factor>0.01</factor>
+    <offset>1.25</offset>
+   </pitch>
+  </wind>-->
 
 
   <squeal>

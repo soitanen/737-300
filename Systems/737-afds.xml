@@ -215,7 +215,7 @@
       <prop>/autopilot/internal/elevator</prop>
     </output>
     <config>
-      <Kp>-1.8</Kp>          <!-- proportional gain -->
+      <Kp>-1.2</Kp>          <!-- proportional gain -->
       <Ki>-0.3</Ki>          <!-- integral gain -->
       <u_min>/autopilot/settings/max-authority-neg</u_min> <!-- minimum output clamp -->
       <u_max>/autopilot/settings/max-authority-pos</u_max>   <!-- maximum output clamp -->
@@ -388,6 +388,7 @@
             <property>/autopilot/internal/CMDB</property>
           </or>
           <property>/autopilot/internal/PITCH-ACTIVE</property>
+          <property>/autopilot/internal/stab-autotrim</property>
         </and>
       </condition>
   </enable>

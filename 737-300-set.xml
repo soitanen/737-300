@@ -549,6 +549,8 @@
       <FCC-added type="string"></FCC-added>
 
       <wp-change-check-period type="double">10</wp-change-check-period>
+
+      <stab-autotrim type="bool">1</stab-autotrim>
     </internal>
 
     <display>
@@ -620,6 +622,12 @@
       </tank>
       <tank n="2">
         <level-lbs archive="y">2700</level-lbs>
+      </tank>
+      <tank n="3">
+        <hidden type="bool">1</hidden>
+      </tank>
+      <tank n="4">
+        <hidden type="bool">1</hidden>
       </tank>
     </fuel>
   </consumables>
@@ -1187,6 +1195,7 @@
       <metrics>
         <aerorp-mac type="double">0.30</aerorp-mac>
         <roll type="double">0.2</roll>
+        <basic-moment type="double">-0.25</basic-moment>
       </metrics>
     </jsbsim>
   </fdm>
