@@ -1082,7 +1082,7 @@ if (getprop("/autopilot/internal/LNAV")){
 	settimer(turn_anticipate, 5);
 }
 }
-setlistener("/autopilot/internal/LNAV", turn_anticipate, 0, 0);
+#setlistener("/autopilot/internal/LNAV", turn_anticipate, 0, 0);
 
 var wp_change = func {
 	setprop("/autopilot/internal/wp-change-time", getprop("/sim/time/elapsed-sec"));
