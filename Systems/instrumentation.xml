@@ -142,10 +142,13 @@ This file selects the instrumentation modules that should be available.
     </turn-indicator>
 
     <transponder>
-      <name>transponder</name>
-      <number>0</number>
-    <mode-c-altitude>/instrumentation/altimeter/mode-c-alt-ft</mode-c-altitude>
-  </transponder>
+        <name type="string">transponder</name>
+        <number type="int">0</number>
+        <mode type="int">1</mode> <!-- 0 = Mode A, 1 = Mode C, 2 = Mode S -->
+        <bus-volts type="double">8.0</bus-volts>
+        <encoder-path type="string">/instrumentation/altimeter</encoder-path>
+        <kt70-compatibility type="bool">0</kt70-compatibility>
+    </transponder>
 
   <vertical-speed-indicator>
     <name>vertical-speed-indicator</name>
@@ -167,16 +170,6 @@ This file selects the instrumentation modules that should be available.
     <name>tacan</name>
     <number>0</number>
   </tacan>
-
-    <KT-70>
-        <name>kt-70</name>
-        <number>0</number>
-    </KT-70>
-
-    <KT-70>
-        <name>kt-70</name>
-        <number>1</number>
-    </KT-70>
 
   <radar-altimeter>
     <name>radar-altimeter</name>
