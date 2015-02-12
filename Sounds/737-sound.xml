@@ -1833,10 +1833,10 @@
          <property>/fdm/jsbsim/aero/alpha-deg</property>
 	       <value>12.0</value>
 	     </greater-than>
-	     <greater-than>
-	       <property>/velocities/airspeed-kt</property>
-	       <value>20</value>
-	     </greater-than>
+	     <equals>
+	       <property>/b733/sensors/air-ground</property>
+	       <value>air</value>
+	     </equals>
 	   </and>
 	 </condition>
    <volume>
