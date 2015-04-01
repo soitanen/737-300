@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Septemper 2013
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
+<PropertyList>
+
+  <path>tiller.ac</path>
+  
+	<animation>
+		<type>material</type>
+		<object-name>Tiller</object-name>
+		<emission>
+		  <red>0.3</red>
+		  <green>0.3</green>
+		  <blue>0.3</blue>
+		</emission>
+	</animation>
+
+  <animation>
+    <type>rotate</type>
+		<object-name>Tiller</object-name>
+		<condition>
+			<property>/controls/gear/gear-down</property>
+		</condition>
+    <property>/fdm/jsbsim/fcs/steer-pos-deg</property>
+    <factor> -1 </factor>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x> 0 </x> 
+      <y> 1 </y> 
+      <z> 0 </z> 
+    </axis>
+  </animation>
+	
+  
+  <animation>
+    <type>pick</type>
+    <object-name>Tiller</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+            <command>nasal</command>
+            <script>
+              var tiller = gui.Dialog.new("/sim/gui/dialogs/b733/menu/dialog","Aircraft/737-300/Dialogs/tiller-steering.xml");
+              tiller.open();
+            </script>
+      </binding>
+    </action>
+  </animation>
+  
+</PropertyList>

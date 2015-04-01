@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>ABSelectorknob.ac</path>
+
+   <animation>
+    <type>material</type>
+    <object-name>knob1.006</object-name>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.3 </red>
+      <green> 0.3 </green>
+      <blue>  0.3 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>knob1.006</object-name>
+  <property>/controls/gear/autobrakes</property>
+  <factor>45</factor>
+  <offset-deg>-90</offset-deg>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+  <animation>
+  <type>knob</type>
+  <visible>true</visible>
+  <object-name>knob1.006</object-name>
+  <action>
+    <binding>
+      <command>property-adjust</command>
+      <property>/controls/gear/autobrakes</property>
+      <factor>1</factor>
+      <min>-1</min>
+      <max>4</max>
+      <wrap>0</wrap>
+    </binding>
+  </action>
+
+  <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>autobrake-mode</tooltip-id>
+      <label>Autobrake mode: %s</label>
+      <property>/controls/gear/autobrakes</property>
+      <mapping>nasal</mapping>
+      <script>
+        if (arg[0] == -1) {return "RTO";} else {
+          var modes = ["Off", "Level 1", "Level 2", "Level 3", "Maximum"];
+          return modes[arg[0]];}
+      </script>
+    </binding>
+  </hovered>
+ </animation>
+ 
+ </PropertyList>

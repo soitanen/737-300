@@ -1,0 +1,24 @@
+<!--
+737-300 Clock and ETA to next Waypoint Chronometer 
+-->
+
+<PropertyList>
+ <path>unknowndisplay.ac</path>
+
+
+  <animation>
+    <type>select</type>
+    <object-name>Plane.001</object-name>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+
+</PropertyList>

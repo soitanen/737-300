@@ -3,21 +3,28 @@
 <PropertyList>
 
 	<path>rpmgauge.ac</path>
-  
-<animation>
-   <type>select</type>
-  <object-name>Plane</object-name>
-  <object-name>Cylinder</object-name>
+
+  <animation>
+    <type>material</type>
+    <object-name>Plane.171</object-name>
     <object-name>needle</object-name>
-   <condition>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.6 </red>
+      <green> 0.6 </green>
+      <blue>  0.6 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
   </condition>
- </animation>
-  
- 
+  </animation>
+
   
 <animation>
         <type>rotate</type>

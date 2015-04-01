@@ -1,8 +1,8 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "Material.012" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 1 1 1 shi 32 trans 0
-MATERIAL "Flat.005" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 128 trans 0
-MATERIAL "Lights.003" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.42 0.42 0.42 shi 128 trans 0
+MATERIAL "Material.012" rgb 1 1 1 amb 1 1 1 emis .1 .1 .1 spec 1 1 1 shi 32 trans 0
+MATERIAL "Flat.005" rgb 1 1 1 amb .51 .51 .51 emis .1 .1 .1 spec 1 1 1 shi 128 trans 0
+MATERIAL "Lights.003" rgb 1 1 1 amb 1 1 1 emis .1 .1 .1 spec 0.42 0.42 0.42 shi 128 trans 0
 OBJECT world
 kids 4
 OBJECT poly

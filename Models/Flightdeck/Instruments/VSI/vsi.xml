@@ -1,42 +1,49 @@
 <PropertyList>
 
  <path>vsi.ac</path>
- 
-<animation>
-   <type>select</type>
-  <object-name>vsibezel</object-name>
-  <object-name>vsiface</object-name>
-  <object-name>light</object-name>
-  <object-name>needle</object-name>
-
-   <condition>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
-  </condition>
- </animation>
- 
-
   
+  <animation>
+    <type>material</type>
+    <object-name>vsiface</object-name>
+    <object-name>needle</object-name>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.6 </red>
+      <green> 0.6 </green>
+      <blue>  0.6 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+
   <!--variometer-->
 	<animation>
 		<type>rotate</type>
 		<object-name>needle</object-name>
-		<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
-		<interpolation>
-			<entry><ind>-500</ind><dep>30</dep></entry>
+		<expression>
+		<table>
+			<property>/autopilot/internal/current-vertical-speed-fpm</property>
+			<entry><ind>-6000</ind><dep>170</dep></entry>
+			<entry><ind>-4000</ind><dep>140</dep></entry>
+			<entry><ind>-2000</ind><dep>100</dep></entry>
 			<entry><ind>-1000</ind><dep>60</dep></entry>
-			<entry><ind>-2000</ind><dep>140</dep></entry>
-			<entry><ind>-4000</ind><dep>172</dep></entry>
-			<entry><ind>-6000</ind><dep>180</dep></entry>
+			<entry><ind>-500</ind><dep>30</dep></entry>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>500</ind><dep>-30</dep></entry>
 			<entry><ind>1000</ind><dep>-60</dep></entry>
-			<entry><ind>2000</ind><dep>-140</dep></entry>
-			<entry><ind>4000</ind><dep>-172</dep></entry>
-			<entry><ind>6000</ind><dep>-180</dep></entry>
-		</interpolation>
+			<entry><ind>2000</ind><dep>-100</dep></entry>
+			<entry><ind>4000</ind><dep>-145</dep></entry>
+			<entry><ind>6000</ind><dep>-170</dep></entry>
+		</table>
+		</expression>
   <center>
    <x-m>0.004</x-m>
    <y-m>0.0</y-m>

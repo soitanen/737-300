@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>gpwspanel.ac</path>
+ 
+    <animation>
+    <type>material</type>
+    <object-name>Plane.170</object-name>
+    <object-name>guard</object-name>
+    <object-name>terr</object-name>
+    <object-name>terrovrd</object-name>
+    <object-name>wxr</object-name>
+    
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.05 </red>
+      <green> 0.05 </green>
+      <blue>  0.05 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+  </animation>
+
+ </PropertyList>

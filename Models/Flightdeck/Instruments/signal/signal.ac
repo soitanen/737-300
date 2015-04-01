@@ -3,12 +3,14 @@ MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 
 MATERIAL "DefaultWhite.001" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.5 0.5 0.5 shi 64 trans 0
 MATERIAL "ac3dmat1.002" rgb 0.722 0.722 0.722 amb 0.094 0.094 0.094 emis 0 0 0 spec 1 1 1 shi 85 trans 0
 OBJECT world
+texture "signal.png"
 kids 15
 OBJECT group
 name "Curve.003"
 kids 1
 OBJECT group
 name "Curve.008_0.003"
+texture "signal.png"
 kids 1
 OBJECT group
 name "sky"
@@ -23,12 +25,15 @@ numsurf 0
 kids 0
 OBJECT group
 name "Plane.015"
+texture "signal.png"
 kids 1
 OBJECT group
 name "Plane.019"
+texture "signal.png"
 kids 1
 OBJECT poly
 name "Cube.001"
+texture "signal.png"
 data 8
 Cube.017
 crease 30.000000
@@ -37,6 +42,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Cube.021"
+texture "signal.png"
 data 8
 Cube.001
 crease 30.000000
@@ -95,6 +101,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.022"
+texture "signal.png"
 data 8
 Cube.003
 crease 30.000000
@@ -153,6 +160,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.023"
+texture "signal.png"
 data 8
 Cube.004
 crease 30.000000
@@ -211,6 +219,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Plane.004"
+texture "signal.png"
 data 9
 Plane.024
 crease 30.000000
@@ -219,6 +228,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.006"
+texture "signal.png"
 data 9
 Plane.026
 crease 30.000000
@@ -227,6 +237,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.011"
+texture "signal.png"
 data 9
 Plane.031
 crease 30.000000
@@ -235,6 +246,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.054"
+texture "signal.png"
 data 9
 Plane.322
 crease 30.000000
@@ -243,6 +255,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.074"
+texture "signal.png"
 data 9
 Plane.326
 crease 30.000000
@@ -251,6 +264,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.076"
+texture "signal.png"
 data 9
 Plane.336
 crease 30.000000
@@ -259,6 +273,7 @@ numsurf 0
 kids 0
 OBJECT poly
 name "Plane.171"
+texture "signal.png"
 data 9
 Plane.029
 texture "signal.png"

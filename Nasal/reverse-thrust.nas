@@ -14,8 +14,8 @@ togglereverser = func {
     if (val == 0 or val == nil) {
       interpolate(pos1, 1.0, 1.4); 
       interpolate(pos2, 1.0, 1.4);  
-      setprop(angle1,"reverser-angle-rad","2.35619");
-      setprop(angle2,"reverser-angle-rad","2.35619");
+      setprop(angle1,"reverser-angle-rad","1.58");
+      setprop(angle2,"reverser-angle-rad","1.58");
       setprop(control1,"reverser", "true");
       setprop(control2,"reverser", "true");
       setprop(engselect,"engine", "true");
