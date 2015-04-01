@@ -4,24 +4,31 @@
 
 	<path>kphgauge.ac</path>
   
-<animation>
-   <type>select</type>
-  <object-name>Circle</object-name>
+  <animation>
+    <type>material</type>
+    <object-name>Circle</object-name>
     <object-name>needle</object-name>
-   <condition>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.6 </red>
+      <green> 0.6 </green>
+      <blue>  0.6 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
   </condition>
- </animation>
-  
- 
-  
+  </animation>
+
   <animation>
         <type>rotate</type>
         <object-name>needle</object-name>
-        <property>engines/engine/thrust_lb</property>
+        <property>engines/engine[1]/thrust_lb</property>
         <interpolation>
             <entry><ind>0</ind><dep>45</dep></entry>
             <entry><ind>13227</ind><dep>315</dep></entry>

@@ -3,24 +3,30 @@
 
  <path>backupai.ac</path>
  
- <animation>
-   <type>select</type>
-  <object-name>bezel</object-name>
-  <object-name>knob</object-name>
-  <object-name>light</object-name>
-  <object-name>riminside</object-name>
-  <object-name>bigknob</object-name>
-  <object-name>wings</object-name>
-  <object-name>rollarrow</object-name>
-  <object-name>ball</object-name>
-  <object-name>rollindex</object-name>
-   <condition>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
+   <animation>
+    <type>material</type>
+    <object-name>ball</object-name>
+    <object-name>riminside</object-name>
+    <object-name>rollarrow</object-name>
+    <object-name>rollindex</object-name>
+    <object-name>wings</object-name>
+    <emission>
+<!--      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop> -->
+      <red>   0.7 </red>
+      <green> 0.7 </green>
+      <blue>  0.7 </blue>
+    </emission>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
   </condition>
- </animation>
+  </animation>
+
 
  <animation>
   <type>rotate</type>

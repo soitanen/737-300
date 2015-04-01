@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <name>Groun Ops</name>
+  <layout>vbox</layout>
+  <group>
+    <layout>hbox</layout>
+    <text>
+      <label>Ground Operations</label>
+    </text>
+		<button>
+      <pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend>x</legend>
+			<default>1</default>
+			<keynum>27</keynum>
+			<border>2</border>
+			<binding>
+				<command>dialog-close</command>
+      </binding>
+		</button>
+  </group>
+  <hrule/>
+
+  <group>
+    <layout>vbox</layout>
+    <halign>center</halign>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Chocks</label>
+      <property>controls/switches/chocks</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/chocks</property>
+      </binding>
+    </checkbox>
+
+   <checkbox>
+      <halign>left</halign>
+      <label>Engine Safety Cones</label>
+      <property>controls/switches/safety-cones</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/safety-cones</property>
+      </binding>
+    </checkbox>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Passenger Stairs Front</label>
+      <property>controls/switches/stairs1</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/stairs1</property>
+      </binding>
+    </checkbox>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Passenger Stairs Rear</label>
+      <property>controls/switches/stairs2</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/stairs2</property>
+      </binding>
+    </checkbox>
+  
+   <checkbox>
+      <halign>left</halign>
+      <label>Baggage Front</label>
+      <property>/controls/switches/baggage1</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/baggage1</property>
+      </binding>
+    </checkbox>
+
+   <checkbox>
+      <halign>left</halign>
+      <label>Baggage Rear</label>
+      <property>/controls/switches/baggage2</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/baggage2</property>
+      </binding>
+    </checkbox>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Bus</label>
+      <property>controls/switches/bus</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/bus</property>
+      </binding>
+    </checkbox>
+
+   <checkbox>
+      <halign>left</halign>
+      <label>Car</label>
+      <property>controls/switches/car_service</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/car_service</property>
+      </binding>
+    </checkbox>
+    
+  <checkbox>
+      <halign>left</halign>
+      <label>Fuel Truck</label>
+      <property>controls/switches/Fuel</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/Fuel</property>
+      </binding>
+    </checkbox>
+
+  <checkbox>
+      <halign>left</halign>
+      <label>Catering Front</label>
+      <property>controls/switches/catering1</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/catering1</property>
+      </binding>
+    </checkbox>
+
+   <checkbox>
+      <halign>left</halign>
+      <label>Catering Rear</label>
+      <property>controls/switches/catering2</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/catering2</property>
+      </binding>
+    </checkbox>
+
+   <checkbox>
+      <halign>left</halign>
+      <label>GPU</label>
+      <property>controls/switches/gpu</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/gpu</property>
+      </binding>
+    </checkbox>
+
+<checkbox>
+      <halign>left</halign>
+      <label>Engine Protection</label>
+      <property>controls/switches/protection</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/switches/protection</property>
+      </binding>
+    </checkbox>
+
+  </group>
+
+</PropertyList>

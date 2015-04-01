@@ -109,7 +109,7 @@ Autopilot Controls
     <h>12</h>
     <binding>
     <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
+    <property>/autopilot/settings/target-altitude-mcp-ft</property>
     <step>-100.0</step>
 	<min>0</min>
     <max>99000</max>
@@ -126,7 +126,7 @@ Autopilot Controls
     <h>12</h>
     <binding>
     <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
+    <property>/autopilot/settings/target-altitude-mcp-ft</property>
     <step>-1000.0</step>
 	<min>0</min>
     <max>99000</max>
@@ -143,7 +143,7 @@ Autopilot Controls
     <h>12</h>
     <binding>
     <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
+    <property>/autopilot/settings/target-altitude-mcp-ft</property>
     <step>100.0</step>
 	<min>0</min>
     <max>99000</max>
@@ -160,7 +160,7 @@ Autopilot Controls
     <h>12</h>
     <binding>
     <command>property-adjust</command>
-    <property>/autopilot/settings/target-altitude-ft</property>
+    <property>/autopilot/settings/target-altitude-mcp-ft</property>
     <step>1000.0</step>
 	<min>0</min>
     <max>99000</max>

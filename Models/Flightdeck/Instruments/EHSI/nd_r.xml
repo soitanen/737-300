@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>ehsi_r.ac</path>
+ <animation>
+  <type>select</type>
+  <object-name>ndScreenR</object-name>
+  <condition>
+    <or>
+      <property>controls/electric/battery-switch</property>
+      <property>controls/electric/external-power</property>
+      <property>controls/electric/apugen1</property>
+      <property>controls/electric/apugen2</property>
+      <property>engines/engine[0]/running</property>
+    </or>
+  </condition>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>ndScreenR</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<command>nasal</command>
+			<script>nd.showNd("fo");</script>
+		</binding>
+	</action>
+</animation>
+
+</PropertyList>
+
