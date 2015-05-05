@@ -25,9 +25,11 @@ Original Authors :
 - Ryan Miller   <ryan31415926535@gmail.com>
 
 Soundpack for this aircraft is created using 3 soundpacks, downloaded here:
+<pre>
 http://www.avsim.su/files.phtml?fileid=5777
 http://www.avsim.su/files.phtml?fileid=25179
 http://www.avsim.su/files.phtml?fileid=32980
+</pre>
 All 3 files have the same license - freeware, no restrictions on distributions.
 
 If you find, that some of theese sound files are not compatible with GPL license, please let me know about it to soitanen.michael@gmail.com
