@@ -4,8 +4,8 @@
   <sim>
     <model>
       <livery>
-        <name type="string">United Airlines </name>
-        <texture>Liveries/733UAL.png</texture>
+        <name type="string">JAT Airways </name>
+        <texture>Liveries/733JAT.png</texture>
       </livery>
 <Boeing-737-300>
 <removalkit>false</removalkit>
