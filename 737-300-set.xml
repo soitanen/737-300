@@ -1549,7 +1549,7 @@
     </lights>
 
     <cdu>
-      <file>Aircraft/Instruments-3d/cdu/boeing.nas</file>
+      <file>Aircraft/Instruments-3d/cdu2/boeing.nas</file>
     </cdu>
 
     <instruments>
