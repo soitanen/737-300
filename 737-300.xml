@@ -913,6 +913,7 @@
             </fcs_function>
 
         </channel>
+
         <channel name="Flight Spoilers">
           <!-- operated by the speedbrake handle and roll control -->
             <kinematic name="Flight Spoilers Control">
@@ -1095,7 +1096,7 @@
                  <function>
                      <product>
                          <property>/autopilot/internal/servo-throttle[0]</property>
-			 <value>1</value>
+			             <value>1</value>
                      </product>
                  </function>
                <output>fcs/throttle-cmd-norm[0]</output>
@@ -1210,22 +1211,124 @@
         </channel>
 
         <channel name="stabilizer-force">
-          <fcs_function name="aero/function/stabilizer-force">
+
+            <fcs_function name="aero/coefficient/kepsge">
+             <function>
+              <table>
+               <independentVar lookup="row"> aero/h_b-mac-ft </independentVar>
+               <tableData> 
+                0.088  1        
+                0.11   0.956
+                0.15   0.789
+                0.2    0.552
+                0.25   0.407
+                0.3    0.296
+                0.35   0.228
+                0.4    0.181
+                0.45   0.147
+                0.5    0.118
+                0.6    0.072
+                0.8    0.027
+                1      0        
+               </tableData>
+              </table>
+             </function>
+            </fcs_function>
+
+            <fcs_function name="fcs/stab">
                 <function>
-                <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
+                    <product>
+                        <difference>
+                            <property>fcs/stabilizer-pos-unit</property>
+                            <value>3</value>
+                        </difference>
+                        <value>-1</value>
+                    </product>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="aero/coefficient/epsair">
+                <function>
+                    <table>
+                        <independentVar lookup="row">aero/alpha-rad</independentVar>
+                        <independentVar lookup="column">fcs/flap-pos-norm</independentVar>
+                        <tableData>
+                                    0       0.125   0.375   1
+                            -0.0698 -0.5    1.1     1.8     5
+                            0       1.5     3.1     3.8     7
+                            0.0349  2.5     4.1     4.8     8
+                            0.0873  3.9     5.5     6.2     9.4
+                            0.192   6.5     8.1     8.8     12
+                            0.2443  7.7     9.3     10      13.2
+                            0.2793  8       9.6     10.3    13.5
+                            0.3142  7.7     9.3     10      13.2
+                            0.3491  7       8.6     9.3     12.5
+                        </tableData>
+                    </table>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="aero/coefficient/epsge">
+                <function>
+                    <table>
+                        <independentVar lookup="row">aero/alpha-rad</independentVar>
+                        <independentVar lookup="column">fcs/flap-pos-norm</independentVar>
+                        <tableData>
+                                    0   0.125   0.375   1
+                            -0.0698 2.5 2.9 3   3.8
+                            0       3.3 3.3 3.2 3.3
+                            0.0698  3.8 3.5 3.3 2.6
+                            0.1396  3.7 3   2.7 1.9
+                            0.1745  3.9 3.1 2.8 1.9
+                            0.2443  4.6 3.5 3.2 2.3
+                        </tableData>
+                    </table>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="aero/eps">
+                <function>
+                    <!--<sum>
+                        <product>
+                            <property>aero/coefficient/epsair</property>
+                            <difference>
+                                <value>1</value>
+                                <property>aero/coefficient/kepsge</property>
+                            </difference>
+                        </product>
+                        <product>
+                            <property>aero/coefficient/epsge</property>
+                            <property>aero/coefficient/kepsge</property>
+                        </product>
+                    </sum>-->
+                    <property>aero/coefficient/epsair</property>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="aero/alh">
+                <function>
                     <sum>
-                      <product>
-                        <property>fcs/stabilizer-pos-unit</property>
-                        <value>0.030897</value>
-                      </product>
-                      <value>-0.092691</value>
+                        <difference>
+                            <property>aero/alpha-deg</property>
+                            <property>aero/eps</property>
+                        </difference>
+                        <property>fcs/stab</property>
                     </sum>
-                </product>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="aero/function/stabilizer-force">
+                <function>
+                    <product>
+                        <property>aero/qbar-psf</property>
+                        <property>metrics/Sh-sqft</property>
+                        <property>aero/alh</property>
+                        <value>0.0666</value> <!-- 0.0895 -->
+                    </product>
                 </function>
                 <output> external_reactions/stabilizer-force/magnitude </output>
             </fcs_function>
+
         </channel>
 
         <channel name="elevator-force">
@@ -1233,11 +1336,11 @@
                 <function>
                 <product>
                     <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/Sh-sqft</property>
                     <product>
                       <property>fcs/elevator-pos-rad</property>
                       <value>57.2957795131</value>
-                      <value>-0.01</value>
+                      <value>0.0385</value> <!-- obtained from simulator tests -->
                     </product>
                 </product>
                 </function>
@@ -1284,7 +1387,7 @@
             <direction>
             <x>    0 </x>
             <y>    0 </y>
-            <z>    1 </z>
+            <z>    -1 </z>
             </direction>
         </force>
 
@@ -1297,7 +1400,7 @@
             <direction>
             <x>    0 </x>
             <y>    0 </y>
-            <z>    1 </z>
+            <z>    -1 </z>
             </direction>
         </force>
 
@@ -1717,32 +1820,45 @@
         </axis>
 
         <axis name="PITCH">
-            <function name="aero/coefficient/Cmalpha">
+            <!--<function name="aero/coefficient/Cmalpha">
                 <description>Pitch_moment_due_to_alpha</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/alpha-rad</property>
-                    <value>-0.8436</value> <!-- Data taken from datcom comparison. Original here was -0.6 -->
-                </product>
-            </function>
-            <!--<function name="aero/coefficient/Cmde">
-                <description>Pitch_moment_due_to_elevator</description>
+                    <value>-0.8436</value>--> <!-- Data taken from datcom comparison. Original here was -0.6 -->
+                <!--</product>
+            </function>-->
+
+            <function name="aero/coefficient/Cmalpha">
+                <description>Basic pitch moment</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                    <property>fcs/elevator-pos-rad</property>
-                      <table>
-                          <independentVar>velocities/mach</independentVar>
-                          <tableData>
-                              0.4	-1.20
-                              2.0	-0.30
-                          </tableData>
-                      </table>
+                    <!--<property>metrics/basic-moment</property>-->
+                    <table>
+                      <independentVar>fcs/flap-pos-norm</independentVar>
+                      <tableData>
+                        0       -0.1
+                        0.375   0.0123
+                        1       -0.37135
+                      </tableData>
+                    </table>
                 </product>
-            </function>-->
+            </function>
+
+            <function name="aero/coefficient/Cmgear">
+                <description>Pitch moment due to gear</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/cbarw-ft</property>
+                    <property>gear/gear-pos-norm</property>
+                    <value>-0.0397</value>
+                </product>
+            </function>
 
             <function name="aero/coefficient/Cmq">
                 <description>Pitch_moment_due_to_pitch_rate</description>
