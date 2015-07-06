@@ -4,7 +4,7 @@
   <sim>
     <model>
       <livery>
-        <name type="string">BRA Transportes Aéreos (2009)</name>
+        <name type="string">BRA Transportes Aereos (2009)</name>
         <texture>Liveries/BRB_2009.png</texture>
       </livery>
 <Boeing-737-300>
