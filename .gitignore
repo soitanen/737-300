@@ -1,0 +1,6 @@
+#ignore generated backup files
+*.*~
+.*~
+*.*.blend
+*.*.blend1
+*.*.xcf
