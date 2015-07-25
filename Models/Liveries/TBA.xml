@@ -4,8 +4,8 @@
   <sim>
     <model>
       <livery>
-        <name type="string">Nordstar Airlines</name>
-        <texture>Liveries/733TYA.png</texture>
+        <name type="string">TransBrasil</name>
+        <texture>Liveries/TBA.png</texture>
       </livery>
 <Boeing-737-300>
 <removalkit>false</removalkit>
