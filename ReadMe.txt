@@ -3,6 +3,7 @@ Boeing 737-300
 
 ![Pakistan-1](http://i.imgur.com/U9cTXTG.png)
 
+
 This is the 737-300 in Progress and under GNU GPL v3.0
 
 The work is based on the work of David Culp (FDM) and Innis Cunningham (3d-model), then development was continued by chtadmin.
@@ -12,7 +13,9 @@ The work is based on the work of David Culp (FDM) and Innis Cunningham (3d-model
 Currently Maintained By :
 --------------------------
 
+
 * Michael Soitanen (soitanen.michael@gmail.com)
+
 
 Original Authors :
 ------------------
@@ -21,7 +24,7 @@ Original Authors :
 - Innis Cunningham
 - Ispana FlightGear Team
 - Emmanuel Barranger
-- chtadmin       <chtadmin@charterva.com>>
+- chtadmin       <chtadmin@charterva.com>
 - Ryan Miller   <ryan31415926535@gmail.com>
 
 Soundpack for this aircraft is created using 3 soundpacks, downloaded here:
