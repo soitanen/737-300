@@ -1058,7 +1058,7 @@ var turn_anticipate = func {
 if (getprop("/autopilot/internal/LNAV")){
 	gnds_mps = getprop("/instrumentation/gps/indicated-ground-speed-kt") * 0.5144444444444;
 	current_course = getprop("/instrumentation/gps/wp/leg-true-course-deg");
-	wp_fly_to = getprop("/autopilot/route-manager/current-wp");
+	wp_fly_to = getprop("/autopilot/route-manager/current-wp") + 1;
 	if (wp_fly_to < 0) wp_fly_to = 0;
 	next_course = getprop("/autopilot/route-manager/route/wp["~wp_fly_to~"]/leg-bearing-true-deg");
 	max_bank_limit = getprop("/autopilot/settings/maximum-bank-limit");
@@ -1082,7 +1082,7 @@ if (getprop("/autopilot/internal/LNAV")){
 	settimer(turn_anticipate, 5);
 }
 }
-#setlistener("/autopilot/internal/LNAV", turn_anticipate, 0, 0);
+setlistener("/autopilot/internal/LNAV", turn_anticipate, 0, 0);
 
 var wp_change = func {
 	setprop("/autopilot/internal/wp-change-time", getprop("/sim/time/elapsed-sec"));
