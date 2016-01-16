@@ -7,7 +7,7 @@
 <name type="string">Air New Zealand</name>
 <texture>Liveries/ANZ.png</texture>
 </livery>
-<ANZ>
+<Boeing-737-300>
 <removalkit>false</removalkit>
 <eyebrowwindow>true</eyebrowwindow>
 </Boeing-737-300>
